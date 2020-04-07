@@ -1,0 +1,35 @@
+{
+  "name": "gen-i18n-ts",
+  "version": "1.0.0",
+  "repository": "git@github.com:WillBooster/gen-i18n-ts.git",
+  "license": "Apache-2.0",
+  "author": "WillBooster Inc.",
+  "scripts": {
+    "cleanup": "yarn format && yarn lint-fix",
+    "format": "sort-package-json && yarn prettier",
+    "lint": "eslint \"./{packages/*/,}{src,__tests__}/**/*.{js,jsx,ts,tsx}\"",
+    "lint-fix": "yarn lint --fix",
+    "prettier": "prettier --write \"**/{.*/,}*.{css,htm,html,js,json,jsx,md,scss,ts,tsx,vue,yaml,yml}\" \"!**/test-fixtures/**\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "prettier": "@willbooster/prettier-config",
+  "dependencies": {
+    "yargs": "15.3.1"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "2.27.0",
+    "@typescript-eslint/parser": "2.27.0",
+    "@willbooster/eslint-config-ts": "3.0.0",
+    "@willbooster/prettier-config": "3.0.0",
+    "@willbooster/renovate-config": "3.0.0",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.10.1",
+    "eslint-plugin-import": "2.20.2",
+    "eslint-plugin-prettier": "3.1.2",
+    "husky": "4.2.3",
+    "lint-staged": "10.1.2",
+    "prettier": "2.0.4",
+    "sort-package-json": "1.41.0",
+    "typescript": "3.8.3"
+  }
+}
