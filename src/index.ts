@@ -159,10 +159,10 @@ function gen(langFilepaths: string[], typeTree: TypeTree, defaultLang: string): 
     const lang = path.parse(langFilepath).name;
     const langCodeString = jsonObjToCodeString(JSON.parse(fileText));
     if (langCodeString == '') return '';
-    codeString += `const ${lang} = ${langCodeString}\n`;
+    codeString += `const ${lang} = ${langCodeString};\n`;
   }
 
-  codeString += `let ${valCurrentLang} = ${defaultLang}\n`;
+  codeString += `let ${valCurrentLang} = ${defaultLang};\n`;
 
   const typeTreeToCodeString = (typeTree: TypeTree, path: string): string => {
     switch (typeTree.type) {
@@ -209,7 +209,7 @@ function gen(langFilepaths: string[], typeTree: TypeTree, defaultLang: string): 
 
   const l10nCodeString = typeTreeToCodeString(typeTree, valCurrentLang);
   if (l10nCodeString == '') return '';
-  codeString += `export const l10n = ${l10nCodeString}\n`;
+  codeString += `export const l10n = ${l10nCodeString};\n`;
   return codeString;
 }
 
