@@ -1,0 +1,4 @@
+{
+  "okButtonName": "Done",
+  "welcome": "Hi, ${userName}"
+}
