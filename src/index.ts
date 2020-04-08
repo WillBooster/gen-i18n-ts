@@ -50,7 +50,10 @@ class TypeTree {
       case TypeEnum.String:
         return true;
       case TypeEnum.Function: {
-        if (this.params === undefined || typeTree.params === undefined) return false;
+        if (this.params === undefined || typeTree.params === undefined) {
+          console.error('Error: typeTree.params is undefined');
+          return false;
+        }
         if (this.params.length !== typeTree.params.length) return false;
         const sortedOurParams = this.params.slice().sort();
         const sortedTheirParams = typeTree.params.slice().sort();
@@ -60,7 +63,10 @@ class TypeTree {
         return true;
       }
       case TypeEnum.Object: {
-        if (this.map === undefined || typeTree.map === undefined) return false;
+        if (this.map === undefined || typeTree.map === undefined) {
+          console.error('Error: typeTree.map is undefined');
+          return false;
+        }
         if (this.map.size !== typeTree.map.size) return false;
         for (const [key, value] of this.map) {
           const child = typeTree.map.get(key);
@@ -86,13 +92,13 @@ function convert(langFilepath: string): TypeTree {
     } else if (typeof jsonObj === 'object' && !Array.isArray(jsonObj)) {
       const map = new Map<string, TypeTree>();
       for (const [key, value] of Object.entries(jsonObj)) {
-        const treeType = jsonObjToTypeTree(value);
-        if (treeType.type == TypeEnum.Error) return TypeTree.newErrorType();
-        map.set(key, treeType);
+        const valueTreeType = jsonObjToTypeTree(value);
+        if (valueTreeType.type == TypeEnum.Error) return TypeTree.newErrorType();
+        map.set(key, valueTreeType);
       }
       return TypeTree.newObjectType(map);
     }
-    console.error('Error: failed to convert json to typeTree');
+    console.error('Error: JSONObject is neigher string nor object');
     return TypeTree.newErrorType();
   };
   const jsonObj = JSON.parse(fs.readFileSync(langFilepath, { encoding: 'utf-8', flag: 'r' }));
@@ -118,39 +124,42 @@ function validate(langFilepath: string, defalutTypeTree: TypeTree): boolean {
   return true;
 }
 
-function gen(langFilepaths: string[], typeTree: TypeTree, defaultLang: string, codeFilePath: string): void {
+function gen(langFilepaths: string[], typeTree: TypeTree, defaultLang: string): string {
   if (typeTree.type == TypeEnum.Error) {
-    console.error('Error: cannot generate code from typeTree containing some errors');
-    return;
+    console.error('Error: typeTree has some errors');
+    return '';
   }
   const langs = langFilepaths.map((langFilepath) => path.parse(langFilepath).name);
   if (!langs.includes(defaultLang)) {
     console.error('Error: cannot find default-lang file');
-    return;
+    return '';
   }
 
   const valCurrentLang = 'currentLang';
   let codeString = '';
 
-  const jsonToCodeString = (jsonObj: any): string => {
+  const jsonObjToCodeString = (jsonObj: any): string => {
     if (typeof jsonObj === 'string') {
       return `"${jsonObj}"`;
     } else if (typeof jsonObj === 'object' && !Array.isArray(jsonObj)) {
       let members = '';
       for (const [key, value] of Object.entries(jsonObj)) {
-        members += `${key}: ${jsonToCodeString(value)}, `;
+        const valueCodeString = jsonObjToCodeString(value);
+        if (valueCodeString == '') return '';
+        members += `${key}: ${valueCodeString}, `;
       }
       return `{ ${members} }`;
     }
-    console.error('Error: failed to generate code');
+    console.error('Error: JSONObject is neigher string nor object');
     return '';
   };
 
   for (const langFilepath of langFilepaths) {
-    const lang = path.parse(langFilepath).name;
     const fileText = fs.readFileSync(langFilepath, { encoding: 'utf-8', flag: 'r' });
-    const jsonObj = JSON.parse(fileText);
-    codeString += `const ${lang} = ${jsonToCodeString(jsonObj)}\n`;
+    const lang = path.parse(langFilepath).name;
+    const langCodeString = jsonObjToCodeString(JSON.parse(fileText));
+    if (langCodeString == '') return '';
+    codeString += `const ${lang} = ${langCodeString}\n`;
   }
 
   codeString += `let ${valCurrentLang} = ${defaultLang}\n`;
@@ -160,7 +169,10 @@ function gen(langFilepaths: string[], typeTree: TypeTree, defaultLang: string, c
       case TypeEnum.String:
         return path;
       case TypeEnum.Function: {
-        if (typeTree.params === undefined) return '';
+        if (typeTree.params === undefined) {
+          console.error('Error: typeTree.params is undefined');
+          return '';
+        }
 
         let declaration = 'function (';
         for (let i = 0; i < typeTree.params.length - 1; i++) {
@@ -176,23 +188,29 @@ function gen(langFilepaths: string[], typeTree: TypeTree, defaultLang: string, c
         return `${declaration} { return ${expr}; }`;
       }
       case TypeEnum.Object: {
-        if (typeTree.map === undefined) return '';
+        if (typeTree.map === undefined) {
+          console.error('Error: typeTree.map is undefined');
+          return '';
+        }
 
         let members = '';
         for (const [key, value] of typeTree.map) {
-          members += `${key}: ${typeTreeToCodeString(value, `${path}.${key}`)}, `;
+          const valueCodeString = typeTreeToCodeString(value, `${path}.${key}`);
+          if (valueCodeString == '') return '';
+          members += `${key}: ${valueCodeString}, `;
         }
         return `{ ${members} }`;
       }
-
       case TypeEnum.Error:
-      default:
+        console.error('Error: typeTree has some errors');
         return '';
     }
   };
 
-  codeString += `export const l10n = ${typeTreeToCodeString(typeTree, valCurrentLang)}\n`;
-  fs.writeFileSync(codeFilePath, codeString, { encoding: 'utf-8', flag: 'w' });
+  const l10nCodeString = typeTreeToCodeString(typeTree, valCurrentLang);
+  if (l10nCodeString == '') return '';
+  codeString += `export const l10n = ${l10nCodeString}\n`;
+  return codeString;
 }
 
 function main(): void {
@@ -205,7 +223,9 @@ function main(): void {
     if (!validate(langFilepath, typeTree)) return;
   }
 
-  gen(langFilepaths, typeTree, defaultLang, codeFilePath);
+  const codeString = gen(langFilepaths, typeTree, defaultLang);
+  if (codeString == '') return;
+  fs.writeFileSync(codeFilePath, codeString, { encoding: 'utf-8', flag: 'w' });
 }
 
 main();
