@@ -1,4 +1,9 @@
 {
   "okButtonName": "完了",
-  "welcome": "こんにちは、${userName}さん"
+  "welcome": "こんにちは、${userName}さん",
+  "pages": {
+    "user": "${userName}のページ",
+    "help": "ヘルプ",
+    "contact": "お問い合わせ"
+  }
 }

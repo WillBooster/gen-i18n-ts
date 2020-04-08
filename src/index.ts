@@ -134,7 +134,7 @@ function gen(langFilepaths: string[], typeTree: TypeTree, defaultLang: string, c
 
   const jsonToCodeString = (jsonObj: any): string => {
     if (typeof jsonObj === 'string') {
-      return `'${jsonObj}'`;
+      return `"${jsonObj}"`;
     } else if (typeof jsonObj === 'object' && !Array.isArray(jsonObj)) {
       let members = '';
       for (const [key, value] of Object.entries(jsonObj)) {
@@ -171,7 +171,7 @@ function gen(langFilepaths: string[], typeTree: TypeTree, defaultLang: string, c
 
         let expr = path;
         for (const param of typeTree.params) {
-          expr += `.replace('\${${param}}', ${param})`;
+          expr += `.replace("\${${param}}", ${param})`;
         }
         return `${declaration} { return ${expr}; }`;
       }
