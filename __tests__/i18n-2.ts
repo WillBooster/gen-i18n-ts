@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { i18n, changeCurrentLang } from '../test-fixtures/i18n-2/i18n';
+import { i18n, changeCurrentLang } from '../test-fixtures/temp/i18n-2';
 
 test('i18n-2: multiple arguments', async () => {
   assert(i18n.gotAMail('Hanako', 'Happy Birthday!') === 'You got a mail! From:Hanako Subject:Happy Birthday!');

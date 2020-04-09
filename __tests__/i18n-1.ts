@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { i18n, changeCurrentLang } from '../test-fixtures/i18n-1/i18n';
+import { i18n, changeCurrentLang } from '../test-fixtures/temp/i18n-1';
 
 test('i18n-1: simple website', async () => {
   assert(i18n.okButtonName() === 'Done');

@@ -234,7 +234,7 @@ function main(): void {
     outfile: { type: 'string', alias: 'o' },
     defaultLang: { type: 'string', alias: 'default' },
   }).argv;
-  if (indir === undefined || outfile === undefined || defaultLang === undefined) {
+  if (!indir || !outfile || !defaultLang) {
     console.error('Usage: yarn start --i [dirpath] --o [filepath] --default [lang]');
     return;
   }
