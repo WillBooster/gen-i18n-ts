@@ -136,7 +136,7 @@ function gen(langFilepaths: string[], typeTree: TypeTree, defaultLang: string): 
     return '';
   }
 
-  const valCurrentLang = 'currentLang';
+  const varCurrentLang = 'currentLang';
   let codeString = '';
 
   const jsonObjToCodeString = (jsonObj: any): string => {
@@ -163,7 +163,7 @@ function gen(langFilepaths: string[], typeTree: TypeTree, defaultLang: string): 
     codeString += `const ${lang} = ${langCodeString};\n`;
   }
 
-  codeString += `let ${valCurrentLang} = ${defaultLang};\n`;
+  codeString += `let ${varCurrentLang} = ${defaultLang};\n`;
 
   const typeTreeToCodeString = (typeTree: TypeTree, path: string): string => {
     switch (typeTree.type) {
@@ -176,10 +176,10 @@ function gen(langFilepaths: string[], typeTree: TypeTree, defaultLang: string): 
         }
 
         let declaration = 'function (';
-        for (let i = 0; i < typeTree.params.length - 1; i++) {
-          declaration += `${typeTree.params[i]}: string, `;
+        for (let i = 0; i < typeTree.params.length; i++) {
+          declaration += `${typeTree.params[i]}: string`;
+          if (i !== typeTree.params.length - 1) declaration += ', ';
         }
-        declaration += `${typeTree.params[typeTree.params.length - 1]}: string`;
         declaration += '): string';
 
         let expr = path;
@@ -208,9 +208,32 @@ function gen(langFilepaths: string[], typeTree: TypeTree, defaultLang: string): 
     }
   };
 
-  const l10nCodeString = typeTreeToCodeString(typeTree, valCurrentLang);
+  const l10nCodeString = typeTreeToCodeString(typeTree, varCurrentLang);
   if (l10nCodeString == '') return '';
   codeString += `export const l10n = ${l10nCodeString};\n`;
+
+  const currentLangChangerCodeString = (): string => {
+    const varLang = 'lang';
+
+    let declaration = '';
+    declaration += `function changeCurrentLang(${varLang}: `;
+    for (let i = 0; i < langs.length; i++) {
+      declaration += `"${langs[i]}"`;
+      if (i !== langs.length - 1) declaration += ' | ';
+    }
+    declaration += '): void';
+
+    let statement = '';
+    statement += `switch (${varLang}) { `;
+    for (const lang of langs) {
+      statement += `case "${lang}": ${varCurrentLang} = ${lang}; break; `;
+    }
+    statement += ' }';
+    return `${declaration} { ${statement} }`;
+  };
+
+  codeString += `export ${currentLangChangerCodeString()}\n`;
+
   return codeString;
 }
 
