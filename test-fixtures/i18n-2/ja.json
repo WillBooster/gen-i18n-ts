@@ -1,4 +1,5 @@
 {
     "gotAMail": "メールを受信しました! 送信者:${sender} 件名:${subject}",
-    "fourAnd": "${a} と ${b} と ${c} と ${d}"
+    "fourAnd": "${a} と ${b} と ${c} と ${d}",
+    "fx": "${x} の関数 ${f}"
 }

@@ -1,4 +1,5 @@
 {
     "gotAMail": "You got a mail! From:${sender} Subject:${subject}",
-    "fourAnd": "${a}, ${b}, ${c} and ${d}"
+    "fourAnd": "${a}, ${b}, ${c} and ${d}",
+    "fx": "${f} of ${x}"
 }
