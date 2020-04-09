@@ -159,12 +159,12 @@ function main(): void {
 
   const langFilepaths = fs.readdirSync(indir).map((filename) => `${indir}/${filename}`);
 
-  const typeTree = convert(`${indir}/${defaultLang}.json`);
+  const type = convert(`${indir}/${defaultLang}.json`);
   for (const langFilepath of langFilepaths) {
-    validate(langFilepath, typeTree);
+    validate(langFilepath, type);
   }
 
-  const codeString = gen(langFilepaths, typeTree, defaultLang);
+  const codeString = gen(langFilepaths, type, defaultLang);
   fs.writeFileSync(outfile, codeString, { encoding: 'utf-8', flag: 'w' });
 }
 
