@@ -3,7 +3,6 @@ import * as path from 'path';
 import * as yargs from 'yargs';
 
 enum TypeEnum {
-  String,
   Function,
   Object,
   Error,
@@ -22,10 +21,6 @@ class TypeTree {
 
   private constructor(type: TypeEnum) {
     this.type = type;
-  }
-
-  static newStringType(): TypeTree {
-    return new TypeTree(TypeEnum.String);
   }
 
   static newFunctionType(params: string[]): TypeTree {
@@ -48,8 +43,6 @@ class TypeTree {
     if (this.type !== typeTree.type) return false;
 
     switch (this.type) {
-      case TypeEnum.String:
-        return true;
       case TypeEnum.Function: {
         if (this.params === undefined || typeTree.params === undefined) {
           console.error('Error: typeTree.params is undefined');
@@ -84,8 +77,8 @@ class TypeTree {
 function convert(langFilepath: string): TypeTree {
   const jsonObjToTypeTree = (jsonObj: any): TypeTree => {
     if (typeof jsonObj === 'string') {
-      const variables = jsonObj.match(/\$\{[a-zA-Z_][a-zA-Z0-9_]*\}/);
-      if (variables === null) return TypeTree.newStringType();
+      const variables = jsonObj.match(/\$\{[a-zA-Z_][a-zA-Z0-9_]*\}/g);
+      if (variables === null) return TypeTree.newFunctionType([]);
       const params = variables
         .filter((value, index) => variables.indexOf(value) === index)
         .map((value) => value.slice(2, value.length - 1));
@@ -167,8 +160,6 @@ function gen(langFilepaths: string[], typeTree: TypeTree, defaultLang: string): 
 
   const typeTreeToCodeString = (typeTree: TypeTree, path: string): string => {
     switch (typeTree.type) {
-      case TypeEnum.String:
-        return path;
       case TypeEnum.Function: {
         if (typeTree.params === undefined) {
           console.error('Error: typeTree.params is undefined');
@@ -210,7 +201,7 @@ function gen(langFilepaths: string[], typeTree: TypeTree, defaultLang: string): 
 
   const l10nCodeString = typeTreeToCodeString(typeTree, varCurrentLang);
   if (l10nCodeString == '') return '';
-  codeString += `export const l10n = ${l10nCodeString};\n`;
+  codeString += `export const i18n = ${l10nCodeString};\n`;
 
   const currentLangChangerCodeString = (): string => {
     const varLang = 'lang';

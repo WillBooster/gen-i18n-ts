@@ -2,7 +2,7 @@
   "okButtonName": "完了",
   "welcome": "こんにちは、${userName}さん",
   "pages": {
-    "user": "${userName}のページ",
+    "user": "${userName}さんのページ",
     "help": "ヘルプ",
     "contact": "お問い合わせ"
   }

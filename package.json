@@ -11,7 +11,7 @@
     "lint-fix": "yarn lint --fix",
     "prettier": "prettier --write \"**/{.*/,}*.{css,htm,html,js,json,jsx,md,scss,ts,tsx,vue,yaml,yml}\" \"!**/test-fixtures/**\"",
     "start": "yarn && babel-node -x .js,.jsx,.es6,.es,.ts src/index.ts",
-    "test": "jest",
+    "test": "sh __tests__/test.sh",
     "typecheck": "tsc --noEmit"
   },
   "prettier": "@willbooster/prettier-config",

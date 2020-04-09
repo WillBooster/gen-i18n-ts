@@ -1,0 +1,4 @@
+{
+    "gotAMail": "You got a mail! From:${sender} Subject:${subject}",
+    "fourAnd": "${a}, ${b}, ${c} and ${d}"
+}
