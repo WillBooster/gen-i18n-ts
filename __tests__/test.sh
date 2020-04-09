@@ -7,7 +7,7 @@ mkdir ${tempdir}
 
 for i18n in test-fixtures/i18n-*; do
     out=${tempdir}/$(basename ${i18n}).ts
-    yarn start --i ${i18n} --o ${out} --default en
+    yarn start --i ${i18n} --o ${out} --d en
 done
 
 yarn jest
