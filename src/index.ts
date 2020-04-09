@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import * as yargs from 'yargs';
 
 enum TypeEnum {
   String,
@@ -214,18 +215,26 @@ function gen(langFilepaths: string[], typeTree: TypeTree, defaultLang: string): 
 }
 
 function main(): void {
-  const langFilepaths = fs.readdirSync('test/in').map((filename) => `test/in/${filename}`);
-  const codeFilePath = 'test/out/out.ts';
-  const defaultLang = 'ja';
+  const { indir, outfile, defaultLang } = yargs.options({
+    indir: { type: 'string', alias: 'i' },
+    outfile: { type: 'string', alias: 'o' },
+    defaultLang: { type: 'string', alias: 'default' },
+  }).argv;
+  if (indir === undefined || outfile === undefined || defaultLang === undefined) {
+    console.error('Usage: yarn start --i [dirpath] --o [filepath] --default [lang]');
+    return;
+  }
 
-  const typeTree = convert(`test/in/${defaultLang}.json`);
+  const langFilepaths = fs.readdirSync(indir).map((filename) => `${indir}/${filename}`);
+
+  const typeTree = convert(`${indir}/${defaultLang}.json`);
   for (const langFilepath of langFilepaths) {
     if (!validate(langFilepath, typeTree)) return;
   }
 
   const codeString = gen(langFilepaths, typeTree, defaultLang);
   if (codeString == '') return;
-  fs.writeFileSync(codeFilePath, codeString, { encoding: 'utf-8', flag: 'w' });
+  fs.writeFileSync(outfile, codeString, { encoding: 'utf-8', flag: 'w' });
 }
 
 main();
