@@ -2,27 +2,17 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as yargs from 'yargs';
 
-enum TypeEnum {
-  Function,
-  Object,
-}
-
-abstract class BaseType {
-  constructor(protected type: TypeEnum) {}
-  isSameType(instance: BaseType): boolean {
-    return this.type === instance.type;
-  }
-}
+abstract class BaseType {}
 
 class FunctionType extends BaseType {
   constructor(public params: string[]) {
-    super(TypeEnum.Function);
+    super();
   }
 }
 
 class ObjectType extends BaseType {
   constructor(public map: Map<string, BaseType>) {
-    super(TypeEnum.Object);
+    super();
   }
 }
 
