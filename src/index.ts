@@ -17,7 +17,7 @@ class ObjectType extends BaseType {
 }
 
 function convert(langFilepath: string): BaseType {
-  const jsonObjToType = (jsonObj: any): BaseType => {
+  const jsonObjToTypeObj = (jsonObj: any): BaseType => {
     if (typeof jsonObj === 'string') {
       const variableRegex = /\$\{([a-zA-Z_][a-zA-Z0-9_]*)\}/g;
       const params: string[] = [];
@@ -30,7 +30,7 @@ function convert(langFilepath: string): BaseType {
     } else if (typeof jsonObj === 'object' && !Array.isArray(jsonObj)) {
       const map = new Map<string, BaseType>();
       for (const [key, value] of Object.entries(jsonObj)) {
-        const valueTreeType = jsonObjToType(value);
+        const valueTreeType = jsonObjToTypeObj(value);
         map.set(key, valueTreeType);
       }
       return new ObjectType(map);
@@ -39,23 +39,23 @@ function convert(langFilepath: string): BaseType {
   };
 
   const jsonObj = JSON.parse(fs.readFileSync(langFilepath, { encoding: 'utf-8', flag: 'r' }));
-  return jsonObjToType(jsonObj);
+  return jsonObjToTypeObj(jsonObj);
 }
 
-function validate(langFilepath: string, type: BaseType): void {
-  const equals = (ourType: BaseType, theirType: BaseType): boolean => {
-    if (ourType instanceof FunctionType && theirType instanceof FunctionType) {
-      if (ourType.params.length !== theirType.params.length) return false;
-      const sortedOurParams = ourType.params.slice().sort();
-      const sortedTheirParams = theirType.params.slice().sort();
-      for (let i = 0; i < ourType.params.length; i++) {
+function validate(langFilepath: string, typeObj: BaseType): void {
+  const equals = (ourTypeObj: BaseType, theirTypeObj: BaseType): boolean => {
+    if (ourTypeObj instanceof FunctionType && theirTypeObj instanceof FunctionType) {
+      if (ourTypeObj.params.length !== theirTypeObj.params.length) return false;
+      const sortedOurParams = ourTypeObj.params.slice().sort();
+      const sortedTheirParams = theirTypeObj.params.slice().sort();
+      for (let i = 0; i < ourTypeObj.params.length; i++) {
         if (sortedOurParams[i] !== sortedTheirParams[i]) return false;
       }
       return true;
-    } else if (ourType instanceof ObjectType && theirType instanceof ObjectType) {
-      if (ourType.map.size !== theirType.map.size) return false;
-      for (const [key, value] of ourType.map) {
-        const child = theirType.map.get(key);
+    } else if (ourTypeObj instanceof ObjectType && theirTypeObj instanceof ObjectType) {
+      if (ourTypeObj.map.size !== theirTypeObj.map.size) return false;
+      for (const [key, value] of ourTypeObj.map) {
+        const child = theirTypeObj.map.get(key);
         if (child === undefined || !equals(value, child)) return false;
       }
       return true;
@@ -63,10 +63,10 @@ function validate(langFilepath: string, type: BaseType): void {
     return false;
   };
 
-  if (!equals(type, convert(langFilepath))) throw new Error('Error: validation failed');
+  if (!equals(typeObj, convert(langFilepath))) throw new Error('Error: validation failed');
 }
 
-function gen(langFilepaths: string[], type: BaseType, defaultLang: string): string {
+function gen(langFilepaths: string[], typeObj: BaseType, defaultLang: string): string {
   const langs = langFilepaths.map((langFilepath) => path.parse(langFilepath).name);
   if (!langs.includes(defaultLang)) {
     throw new Error('Error: cannot find default-lang file');
@@ -98,31 +98,31 @@ function gen(langFilepaths: string[], type: BaseType, defaultLang: string): stri
 
   codeString += `let ${varCurrentLang} = ${defaultLang};\n`;
 
-  const typeToCodeString = (type: BaseType, path: string): string => {
-    if (type instanceof FunctionType) {
+  const typeObjToCodeString = (typeObj: BaseType, path: string): string => {
+    if (typeObj instanceof FunctionType) {
       let declaration = 'function (';
-      for (let i = 0; i < type.params.length; i++) {
-        declaration += `${type.params[i]}: string`;
-        if (i !== type.params.length - 1) declaration += ', ';
+      for (let i = 0; i < typeObj.params.length; i++) {
+        declaration += `${typeObj.params[i]}: string`;
+        if (i !== typeObj.params.length - 1) declaration += ', ';
       }
       declaration += '): string';
       let expr = path;
-      for (const param of type.params) {
+      for (const param of typeObj.params) {
         expr += `.replace("\${${param}}", ${param})`;
       }
       return `${declaration} { return ${expr}; }`;
-    } else if (type instanceof ObjectType) {
+    } else if (typeObj instanceof ObjectType) {
       let members = '';
-      for (const [key, value] of type.map) {
-        const valueCodeString = typeToCodeString(value, `${path}.${key}`);
+      for (const [key, value] of typeObj.map) {
+        const valueCodeString = typeObjToCodeString(value, `${path}.${key}`);
         members += `${key}: ${valueCodeString}, `;
       }
       return `{ ${members} }`;
     }
-    throw new Error('Error: unexpected type');
+    throw new Error('Error: unexpected typeObj');
   };
 
-  const l10nCodeString = typeToCodeString(type, varCurrentLang);
+  const l10nCodeString = typeObjToCodeString(typeObj, varCurrentLang);
   codeString += `export const i18n = ${l10nCodeString};\n`;
 
   const currentLangChangerCodeString = (): string => {
@@ -159,12 +159,12 @@ function main(): void {
 
   const langFilepaths = fs.readdirSync(indir).map((filename) => `${indir}/${filename}`);
 
-  const type = convert(`${indir}/${defaultLang}.json`);
+  const typeObj = convert(`${indir}/${defaultLang}.json`);
   for (const langFilepath of langFilepaths) {
-    validate(langFilepath, type);
+    validate(langFilepath, typeObj);
   }
 
-  const codeString = gen(langFilepaths, type, defaultLang);
+  const codeString = gen(langFilepaths, typeObj, defaultLang);
   fs.writeFileSync(outfile, codeString, { encoding: 'utf-8', flag: 'w' });
 }
 
