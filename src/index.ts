@@ -108,7 +108,7 @@ function gen(langFilepaths: string[], typeObj: BaseType, defaultLang: string): s
       declaration += '): string';
       let expr = path;
       for (const param of typeObj.params) {
-        expr += `.replace("\${${param}}", ${param})`;
+        expr += `.replace(/\\$\\{${param}\\}/g, ${param})`;
       }
       return `${declaration} { return ${expr}; }`;
     } else if (typeObj instanceof ObjectType) {
