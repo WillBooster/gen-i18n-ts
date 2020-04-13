@@ -100,10 +100,11 @@ function gen(langFilepaths: string[], typeObj: BaseType, defaultLang: string): s
 
   const typeObjToCodeString = (typeObj: BaseType, path: string): string => {
     if (typeObj instanceof FunctionType) {
+      let delimiter = '';
       let declaration = 'function (';
-      for (let i = 0; i < typeObj.params.length; i++) {
-        declaration += `${typeObj.params[i]}: string`;
-        if (i !== typeObj.params.length - 1) declaration += ', ';
+      for (const param of typeObj.params) {
+        declaration += `${delimiter}${param}: string`;
+        delimiter = ', ';
       }
       declaration += '): string';
       let expr = path;
@@ -127,10 +128,11 @@ function gen(langFilepaths: string[], typeObj: BaseType, defaultLang: string): s
 
   const currentLangChangerCodeString = (): string => {
     const varLang = 'lang';
+    let delimiter = '';
     let declaration = `function changeCurrentLang(${varLang}: `;
-    for (let i = 0; i < langs.length; i++) {
-      declaration += `"${langs[i]}"`;
-      if (i !== langs.length - 1) declaration += ' | ';
+    for (const lang of langs) {
+      declaration += `${delimiter}"${lang}"`;
+      delimiter = ' | ';
     }
     declaration += '): void';
     let statement = `switch (${varLang}) { `;
