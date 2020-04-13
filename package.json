@@ -10,7 +10,7 @@
     "lint": "eslint \"./{packages/*/,}{src,__tests__}/**/*.{js,jsx,ts,tsx}\"",
     "lint-fix": "yarn lint --fix",
     "prettier": "prettier --write \"**/{.*/,}*.{css,htm,html,js,json,jsx,md,scss,ts,tsx,vue,yaml,yml}\" \"!**/test-fixtures/**\"",
-    "start": "yarn && babel-node -x .js,.jsx,.es6,.es,.ts src/index.ts",
+    "start": "yarn && babel-node -x .js,.jsx,.es6,.es,.ts -- src/index.ts",
     "test": "sh __tests__/test.sh",
     "typecheck": "tsc --noEmit"
   },

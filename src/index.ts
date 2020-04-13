@@ -156,7 +156,7 @@ function main(): void {
     defaultLang: { type: 'string', alias: 'd' },
   }).argv;
   if (!indir || !outfile || !defaultLang) {
-    throw new Error('Usage: yarn start --i [dirpath] --o [filepath] --d [lang]');
+    throw new Error('Usage: yarn start -i [dirpath] -o [filepath] -d [lang]');
   }
 
   const langFilepaths = fs.readdirSync(indir).map((filename) => `${indir}/${filename}`);
