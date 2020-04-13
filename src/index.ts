@@ -90,7 +90,7 @@ function gen(langFilepaths: string[], typeObj: BaseType, defaultLang: string): s
   };
 
   for (const langFilepath of langFilepaths) {
-    const fileText = fs.readFileSync(langFilepath, { encoding: 'utf-8', flag: 'r' });
+    const fileText = fs.readFileSync(langFilepath, { encoding: 'utf-8' });
     const lang = path.parse(langFilepath).name;
     const langCodeString = jsonObjToCodeString(JSON.parse(fileText));
     codeString += `const ${lang} = ${langCodeString};\n`;
