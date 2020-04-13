@@ -38,7 +38,7 @@ function convert(langFilepath: string): BaseType {
     throw new Error('Error: JSONObject is neigher string nor object');
   };
 
-  const jsonObj = JSON.parse(fs.readFileSync(langFilepath, { encoding: 'utf-8', flag: 'r' }));
+  const jsonObj = JSON.parse(fs.readFileSync(langFilepath, { encoding: 'utf-8' }));
   return jsonObjToTypeObj(jsonObj);
 }
 
