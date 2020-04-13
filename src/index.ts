@@ -165,7 +165,7 @@ function main(): void {
   }
 
   const codeString = gen(langFilepaths, typeObj, defaultLang);
-  fs.writeFileSync(outfile, codeString, { encoding: 'utf-8', flag: 'w' });
+  fs.writeFileSync(outfile, codeString, { encoding: 'utf-8' });
 }
 
 main();
