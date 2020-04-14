@@ -21,8 +21,8 @@ function convert(langFilepath: string): BaseType {
     if (typeof jsonObj === 'string') {
       const variableRegex = /\$\{([a-zA-Z_][a-zA-Z0-9_]*)\}/g;
       const params: string[] = [];
-      while (true) {
-        const match = variableRegex.exec(jsonObj);
+      let match: RegExpExecArray | null = null;
+      while ((match = variableRegex.exec(jsonObj))) {
         if (match === null) break;
         if (!params.includes(match[1])) params.push(match[1]);
       }
