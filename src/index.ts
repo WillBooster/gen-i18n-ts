@@ -159,9 +159,18 @@ function main(): void {
     throw new Error('Usage: yarn start -i [dirpath] -o [filepath] -d [lang]');
   }
 
-  const langFilepaths = fs.readdirSync(indir).map((filename) => `${indir}/${filename}`);
+  const jsonFileNameRegex = /^.*\.json$/;
+  const fileNamesInIndir = fs.readdirSync(indir);
+  const langFilepaths: string[] = [];
+  for (const fileName of fileNamesInIndir) {
+    if (!jsonFileNameRegex.test(fileName)) {
+      console.warn(`Warning: file '${fileName}' is ignored since this doesn't look like JSON file`);
+      continue;
+    }
+    langFilepaths.push(path.join(indir, fileName));
+  }
 
-  const typeObj = convert(`${indir}/${defaultLang}.json`);
+  const typeObj = convert(path.join(indir, `${defaultLang}.json`));
   for (const langFilepath of langFilepaths) {
     validate(langFilepath, typeObj);
   }
