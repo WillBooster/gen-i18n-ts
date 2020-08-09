@@ -132,8 +132,8 @@ class CodeGenerator {
     } else if (typeObj instanceof ObjectType) {
       let members = '';
       for (const [key, value] of typeObj.map) {
-        const valueCodeString = CodeGenerator.typeObjToCode(value, `${varName}.${key}`);
-        members += `${key}: ${valueCodeString}, `;
+        const valueCode = CodeGenerator.typeObjToCode(value, `${varName}.${key}`);
+        members += `${key}: ${valueCode}, `;
       }
       return `{ ${members} }`;
     }
