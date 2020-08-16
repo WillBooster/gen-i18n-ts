@@ -216,15 +216,7 @@ class CodeGenerator {
   }
 }
 
-function main(): void {
-  const { indir, outfile, defaultLang } = yargs.options({
-    indir: { type: 'string', alias: 'i' },
-    outfile: { type: 'string', alias: 'o' },
-    defaultLang: { type: 'string', alias: 'd' },
-  }).argv;
-
-  if (!indir || !outfile || !defaultLang) throw new Error(ErrorMessages.usage());
-
+export function geni18ts(indir: string, outfile: string, defaultLang: string): void {
   const langFilepaths = fs
     .readdirSync(indir)
     .filter((fileName) => /^.*\.json$/.test(fileName))
@@ -249,4 +241,14 @@ function main(): void {
   fs.writeFileSync(outfile, code, { encoding: 'utf-8' });
 }
 
-main();
+if (require !== undefined && require.main === module) {
+  const { indir, outfile, defaultLang } = yargs.options({
+    indir: { type: 'string', alias: 'i' },
+    outfile: { type: 'string', alias: 'o' },
+    defaultLang: { type: 'string', alias: 'd' },
+  }).argv;
+
+  if (!indir || !outfile || !defaultLang) throw new Error(ErrorMessages.usage());
+
+  geni18ts(indir, outfile, defaultLang);
+}
