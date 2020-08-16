@@ -1,56 +1,55 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as yargs from 'yargs';
+import { cloneDeep } from 'lodash';
 
+import * as utils from './utils';
 import { BaseType, FunctionType, ObjectType } from './types';
-import { isString, isObject, filepathToLang, langToFilename } from './utils';
+import { ErrorMessages, InfoMessages } from './constants';
 
 class LangFileConverter {
   static toJsonObj(langFilepath: string): unknown {
-    const lang = filepathToLang(langFilepath);
+    const lang = utils.filepathToLang(langFilepath);
     const jsonObj = JSON.parse(fs.readFileSync(langFilepath, { encoding: 'utf-8' }));
     LangFileConverter.validateJsonObj(lang, jsonObj);
     return jsonObj;
   }
 
   static toTypeObj(langFilepath: string): BaseType {
-    const lang = filepathToLang(langFilepath);
+    const lang = utils.filepathToLang(langFilepath);
     const jsonObj = JSON.parse(fs.readFileSync(langFilepath, { encoding: 'utf-8' }));
     const typeObj = LangFileConverter.jsonObjToTypeObj(lang, jsonObj);
     return typeObj;
   }
 
   private static validateJsonObj(lang: string, jsonObj: unknown): void {
-    if (!isObject(jsonObj)) {
-      throw new Error(`${langToFilename(lang)}: JSON is not Object`);
+    if (!utils.isObject(jsonObj)) {
+      throw new Error(ErrorMessages.langFileNotObject(lang));
     }
 
     LangFileConverter.validateJsonObjRecursively(lang, jsonObj, '');
   }
 
   private static validateJsonObjRecursively(lang: string, jsonObj: unknown, varName: string): void {
-    if (isString(jsonObj)) {
+    if (utils.isString(jsonObj)) {
       return;
-    } else if (isObject(jsonObj)) {
+    } else if (utils.isObject(jsonObj)) {
       for (const [key, value] of Object.entries(jsonObj)) {
-        const childVarName = varName != '' ? `${varName}.${key}` : key;
-        LangFileConverter.validateJsonObjRecursively(lang, value, childVarName);
+        const memberVarName = utils.memberVarName(varName, key);
+        LangFileConverter.validateJsonObjRecursively(lang, value, memberVarName);
       }
     } else {
-      throw new Error(`${langToFilename(lang)}: ${varName} is neigher string nor Object`);
+      throw new Error(ErrorMessages.varShouldStringOrObject(lang, varName));
     }
   }
 
   private static jsonObjToTypeObj(lang: string, jsonObj: unknown): BaseType {
-    if (!isObject(jsonObj)) {
-      throw new Error(`${langToFilename(lang)}: JSON is not Object`);
-    }
-
+    if (!utils.isObject(jsonObj)) throw new Error(ErrorMessages.langFileNotObject(lang));
     return LangFileConverter.jsonObjToTypeObjRecursively(lang, jsonObj, '');
   }
 
   private static jsonObjToTypeObjRecursively(lang: string, jsonObj: unknown, varName: string): BaseType {
-    if (isString(jsonObj)) {
+    if (utils.isString(jsonObj)) {
       const variableRegex = /\$\{([a-zA-Z_][a-zA-Z0-9_]*)\}/g;
       const params: string[] = [];
       let match: RegExpExecArray | null = null;
@@ -59,36 +58,61 @@ class LangFileConverter {
         if (!params.includes(match[1])) params.push(match[1]);
       }
       return new FunctionType(params);
-    } else if (isObject(jsonObj)) {
+    } else if (utils.isObject(jsonObj)) {
       const map = new Map<string, BaseType>();
       for (const [key, value] of Object.entries(jsonObj)) {
-        const childVarName = varName != '' ? `${varName}.${key}` : key;
-        const valueTypeObj = LangFileConverter.jsonObjToTypeObjRecursively(lang, value, childVarName);
+        const memberVarName = utils.memberVarName(varName, key);
+        const valueTypeObj = LangFileConverter.jsonObjToTypeObjRecursively(lang, value, memberVarName);
         map.set(key, valueTypeObj);
       }
       return new ObjectType(map);
     } else {
-      throw new Error(`${langToFilename(lang)}: ${varName} is neigher string nor Object`);
+      throw new Error(ErrorMessages.varShouldStringOrObject(lang, varName));
     }
   }
 }
 
 class ObjectAnalyzer {
-  static analyze(typeObj: BaseType, lang: string, jsonObj: unknown): void {
-    ObjectAnalyzer.analyzeRecursively(typeObj, lang, jsonObj, '');
+  static analyze(typeObj: BaseType, lang: string, jsonObj: unknown, defaultJsonObj: unknown): void {
+    if (jsonObj == defaultJsonObj) return;
+    ObjectAnalyzer.analyzeRecursively(typeObj, lang, jsonObj, '', defaultJsonObj);
   }
 
-  private static analyzeRecursively(typeObj: BaseType, lang: string, jsonObj: unknown, varName: string): void {
+  private static analyzeRecursively(
+    typeObj: BaseType,
+    lang: string,
+    jsonObj: unknown,
+    varName: string,
+    defaultJsonObj: unknown
+  ): void {
     if (typeObj instanceof FunctionType) {
-      if (!isString(jsonObj)) {
-        throw new Error(`${langToFilename(lang)}: ${varName} is expected to be string`);
-      }
+      if (!utils.isString(defaultJsonObj)) throw new Error(ErrorMessages.unreachable());
+      if (!utils.isString(jsonObj)) throw new Error(ErrorMessages.varShouldString(lang, varName));
     } else if (typeObj instanceof ObjectType) {
-      if (!isObject(jsonObj)) {
-        throw new Error(`${langToFilename(lang)}: ${varName} is expected to be Object`);
+      if (!utils.isObject(defaultJsonObj)) throw new Error(ErrorMessages.unreachable());
+      if (!utils.isObject(jsonObj)) throw new Error(ErrorMessages.varShouldObject(lang, varName));
+      const [keys, defaultKeys] = [Object.keys(jsonObj), Object.keys(defaultJsonObj)];
+      const excessKeys = utils.arrayDiff(keys, defaultKeys);
+      const lackedKeys = utils.arrayDiff(defaultKeys, keys);
+      const sharedKeys = utils.arrayIntersect(keys, defaultKeys);
+      for (const key of excessKeys) {
+        delete jsonObj[key];
+        const memberVarName = utils.memberVarName(varName, key);
+        console.info(InfoMessages.varIgnored(lang, memberVarName));
+      }
+      for (const key of lackedKeys) {
+        jsonObj[key] = cloneDeep(defaultJsonObj[key]);
+        const memberVarName = utils.memberVarName(varName, key);
+        console.info(InfoMessages.varFilled(lang, memberVarName));
+      }
+      for (const key of sharedKeys) {
+        const memberVarName = utils.memberVarName(varName, key);
+        const memberTypeObj = typeObj.map.get(key);
+        if (!memberTypeObj) throw new Error(ErrorMessages.unreachable());
+        ObjectAnalyzer.analyzeRecursively(memberTypeObj, lang, jsonObj[key], memberVarName, defaultJsonObj[key]);
       }
     } else {
-      throw new Error('UNREACHABLE: this may be a bug! please let us know');
+      throw new Error(ErrorMessages.unreachable());
     }
   }
 }
@@ -96,9 +120,7 @@ class ObjectAnalyzer {
 class CodeGenerator {
   static gen(typeObj: BaseType, jsonObjMap: { [lang: string]: unknown }, defaultLang: string): string {
     const langs = Object.keys(jsonObjMap);
-    if (!langs.includes(defaultLang)) {
-      throw new Error('Error: cannot find default-lang file');
-    }
+    if (!langs.includes(defaultLang)) throw new Error(ErrorMessages.noDefaultLangFile());
 
     const varCurrentLang = 'currentLang';
     const varI18n = 'i18n';
@@ -122,26 +144,24 @@ class CodeGenerator {
   }
 
   private static jsonObjToCode(lang: string, jsonObj: unknown): string {
-    if (!isObject(jsonObj)) {
-      throw new Error(`${langToFilename(lang)}: JSON is not Object`);
-    }
-
+    if (!utils.isObject(jsonObj)) throw new Error(ErrorMessages.langFileNotObject(lang));
     return CodeGenerator.jsonObjToCodeRecursively(lang, jsonObj, '');
   }
 
   private static jsonObjToCodeRecursively(lang: string, jsonObj: unknown, varName: string): string {
-    if (isString(jsonObj)) {
+    if (utils.isString(jsonObj)) {
       return `"${jsonObj}"`;
-    } else if (isObject(jsonObj)) {
+    } else if (utils.isObject(jsonObj)) {
       let members = '';
       for (const [key, value] of Object.entries(jsonObj)) {
-        const childVarName = varName != '' ? `${varName}.${key}` : key;
-        const valueCode = CodeGenerator.jsonObjToCodeRecursively(lang, value, childVarName);
+        const memberVarName = utils.memberVarName(varName, key);
+        const valueCode = CodeGenerator.jsonObjToCodeRecursively(lang, value, memberVarName);
         members += `${key}: ${valueCode}, `;
       }
       return `{ ${members} }`;
+    } else {
+      throw new Error(ErrorMessages.varShouldStringOrObject(lang, varName));
     }
-    throw new Error(`${langToFilename(lang)}: ${varName} is neigher string nor object`);
   }
 
   private static typeObjToCode(typeObj: BaseType, varName: string): string {
@@ -161,8 +181,8 @@ class CodeGenerator {
     } else if (typeObj instanceof ObjectType) {
       let members = '';
       for (const [key, value] of typeObj.map) {
-        const childVarName = varName != '' ? `${varName}.${key}` : key;
-        const valueCode = CodeGenerator.typeObjToCode(value, childVarName);
+        const memberVarName = utils.memberVarName(varName, key);
+        const valueCode = CodeGenerator.typeObjToCode(value, memberVarName);
         members += `${key}: ${valueCode}, `;
       }
       return `{ ${members} }`;
@@ -197,27 +217,25 @@ function main(): void {
     defaultLang: { type: 'string', alias: 'd' },
   }).argv;
 
-  if (!indir || !outfile || !defaultLang) {
-    throw new Error('Usage: yarn start -i [dirpath] -o [filepath] -d [lang]');
-  }
+  if (!indir || !outfile || !defaultLang) throw new Error(ErrorMessages.usage());
 
   const langFilepaths = fs
     .readdirSync(indir)
     .filter((fileName) => /^.*\.json$/.test(fileName))
     .map((langFileName) => path.join(indir, langFileName));
 
-  const defaultLangFilepath = path.join(indir, langToFilename(defaultLang));
+  const defaultLangFilepath = path.join(indir, utils.langToFilename(defaultLang));
 
-  if (!langFilepaths.includes(defaultLangFilepath)) {
-    throw new Error('Error: cannot find default-lang file');
-  }
+  if (!langFilepaths.includes(defaultLangFilepath)) throw new Error(ErrorMessages.noDefaultLangFile());
 
   const typeObj = LangFileConverter.toTypeObj(defaultLangFilepath);
+  const defaultJsonObj = LangFileConverter.toJsonObj(defaultLangFilepath);
+
   const jsonObjMap: { [lang: string]: unknown } = {};
   for (const langFilepath of langFilepaths) {
-    const lang = filepathToLang(langFilepath);
+    const lang = utils.filepathToLang(langFilepath);
     const jsonObj = LangFileConverter.toJsonObj(langFilepath);
-    ObjectAnalyzer.analyze(typeObj, lang, jsonObj);
+    ObjectAnalyzer.analyze(typeObj, lang, jsonObj, defaultJsonObj);
     jsonObjMap[lang] = jsonObj;
   }
 

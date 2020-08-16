@@ -15,3 +15,17 @@ export function filepathToLang(langFilepath: string): string {
 export function langToFilename(lang: string): string {
   return `${lang}.json`;
 }
+
+export function memberVarName(objectVarName: string, key: string): string {
+  return objectVarName != '' ? `${objectVarName}.${key}` : key;
+}
+
+export function arrayIntersect<T>(a: T[], b: T[]): T[] {
+  // TODO: faster algorithm may exist
+  return a.filter((e) => b.includes(e));
+}
+
+export function arrayDiff<T>(a: T[], b: T[]): T[] {
+  // TODO: faster algorithm may exist
+  return a.filter((e) => !b.includes(e));
+}
