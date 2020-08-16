@@ -56,7 +56,8 @@ class LangFileConverter {
       let match: RegExpExecArray | null = null;
       while ((match = VARIABLE_REGEX.exec(jsonObj))) {
         if (match === null) break;
-        if (!params.includes(match[1])) params.push(match[1]);
+        const param = match[1];
+        if (!params.includes(param)) params.push(param);
       }
       return new FunctionType(params);
     } else if (utils.isObject(jsonObj)) {
@@ -92,7 +93,11 @@ class ObjectAnalyzer {
       let match: RegExpExecArray | null = null;
       while ((match = VARIABLE_REGEX.exec(jsonObj))) {
         if (match === null) break;
-        if (!typeObj.params.includes(match[1])) typeObj.params.push(match[1]);
+        const param = match[1];
+        if (!typeObj.params.includes(param)) {
+          typeObj.params.push(param);
+          console.info(InfoMessages.functionParamAdded(lang, varName, param));
+        }
       }
     } else if (typeObj instanceof ObjectType) {
       if (!utils.isObject(defaultJsonObj)) throw new Error(ErrorMessages.unreachable());
