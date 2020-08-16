@@ -201,7 +201,7 @@ class CodeGenerator {
       }
       return `{ ${members} }`;
     } else {
-      throw new Error('UNREACHABLE: this may be a bug! please let us know');
+      throw new Error(ErrorMessages.unreachable());
     }
   }
 
