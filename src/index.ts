@@ -7,6 +7,8 @@ import * as utils from './utils';
 import { BaseType, FunctionType, ObjectType } from './types';
 import { ErrorMessages, InfoMessages } from './constants';
 
+const VARIABLE_REGEX = /\$\{([a-zA-Z_][a-zA-Z0-9_]*)\}/g;
+
 class LangFileConverter {
   static toJsonObj(langFilepath: string): unknown {
     const lang = utils.filepathToLang(langFilepath);
@@ -50,10 +52,9 @@ class LangFileConverter {
 
   private static jsonObjToTypeObjRecursively(lang: string, jsonObj: unknown, varName: string): BaseType {
     if (utils.isString(jsonObj)) {
-      const variableRegex = /\$\{([a-zA-Z_][a-zA-Z0-9_]*)\}/g;
       const params: string[] = [];
       let match: RegExpExecArray | null = null;
-      while ((match = variableRegex.exec(jsonObj))) {
+      while ((match = VARIABLE_REGEX.exec(jsonObj))) {
         if (match === null) break;
         if (!params.includes(match[1])) params.push(match[1]);
       }
@@ -88,6 +89,11 @@ class ObjectAnalyzer {
     if (typeObj instanceof FunctionType) {
       if (!utils.isString(defaultJsonObj)) throw new Error(ErrorMessages.unreachable());
       if (!utils.isString(jsonObj)) throw new Error(ErrorMessages.varShouldString(lang, varName));
+      let match: RegExpExecArray | null = null;
+      while ((match = VARIABLE_REGEX.exec(jsonObj))) {
+        if (match === null) break;
+        if (!typeObj.params.includes(match[1])) typeObj.params.push(match[1]);
+      }
     } else if (typeObj instanceof ObjectType) {
       if (!utils.isObject(defaultJsonObj)) throw new Error(ErrorMessages.unreachable());
       if (!utils.isObject(jsonObj)) throw new Error(ErrorMessages.varShouldObject(lang, varName));

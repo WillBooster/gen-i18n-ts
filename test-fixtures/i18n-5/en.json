@@ -1,0 +1,4 @@
+{
+    "morning": "It's ${weather} today. Good morning!",
+    "hello": "Hello, ${userName}!"
+}
