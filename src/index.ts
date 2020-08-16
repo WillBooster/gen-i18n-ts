@@ -61,11 +61,11 @@ class LangFileConverter {
       }
       return new FunctionType(params);
     } else if (utils.isObject(jsonObj)) {
-      const map = new Map<string, BaseType>();
+      const map: Record<string, BaseType> = {};
       for (const [key, value] of Object.entries(jsonObj)) {
         const memberVarName = utils.memberVarName(varName, key);
         const valueTypeObj = LangFileConverter.jsonObjToTypeObjRecursively(lang, value, memberVarName);
-        map.set(key, valueTypeObj);
+        map[key] = valueTypeObj;
       }
       return new ObjectType(map);
     } else {
@@ -118,7 +118,7 @@ class ObjectAnalyzer {
       }
       for (const key of sharedKeys) {
         const memberVarName = utils.memberVarName(varName, key);
-        const memberTypeObj = typeObj.map.get(key);
+        const memberTypeObj = typeObj.map[key];
         if (!memberTypeObj) throw new Error(ErrorMessages.unreachable());
         ObjectAnalyzer.analyzeRecursively(memberTypeObj, lang, jsonObj[key], memberVarName, defaultJsonObj[key]);
       }
@@ -177,21 +177,24 @@ class CodeGenerator {
 
   private static typeObjToCode(typeObj: BaseType, varName: string): string {
     if (typeObj instanceof FunctionType) {
-      let delimiter = '';
-      let declaration = 'function (';
-      for (const param of typeObj.params) {
-        declaration += `${delimiter}${param}: string`;
-        delimiter = ', ';
-      }
-      declaration += '): string';
-      let expr = varName;
-      for (const param of typeObj.params) {
-        expr += `.replace(/\\$\\{${param}\\}/g, ${param})`;
-      }
-      return `${declaration} { return ${expr}; }`;
+      const params = typeObj.params.map((param) => `${param}: string`).join(', ');
+      const declaration = `function (${params}): string`;
+      if (typeObj.params.length == 0) return `${declaration} { return ${varName} }`;
+
+      const varParamMap = 'paramMap';
+      const members = typeObj.params.map((param) => `"\${${param}}" : ${param},`).join(' ');
+      const declarationStatement = `const ${varParamMap}: Record<string, string> = { ${members} };`;
+
+      const varPattern = 'pattern';
+      const patterns = typeObj.params.map((param) => `\\$\\{${param}\\}`).join('|');
+      const regex = `/${patterns}/g`;
+      const replaceFunc = `(${varPattern}) => ${varParamMap}[${varPattern}]`;
+      const returnStatement = `return ${varName}.replace(${regex}, ${replaceFunc});`;
+
+      return `${declaration} { ${declarationStatement} ${returnStatement} }`;
     } else if (typeObj instanceof ObjectType) {
       let members = '';
-      for (const [key, value] of typeObj.map) {
+      for (const [key, value] of Object.entries(typeObj.map)) {
         const memberVarName = utils.memberVarName(varName, key);
         const valueCode = CodeGenerator.typeObjToCode(value, memberVarName);
         members += `${key}: ${valueCode}, `;
@@ -203,19 +206,13 @@ class CodeGenerator {
   }
 
   private static currentLangChangerCode(langs: string[], varCurrentLang: string): string {
+    const funcChangeCurrentLang = 'changeCurrentLang';
     const varLang = 'lang';
-    let delimiter = '';
-    let declaration = `function changeCurrentLang(${varLang}: `;
-    for (const lang of langs) {
-      declaration += `${delimiter}"${lang}"`;
-      delimiter = ' | ';
-    }
-    declaration += '): void';
-    let statement = `switch (${varLang}) { `;
-    for (const lang of langs) {
-      statement += `case "${lang}": ${varCurrentLang} = ${lang}; break; `;
-    }
-    statement += ' }';
+    const langType = langs.map((lang) => `"${lang}"`).join('|');
+    const declaration = `function ${funcChangeCurrentLang}(${varLang}: ${langType}): void`;
+
+    const cases = langs.map((lang) => `case "${lang}": ${varCurrentLang} = ${lang}; break;`).join(' ');
+    const statement = `switch (${varLang}) { ${cases} }`;
 
     return `${declaration} { ${statement} }`;
   }

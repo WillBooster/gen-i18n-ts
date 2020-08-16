@@ -7,7 +7,7 @@ export class FunctionType extends BaseType {
 }
 
 export class ObjectType extends BaseType {
-  constructor(public map: Map<string, BaseType>) {
+  constructor(public map: Record<string, BaseType>) {
     super();
   }
 }
