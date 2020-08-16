@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as yargs from 'yargs';
-import { cloneDeep } from 'lodash';
+import { difference, intersection, cloneDeep } from 'lodash';
 
 import * as utils from './utils';
 import { BaseType, FunctionType, ObjectType } from './types';
@@ -103,9 +103,9 @@ class ObjectAnalyzer {
       if (!utils.isObject(defaultJsonObj)) throw new Error(ErrorMessages.unreachable());
       if (!utils.isObject(jsonObj)) throw new Error(ErrorMessages.varShouldObject(lang, varName));
       const [keys, defaultKeys] = [Object.keys(jsonObj), Object.keys(defaultJsonObj)];
-      const excessKeys = utils.arrayDiff(keys, defaultKeys);
-      const lackedKeys = utils.arrayDiff(defaultKeys, keys);
-      const sharedKeys = utils.arrayIntersect(keys, defaultKeys);
+      const excessKeys = difference(keys, defaultKeys);
+      const lackedKeys = difference(defaultKeys, keys);
+      const sharedKeys = intersection(keys, defaultKeys);
       for (const key of excessKeys) {
         delete jsonObj[key];
         const memberVarName = utils.memberVarName(varName, key);
