@@ -25,10 +25,7 @@ class LangFileConverter {
   }
 
   private static validateJsonObj(lang: string, jsonObj: unknown): void {
-    if (!utils.isObject(jsonObj)) {
-      throw new Error(ErrorMessages.langFileNotObject(lang));
-    }
-
+    if (!utils.isObject(jsonObj)) throw new Error(ErrorMessages.langFileNotObject(lang));
     LangFileConverter.validateJsonObjRecursively(lang, jsonObj, '');
   }
 
@@ -233,6 +230,7 @@ export function geni18ts(indir: string, outfile: string, defaultLang: string): v
 
   const jsonObjMap: { [lang: string]: unknown } = {};
   for (const langFilepath of langFilepaths) {
+    console.info(InfoMessages.analyzingLangFile(langFilepath));
     const lang = utils.filepathToLang(langFilepath);
     const jsonObj = LangFileConverter.toJsonObj(langFilepath);
     ObjectAnalyzer.analyze(typeObj, lang, jsonObj, defaultJsonObj);
