@@ -1320,10 +1320,10 @@
     semver "^7.3.2"
     tsutils "^3.17.1"
 
-"@willbooster/eslint-config-ts@3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@willbooster/eslint-config-ts/-/eslint-config-ts-3.0.0.tgz#b64c55bec15b5a8094915f84152ec3f9638cae78"
-  integrity sha512-KCD9O+r7UOVr2bedOSwMaEJn32jmz1nEAxjURAn21aZuESXc+TSSxxtM5UzswTuiPEM41dkztI9EXe1t4AUZSw==
+"@willbooster/eslint-config-ts@4.0.3":
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/@willbooster/eslint-config-ts/-/eslint-config-ts-4.0.3.tgz#b0dd79c664a64223216c8c87fadd3d85b1aa63c3"
+  integrity sha512-X7yQIaxT82usQu16bHcpunigJH8w6Z8fIxOTSdvpcwJeSl1KNW57okMu7FYWiqgOPCuULLoIFZtR51U9Vztchg==
 
 "@willbooster/prettier-config@3.0.0":
   version "3.0.0"

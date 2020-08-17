@@ -31,7 +31,7 @@
     "@types/yargs": "15.0.5",
     "@typescript-eslint/eslint-plugin": "2.34.0",
     "@typescript-eslint/parser": "2.34.0",
-    "@willbooster/eslint-config-ts": "3.0.0",
+    "@willbooster/eslint-config-ts": "4.0.3",
     "@willbooster/prettier-config": "3.0.0",
     "@willbooster/renovate-config": "3.0.0",
     "babel-plugin-transform-remove-console": "6.9.4",
