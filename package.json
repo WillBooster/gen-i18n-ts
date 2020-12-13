@@ -16,7 +16,7 @@
   },
   "prettier": "@willbooster/prettier-config",
   "dependencies": {
-    "yargs": "15.4.1"
+    "yargs": "16.2.0"
   },
   "devDependencies": {
     "@babel/cli": "7.10.5",
