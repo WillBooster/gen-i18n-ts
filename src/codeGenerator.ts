@@ -13,16 +13,16 @@ export class CodeGenerator {
     let code = '';
 
     for (const [lang, jsonObj] of Object.entries(jsonObjMap)) {
-      const langCode = CodeGenerator.jsonObjToCode(lang, jsonObj);
+      const langCode = this.jsonObjToCode(lang, jsonObj);
       code += `const ${lang} = ${langCode};\n`;
     }
 
     code += `let ${varCurrentLang} = ${defaultLang};\n`;
 
-    const i18nCode = CodeGenerator.typeObjToCode(typeObj, varCurrentLang);
+    const i18nCode = this.typeObjToCode(typeObj, varCurrentLang);
     code += `export const ${varI18n} = ${i18nCode};\n`;
 
-    const currentLangChangerCode = CodeGenerator.currentLangChangerCode(langs, varCurrentLang);
+    const currentLangChangerCode = this.currentLangChangerCode(langs, varCurrentLang);
     code += `export ${currentLangChangerCode}\n`;
 
     return code;
@@ -31,7 +31,7 @@ export class CodeGenerator {
   private static jsonObjToCode(lang: string, jsonObj: unknown): string {
     if (!utils.isObject(jsonObj)) throw new Error(ErrorMessages.langFileNotObject(lang));
 
-    return CodeGenerator.jsonObjToCodeRecursively(lang, jsonObj, '');
+    return this.jsonObjToCodeRecursively(lang, jsonObj, '');
   }
 
   private static jsonObjToCodeRecursively(lang: string, jsonObj: unknown, varName: string): string {
@@ -41,7 +41,7 @@ export class CodeGenerator {
       let members = '';
       for (const [key, value] of Object.entries(jsonObj)) {
         const memberVarName = utils.memberVarName(varName, key);
-        const valueCode = CodeGenerator.jsonObjToCodeRecursively(lang, value, memberVarName);
+        const valueCode = this.jsonObjToCodeRecursively(lang, value, memberVarName);
         members += `${key}: ${valueCode}, `;
       }
       return `{ ${members} }`;
@@ -71,7 +71,7 @@ export class CodeGenerator {
       let members = '';
       for (const [key, value] of Object.entries(typeObj.map)) {
         const memberVarName = utils.memberVarName(varName, key);
-        const valueCode = CodeGenerator.typeObjToCode(value, memberVarName);
+        const valueCode = this.typeObjToCode(value, memberVarName);
         members += `${key}: ${valueCode}, `;
       }
       return `{ ${members} }`;

@@ -9,7 +9,8 @@ import { VARIABLE_REGEX } from './index';
 export class ObjectAnalyzer {
   static analyze(typeObj: BaseType, lang: string, jsonObj: unknown, defaultJsonObj: unknown): void {
     if (jsonObj == defaultJsonObj) return;
-    ObjectAnalyzer.analyzeRecursively(typeObj, lang, jsonObj, '', defaultJsonObj);
+
+    this.analyzeRecursively(typeObj, lang, jsonObj, '', defaultJsonObj);
   }
 
   private static analyzeRecursively(
@@ -53,7 +54,7 @@ export class ObjectAnalyzer {
         const memberVarName = utils.memberVarName(varName, key);
         const memberTypeObj = typeObj.map[key];
         if (!memberTypeObj) throw new Error(ErrorMessages.unreachable());
-        ObjectAnalyzer.analyzeRecursively(memberTypeObj, lang, jsonObj[key], memberVarName, defaultJsonObj[key]);
+        this.analyzeRecursively(memberTypeObj, lang, jsonObj[key], memberVarName, defaultJsonObj[key]);
       }
     } else {
       throw new Error(ErrorMessages.unreachable());
