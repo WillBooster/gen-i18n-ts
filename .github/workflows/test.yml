@@ -34,7 +34,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - run: yarn install
-      # Generate ts files required in type-checking
+      # Generate ts files required in type-checking and linting
       - run: yarn test
       - run: yarn typecheck
       - run: yarn lint
