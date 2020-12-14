@@ -1,11 +1,11 @@
-import * as path from 'path';
+import path from 'path';
 
 export function isString(obj: unknown): obj is string {
   return typeof obj === 'string';
 }
 
 export function isObject(obj: unknown): obj is Record<string, unknown> {
-  return obj && typeof obj === 'object' && !Array.isArray(obj);
+  return !!obj && typeof obj === 'object' && !Array.isArray(obj);
 }
 
 export function filepathToLang(langFilepath: string): string {

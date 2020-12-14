@@ -1,14 +1,15 @@
-import * as fs from 'fs';
-import * as path from 'path';
+import fs from 'fs';
+import path from 'path';
 
-import { difference, intersection, cloneDeep } from 'lodash';
 import * as yargs from 'yargs';
 
+import { CodeGenerator } from './codeGenerator';
 import { ErrorMessages, InfoMessages } from './constants';
+import { ObjectAnalyzer } from './objectAnalyzer';
 import { BaseType, FunctionType, ObjectType } from './types';
 import * as utils from './utils';
 
-const VARIABLE_REGEX = /\$\{([a-zA-Z_][a-zA-Z0-9_]*)\}/g;
+export const VARIABLE_REGEX = /\${([a-zA-Z_][a-zA-Z0-9_]*)}/g;
 
 class LangFileConverter {
   static toJsonObj(langFilepath: string): unknown {
@@ -21,8 +22,7 @@ class LangFileConverter {
   static toTypeObj(langFilepath: string): BaseType {
     const lang = utils.filepathToLang(langFilepath);
     const jsonObj = JSON.parse(fs.readFileSync(langFilepath, { encoding: 'utf-8' }));
-    const typeObj = LangFileConverter.jsonObjToTypeObj(lang, jsonObj);
-    return typeObj;
+    return LangFileConverter.jsonObjToTypeObj(lang, jsonObj);
   }
 
   private static validateJsonObj(lang: string, jsonObj: unknown): void {
@@ -53,7 +53,6 @@ class LangFileConverter {
       const params: string[] = [];
       let match: RegExpExecArray | null = null;
       while ((match = VARIABLE_REGEX.exec(jsonObj))) {
-        if (match === null) break;
         const param = match[1];
         if (!params.includes(param)) params.push(param);
       }
@@ -62,157 +61,12 @@ class LangFileConverter {
       const map: Record<string, BaseType> = {};
       for (const [key, value] of Object.entries(jsonObj)) {
         const memberVarName = utils.memberVarName(varName, key);
-        const valueTypeObj = LangFileConverter.jsonObjToTypeObjRecursively(lang, value, memberVarName);
-        map[key] = valueTypeObj;
+        map[key] = LangFileConverter.jsonObjToTypeObjRecursively(lang, value, memberVarName);
       }
       return new ObjectType(map);
     } else {
       throw new Error(ErrorMessages.varShouldStringOrObject(lang, varName));
     }
-  }
-}
-
-class ObjectAnalyzer {
-  static analyze(typeObj: BaseType, lang: string, jsonObj: unknown, defaultJsonObj: unknown): void {
-    if (jsonObj == defaultJsonObj) return;
-    ObjectAnalyzer.analyzeRecursively(typeObj, lang, jsonObj, '', defaultJsonObj);
-  }
-
-  private static analyzeRecursively(
-    typeObj: BaseType,
-    lang: string,
-    jsonObj: unknown,
-    varName: string,
-    defaultJsonObj: unknown
-  ): void {
-    if (typeObj instanceof FunctionType) {
-      if (!utils.isString(defaultJsonObj)) throw new Error(ErrorMessages.unreachable());
-      if (!utils.isString(jsonObj)) throw new Error(ErrorMessages.varShouldString(lang, varName));
-      let match: RegExpExecArray | null = null;
-      while ((match = VARIABLE_REGEX.exec(jsonObj))) {
-        if (match === null) break;
-        const param = match[1];
-        if (!typeObj.params.includes(param)) {
-          typeObj.params.push(param);
-          console.info(InfoMessages.functionParamAdded(lang, varName, param));
-        }
-      }
-    } else if (typeObj instanceof ObjectType) {
-      if (!utils.isObject(defaultJsonObj)) throw new Error(ErrorMessages.unreachable());
-      if (!utils.isObject(jsonObj)) throw new Error(ErrorMessages.varShouldObject(lang, varName));
-      const [keys, defaultKeys] = [Object.keys(jsonObj), Object.keys(defaultJsonObj)];
-      const excessKeys = difference(keys, defaultKeys);
-      const lackedKeys = difference(defaultKeys, keys);
-      const sharedKeys = intersection(keys, defaultKeys);
-      for (const key of excessKeys) {
-        delete jsonObj[key];
-        const memberVarName = utils.memberVarName(varName, key);
-        console.info(InfoMessages.varIgnored(lang, memberVarName));
-      }
-      for (const key of lackedKeys) {
-        jsonObj[key] = cloneDeep(defaultJsonObj[key]);
-        const memberVarName = utils.memberVarName(varName, key);
-        console.info(InfoMessages.varFilled(lang, memberVarName));
-      }
-      for (const key of sharedKeys) {
-        const memberVarName = utils.memberVarName(varName, key);
-        const memberTypeObj = typeObj.map[key];
-        if (!memberTypeObj) throw new Error(ErrorMessages.unreachable());
-        ObjectAnalyzer.analyzeRecursively(memberTypeObj, lang, jsonObj[key], memberVarName, defaultJsonObj[key]);
-      }
-    } else {
-      throw new Error(ErrorMessages.unreachable());
-    }
-  }
-}
-
-class CodeGenerator {
-  static gen(typeObj: BaseType, jsonObjMap: { [lang: string]: unknown }, defaultLang: string): string {
-    const langs = Object.keys(jsonObjMap);
-    if (!langs.includes(defaultLang)) throw new Error(ErrorMessages.noDefaultLangFile());
-
-    const varCurrentLang = 'currentLang';
-    const varI18n = 'i18n';
-
-    let code = '';
-
-    for (const [lang, jsonObj] of Object.entries(jsonObjMap)) {
-      const langCode = CodeGenerator.jsonObjToCode(lang, jsonObj);
-      code += `const ${lang} = ${langCode};\n`;
-    }
-
-    code += `let ${varCurrentLang} = ${defaultLang};\n`;
-
-    const i18nCode = CodeGenerator.typeObjToCode(typeObj, varCurrentLang);
-    code += `export const ${varI18n} = ${i18nCode};\n`;
-
-    const currentLangChangerCode = CodeGenerator.currentLangChangerCode(langs, varCurrentLang);
-    code += `export ${currentLangChangerCode}\n`;
-
-    return code;
-  }
-
-  private static jsonObjToCode(lang: string, jsonObj: unknown): string {
-    if (!utils.isObject(jsonObj)) throw new Error(ErrorMessages.langFileNotObject(lang));
-    return CodeGenerator.jsonObjToCodeRecursively(lang, jsonObj, '');
-  }
-
-  private static jsonObjToCodeRecursively(lang: string, jsonObj: unknown, varName: string): string {
-    if (utils.isString(jsonObj)) {
-      return `"${jsonObj}"`;
-    } else if (utils.isObject(jsonObj)) {
-      let members = '';
-      for (const [key, value] of Object.entries(jsonObj)) {
-        const memberVarName = utils.memberVarName(varName, key);
-        const valueCode = CodeGenerator.jsonObjToCodeRecursively(lang, value, memberVarName);
-        members += `${key}: ${valueCode}, `;
-      }
-      return `{ ${members} }`;
-    } else {
-      throw new Error(ErrorMessages.varShouldStringOrObject(lang, varName));
-    }
-  }
-
-  private static typeObjToCode(typeObj: BaseType, varName: string): string {
-    if (typeObj instanceof FunctionType) {
-      const params = typeObj.params.map((param) => `${param}: string`).join(', ');
-      const declaration = `function (${params}): string`;
-      if (typeObj.params.length == 0) return `${declaration} { return ${varName} }`;
-
-      const varParamMap = 'paramMap';
-      const members = typeObj.params.map((param) => `"\${${param}}" : ${param},`).join(' ');
-      const declarationStatement = `const ${varParamMap}: Record<string, string> = { ${members} };`;
-
-      const varPattern = 'pattern';
-      const patterns = typeObj.params.map((param) => `\\$\\{${param}\\}`).join('|');
-      const regex = `/${patterns}/g`;
-      const replaceFunc = `(${varPattern}) => ${varParamMap}[${varPattern}]`;
-      const returnStatement = `return ${varName}.replace(${regex}, ${replaceFunc});`;
-
-      return `${declaration} { ${declarationStatement} ${returnStatement} }`;
-    } else if (typeObj instanceof ObjectType) {
-      let members = '';
-      for (const [key, value] of Object.entries(typeObj.map)) {
-        const memberVarName = utils.memberVarName(varName, key);
-        const valueCode = CodeGenerator.typeObjToCode(value, memberVarName);
-        members += `${key}: ${valueCode}, `;
-      }
-      return `{ ${members} }`;
-    } else {
-      throw new Error(ErrorMessages.unreachable());
-    }
-  }
-
-  private static currentLangChangerCode(langs: string[], varCurrentLang: string): string {
-    const funcChangeCurrentLang = 'changeCurrentLang';
-    const varLang = 'lang';
-    const langType = langs.map((lang) => `"${lang}"`).join('|');
-    const declaration = `function ${funcChangeCurrentLang}(${varLang}: ${langType}): void`;
-
-    const cases = langs.map((lang) => `case "${lang}": ${varCurrentLang} = ${lang}; break;`).join(' ');
-    const statement = `switch (${varLang}) { ${cases} }`;
-
-    return `${declaration} { ${statement} }`;
   }
 }
 
