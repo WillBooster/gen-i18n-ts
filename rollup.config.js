@@ -11,9 +11,9 @@ const plugins = [
   commonjs(),
   babel({ extensions, babelHelpers: 'bundled', exclude: 'node_modules/**' }),
 ];
-// if (process.env.NODE_ENV === 'production') {
-//   plugins.push(closureCompile());
-// }
+if (process.env.NODE_ENV === 'production') {
+  plugins.push(closureCompile());
+}
 
 export default {
   input: 'src/index.ts',
