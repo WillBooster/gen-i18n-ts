@@ -1,0 +1,12 @@
+{
+    "lang": "日本語",
+    "excess": "余分",
+    "nested": {
+        "member": "メンバー",
+        "excess": "また余分"
+    },
+    "nestedExcess": {
+        "x": "x",
+        "y": "y"
+    }
+}

@@ -1,183 +1,109 @@
-import * as fs from 'fs';
-import * as path from 'path';
+import fs from 'fs';
+import path from 'path';
 
 import * as yargs from 'yargs';
 
-abstract class BaseType {}
+import { CodeGenerator } from './codeGenerator';
+import { ErrorMessages, InfoMessages } from './constants';
+import { ObjectAnalyzer } from './objectAnalyzer';
+import { BaseType, FunctionType, ObjectType } from './types';
+import * as utils from './utils';
 
-class FunctionType extends BaseType {
-  constructor(public params: string[]) {
-    super();
+export const VARIABLE_REGEX = /\${([a-zA-Z_][a-zA-Z0-9_]*)}/g;
+
+class LangFileConverter {
+  static toJsonObj(langFilepath: string): unknown {
+    const lang = utils.filepathToLang(langFilepath);
+    const jsonObj = JSON.parse(fs.readFileSync(langFilepath, { encoding: 'utf-8' }));
+    LangFileConverter.validateJsonObj(lang, jsonObj);
+    return jsonObj;
   }
-}
 
-class ObjectType extends BaseType {
-  constructor(public map: Map<string, BaseType>) {
-    super();
+  static toTypeObj(langFilepath: string): BaseType {
+    const lang = utils.filepathToLang(langFilepath);
+    const jsonObj = JSON.parse(fs.readFileSync(langFilepath, { encoding: 'utf-8' }));
+    return LangFileConverter.jsonObjToTypeObj(lang, jsonObj);
   }
-}
 
-function convert(langFilepath: string): BaseType {
-  const jsonObjToTypeObj = (jsonObj: any): BaseType => {
-    if (typeof jsonObj === 'string') {
-      const variableRegex = /\$\{([a-zA-Z_][a-zA-Z0-9_]*)\}/g;
+  private static validateJsonObj(lang: string, jsonObj: unknown): void {
+    if (!utils.isObject(jsonObj)) throw new Error(ErrorMessages.langFileNotObject(lang));
+    LangFileConverter.validateJsonObjRecursively(lang, jsonObj, '');
+  }
+
+  private static validateJsonObjRecursively(lang: string, jsonObj: unknown, varName: string): void {
+    if (utils.isString(jsonObj)) {
+      return;
+    } else if (utils.isObject(jsonObj)) {
+      for (const [key, value] of Object.entries(jsonObj)) {
+        const memberVarName = utils.memberVarName(varName, key);
+        LangFileConverter.validateJsonObjRecursively(lang, value, memberVarName);
+      }
+    } else {
+      throw new Error(ErrorMessages.varShouldStringOrObject(lang, varName));
+    }
+  }
+
+  private static jsonObjToTypeObj(lang: string, jsonObj: unknown): BaseType {
+    if (!utils.isObject(jsonObj)) throw new Error(ErrorMessages.langFileNotObject(lang));
+    return LangFileConverter.jsonObjToTypeObjRecursively(lang, jsonObj, '');
+  }
+
+  private static jsonObjToTypeObjRecursively(lang: string, jsonObj: unknown, varName: string): BaseType {
+    if (utils.isString(jsonObj)) {
       const params: string[] = [];
       let match: RegExpExecArray | null = null;
-      while ((match = variableRegex.exec(jsonObj))) {
-        if (match === null) break;
-        if (!params.includes(match[1])) params.push(match[1]);
+      while ((match = VARIABLE_REGEX.exec(jsonObj))) {
+        const param = match[1];
+        if (!params.includes(param)) params.push(param);
       }
       return new FunctionType(params);
-    } else if (typeof jsonObj === 'object' && !Array.isArray(jsonObj)) {
-      const map = new Map<string, BaseType>();
+    } else if (utils.isObject(jsonObj)) {
+      const map: Record<string, BaseType> = {};
       for (const [key, value] of Object.entries(jsonObj)) {
-        const valueTreeType = jsonObjToTypeObj(value);
-        map.set(key, valueTreeType);
+        const memberVarName = utils.memberVarName(varName, key);
+        map[key] = LangFileConverter.jsonObjToTypeObjRecursively(lang, value, memberVarName);
       }
       return new ObjectType(map);
+    } else {
+      throw new Error(ErrorMessages.varShouldStringOrObject(lang, varName));
     }
-    throw new Error('Error: JSONObject is neigher string nor object');
-  };
-
-  const jsonObj = JSON.parse(fs.readFileSync(langFilepath, { encoding: 'utf-8' }));
-  return jsonObjToTypeObj(jsonObj);
-}
-
-function validate(langFilepath: string, typeObj: BaseType): void {
-  const equals = (ourTypeObj: BaseType, theirTypeObj: BaseType): boolean => {
-    if (ourTypeObj instanceof FunctionType && theirTypeObj instanceof FunctionType) {
-      if (ourTypeObj.params.length !== theirTypeObj.params.length) return false;
-      const sortedOurParams = ourTypeObj.params.slice().sort();
-      const sortedTheirParams = theirTypeObj.params.slice().sort();
-      for (let i = 0; i < ourTypeObj.params.length; i++) {
-        if (sortedOurParams[i] !== sortedTheirParams[i]) return false;
-      }
-      return true;
-    } else if (ourTypeObj instanceof ObjectType && theirTypeObj instanceof ObjectType) {
-      if (ourTypeObj.map.size !== theirTypeObj.map.size) return false;
-      for (const [key, value] of ourTypeObj.map) {
-        const child = theirTypeObj.map.get(key);
-        if (child === undefined || !equals(value, child)) return false;
-      }
-      return true;
-    }
-    return false;
-  };
-
-  if (!equals(typeObj, convert(langFilepath))) throw new Error('Error: validation failed');
-}
-
-function gen(langFilepaths: string[], typeObj: BaseType, defaultLang: string): string {
-  const langs = langFilepaths.map((langFilepath) => path.parse(langFilepath).name);
-  if (!langs.includes(defaultLang)) {
-    throw new Error('Error: cannot find default-lang file');
   }
+}
 
-  const varCurrentLang = 'currentLang';
-  let codeString = '';
+export function geni18ts(indir: string, outfile: string, defaultLang: string): void {
+  const langFilepaths = fs
+    .readdirSync(indir)
+    .filter((fileName) => /^.*\.json$/.test(fileName))
+    .map((langFileName) => path.join(indir, langFileName));
 
-  const jsonObjToCodeString = (jsonObj: any): string => {
-    if (typeof jsonObj === 'string') {
-      return `"${jsonObj}"`;
-    } else if (typeof jsonObj === 'object' && !Array.isArray(jsonObj)) {
-      let members = '';
-      for (const [key, value] of Object.entries(jsonObj)) {
-        const valueCodeString = jsonObjToCodeString(value);
-        members += `${key}: ${valueCodeString}, `;
-      }
-      return `{ ${members} }`;
-    }
-    throw new Error('Error: JSONObject is neigher string nor object');
-  };
+  const defaultLangFilepath = path.join(indir, utils.langToFilename(defaultLang));
 
+  if (!langFilepaths.includes(defaultLangFilepath)) throw new Error(ErrorMessages.noDefaultLangFile());
+
+  const typeObj = LangFileConverter.toTypeObj(defaultLangFilepath);
+  const defaultJsonObj = LangFileConverter.toJsonObj(defaultLangFilepath);
+
+  const jsonObjMap: { [lang: string]: unknown } = {};
   for (const langFilepath of langFilepaths) {
-    const fileText = fs.readFileSync(langFilepath, { encoding: 'utf-8' });
-    const lang = path.parse(langFilepath).name;
-    const langCodeString = jsonObjToCodeString(JSON.parse(fileText));
-    codeString += `const ${lang} = ${langCodeString};\n`;
+    console.info(InfoMessages.analyzingLangFile(langFilepath));
+    const lang = utils.filepathToLang(langFilepath);
+    const jsonObj = LangFileConverter.toJsonObj(langFilepath);
+    ObjectAnalyzer.analyze(typeObj, lang, jsonObj, defaultJsonObj);
+    jsonObjMap[lang] = jsonObj;
   }
 
-  codeString += `let ${varCurrentLang} = ${defaultLang};\n`;
-
-  const typeObjToCodeString = (typeObj: BaseType, path: string): string => {
-    if (typeObj instanceof FunctionType) {
-      let delimiter = '';
-      let declaration = 'function (';
-      for (const param of typeObj.params) {
-        declaration += `${delimiter}${param}: string`;
-        delimiter = ', ';
-      }
-      declaration += '): string';
-      let expr = path;
-      for (const param of typeObj.params) {
-        expr += `.replace(/\\$\\{${param}\\}/g, ${param})`;
-      }
-      return `${declaration} { return ${expr}; }`;
-    } else if (typeObj instanceof ObjectType) {
-      let members = '';
-      for (const [key, value] of typeObj.map) {
-        const valueCodeString = typeObjToCodeString(value, `${path}.${key}`);
-        members += `${key}: ${valueCodeString}, `;
-      }
-      return `{ ${members} }`;
-    }
-    throw new Error('Error: unexpected typeObj');
-  };
-
-  const l10nCodeString = typeObjToCodeString(typeObj, varCurrentLang);
-  codeString += `export const i18n = ${l10nCodeString};\n`;
-
-  const currentLangChangerCodeString = (): string => {
-    const varLang = 'lang';
-    let delimiter = '';
-    let declaration = `function changeCurrentLang(${varLang}: `;
-    for (const lang of langs) {
-      declaration += `${delimiter}"${lang}"`;
-      delimiter = ' | ';
-    }
-    declaration += '): void';
-    let statement = `switch (${varLang}) { `;
-    for (const lang of langs) {
-      statement += `case "${lang}": ${varCurrentLang} = ${lang}; break; `;
-    }
-    statement += ' }';
-
-    return `${declaration} { ${statement} }`;
-  };
-
-  codeString += `export ${currentLangChangerCodeString()}\n`;
-
-  return codeString;
+  const code = CodeGenerator.gen(typeObj, jsonObjMap, defaultLang);
+  fs.writeFileSync(outfile, code, { encoding: 'utf-8' });
 }
 
-function main(): void {
+if (require !== undefined && require.main === module) {
   const { indir, outfile, defaultLang } = yargs.options({
     indir: { type: 'string', alias: 'i' },
     outfile: { type: 'string', alias: 'o' },
     defaultLang: { type: 'string', alias: 'd' },
   }).argv;
-  if (!indir || !outfile || !defaultLang) {
-    throw new Error('Usage: yarn start -i [dirpath] -o [filepath] -d [lang]');
-  }
 
-  const jsonFileNameRegex = /^.*\.json$/;
-  const fileNamesInIndir = fs.readdirSync(indir);
-  const langFilepaths: string[] = [];
-  for (const fileName of fileNamesInIndir) {
-    if (!jsonFileNameRegex.test(fileName)) {
-      console.warn(`Warning: file '${fileName}' is ignored since this doesn't look like JSON file`);
-      continue;
-    }
-    langFilepaths.push(path.join(indir, fileName));
-  }
+  if (!indir || !outfile || !defaultLang) throw new Error(ErrorMessages.usage());
 
-  const typeObj = convert(path.join(indir, `${defaultLang}.json`));
-  for (const langFilepath of langFilepaths) {
-    validate(langFilepath, typeObj);
-  }
-
-  const codeString = gen(langFilepaths, typeObj, defaultLang);
-  fs.writeFileSync(outfile, codeString, { encoding: 'utf-8' });
+  geni18ts(indir, outfile, defaultLang);
 }
-
-main();

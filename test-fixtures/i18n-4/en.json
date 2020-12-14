@@ -1,0 +1,12 @@
+{
+    "lang": "English",
+    "lack": "lacked",
+    "nested": {
+        "member": "member",
+        "lack": "lacked too"
+    },
+    "nestedLack": {
+        "a": "a",
+        "b": "b"
+    }
+}
