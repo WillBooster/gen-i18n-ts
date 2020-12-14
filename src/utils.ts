@@ -17,5 +17,5 @@ export function langToFilename(lang: string): string {
 }
 
 export function memberVarName(objectVarName: string, key: string): string {
-  return objectVarName != '' ? `${objectVarName}.${key}` : key;
+  return objectVarName !== '' ? `${objectVarName}.${key}` : key;
 }

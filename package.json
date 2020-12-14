@@ -7,13 +7,13 @@
   "scripts": {
     "build": "NODE_ENV=production rollup -c",
     "cleanup": "yarn format && yarn lint-fix",
-    "format": "sort-package-json && yarn prettier",
-    "lint": "eslint \"./{packages/*/,}{src,__tests__}/**/*.{js,jsx,ts,tsx}\"",
+    "format": "sort-package-json && yarn prettify",
+    "lint": "eslint \"./{src,__tests__}/**/*.{js,jsx,ts,tsx}\" --color",
     "lint-fix": "yarn lint --fix",
-    "prettier": "prettier --write \"**/{.*/,}*.{css,htm,html,js,json,jsx,md,scss,ts,tsx,vue,yaml,yml}\" \"!**/test-fixtures/**\"",
+    "prettify": "prettier --write \"**/{.*/,}*.{css,htm,html,js,json,json5,jsx,md,scss,ts,tsx,vue,yaml,yml}\" \"!**/test-fixtures/**\" --color",
     "start": "yarn && babel-node -x .js,.jsx,.es6,.es,.ts -- src/index.ts",
     "test": "yarn build && sh __tests__/test.sh",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit --Pretty"
   },
   "prettier": "@willbooster/prettier-config",
   "dependencies": {
@@ -48,14 +48,15 @@
     "core-js": "3.8.1",
     "eslint": "7.15.0",
     "eslint-config-prettier": "7.0.0",
+    "eslint-import-resolver-node": "0.3.4",
     "eslint-plugin-import": "2.22.1",
-    "eslint-plugin-prettier": "3.3.0",
     "husky": "4.3.6",
     "jest": "26.6.3",
     "lint-staged": "10.5.3",
     "power-assert": "1.6.1",
     "prettier": "2.2.1",
     "rollup": "2.35.0",
+    "rollup-plugin-node-externals": "2.2.0",
     "sort-package-json": "1.48.0",
     "ts-jest": "26.4.4",
     "typescript": "4.1.3"
