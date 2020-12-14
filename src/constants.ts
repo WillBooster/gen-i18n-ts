@@ -27,8 +27,8 @@ export const ErrorMessages = {
 };
 
 export const InfoMessages = {
-  analyzingLangFile(langFilepath: string): string {
-    return `${langFilepath}: Analyzing...`;
+  analyzingLangFile(langFilePath: string): string {
+    return `${langFilePath}: Analyzing...`;
   },
   varIgnored(lang: string, varName: string): string {
     const langFilename = langToFilename(lang);
