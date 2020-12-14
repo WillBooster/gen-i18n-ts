@@ -4,9 +4,7 @@
       "@babel/preset-env",
       {
         "useBuiltIns": "usage",
-        "corejs": {
-          "version": "3.6"
-        }
+        "corejs": "3.8"
       }
     ],
     "@babel/typescript"

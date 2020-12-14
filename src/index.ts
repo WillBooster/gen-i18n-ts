@@ -1,11 +1,12 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import * as yargs from 'yargs';
-import { difference, intersection, cloneDeep } from 'lodash';
 
-import * as utils from './utils';
-import { BaseType, FunctionType, ObjectType } from './types';
+import { difference, intersection, cloneDeep } from 'lodash';
+import * as yargs from 'yargs';
+
 import { ErrorMessages, InfoMessages } from './constants';
+import { BaseType, FunctionType, ObjectType } from './types';
+import * as utils from './utils';
 
 const VARIABLE_REGEX = /\$\{([a-zA-Z_][a-zA-Z0-9_]*)\}/g;
 

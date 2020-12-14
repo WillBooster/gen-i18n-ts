@@ -1,4 +1,5 @@
 import assert from 'assert';
+
 import { i18n, changeCurrentLang } from '../test-fixtures/temp/i18n-2';
 
 test('i18n-2: multiple arguments', async () => {
