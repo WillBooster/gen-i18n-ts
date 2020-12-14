@@ -5241,7 +5241,7 @@ fsevents@~2.1.2:
     typescript: 4.1.3
     yargs: 16.2.0
   bin:
-    gen-i18n: ./bin/index.js
+    gen-i18n-ts: ./bin/index.js
   languageName: unknown
   linkType: soft
 
