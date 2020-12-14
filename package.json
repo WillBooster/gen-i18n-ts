@@ -18,7 +18,7 @@
     "prettify": "prettier --write \"**/{.*/,}*.{css,htm,html,js,json,json5,jsx,md,scss,ts,tsx,vue,yaml,yml}\" \"!**/test-fixtures/**\" --color",
     "release": "semantic-release",
     "release-test": "yarn release -d",
-    "start": "yarn && babel-node -x .js,.jsx,.es6,.es,.ts -- src/index.ts",
+    "start": "yarn && babel-node -x .js,.jsx,.es6,.es,.ts -- src/start.ts",
     "test": "yarn build && sh __tests__/test.sh",
     "typecheck": "tsc --noEmit --Pretty"
   },
