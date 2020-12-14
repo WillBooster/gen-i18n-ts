@@ -1,15 +1,14 @@
 import fs from 'fs';
 import path from 'path';
 
-import * as yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
+import yargs from 'yargs/yargs';
 
 import { CodeGenerator } from './codeGenerator';
-import { ErrorMessages, InfoMessages } from './constants';
+import { ErrorMessages, InfoMessages, VARIABLE_REGEX } from './constants';
 import { ObjectAnalyzer } from './objectAnalyzer';
 import { BaseType, FunctionType, ObjectType } from './types';
 import * as utils from './utils';
-
-export const VARIABLE_REGEX = /\${([a-zA-Z_][a-zA-Z0-9_]*)}/g;
 
 class LangFileConverter {
   static toJsonObj(langFilepath: string): unknown {
@@ -97,7 +96,7 @@ export function geni18ts(indir: string, outfile: string, defaultLang: string): v
 }
 
 if (require !== undefined && require.main === module) {
-  const { indir, outfile, defaultLang } = yargs.options({
+  const { indir, outfile, defaultLang } = yargs(hideBin(process.argv)).options({
     indir: { type: 'string', alias: 'i' },
     outfile: { type: 'string', alias: 'o' },
     defaultLang: { type: 'string', alias: 'd' },

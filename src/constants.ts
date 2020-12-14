@@ -1,5 +1,7 @@
 import { langToFilename } from './utils';
 
+export const VARIABLE_REGEX = /\${([a-zA-Z_][a-zA-Z0-9_]*)}/g;
+
 export const ErrorMessages = {
   usage(): string {
     return 'Usage: yarn start -i [dirpath] -o [filepath] -d [lang]';
