@@ -4,10 +4,12 @@
       "@babel/preset-env",
       {
         "useBuiltIns": "usage",
-        "corejs": "3.8"
+        "corejs": "3.8",
+        "bugfixes": true
       }
     ],
-    "@babel/typescript"
+    "@babel/typescript",
+    "power-assert"
   ],
   "plugins": ["@babel/proposal-class-properties", "@babel/proposal-numeric-separator"],
   "env": {
@@ -18,7 +20,8 @@
           {
             "exclude": ["error", "info", "warn"]
           }
-        ]
+        ],
+        "babel-plugin-unassert"
       ]
     }
   }

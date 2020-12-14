@@ -1,4 +1,4 @@
-import { cloneDeep, difference, intersection } from 'lodash-es';
+import { cloneDeep, difference, intersection } from 'lodash';
 
 import { ErrorMessages, InfoMessages } from './constants';
 import { BaseType, FunctionType, ObjectType } from './types';
