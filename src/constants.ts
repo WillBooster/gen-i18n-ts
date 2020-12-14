@@ -1,5 +1,7 @@
 import { langToFilename } from './utils';
 
+export const VARIABLE_REGEX = /\${([a-zA-Z_][a-zA-Z0-9_]*)}/g;
+
 export const ErrorMessages = {
   usage(): string {
     return 'Usage: yarn start -i [dirpath] -o [filepath] -d [lang]';
@@ -25,8 +27,8 @@ export const ErrorMessages = {
 };
 
 export const InfoMessages = {
-  analyzingLangFile(langFilepath: string): string {
-    return `${langFilepath}: Analyzing...`;
+  analyzingLangFile(langFilePath: string): string {
+    return `${langFilePath}: Analyzing...`;
   },
   varIgnored(lang: string, varName: string): string {
     const langFilename = langToFilename(lang);

@@ -8,8 +8,8 @@ export function isObject(obj: unknown): obj is Record<string, unknown> {
   return !!obj && typeof obj === 'object' && !Array.isArray(obj);
 }
 
-export function filepathToLang(langFilepath: string): string {
-  return path.parse(langFilepath).name;
+export function filepathToLang(langFilePath: string): string {
+  return path.parse(langFilePath).name;
 }
 
 export function langToFilename(lang: string): string {
@@ -17,5 +17,5 @@ export function langToFilename(lang: string): string {
 }
 
 export function memberVarName(objectVarName: string, key: string): string {
-  return objectVarName != '' ? `${objectVarName}.${key}` : key;
+  return objectVarName !== '' ? `${objectVarName}.${key}` : key;
 }
