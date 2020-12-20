@@ -1874,7 +1874,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/builtin-modules@npm:^3":
+"@types/builtin-modules@npm:3.1.1":
   version: 3.1.1
   resolution: "@types/builtin-modules@npm:3.1.1"
   dependencies:
@@ -1883,7 +1883,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint@npm:7":
+"@types/eslint@npm:7.2.6":
   version: 7.2.6
   resolution: "@types/eslint@npm:7.2.6"
   dependencies:
@@ -1991,7 +1991,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/micromatch@npm:^4":
+"@types/micromatch@npm:4.0.1":
   version: 4.0.1
   resolution: "@types/micromatch@npm:4.0.1"
   dependencies:
@@ -2067,7 +2067,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/semantic-release@npm:^17":
+"@types/semantic-release@npm:17.2.0":
   version: 17.2.0
   resolution: "@types/semantic-release@npm:17.2.0"
   dependencies:
@@ -5204,13 +5204,13 @@ fsevents@~2.1.2:
     "@rollup/plugin-babel": 5.2.2
     "@rollup/plugin-commonjs": 17.0.0
     "@rollup/plugin-node-resolve": 11.0.0
-    "@types/builtin-modules": ^3
-    "@types/eslint": 7
+    "@types/builtin-modules": 3.1.1
+    "@types/eslint": 7.2.6
     "@types/jest": 26.0.19
     "@types/lodash": 4.14.165
-    "@types/micromatch": ^4
+    "@types/micromatch": 4.0.1
     "@types/node": 14.14.13
-    "@types/semantic-release": ^17
+    "@types/semantic-release": 17.2.0
     "@types/yargs": 15.0.11
     "@typescript-eslint/eslint-plugin": 4.9.1
     "@typescript-eslint/parser": 4.9.1
