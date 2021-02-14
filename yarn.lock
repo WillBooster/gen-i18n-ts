@@ -2399,7 +2399,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/yargs@npm:15.0.13, @types/yargs@npm:^15.0.0":
+"@types/yargs@npm:16.0.0":
+  version: 16.0.0
+  resolution: "@types/yargs@npm:16.0.0"
+  dependencies:
+    "@types/yargs-parser": "*"
+  checksum: a17fa2814a4c19b7d327c0d6e6ecb9ca6a68fbfded0c1966d0ef6557540c055f7b9c1c1eadde48acb584f75708d4ec96ba59e58e77b8edbb602c23ed3bee76b9
+  languageName: node
+  linkType: hard
+
+"@types/yargs@npm:^15.0.0":
   version: 15.0.13
   resolution: "@types/yargs@npm:15.0.13"
   dependencies:
@@ -5493,7 +5502,7 @@ fsevents@~2.3.1:
     "@types/micromatch": 4.0.1
     "@types/node": 14.14.27
     "@types/semantic-release": 17.2.0
-    "@types/yargs": 15.0.13
+    "@types/yargs": 16.0.0
     "@typescript-eslint/eslint-plugin": 4.15.0
     "@typescript-eslint/parser": 4.15.0
     "@willbooster/eslint-config-ts": 5.1.1
