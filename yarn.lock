@@ -1852,9 +1852,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-commonjs@npm:17.1.0":
-  version: 17.1.0
-  resolution: "@rollup/plugin-commonjs@npm:17.1.0"
+"@rollup/plugin-commonjs@npm:18.1.0":
+  version: 18.1.0
+  resolution: "@rollup/plugin-commonjs@npm:18.1.0"
   dependencies:
     "@rollup/pluginutils": ^3.1.0
     commondir: ^1.0.1
@@ -1865,7 +1865,7 @@ __metadata:
     resolve: ^1.17.0
   peerDependencies:
     rollup: ^2.30.0
-  checksum: 9b162f93090e5bf544c85bb835a29f65371726d2e6161aa1a048bbb708b77433184e5836e7118e2c6277f9a9a7b5835f56e420d2040b1b623b03ca76db4b5d10
+  checksum: e476ae379d205049476da5b19bea58581722846ce9be61ed5316cf2f43e6d2a514a3199447b6f0c9ef259fd97b3d494c89cdbe0b76c91a71c686df343e19009a
   languageName: node
   linkType: hard
 
@@ -5000,7 +5000,7 @@ __metadata:
     "@babel/preset-env": 7.12.16
     "@babel/preset-typescript": 7.12.16
     "@rollup/plugin-babel": 5.3.0
-    "@rollup/plugin-commonjs": 17.1.0
+    "@rollup/plugin-commonjs": 18.1.0
     "@rollup/plugin-node-resolve": 11.2.0
     "@types/builtin-modules": 3.1.1
     "@types/eslint": 7.2.6
