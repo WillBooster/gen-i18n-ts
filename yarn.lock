@@ -5147,7 +5147,7 @@ __metadata:
     prettier: 2.2.1
     rollup: 2.39.0
     rollup-plugin-node-externals: 2.2.0
-    semantic-release: 17.3.9
+    semantic-release: 17.4.4
     sort-package-json: 1.48.1
     typescript: 4.1.5
     yargs: 16.2.0
@@ -5488,16 +5488,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hosted-git-info@npm:^3.0.0":
-  version: 3.0.8
-  resolution: "hosted-git-info@npm:3.0.8"
-  dependencies:
-    lru-cache: ^6.0.0
-  checksum: 686512459ccb7e7eac7833fc4e8e35a0533c0dda5f516025f276ecb620b316010b853c785439ac63702e044ab56b2485cf7e1b088c1f9a46675b9496f7a45683
-  languageName: node
-  linkType: hard
-
-"hosted-git-info@npm:^4.0.1, hosted-git-info@npm:^4.0.2":
+"hosted-git-info@npm:^4.0.0, hosted-git-info@npm:^4.0.1, hosted-git-info@npm:^4.0.2":
   version: 4.0.2
   resolution: "hosted-git-info@npm:4.0.2"
   dependencies:
@@ -7340,7 +7331,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:4.17.21, lodash@npm:^4.17.15, lodash@npm:^4.17.20, lodash@npm:^4.17.4, lodash@npm:^4.7.0":
+"lodash@npm:4.17.21, lodash@npm:^4.17.15, lodash@npm:^4.17.20, lodash@npm:^4.17.21, lodash@npm:^4.17.4, lodash@npm:^4.7.0":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: 4983720b9abca930a4a46f18db163d7dad8dd00dbed6db0cc7b499b33b717cce69f80928b27bbb1ff2cbd3b19d251ee90669a8b5ea466072ca81c2ebe91e7468
@@ -7492,7 +7483,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"marked-terminal@npm:^4.0.0":
+"marked-terminal@npm:^4.1.1":
   version: 4.1.1
   resolution: "marked-terminal@npm:4.1.1"
   dependencies:
@@ -9634,9 +9625,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semantic-release@npm:17.3.9":
-  version: 17.3.9
-  resolution: "semantic-release@npm:17.3.9"
+"semantic-release@npm:17.4.4":
+  version: 17.4.4
+  resolution: "semantic-release@npm:17.4.4"
   dependencies:
     "@semantic-release/commit-analyzer": ^8.0.0
     "@semantic-release/error": ^2.2.0
@@ -9653,10 +9644,10 @@ __metadata:
     get-stream: ^6.0.0
     git-log-parser: ^1.2.0
     hook-std: ^2.0.0
-    hosted-git-info: ^3.0.0
-    lodash: ^4.17.15
+    hosted-git-info: ^4.0.0
+    lodash: ^4.17.21
     marked: ^2.0.0
-    marked-terminal: ^4.0.0
+    marked-terminal: ^4.1.1
     micromatch: ^4.0.2
     p-each-series: ^2.1.0
     p-reduce: ^2.0.0
@@ -9668,7 +9659,7 @@ __metadata:
     yargs: ^16.2.0
   bin:
     semantic-release: bin/semantic-release.js
-  checksum: 575cb464cd9440847191990a32d29ff5a856bd9aa0eed87b973309e885ff47fde5f6b43dca629661af03294dce79951e35d3b9cf345cc777223e7d2b6cd1a956
+  checksum: 4c78340c628c74aa2d76343086edd80f15233e25c735e924f203b22ca075bf1412488180aaf7a3e9c2d1e37a4dd0e9da7fcd59b8511e8b1fa9c1e7982d500988
   languageName: node
   linkType: hard
 
