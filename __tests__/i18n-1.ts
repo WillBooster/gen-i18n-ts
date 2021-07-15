@@ -1,8 +1,18 @@
 import assert from 'assert';
+import path from 'path';
 
-import { i18n, changeCurrentLang } from '../test-fixtures/temp/i18n-1';
+import { genI18ts } from '../src';
 
 test('i18n-1: simple website', async () => {
+  const inputDir = path.resolve(__dirname, '..', 'test-fixtures', 'i18n-1');
+  const outFile = path.resolve(__dirname, '..', 'test-fixtures', 'temp', 'i18n-1.ts');
+  genI18ts(inputDir, outFile, 'en');
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore: Auto-generated module
+  // eslint-disable-next-line import/no-unresolved
+  const { i18n, changeCurrentLang } = await import('../test-fixtures/temp/i18n-1');
+
   assert(i18n.okButtonName() === 'Done');
   assert(i18n.welcome('Taro') === 'Hi, Taro');
   assert(i18n.pages.user('Taro') === "Taro's page");
