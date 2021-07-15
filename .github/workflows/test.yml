@@ -3,25 +3,42 @@ name: Test
 on:
   pull_request:
     branches:
-      - '**'
+      - 'main'
       - '!renovate/**'
   push:
     branches:
       - 'main'
       - 'renovate/**'
-    paths-ignore:
-      - 'docs/**'
-      - '**.md'
 
 jobs:
-  test:
+  pre:
     runs-on: ubuntu-latest
+    outputs:
+      should_skip: ${{ steps.skip_check.outputs.should_skip }}
     steps:
+      - id: skip_check
+        uses: fkirc/skip-duplicate-actions@master
+        with:
+          cancel_others: false
+          skip_after_successful_duplicate: true
+          concurrent_skipping: same_content_newer
+          paths_ignore: '["**/*.md", "**/docs/**"]'
+  test:
+    needs: pre
+    if: ${{ needs.pre.outputs.should_skip != 'true' }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [12, 14, 16]
+    steps:
+      - uses: fkirc/skip-duplicate-actions@master
+        with:
+          cancel_others: true
       - uses: actions/checkout@v2
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 10
+          node-version: ${{ matrix.node }}
       - name: Show environment information
         run: |
           echo "node: $(node -v)"
@@ -37,4 +54,6 @@ jobs:
       # Generate ts files required in type-checking and linting
       - run: yarn test
       - run: yarn typecheck
+        if: ${{ matrix.node == 16 }}
       - run: yarn lint
+        if: ${{ matrix.node == 16 }}
