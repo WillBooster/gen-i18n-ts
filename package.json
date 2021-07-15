@@ -1,12 +1,12 @@
 {
   "name": "gen-i18n-ts",
+  "version": "0.0.0-semantically-released",
   "description": "A TypeScript CLI tool to generate a strictly-typed i18n object from JSON files",
   "keywords": [
     "TypeScript",
     "i18n",
     "internationalization"
   ],
-  "version": "0.0.0-semantically-released",
   "repository": "git@github.com:WillBooster/gen-i18n-ts.git",
   "license": "Apache-2.0",
   "author": "WillBooster Inc.",
