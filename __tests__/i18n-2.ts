@@ -1,8 +1,17 @@
 import assert from 'assert';
+import fs from 'fs';
+import path from 'path';
 
-import { i18n, changeCurrentLang } from '../test-fixtures/temp/i18n-2';
+import { genI18ts } from '../src';
 
 test('i18n-2: multiple arguments', async () => {
+  const inputDir = path.resolve(__dirname, '..', 'test-fixtures', 'i18n-2');
+  const outFile = path.resolve(__dirname, '..', 'test-fixtures', 'i18n-2.ts');
+  genI18ts(inputDir, outFile, 'en');
+
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const { i18n, changeCurrentLang } = require('../test-fixtures/i18n-2');
+
   assert(i18n.gotAMail('Hanako', 'Happy Birthday!') === 'You got a mail! From:Hanako Subject:Happy Birthday!');
   assert(i18n.gotAMail('WB Store', 'Special Discount') === 'You got a mail! From:WB Store Subject:Special Discount');
   assert(i18n.fx('sin', 'theta') === 'sin of theta');
@@ -17,4 +26,6 @@ test('i18n-2: multiple arguments', async () => {
 
   changeCurrentLang('ja');
   assert(i18n.fourAnd('りんご', 'みかん', 'バナナ', 'モモ') === 'りんご と みかん と バナナ と モモ');
+
+  fs.unlinkSync(outFile);
 });

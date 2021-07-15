@@ -25,7 +25,7 @@
     "release": "semantic-release",
     "release-test": "yarn release -d",
     "start": "yarn && babel-node -x .js,.jsx,.es6,.es,.ts -- src/start.ts",
-    "test": "yarn build && sh __tests__/test.sh",
+    "test": "yarn jest",
     "typecheck": "tsc --noEmit --Pretty",
     "postinstall": "husky install",
     "prepublishOnly": "pinst --disable",
