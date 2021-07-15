@@ -3,20 +3,34 @@ name: Test
 on:
   pull_request:
     branches:
-      - '**'
+      - 'main'
       - '!renovate/**'
   push:
     branches:
       - 'main'
       - 'renovate/**'
-    paths-ignore:
-      - 'docs/**'
-      - '**.md'
 
 jobs:
+  pre:
+    runs-on: ubuntu-latest
+    outputs:
+      should_skip: ${{ steps.skip_check.outputs.should_skip }}
+    steps:
+      - id: skip_check
+        uses: fkirc/skip-duplicate-actions@master
+        with:
+          cancel_others: false
+          skip_after_successful_duplicate: true
+          concurrent_skipping: same_content_newer
+          paths_ignore: '["**/*.md", "**/docs/**"]'
   test:
+    needs: pre
+    if: ${{ needs.pre.outputs.should_skip != 'true' }}
     runs-on: ubuntu-latest
     steps:
+      - uses: fkirc/skip-duplicate-actions@master
+        with:
+          cancel_others: true
       - uses: actions/checkout@v2
       - name: Setup Node.js
         uses: actions/setup-node@v2
