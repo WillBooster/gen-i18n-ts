@@ -16,7 +16,7 @@ yarn add gen-i18n-ts
 
 ## Why gen-i18n-ts
 
-The leading feature of gen-i18n-ts is providing strictly-typed internationalization.
+The leading feature of gen-i18n-ts is providing strictly-typed internationalization.  
 The generated object is friendly with auto-completion in your text editor.
 
 ## How gen-i18n-ts works
@@ -42,7 +42,7 @@ foo/
 - the input directory is expected to contain only JSON files. Sub-directories or non-JSON files are ignored.
 - a JSON file should be named as `langage.json`. `langage` does NOT HAVE TO be a ISO 639 code
 
-A JSON file in the directory (`en.json`, `ja.json` in this case) is expected to contain messages in each language.
+A JSON file in the directory (`en.json`, `ja.json` in this case) is expected to contain messages in each language.  
 It should be like
 
 **en.json**
@@ -77,8 +77,8 @@ It should be like
 - `${variableName}` represents a parameter name of the function in the output (see also `output` section)
   - If the same function takes defferent parameters in defferent languages, they are merged. The function in the output takes all of the parameters
 
-**detail**
-BNF of a JSON String for Internationalization
+**detail**  
+BNF of a JSON String for Internationalization  
 ```
 object   ::= { key: object } | { key: value }
 key      ::= string
@@ -86,8 +86,8 @@ value    ::= string | value variable value
 variable ::= ${ [a-zA-Z_][a-zA-Z0-9_]* }
 ```
 
-Definition of "Same" Structure
-If set of keys in two objects has the same, they are considered to have same structure.
+Definition of "Same" Structure  
+If set of keys in two objects has the same, they are considered to have same structure.  
 The order of the keys are not cared.
 
 ### output (`outputFile`)
@@ -113,7 +113,7 @@ export const i18n = {
 Note that even if a string in the input has no `${variableName}`, the output will be a zero-argument FUNCTION, NOT a STRING
 
 ### changeCurrentLang
-The function to change the current language.
+The function to change the current language.  
 It is like
 
 ```ts
