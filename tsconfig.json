@@ -9,7 +9,9 @@
     "resolveJsonModule": true,
     "sourceMap": true,
     "importHelpers": false,
-    "outDir": "dist"
+    "outDir": "dist",
+    "target": "esnext",
+    "module": "esnext"
   },
   "include": ["src/**/*", "__tests__/**/*", "./node_modules/@types", "./@types"]
 }
