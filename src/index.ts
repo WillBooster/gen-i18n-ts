@@ -1,14 +1,14 @@
 import fs from 'fs';
 import path from 'path';
 
-import { hideBin } from 'yargs/helpers';
-import yargs from 'yargs/yargs';
-
 import { CodeGenerator } from './codeGenerator';
 import { ErrorMessages, InfoMessages } from './constants';
 import { LangFileConverter } from './langFileConverter';
 import { ObjectAnalyzer } from './objectAnalyzer';
 import * as utils from './utils';
+
+import { hideBin } from 'yargs/helpers';
+import yargs from 'yargs/yargs';
 
 export function geni18ts(indir: string, outfile: string, defaultLang: string): void {
   const langFilePaths = fs

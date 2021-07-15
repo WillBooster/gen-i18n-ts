@@ -1,8 +1,8 @@
-import { cloneDeep, difference, intersection } from 'lodash';
-
 import { ErrorMessages, InfoMessages, VARIABLE_REGEX } from './constants';
 import { BaseType, FunctionType, ObjectType } from './types';
 import * as utils from './utils';
+
+import { cloneDeep, difference, intersection } from 'lodash';
 
 export class ObjectAnalyzer {
   static analyze(typeObj: BaseType, lang: string, jsonObj: unknown, defaultJsonObj: unknown): void {
