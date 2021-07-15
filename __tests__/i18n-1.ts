@@ -25,5 +25,5 @@ test('i18n-1: simple website', async () => {
   assert(i18n.pages.user('太郎') === '太郎さんのページ');
   assert(i18n.pages.contact() === 'お問い合わせ');
 
-  fs.rmSync(outFile);
+  fs.unlinkSync(outFile);
 });

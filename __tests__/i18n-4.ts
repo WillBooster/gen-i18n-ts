@@ -29,5 +29,5 @@ test('i18n-4: lacked and excess keys', async () => {
   assert(i18n.nestedLack.a() === 'a');
   assert(i18n.nestedLack.b() === 'b');
 
-  fs.rmSync(outFile);
+  fs.unlinkSync(outFile);
 });
