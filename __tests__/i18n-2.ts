@@ -1,17 +1,18 @@
 import assert from 'assert';
+import fs from 'fs';
 import path from 'path';
 
 import { genI18ts } from '../src';
 
 test('i18n-2: multiple arguments', async () => {
   const inputDir = path.resolve(__dirname, '..', 'test-fixtures', 'i18n-2');
-  const outFile = path.resolve(__dirname, '..', 'test-fixtures', 'temp', 'i18n-2.ts');
+  const outFile = path.resolve(__dirname, '..', 'test-fixtures', 'i18n-2.ts');
   genI18ts(inputDir, outFile, 'en');
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore: Auto-generated module
   // eslint-disable-next-line import/no-unresolved
-  const { i18n, changeCurrentLang } = await import('../test-fixtures/temp/i18n-2');
+  const { i18n, changeCurrentLang } = await require('../test-fixtures/i18n-2');
 
   assert(i18n.gotAMail('Hanako', 'Happy Birthday!') === 'You got a mail! From:Hanako Subject:Happy Birthday!');
   assert(i18n.gotAMail('WB Store', 'Special Discount') === 'You got a mail! From:WB Store Subject:Special Discount');
@@ -27,4 +28,6 @@ test('i18n-2: multiple arguments', async () => {
 
   changeCurrentLang('ja');
   assert(i18n.fourAnd('りんご', 'みかん', 'バナナ', 'モモ') === 'りんご と みかん と バナナ と モモ');
+
+  fs.rmSync(outFile);
 });

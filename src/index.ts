@@ -71,5 +71,6 @@ export function genI18ts(inputDir: string, outfile: string, defaultLang: string)
   }
 
   const code = CodeGenerator.gen(typeObj, jsonObjMap, defaultLang);
+  fs.mkdirSync(path.dirname(outfile), { recursive: true });
   fs.writeFileSync(outfile, code, { encoding: 'utf-8' });
 }
