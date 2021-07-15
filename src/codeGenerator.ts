@@ -54,7 +54,7 @@ export class CodeGenerator {
     if (typeObj instanceof FunctionType) {
       const params = typeObj.params.map((param) => `${param}: string`).join(', ');
       const declaration = `function (${params}): string`;
-      if (typeObj.params.length == 0) return `${declaration} { return ${varName} }`;
+      if (typeObj.params.length === 0) return `${declaration} { return ${varName} }`;
 
       const varParamMap = 'paramMap';
       const members = typeObj.params.map((param) => `"\${${param}}" : ${param},`).join(' ');

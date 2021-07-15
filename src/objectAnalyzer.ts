@@ -6,7 +6,7 @@ import { cloneDeep, difference, intersection } from 'lodash';
 
 export class ObjectAnalyzer {
   static analyze(typeObj: BaseType, lang: string, jsonObj: unknown, defaultJsonObj: unknown): void {
-    if (jsonObj == defaultJsonObj) return;
+    if (jsonObj === defaultJsonObj) return;
 
     this.analyzeRecursively(typeObj, lang, jsonObj, '', defaultJsonObj);
   }

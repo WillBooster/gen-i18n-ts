@@ -36,8 +36,8 @@ export function geni18ts(indir: string, outfile: string, defaultLang: string): v
   fs.writeFileSync(outfile, code, { encoding: 'utf-8' });
 }
 
-export function cli(argv: string[]): void {
-  const { inputDir, outfile, defaultLang } = yargs(hideBin(argv)).options({
+export async function cli(argv: string[]): Promise<void> {
+  const { inputDir, outfile, defaultLang } = await yargs(hideBin(argv)).options({
     inputDir: {
       type: 'string',
       alias: 'i',
