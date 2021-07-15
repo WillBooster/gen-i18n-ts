@@ -9,10 +9,8 @@ test('i18n-2: multiple arguments', async () => {
   const outFile = path.resolve(__dirname, '..', 'test-fixtures', 'i18n-2.ts');
   genI18ts(inputDir, outFile, 'en');
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore: Auto-generated module
-  // eslint-disable-next-line import/no-unresolved
-  const { i18n, changeCurrentLang } = await require('../test-fixtures/i18n-2');
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const { i18n, changeCurrentLang } = require('../test-fixtures/i18n-2');
 
   assert(i18n.gotAMail('Hanako', 'Happy Birthday!') === 'You got a mail! From:Hanako Subject:Happy Birthday!');
   assert(i18n.gotAMail('WB Store', 'Special Discount') === 'You got a mail! From:WB Store Subject:Special Discount');

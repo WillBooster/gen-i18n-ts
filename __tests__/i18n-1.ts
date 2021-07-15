@@ -9,10 +9,8 @@ test('i18n-1: simple website', async () => {
   const outFile = path.resolve(__dirname, '..', 'test-fixtures', 'i18n-1.ts');
   genI18ts(inputDir, outFile, 'en');
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore: Auto-generated module
-  // eslint-disable-next-line import/no-unresolved
-  const { i18n, changeCurrentLang } = await require('../test-fixtures/i18n-1');
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const { i18n, changeCurrentLang } = require('../test-fixtures/i18n-1');
 
   assert(i18n.okButtonName() === 'Done');
   assert(i18n.welcome('Taro') === 'Hi, Taro');
