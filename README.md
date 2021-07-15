@@ -97,7 +97,7 @@ The order of the keys are not cared.
 
 `outputFile` is the path to the TypeScript file for internationalization. The file exports`i18n` and `changeCurrentLang`.
 
-#### i18n
+#### `i18n`
 
 The object to access messages in the current language.
 It is like
