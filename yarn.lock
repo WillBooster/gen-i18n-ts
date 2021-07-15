@@ -1941,9 +1941,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-node-resolve@npm:11.2.0":
-  version: 11.2.0
-  resolution: "@rollup/plugin-node-resolve@npm:11.2.0"
+"@rollup/plugin-node-resolve@npm:13.0.0":
+  version: 13.0.0
+  resolution: "@rollup/plugin-node-resolve@npm:13.0.0"
   dependencies:
     "@rollup/pluginutils": ^3.1.0
     "@types/resolve": 1.17.1
@@ -1952,8 +1952,8 @@ __metadata:
     is-module: ^1.0.0
     resolve: ^1.19.0
   peerDependencies:
-    rollup: ^1.20.0||^2.0.0
-  checksum: d84c2a84ae520926d17614ec5cbcb3e24dc77ba24f4414c8507636322f7133b72988dea196d5075f8f25702abf363bdc5de7f45b7a129b3af9d2e9baeee1432a
+    rollup: ^2.42.0
+  checksum: c0237e65f50d593efc176e07a2ddf734918bc7344f739fe2254a3bfaa4be37c6d4787d045ab79d741811d3658f7e8bbb1484e6aa25bbb9fe2a3c33472b3f371d
   languageName: node
   linkType: hard
 
@@ -5128,7 +5128,7 @@ __metadata:
     "@babel/preset-typescript": 7.14.5
     "@rollup/plugin-babel": 5.3.0
     "@rollup/plugin-commonjs": 17.1.0
-    "@rollup/plugin-node-resolve": 11.2.0
+    "@rollup/plugin-node-resolve": 13.0.0
     "@types/builtin-modules": 3.1.1
     "@types/eslint": 7.2.6
     "@types/jest": 26.0.20
