@@ -71,7 +71,7 @@
     "pinst": "2.1.6",
     "power-assert": "1.6.1",
     "prettier": "2.3.2",
-    "rollup": "2.53.1",
+    "rollup": "2.53.2",
     "rollup-plugin-node-externals": "2.2.0",
     "semantic-release": "17.4.4",
     "sort-package-json": "1.50.0",

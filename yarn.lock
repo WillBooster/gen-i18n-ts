@@ -4875,7 +4875,7 @@ __metadata:
     pinst: 2.1.6
     power-assert: 1.6.1
     prettier: 2.3.2
-    rollup: 2.53.1
+    rollup: 2.53.2
     rollup-plugin-node-externals: 2.2.0
     semantic-release: 17.4.4
     sort-package-json: 1.50.0
@@ -8833,9 +8833,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:2.53.1":
-  version: 2.53.1
-  resolution: "rollup@npm:2.53.1"
+"rollup@npm:2.53.2":
+  version: 2.53.2
+  resolution: "rollup@npm:2.53.2"
   dependencies:
     fsevents: ~2.3.2
   dependenciesMeta:
@@ -8843,7 +8843,7 @@ __metadata:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: 302ba5bff440b0747ba2bdbe4096cfbda9604d0f7cd85112cf447d48a1709ab53f87a52a96da4d64c0da318c431a2fb0d18fccbaf3781c47cfcc55f675fc82a7
+  checksum: 0b64def8f0a6e16abff59397e21328ec0605c2f5f2623a5d276603c696e244593f86773b0dd965aa7aae8970f72bf3c723b5bc50f9b3e800c105290e6c62c690
   languageName: node
   linkType: hard
 
