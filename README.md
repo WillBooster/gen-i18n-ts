@@ -16,7 +16,8 @@ yarn add gen-i18n-ts
 
 ## Why gen-i18n-ts
 
-Write motivation here.
+The leading feature of gen-i18n-ts is providing strictly-typed internationalization.
+The generated object is friendly with auto-completion in your text editor.
 
 ## How gen-i18n-ts works
 
