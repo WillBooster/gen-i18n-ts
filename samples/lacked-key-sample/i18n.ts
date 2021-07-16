@@ -5,7 +5,7 @@ const en = {
 const ja = {
   welcome: 'こんにちは、${userName}さん',
   lackedKey: "This key-value pair is copied to ja (en.json is the default and ja.json does not have 'lackedKey')",
-  // Here! lackedKey in en.json is copied.
+  // [AUTHOR'S COMMENT] Here! lackedKey in en.json is copied.
 };
 let currentLang = en;
 export const i18n = {
