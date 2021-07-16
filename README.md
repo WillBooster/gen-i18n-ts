@@ -81,8 +81,8 @@ It should be like
 ```
 
 - JSONs in files are expected to have the "same" structure. If JSONs have defferent structures, that of the default language have priority (see also `default language` section)
-  - if a key is in the default language but not in a non-default language, the key-value pair in the default one will be added to the non-default one
-  - if a key is in a non-default language but not in the default language, the key-value pair in the non-default one will be ignored
+  - if a key is in the default language but not in a non-default language, the key-value pair in the default one will be added to the non-default one (see also [lacked-key-sample](./samples/lacked-key-sample))
+  - if a key is in a non-default language but not in the default language, the key-value pair in the non-default one will be ignored (see also [excess-key-sample](./samples/excess-key-sample))
 - `${variableName}` represents a parameter name of the function in the output (see also `output` section)
   - If the same function takes defferent parameters in defferent languages, they are merged. The function in the output takes all of the parameters
 
