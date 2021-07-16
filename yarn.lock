@@ -1931,9 +1931,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-commonjs@npm:19.0.0":
-  version: 19.0.0
-  resolution: "@rollup/plugin-commonjs@npm:19.0.0"
+"@rollup/plugin-commonjs@npm:19.0.1":
+  version: 19.0.1
+  resolution: "@rollup/plugin-commonjs@npm:19.0.1"
   dependencies:
     "@rollup/pluginutils": ^3.1.0
     commondir: ^1.0.1
@@ -1944,13 +1944,13 @@ __metadata:
     resolve: ^1.17.0
   peerDependencies:
     rollup: ^2.38.3
-  checksum: 83216ccd83c205f5b6ce278ce5233289a1ebf47fd859d6349d738b58e967bbb845395011f8605cf6a74175b728ed3b97fbfd9169bd0391caf5ee80c523652815
+  checksum: 49942cec59876a5ab3b576fe8ade861123c55d76e538fc43f225bb034dbc3c94934aba6df284350af19e50838fa0e3f8a239d9f6284e3b090bd0f4a708d097f3
   languageName: node
   linkType: hard
 
-"@rollup/plugin-node-resolve@npm:13.0.0":
-  version: 13.0.0
-  resolution: "@rollup/plugin-node-resolve@npm:13.0.0"
+"@rollup/plugin-node-resolve@npm:13.0.2":
+  version: 13.0.2
+  resolution: "@rollup/plugin-node-resolve@npm:13.0.2"
   dependencies:
     "@rollup/pluginutils": ^3.1.0
     "@types/resolve": 1.17.1
@@ -1960,7 +1960,7 @@ __metadata:
     resolve: ^1.19.0
   peerDependencies:
     rollup: ^2.42.0
-  checksum: c0237e65f50d593efc176e07a2ddf734918bc7344f739fe2254a3bfaa4be37c6d4787d045ab79d741811d3658f7e8bbb1484e6aa25bbb9fe2a3c33472b3f371d
+  checksum: c4860734d5969076a5b26dc86a8f26ef1400fdd5ae54ef1ea565a728642cc25c80ca08d0027ca222fac824a992477769d3d81d761c165ac2a56392727eb1b94a
   languageName: node
   linkType: hard
 
@@ -4842,8 +4842,8 @@ __metadata:
     "@babel/preset-env": 7.14.7
     "@babel/preset-typescript": 7.14.5
     "@rollup/plugin-babel": 5.3.0
-    "@rollup/plugin-commonjs": 19.0.0
-    "@rollup/plugin-node-resolve": 13.0.0
+    "@rollup/plugin-commonjs": 19.0.1
+    "@rollup/plugin-node-resolve": 13.0.2
     "@types/builtin-modules": 3.1.1
     "@types/eslint": 7.28.0
     "@types/jest": 26.0.24
