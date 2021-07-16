@@ -1,0 +1,4 @@
+{
+  "welcome": "こんにちは、${userName}さん",
+  "excessKey": "This key-value pair is ignored (en.json is the default and does it not have 'excessKey')"
+}

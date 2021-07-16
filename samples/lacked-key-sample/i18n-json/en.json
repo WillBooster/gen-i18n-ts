@@ -1,0 +1,4 @@
+{
+  "welcome": "Hi, ${userName}",
+  "lackedKey": "This key-value pair is copied to ja (en.json is the default and ja.json does not have 'lackedKey')"
+}

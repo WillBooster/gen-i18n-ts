@@ -19,7 +19,7 @@
     "build": "NODE_ENV=production rollup -c",
     "cleanup": "yarn format && yarn lint-fix",
     "format": "sort-package-json && yarn prettify",
-    "lint": "eslint --color \"./{src,__tests__}/**/*.{js,jsx,ts,tsx}\"",
+    "lint": "eslint --color \"./{src,__tests__,samples}/**/*.{js,jsx,ts,tsx}\"",
     "lint-fix": "yarn lint --fix",
     "prettify": "prettier --color --write \"**/{.*/,}*.{css,htm,html,js,json,json5,jsx,md,scss,ts,tsx,vue,yaml,yml}\" \"!**/test-fixtures/**\"",
     "release": "semantic-release",
