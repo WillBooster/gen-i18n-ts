@@ -3,7 +3,7 @@ const en = {
 };
 const ja = {
   welcome: 'こんにちは、${userName}さん',
-  // [AUTHOR'S COMMENT] Here! excessKey is ignored in ja.json.
+  // [AUTHOR'S COMMENT] Here! excessKey in ja.json is ignored.
 };
 let currentLang = en;
 export const i18n = {
