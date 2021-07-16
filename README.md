@@ -27,13 +27,20 @@ gen-i18n-ts -i inputDir -o outputFile -d defaultLang
 
 gen-i18n-ts takes three required argments: `inputDir`, `outputFile` and `defaultLang`.
 
+The following description takes [readme-sample](./samples/readme-sample) for example.
+Here is a command (`inputDir=i18n-json`, `outputFile=i18n.ts`, `defaultLang=en`):
+
+```
+gen-i18n-ts -i i18n-json -o i18n.ts -d en
+```
+
 ### Input (`inputDir`)
 
 `inputDir` is the path to the directory which contains JSON files for internationalization.
-The input directory (`foo` in the following case) should be like
+The input directory should be like
 
 ```
-foo/
+i18n-json/
   en.json
   ja.json
   ...
@@ -89,7 +96,7 @@ value    ::= string | value variable value
 variable ::= ${ [a-zA-Z_][a-zA-Z0-9_]* }
 ```
 
-Definition of "Same" Structure
+Definition of "Same" Structure  
 If set of keys in two objects has the same, they are considered to have same structure.
 The order of the keys are not cared.
 
@@ -104,13 +111,23 @@ It is like
 
 ```ts
 export const i18n = {
-  okButtonName: function() { return ... },
-  welcome: function(userName: string) { return ... },
+  okButtonName: function(): string {
+    return ...
+  },
+  welcome: function(userName: string): string {
+    return ...
+  },
   pages: {
-    user: function(userName: string) { return ... },
-    help: function() { return ... },
-    contact:  function() { return ... },
-  }
+    user: function(userName: string): string {
+      return ...
+    },
+    help: function(): string {
+      return ...
+    },
+    contact:  function(): string {
+      return ...
+    },
+  },
 }
 ```
 
@@ -124,7 +141,7 @@ It is like
 ```ts
 let currentLang = defaultLang;
 
-export function changeCurrentLang(lang: 'en' | 'ja') {
+export function changeCurrentLang(lang: 'en' | 'ja'): void {
   currentLang = lang;
 }
 ```
