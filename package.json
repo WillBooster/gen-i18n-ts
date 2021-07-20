@@ -85,5 +85,6 @@
   },
   "engines": {
     "node": ">=12"
-  }
+  },
+  "packageManager": "yarn@3.0.0-rc.12"
 }
