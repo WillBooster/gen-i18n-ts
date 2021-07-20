@@ -37,14 +37,13 @@ export async function cli(argv: string[]): Promise<void> {
     },
   }).argv;
 
+  genI18ts(inputDir, outfile, defaultLang);
   if (watch) {
     fs.watch(inputDir, (event, fileName) => {
       if (!fileName.endsWith('.json')) return;
       console.info(`Detect changes in ${inputDir} (${event} on ${fileName})`);
       genI18ts(inputDir, outfile, defaultLang);
     });
-  } else {
-    genI18ts(inputDir, outfile, defaultLang);
   }
 }
 
