@@ -22,8 +22,6 @@
     "lint": "eslint --color \"./{src,__tests__}/**/*.{js,jsx,ts,tsx}\"",
     "lint-fix": "yarn lint --fix",
     "prettify": "prettier --color --write \"**/{.*/,}*.{css,htm,html,js,json,json5,jsx,md,scss,ts,tsx,vue,yaml,yml}\" \"!**/test-fixtures/**\"",
-    "release": "semantic-release",
-    "release-test": "yarn release -d",
     "start": "yarn && babel-node -x .js,.jsx,.es6,.es,.ts -- src/start.ts",
     "start-prod": "yarn && yarn build && yarn gen-i18n-ts",
     "test": "yarn jest",
