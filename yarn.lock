@@ -4985,13 +4985,13 @@ __metadata:
     eslint-plugin-import: 2.23.4
     husky: 7.0.1
     jest: 27.0.6
-    lint-staged: 11.0.1
+    lint-staged: 11.1.0
     lodash: 4.17.21
     micromatch: 4.0.4
     pinst: 2.1.6
     power-assert: 1.6.1
     prettier: 2.3.2
-    rollup: 2.53.2
+    rollup: 2.53.3
     rollup-plugin-node-externals: 2.2.0
     semantic-release: 17.4.4
     sort-package-json: 1.50.0
@@ -6827,9 +6827,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lint-staged@npm:11.0.1":
-  version: 11.0.1
-  resolution: "lint-staged@npm:11.0.1"
+"lint-staged@npm:11.1.0":
+  version: 11.1.0
+  resolution: "lint-staged@npm:11.1.0"
   dependencies:
     chalk: ^4.1.1
     cli-truncate: ^2.1.0
@@ -6848,7 +6848,7 @@ __metadata:
     stringify-object: ^3.3.0
   bin:
     lint-staged: bin/lint-staged.js
-  checksum: 5046fbaa020e573ca31a4b7a3819cdd5383912c53dc55f5e68db4a525eba1fc23312f4cf0162742ef6a358464394e584b718049cd62b883b1d4f06fdfb163022
+  checksum: a102f882d5708862b8f13bb0f9bab56ad00217f9058792c17500c83810faa04540fc481ba2b73efc4f71346a0e5f0554e285fb934b3985656109a4e7e2f4c937
   languageName: node
   linkType: hard
 
@@ -8940,9 +8940,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:2.53.2":
-  version: 2.53.2
-  resolution: "rollup@npm:2.53.2"
+"rollup@npm:2.53.3":
+  version: 2.53.3
+  resolution: "rollup@npm:2.53.3"
   dependencies:
     fsevents: ~2.3.2
   dependenciesMeta:
@@ -8950,7 +8950,7 @@ __metadata:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: 0b64def8f0a6e16abff59397e21328ec0605c2f5f2623a5d276603c696e244593f86773b0dd965aa7aae8970f72bf3c723b5bc50f9b3e800c105290e6c62c690
+  checksum: 76fa43b2e9afde6d56de3c59048cb680170dd5724a02e9c7b35f0736e9d6416e50bfdbed1295b141381453129de368c386ccfa2db91f0355e32b3499114866b1
   languageName: node
   linkType: hard
 
