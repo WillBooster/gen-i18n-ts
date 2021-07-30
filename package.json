@@ -65,7 +65,7 @@
     "babel-preset-power-assert": "3.0.0",
     "builtin-modules": "3.2.0",
     "core-js": "3.16.0",
-    "eslint": "7.31.0",
+    "eslint": "7.32.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-import-resolver-node": "0.3.4",
     "eslint-plugin-import": "2.23.4",
