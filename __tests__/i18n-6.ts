@@ -22,6 +22,4 @@ test('i18n-6: tricky arguments', async () => {
   assert(i18n.test('${b}', 'a') === '${b} と a');
   assert(i18n.test('b', '${a}') === 'b と ${a}');
   assert(i18n.test('${b}', '${a}') === '${b} と ${a}');
-
-  fs.unlinkSync(outFile);
 });
