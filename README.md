@@ -21,14 +21,36 @@ The generated object literal is friendly with auto-completion in your text edito
 
 ## How it works
 
+1. run gen-i18n-ts command.
+
 ```
 gen-i18n-ts -i inputDir -o outputFile -d defaultLang
 ```
 
+See [Usage of gen-i18n-ts command](Usage-of-gen-i18n-ts-command) section for more details.
+
+2. import the generated file to your TypeScript modules.
+
+```ts
+import { i18n, changeCurrentLang } from 'path/to/generated/i18n';
+
+i18n.foo();
+// use i18n object as you like
+// before you call changeCurrentLang(), the language is set to the default one
+
+changeCurrentLang('ja');
+// call changeCurrentLang() when you wanna change the language
+
+i18n.foo();
+// here foo() is japanized
+```
+
+## Usage of gen-i18n-ts command
+
 gen-i18n-ts takes three required argments: `inputDir`, `outputFile` and `defaultLang`.
 
 The following description takes [readme-sample](./samples/readme-sample) for example.
-Here is a command (`inputDir=i18n-json`, `outputFile=i18n.ts`, `defaultLang=en`):
+Here is a command for the sample (`inputDir=i18n-json`, `outputFile=i18n.ts`, `defaultLang=en`):
 
 ```
 gen-i18n-ts -i i18n-json -o i18n.ts -d en
@@ -83,7 +105,7 @@ It should be like
 - JSONs in files are expected to have the "same" structure. If JSONs have different structures, that of the default language have priority (see also `default language` section)
   - if a key is in the default language but not in a non-default language, the key-value pair in the default one will be added to the non-default one (see also [lacked-key-sample](./samples/lacked-key-sample))
   - if a key is in a non-default language but not in the default language, the key-value pair in the non-default one will be ignored (see also [excess-key-sample](./samples/excess-key-sample))
-- `${variableName}` represents a parameter name of the function in the output (see also `output` section)
+- `${variableName}` represents a parameter name of the function in the output (see also [Output](<Output-(`outputFile`)>) section)
   - If the same function takes different parameters in different languages, they are merged. The function in the output takes all of the parameters
 
 **Detail**  
