@@ -14,5 +14,5 @@ test('i18n-7: escape characters', async () => {
 
   assert(i18n.escape() === 'This is the first line.\nThis is the second line. And Here \t a tab character!');
   changeCurrentLang('ja');
-  assert(i18n.escape() === 'これは1行目。\nこれは2行目。そしてここに \t タブ文字！');
+  assert(i18n.escape() === 'これは1行目。\nこれは2行目。そして、ここに \t タブ文字！');
 });
