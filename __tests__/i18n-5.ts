@@ -18,6 +18,4 @@ test('i18n-5: function params', async () => {
   changeCurrentLang('ja');
   assert(i18n.morning('晴れ', '太郎') === '今日の天気は晴れです。おはようございます！太郎さん');
   assert(i18n.hello('太郎') === 'こんにちは！');
-
-  fs.unlinkSync(outFile);
 });

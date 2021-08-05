@@ -16,6 +16,4 @@ test('i18n-3: using a variable multiple times', async () => {
 
   changeCurrentLang('ja');
   assert(i18n.twice('おーい！') === 'おーい！、もう一回 おーい！');
-
-  fs.unlinkSync(outFile);
 });

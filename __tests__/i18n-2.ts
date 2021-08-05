@@ -26,6 +26,4 @@ test('i18n-2: multiple arguments', async () => {
 
   changeCurrentLang('ja');
   assert(i18n.fourAnd('りんご', 'みかん', 'バナナ', 'モモ') === 'りんご と みかん と バナナ と モモ');
-
-  fs.unlinkSync(outFile);
 });

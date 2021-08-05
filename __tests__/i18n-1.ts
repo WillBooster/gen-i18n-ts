@@ -22,6 +22,4 @@ test('i18n-1: simple website', async () => {
   assert(i18n.welcome('太郎') === 'こんにちは、太郎さん');
   assert(i18n.pages.user('太郎') === '太郎さんのページ');
   assert(i18n.pages.contact() === 'お問い合わせ');
-
-  fs.unlinkSync(outFile);
 });

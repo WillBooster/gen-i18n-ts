@@ -7,7 +7,7 @@ export const ErrorMessages = {
     return 'Usage: yarn start -i [dirpath] -o [filepath] -d [lang]';
   },
   noDefaultLangFile(): string {
-    return 'cannot find default-lang file.';
+    return 'Cannot find the default language file.';
   },
   langFileNotObject(lang: string): string {
     return `${langToFilename(lang)}: JSON is not Object.`;
@@ -22,10 +22,10 @@ export const ErrorMessages = {
     return `${langToFilename(lang)}: '${varName}' is expected to be Object.`;
   },
   varShouldStringOrObject(lang: string, varName: string): string {
-    return `${langToFilename(lang)}: '${varName}' is neigher string nor Object.`;
+    return `${langToFilename(lang)}: '${varName}' is neither string nor Object.`;
   },
   unreachable(): string {
-    return 'UNREACHABLE: this may be a bug! please let us know.';
+    return 'UNREACHABLE: this may be a bug! Please let us know.';
   },
 };
 
@@ -35,11 +35,11 @@ export const InfoMessages = {
   },
   varIgnored(lang: string, varName: string): string {
     const langFilename = langToFilename(lang);
-    return `${langFilename}: '${varName}' is ignored. Not in default-lang file but in ${langFilename}.`;
+    return `${langFilename}: '${varName}' is ignored because it doesn't exist in the default language file.`;
   },
   varFilled(lang: string, varName: string): string {
     const langFilename = langToFilename(lang);
-    return `${langFilename}: '${varName}' is filled with default value. Not in ${langFilename} but in default-lang file.`;
+    return `${langFilename}: '${varName}' is filled with a default value because it doesn't exist in ${langFilename}.`;
   },
   functionParamAdded(lang: string, functionName: string, addedParam: string): string {
     const langFilename = langToFilename(lang);
