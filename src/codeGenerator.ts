@@ -39,7 +39,7 @@ export class CodeGenerator {
 
   private static jsonObjToCodeRecursively(lang: string, jsonObj: unknown, varName: string): string {
     if (utils.isString(jsonObj)) {
-      return `"${JSON.stringify(jsonObj)}"`;
+      return JSON.stringify(jsonObj);
     } else if (utils.isObject(jsonObj)) {
       let members = '';
       for (const [key, value] of Object.entries(jsonObj)) {
