@@ -3674,10 +3674,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:3.16.0, core-js@npm:^3.16.0":
-  version: 3.16.0
-  resolution: "core-js@npm:3.16.0"
-  checksum: e215cf057fadd86e5386d8042c1bd0ddab1c7811d8f66d272c356ba9bae34c0897c3f5a80d19f93fd74cff832652354a0feb0c817234a066ae9177e28c6d865a
+"core-js@npm:3.16.1":
+  version: 3.16.1
+  resolution: "core-js@npm:3.16.1"
+  checksum: 7924fa2a7f00e3a33bbe92fe42ba59fbbe7e01557a59824d000976300be3ba224cca20161f61654b3861ea80d244d6adfee6ed3ae6d6d9931210a37510fb7c9b
   languageName: node
   linkType: hard
 
@@ -3685,6 +3685,13 @@ __metadata:
   version: 2.6.12
   resolution: "core-js@npm:2.6.12"
   checksum: 44fa9934a85f8c78d61e0c8b7b22436330471ffe59ec5076fe7f324d6e8cf7f824b14b1c81ca73608b13bdb0fef035bd820989bf059767ad6fa13123bb8bd016
+  languageName: node
+  linkType: hard
+
+"core-js@npm:^3.16.0":
+  version: 3.16.0
+  resolution: "core-js@npm:3.16.0"
+  checksum: e215cf057fadd86e5386d8042c1bd0ddab1c7811d8f66d272c356ba9bae34c0897c3f5a80d19f93fd74cff832652354a0feb0c817234a066ae9177e28c6d865a
   languageName: node
   linkType: hard
 
@@ -4892,7 +4899,7 @@ __metadata:
     babel-plugin-unassert: 3.1.0
     babel-preset-power-assert: 3.0.0
     builtin-modules: 3.2.0
-    core-js: 3.16.0
+    core-js: 3.16.1
     eslint: 7.32.0
     eslint-config-prettier: 8.3.0
     eslint-import-resolver-node: 0.3.4
@@ -4905,7 +4912,7 @@ __metadata:
     pinst: 2.1.6
     power-assert: 1.6.1
     prettier: 2.3.2
-    rollup: 2.56.0
+    rollup: 2.56.2
     rollup-plugin-node-externals: 2.2.0
     semantic-release: 17.4.4
     sort-package-json: 1.50.0
@@ -8893,9 +8900,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:2.56.0":
-  version: 2.56.0
-  resolution: "rollup@npm:2.56.0"
+"rollup@npm:2.56.2":
+  version: 2.56.2
+  resolution: "rollup@npm:2.56.2"
   dependencies:
     fsevents: ~2.3.2
   dependenciesMeta:
@@ -8903,7 +8910,7 @@ __metadata:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: d7258d2844a8ba750c028d94b30c8c9397a4d14eca15384b74e387930f0299bdde79f040af410fbb6f344429cf4484368606dd374b157f8fe2a06a38db1e2f79
+  checksum: 4e8e13c5c43147de142ae2f294f775b1cc567d2f5c196b28a37482d886fb0cabef769c18e427ab0180f5929b8422b27a7664a5e4586be38651871c62e333b8ee
   languageName: node
   linkType: hard
 
