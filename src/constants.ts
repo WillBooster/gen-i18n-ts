@@ -12,6 +12,9 @@ export const ErrorMessages = {
   langFileNotObject(lang: string): string {
     return `${langToFilename(lang)}: JSON is not Object.`;
   },
+  keyShouldBeLikeVariableName(lang: string, keyName: string, variableNameRegex: RegExp): string {
+    return `${langToFilename(lang)}: key '${keyName}' does not match ${variableNameRegex.source}.`;
+  },
   varShouldString(lang: string, varName: string): string {
     return `${langToFilename(lang)}: '${varName}' is expected to be string.`;
   },
