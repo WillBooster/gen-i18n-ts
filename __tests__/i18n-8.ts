@@ -3,7 +3,7 @@ import path from 'path';
 
 import { genI18ts } from '../src';
 
-test('i18n-1: simple website', async () => {
+test('i18n-8: yaml format', async () => {
   const inputDir = path.resolve(__dirname, '..', 'test-fixtures', 'i18n-8');
   const outFile = path.resolve(__dirname, '..', 'test-fixtures', 'i18n-8.ts');
   genI18ts(inputDir, outFile, 'en');
