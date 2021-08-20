@@ -10,14 +10,14 @@ test('i18n-6: tricky arguments', async () => {
   genI18ts(inputDir, outFile, 'en');
 
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { i18n, changeCurrentLang } = require('../test-fixtures/i18n-6');
+  const { i18n, changeLanguageByCode } = require('../test-fixtures/i18n-6');
 
   assert(i18n.test('b', 'a') === 'b and a');
   assert(i18n.test('${b}', 'a') === '${b} and a');
   assert(i18n.test('b', '${a}') === 'b and ${a}');
   assert(i18n.test('${b}', '${a}') === '${b} and ${a}');
 
-  changeCurrentLang('ja');
+  changeLanguageByCode('ja');
   assert(i18n.test('b', 'a') === 'b と a');
   assert(i18n.test('${b}', 'a') === '${b} と a');
   assert(i18n.test('b', '${a}') === 'b と ${a}');

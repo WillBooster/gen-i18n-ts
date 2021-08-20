@@ -10,9 +10,9 @@ test('i18n-7: escape characters', async () => {
   genI18ts(inputDir, outFile, 'en');
 
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { i18n, changeCurrentLang } = require('../test-fixtures/i18n-7');
+  const { i18n, changeLanguageByCode } = require('../test-fixtures/i18n-7');
 
   assert(i18n.escape() === 'This is the first line.\nThis is the second line. And Here is \t, a tab character!');
-  changeCurrentLang('ja');
+  changeLanguageByCode('ja');
   assert(i18n.escape() === 'これは1行目。\nこれは2行目。そして、ここに \t タブ文字！');
 });

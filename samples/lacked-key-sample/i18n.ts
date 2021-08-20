@@ -17,7 +17,7 @@ export const i18n = {
     return currentLang.lackedKey;
   },
 };
-export function changeCurrentLang(lang: 'en' | 'ja'): void {
+export function changeLanguageByCode(lang: 'en' | 'ja'): void {
   switch (lang) {
     case 'en':
       currentLang = en;

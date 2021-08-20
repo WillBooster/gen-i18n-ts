@@ -30,7 +30,7 @@ export const i18n = {
     },
   },
 };
-export function changeCurrentLang(lang: 'en' | 'ja'): void {
+export function changeLanguageByCode(lang: 'en' | 'ja'): void {
   switch (lang) {
     case 'en':
       currentLang = en;

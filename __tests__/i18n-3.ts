@@ -10,10 +10,10 @@ test('i18n-3: using a variable multiple times', async () => {
   genI18ts(inputDir, outFile, 'en');
 
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { i18n, changeCurrentLang } = require('../test-fixtures/i18n-3');
+  const { i18n, changeLanguageByCode } = require('../test-fixtures/i18n-3');
 
   assert(i18n.twice('hey!') === 'hey!, again hey!');
 
-  changeCurrentLang('ja');
+  changeLanguageByCode('ja');
   assert(i18n.twice('おーい！') === 'おーい！、もう一回 おーい！');
 });

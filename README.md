@@ -32,14 +32,14 @@ See [Usage of gen-i18n-ts command](Usage-of-gen-i18n-ts-command) section for mor
 2. import the generated file to your TypeScript modules.
 
 ```ts
-import { i18n, changeCurrentLang } from 'path/to/generated/i18n';
+import { i18n, changeLanguageByCode } from 'path/to/generated/i18n';
 
 i18n.foo();
 // use i18n object as you like
-// before you call changeCurrentLang(), the language is set to the default one
+// before you call changeLanguageByCode(), the language is set to the default one
 
-changeCurrentLang('ja');
-// call changeCurrentLang() when you wanna change the language
+changeLanguageByCode('ja');
+// call changeLanguageByCode() when you wanna change the language
 
 i18n.foo();
 // here foo() is japanized
@@ -127,7 +127,7 @@ The order of the keys are not cared.
 
 ### Output (`outputFile`)
 
-`outputFile` is the path to the TypeScript file for internationalization. The file exports`i18n` and `changeCurrentLang`.
+`outputFile` is the path to the TypeScript file for internationalization. The file exports`i18n` and `changeLanguageByCode`.
 
 #### `i18n`
 
@@ -158,7 +158,7 @@ export const i18n = {
 
 Note that even if a string in the input has no `${variableName}`, the output will be a zero-argument FUNCTION, NOT a STRING
 
-### `changeCurrentLang`
+### `changeLanguageByCode`
 
 The function to change the current language.
 It is like
@@ -166,7 +166,7 @@ It is like
 ```ts
 let currentLang = defaultLang;
 
-export function changeCurrentLang(lang: 'en' | 'ja'): void {
+export function changeLanguageByCode(lang: 'en' | 'ja'): void {
   currentLang = lang;
 }
 ```

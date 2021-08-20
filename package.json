@@ -32,6 +32,7 @@
   },
   "prettier": "@willbooster/prettier-config",
   "dependencies": {
+    "js-yaml": "4.1.0",
     "lodash": "4.17.21",
     "yargs": "17.1.1"
   },
@@ -49,6 +50,7 @@
     "@types/builtin-modules": "3.1.1",
     "@types/eslint": "7.28.0",
     "@types/jest": "27.0.1",
+    "@types/js-yaml": "4.0.2",
     "@types/lodash": "4.14.172",
     "@types/micromatch": "4.0.2",
     "@types/node": "16.3.2",

@@ -10,7 +10,7 @@ test('i18n-4: lacked and excess keys', async () => {
   genI18ts(inputDir, outFile, 'en');
 
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { i18n, changeCurrentLang } = require('../test-fixtures/i18n-4');
+  const { i18n, changeLanguageByCode } = require('../test-fixtures/i18n-4');
 
   assert(i18n.lang() === 'English');
   assert(i18n.lack() === 'lacked');
@@ -19,7 +19,7 @@ test('i18n-4: lacked and excess keys', async () => {
   assert(i18n.nestedLack.a() === 'a');
   assert(i18n.nestedLack.b() === 'b');
 
-  changeCurrentLang('ja');
+  changeLanguageByCode('ja');
   assert(i18n.lang() === '日本語');
   assert(i18n.lack() === 'lacked');
   assert(i18n.nested.member() === 'メンバー');

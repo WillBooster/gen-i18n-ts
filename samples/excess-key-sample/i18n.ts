@@ -12,7 +12,7 @@ export const i18n = {
     return currentLang.welcome.replace(/\$\{userName\}/g, (pattern) => paramMap[pattern]);
   },
 };
-export function changeCurrentLang(lang: 'en' | 'ja'): void {
+export function changeLanguageByCode(lang: 'en' | 'ja'): void {
   switch (lang) {
     case 'en':
       currentLang = en;

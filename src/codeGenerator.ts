@@ -25,7 +25,7 @@ export class CodeGenerator {
     const i18nCode = this.typeObjToCode(typeObj, varCurrentLang);
     code += `export const ${varI18n} = ${i18nCode};\n`;
 
-    const currentLangChangerCode = this.currentLangChangerCode(langs, varCurrentLang);
+    const currentLangChangerCode = this.generateChangeLanguageCode(langs, varCurrentLang);
     code += `export ${currentLangChangerCode}\n`;
 
     return code;
@@ -83,8 +83,8 @@ export class CodeGenerator {
     }
   }
 
-  private static currentLangChangerCode(langs: string[], varCurrentLang: string): string {
-    const funcChangeCurrentLang = 'changeCurrentLang';
+  private static generateChangeLanguageCode(langs: string[], varCurrentLang: string): string {
+    const funcChangeCurrentLang = 'changeLanguageByCode';
     const varLang = 'lang';
     const langType = langs.map((lang) => `"${lang}"`).join('|');
     const declaration = `function ${funcChangeCurrentLang}(${varLang}: ${langType}): void`;

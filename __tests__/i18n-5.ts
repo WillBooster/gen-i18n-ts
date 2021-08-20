@@ -10,12 +10,12 @@ test('i18n-5: function params', async () => {
   genI18ts(inputDir, outFile, 'en');
 
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { i18n, changeCurrentLang } = require('../test-fixtures/i18n-5');
+  const { i18n, changeLanguageByCode } = require('../test-fixtures/i18n-5');
 
   assert(i18n.morning('sunny', 'Taro') === "It's sunny today. Good morning!");
   assert(i18n.hello('Taro') === 'Hello, Taro!');
 
-  changeCurrentLang('ja');
+  changeLanguageByCode('ja');
   assert(i18n.morning('晴れ', '太郎') === '今日の天気は晴れです。おはようございます！太郎さん');
   assert(i18n.hello('太郎') === 'こんにちは！');
 });

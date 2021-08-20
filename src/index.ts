@@ -39,9 +39,11 @@ export async function cli(argv: string[]): Promise<void> {
 
   genI18ts(inputDir, outfile, defaultLang);
   if (watch) {
+    console.info();
+    console.info('Start monitoring i18n file changes.');
     fs.watch(inputDir, (event, fileName) => {
       if (!fileName.endsWith('.json')) return;
-      console.info(`Detect changes in ${inputDir} (${event} on ${fileName})`);
+      console.info(`### Detect changes in ${inputDir} (${event} on ${fileName}) ###`);
       genI18ts(inputDir, outfile, defaultLang);
     });
   }
@@ -72,4 +74,5 @@ export function genI18ts(inputDir: string, outfile: string, defaultLang: string)
   const code = CodeGenerator.gen(typeObj, jsonObjMap, defaultLang);
   fs.mkdirSync(path.dirname(outfile), { recursive: true });
   fs.writeFileSync(outfile, code, { encoding: 'utf-8' });
+  console.info('Generated TypeScript code.');
 }
