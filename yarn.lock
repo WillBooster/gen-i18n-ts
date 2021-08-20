@@ -2220,10 +2220,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/js-yaml@npm:4.0.2":
-  version: 4.0.2
-  resolution: "@types/js-yaml@npm:4.0.2"
-  checksum: bdc4b45e116d34cc0669ee0a3eee96113b60bc0447c48cd7e99d5227b304a5c65c227e3e83271a3ff6e96c32e769c52e376e8c8310414a35984e0ec226cc9b8a
+"@types/js-yaml@npm:4.0.3":
+  version: 4.0.3
+  resolution: "@types/js-yaml@npm:4.0.3"
+  checksum: 4be74c029f3fe4ab01f382481521c15bc79c96589747f588f8d3b92e97b8e04ffbe208451d24c99fd289593ff5325710eb83d267c8f2449d3248299f909003d7
   languageName: node
   linkType: hard
 
@@ -4862,7 +4862,7 @@ __metadata:
     "@types/builtin-modules": 3.1.1
     "@types/eslint": 7.28.0
     "@types/jest": 27.0.1
-    "@types/js-yaml": 4.0.2
+    "@types/js-yaml": 4.0.3
     "@types/lodash": 4.14.172
     "@types/micromatch": 4.0.2
     "@types/node": 16.3.2
