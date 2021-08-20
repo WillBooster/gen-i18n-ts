@@ -3,8 +3,8 @@ import { BaseType, FunctionType, ObjectType } from './types';
 import * as utils from './utils';
 
 export class CodeGenerator {
-  static gen(typeObj: BaseType, jsonObjMap: { [lang: string]: unknown }, defaultLang: string): string {
-    const langs = Object.keys(jsonObjMap);
+  static gen(typeObj: BaseType, langObjMap: { [lang: string]: unknown }, defaultLang: string): string {
+    const langs = Object.keys(langObjMap);
     if (!langs.includes(defaultLang)) throw new Error(ErrorMessages.noDefaultLangFile());
 
     const varCurrentLang = 'currentLang';
@@ -15,8 +15,8 @@ export class CodeGenerator {
 **********************************************************************************************/
 
 `;
-    for (const [lang, jsonObj] of Object.entries(jsonObjMap)) {
-      const langCode = this.jsonObjToCode(lang, jsonObj);
+    for (const [lang, langObj] of Object.entries(langObjMap)) {
+      const langCode = this.langObjToCode(lang, langObj);
       code += `const ${lang} = ${langCode};\n`;
     }
 
@@ -31,20 +31,20 @@ export class CodeGenerator {
     return code;
   }
 
-  private static jsonObjToCode(lang: string, jsonObj: unknown): string {
-    if (!utils.isObject(jsonObj)) throw new Error(ErrorMessages.langFileNotObject(lang));
+  private static langObjToCode(lang: string, langObj: unknown): string {
+    if (!utils.isObject(langObj)) throw new Error(ErrorMessages.langFileNotObject(lang));
 
-    return this.jsonObjToCodeRecursively(lang, jsonObj, '');
+    return this.langObjToCodeRecursively(lang, langObj, '');
   }
 
-  private static jsonObjToCodeRecursively(lang: string, jsonObj: unknown, varName: string): string {
-    if (utils.isString(jsonObj)) {
-      return JSON.stringify(jsonObj);
-    } else if (utils.isObject(jsonObj)) {
+  private static langObjToCodeRecursively(lang: string, langObj: unknown, varName: string): string {
+    if (utils.isString(langObj)) {
+      return JSON.stringify(langObj);
+    } else if (utils.isObject(langObj)) {
       let members = '';
-      for (const [key, value] of Object.entries(jsonObj)) {
+      for (const [key, value] of Object.entries(langObj)) {
         const memberVarName = utils.memberVarName(varName, key);
-        const valueCode = this.jsonObjToCodeRecursively(lang, value, memberVarName);
+        const valueCode = this.langObjToCodeRecursively(lang, value, memberVarName);
         members += `${key}: ${valueCode}, `;
       }
       return `{ ${members} }`;
