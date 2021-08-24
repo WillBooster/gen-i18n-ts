@@ -25,8 +25,9 @@ export class CodeGenerator {
     const i18nCode = this.typeObjToCode(typeObj, varCurrentLang);
     code += `export const ${varI18n} = ${i18nCode};\n`;
 
-    const currentLangChangerCode = this.generateChangeLanguageCode(langs, varCurrentLang);
-    code += `export ${currentLangChangerCode}\n`;
+    code += `${this.generateChangeLanguageCode(langs, varCurrentLang)}\n`;
+
+    code += `${this.generateGetLanguageCode()}\n`;
 
     return code;
   }
@@ -87,11 +88,31 @@ export class CodeGenerator {
     const funcChangeCurrentLang = 'changeLanguageByCode';
     const varLang = 'lang';
     const langType = langs.map((lang) => `"${lang}"`).join('|');
-    const declaration = `function ${funcChangeCurrentLang}(${varLang}: ${langType}): void`;
+    const declaration = `export function ${funcChangeCurrentLang}(${varLang}: ${langType}): void`;
 
     const cases = langs.map((lang) => `case "${lang}": ${varCurrentLang} = ${lang}; break;`).join(' ');
     const statement = `switch (${varLang}) { ${cases} }`;
 
     return `${declaration} { ${statement} }`;
+  }
+
+  private static generateGetLanguageCode(): string {
+    return `export function getFullLanguageCodeList(): string[] {
+  const langSet = new Set<string>();
+  const nav = window.navigator || {};
+  if (Array.isArray(nav.languages)) {
+    for (const lang of nav.languages) {
+      if (lang) langSet.add(lang);
+    }
+  }
+  for (const key of ['language', 'browserLanguage', 'systemLanguage', 'userLanguage']) {
+    const lang = (nav as any)[key];
+    if (lang) langSet.add(lang);
+  }
+  return [...langSet];
+}
+export function getShortLanguageCodeList(): string[] {
+  return [...new Set(getFullLanguageCodeList().map(lang => lang.split('-')[0]).filter(lang => !!lang))];
+}`;
   }
 }
