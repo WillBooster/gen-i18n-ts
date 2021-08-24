@@ -3,13 +3,13 @@ import path from 'path';
 
 import { genI18ts } from '../src';
 
-test('i18n-1: simple website', async () => {
-  const inputDir = path.resolve(__dirname, '..', 'test-fixtures', 'i18n-1');
-  const outFile = path.resolve(__dirname, '..', 'test-fixtures', 'i18n-1.ts');
+test('i18n-8: yaml format', async () => {
+  const inputDir = path.resolve(__dirname, '..', 'test-fixtures', 'i18n-8');
+  const outFile = path.resolve(__dirname, '..', 'test-fixtures', 'i18n-8.ts');
   genI18ts(inputDir, outFile, 'en');
 
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { i18n, changeLanguageByCode } = require('../test-fixtures/i18n-1');
+  const { i18n, changeLanguageByCode } = require('../test-fixtures/i18n-8');
 
   assert(i18n.okButtonName() === 'Done');
   assert(i18n.welcome('Taro') === 'Hi, Taro');

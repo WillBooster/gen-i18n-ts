@@ -1,0 +1,6 @@
+okButtonName: Done
+welcome: Hi, ${userName}
+pages:
+  user: ${userName}'s page
+  help: Help
+  contact: Contact

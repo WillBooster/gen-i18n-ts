@@ -1,5 +1,4 @@
 import assert from 'assert';
-import fs from 'fs';
 import path from 'path';
 
 import { genI18ts } from '../src';
