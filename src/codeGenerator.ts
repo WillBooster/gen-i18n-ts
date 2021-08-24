@@ -3,10 +3,8 @@ import { BaseType, FunctionType, ObjectType } from './types';
 import * as utils from './utils';
 
 export class CodeGenerator {
-  static gen(typeObj: BaseType, langObjMap: { [lang: string]: unknown }, defaultLang: string): string {
-    const langs = Object.keys(langObjMap);
-    if (!langs.includes(defaultLang)) throw new Error(ErrorMessages.noDefaultLangFile());
-
+  static gen(typeObj: BaseType, langToLangObj: Map<string, unknown>, defaultLang: string): string {
+    const langs = [...langToLangObj.keys()];
     const varCurrentLang = 'currentLang';
     const varI18n = 'i18n';
 
@@ -15,7 +13,7 @@ export class CodeGenerator {
 **********************************************************************************************/
 
 `;
-    for (const [lang, langObj] of Object.entries(langObjMap)) {
+    for (const [lang, langObj] of langToLangObj.entries()) {
       const langCode = this.langObjToCode(lang, langObj);
       code += `const ${lang} = ${langCode};\n`;
     }
