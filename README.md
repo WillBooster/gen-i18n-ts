@@ -160,7 +160,7 @@ Note that even if a string in the input has no `${variableName}`, the output wil
 
 ### `changeLanguageByCode`
 
-The function to change the current language. This returns if `lang` is valid and false otherwise.
+The function to change the current language. It returns `true` if `lang` is valid and `false` otherwise.
 It is like
 
 ```ts
