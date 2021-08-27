@@ -80,7 +80,7 @@
     "prettier": "2.3.2",
     "rollup": "2.56.2",
     "rollup-plugin-node-externals": "2.2.0",
-    "semantic-release": "17.4.5",
+    "semantic-release": "17.4.7",
     "sort-package-json": "1.50.0",
     "typescript": "4.3.5"
   },
