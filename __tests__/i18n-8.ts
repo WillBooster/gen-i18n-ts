@@ -1,4 +1,3 @@
-import assert from 'assert';
 import path from 'path';
 
 import { genI18ts } from '../src';
@@ -11,14 +10,14 @@ test('i18n-8: yaml format', async () => {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const { i18n, changeLanguageByCode } = require('../test-fixtures/i18n-8');
 
-  assert(i18n.okButtonName() === 'Done');
-  assert(i18n.welcome('Taro') === 'Hi, Taro');
-  assert(i18n.pages.user('Taro') === "Taro's page");
-  assert(i18n.pages.help() === 'Help');
+  expect(i18n.okButtonName()).toBe('Done');
+  expect(i18n.welcome('Taro')).toBe('Hi, Taro');
+  expect(i18n.pages.user('Taro')).toBe("Taro's page");
+  expect(i18n.pages.help()).toBe('Help');
 
   changeLanguageByCode('ja');
-  assert(i18n.okButtonName() === '完了');
-  assert(i18n.welcome('太郎') === 'こんにちは、太郎さん');
-  assert(i18n.pages.user('太郎') === '太郎さんのページ');
-  assert(i18n.pages.contact() === 'お問い合わせ');
+  expect(i18n.okButtonName()).toBe('完了');
+  expect(i18n.welcome('太郎')).toBe('こんにちは、太郎さん');
+  expect(i18n.pages.user('太郎')).toBe('太郎さんのページ');
+  expect(i18n.pages.contact()).toBe('お問い合わせ');
 });

@@ -1,7 +1,7 @@
-import assert from 'assert';
 import path from 'path';
 
 import { genI18ts } from '../src';
+import { i18n } from '../test-fixtures/i18n-4';
 
 test('i18n-4: lacked and excess keys', async () => {
   const inputDir = path.resolve(__dirname, '..', 'test-fixtures', 'i18n-4');
@@ -11,18 +11,18 @@ test('i18n-4: lacked and excess keys', async () => {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const { i18n, changeLanguageByCode } = require('../test-fixtures/i18n-4');
 
-  assert(i18n.lang() === 'English');
-  assert(i18n.lack() === 'lacked');
-  assert(i18n.nested.member() === 'member');
-  assert(i18n.nested.lack() === 'lacked too');
-  assert(i18n.nestedLack.a() === 'a');
-  assert(i18n.nestedLack.b() === 'b');
+  expect(i18n.lang()).toBe('English');
+  expect(i18n.lack()).toBe('lacked');
+  expect(i18n.nested.member()).toBe('member');
+  expect(i18n.nested.lack()).toBe('lacked too');
+  expect(i18n.nestedLack.a()).toBe('a');
+  expect(i18n.nestedLack.b()).toBe('b');
 
   changeLanguageByCode('ja');
-  assert(i18n.lang() === '日本語');
-  assert(i18n.lack() === 'lacked');
-  assert(i18n.nested.member() === 'メンバー');
-  assert(i18n.nested.lack() === 'lacked too');
-  assert(i18n.nestedLack.a() === 'a');
-  assert(i18n.nestedLack.b() === 'b');
+  expect(i18n.lang()).toBe('日本語');
+  expect(i18n.lack()).toBe('lacked');
+  expect(i18n.nested.member()).toBe('メンバー');
+  expect(i18n.nested.lack()).toBe('lacked too');
+  expect(i18n.nestedLack.a()).toBe('a');
+  expect(i18n.nestedLack.b()).toBe('b');
 });

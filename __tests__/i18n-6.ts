@@ -1,4 +1,3 @@
-import assert from 'assert';
 import path from 'path';
 
 import { genI18ts } from '../src';
@@ -11,14 +10,14 @@ test('i18n-6: tricky arguments', async () => {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const { i18n, changeLanguageByCode } = require('../test-fixtures/i18n-6');
 
-  assert(i18n.test('b', 'a') === 'b and a');
-  assert(i18n.test('${b}', 'a') === '${b} and a');
-  assert(i18n.test('b', '${a}') === 'b and ${a}');
-  assert(i18n.test('${b}', '${a}') === '${b} and ${a}');
+  expect(i18n.test('b', 'a')).toBe('b and a');
+  expect(i18n.test('${b}', 'a')).toBe('${b} and a');
+  expect(i18n.test('b', '${a}')).toBe('b and ${a}');
+  expect(i18n.test('${b}', '${a}')).toBe('${b} and ${a}');
 
   changeLanguageByCode('ja');
-  assert(i18n.test('b', 'a') === 'b と a');
-  assert(i18n.test('${b}', 'a') === '${b} と a');
-  assert(i18n.test('b', '${a}') === 'b と ${a}');
-  assert(i18n.test('${b}', '${a}') === '${b} と ${a}');
+  expect(i18n.test('b', 'a')).toBe('b と a');
+  expect(i18n.test('${b}', 'a')).toBe('${b} と a');
+  expect(i18n.test('b', '${a}')).toBe('b と ${a}');
+  expect(i18n.test('${b}', '${a}')).toBe('${b} と ${a}');
 });

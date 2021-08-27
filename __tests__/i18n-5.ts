@@ -1,7 +1,7 @@
-import assert from 'assert';
 import path from 'path';
 
 import { genI18ts } from '../src';
+import { i18n } from '../test-fixtures/i18n-5';
 
 test('i18n-5: function params', async () => {
   const inputDir = path.resolve(__dirname, '..', 'test-fixtures', 'i18n-5');
@@ -11,10 +11,10 @@ test('i18n-5: function params', async () => {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const { i18n, changeLanguageByCode } = require('../test-fixtures/i18n-5');
 
-  assert(i18n.morning('sunny', 'Taro') === "It's sunny today. Good morning!");
-  assert(i18n.hello('Taro') === 'Hello, Taro!');
+  expect(i18n.morning('sunny', 'Taro')).toBe("It's sunny today. Good morning!");
+  expect(i18n.hello('Taro')).toBe('Hello, Taro!');
 
   changeLanguageByCode('ja');
-  assert(i18n.morning('晴れ', '太郎') === '今日の天気は晴れです。おはようございます！太郎さん');
-  assert(i18n.hello('太郎') === 'こんにちは！');
+  expect(i18n.morning('晴れ', '太郎')).toBe('今日の天気は晴れです。おはようございます！太郎さん');
+  expect(i18n.hello('太郎')).toBe('こんにちは！');
 });
