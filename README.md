@@ -160,14 +160,23 @@ Note that even if a string in the input has no `${variableName}`, the output wil
 
 ### `changeLanguageByCode`
 
-The function to change the current language.
+The function to change the current language. This returns if `lang` is valid and false otherwise.
 It is like
 
 ```ts
-let currentLang = defaultLang;
+let currentLang = en; // default language object
 
-export function changeLanguageByCode(lang: 'en' | 'ja'): void {
-  currentLang = lang;
+export function changeLanguageByCode(lang: string): boolean {
+  switch (lang) {
+    case 'en':
+      currentLang = en;
+      return true;
+    case 'ja':
+      currentLang = ja;
+      return true;
+    ...
+  }
+  return false
 }
 ```
 
