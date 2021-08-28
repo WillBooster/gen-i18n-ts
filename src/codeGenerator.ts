@@ -85,8 +85,7 @@ export class CodeGenerator {
   private static generateChangeLanguageCode(langs: string[], varCurrentLang: string): string {
     const funcChangeCurrentLang = 'changeLanguageByCode';
     const varLang = 'lang';
-    const langType = langs.map((lang) => `"${lang}"`).join('|');
-    const declaration = `export function ${funcChangeCurrentLang}(${varLang}: ${langType}): boolean`;
+    const declaration = `export function ${funcChangeCurrentLang}(${varLang}: string): boolean`;
 
     const cases = langs.map((lang) => `case "${lang}": ${varCurrentLang} = ${lang}; return true;`).join(' ');
     const statement = `switch (${varLang}) { ${cases} } return false;`;
