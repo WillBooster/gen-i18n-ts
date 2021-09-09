@@ -3,10 +3,11 @@ name: Release
 on:
   push:
     branches:
-      - 'release'
+      - 'main'
 
 jobs:
   release:
+    if: ${{ github.event.head_commit.author.username != 'renovate-bot' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
