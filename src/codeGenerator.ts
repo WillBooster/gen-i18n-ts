@@ -46,7 +46,7 @@ export class CodeGenerator {
         const valueCode = this.langObjToCodeRecursively(lang, value, memberVarName);
         members += `${key}: ${valueCode}, `;
       }
-      return `{ ${members} }`;
+      return `{ __code__: "${lang}", ${members} }`;
     }
 
     throw new Error(ErrorMessages.varShouldStringOrObject(lang, varName));
@@ -94,7 +94,13 @@ export class CodeGenerator {
   }
 
   private static generateGetLanguageCode(): string {
-    return `export function getFullLanguageCodeList(): string[] {
+    return `export function getCurrentLanguageCode(): string {
+  return currentLang.__code__;
+}
+export function getFullAndShortLanguageCodeList(): string[] {
+  return [...new Set([...getFullLanguageCodeList(), ...getShortLanguageCodeList()])];
+}
+export function getFullLanguageCodeList(): string[] {
   const langSet = new Set<string>();
   const nav = window.navigator || {};
   if (Array.isArray(nav.languages)) {
