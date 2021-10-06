@@ -19,16 +19,16 @@
     "build": "NODE_ENV=production rollup -c",
     "cleanup": "yarn format && yarn lint-fix",
     "format": "sort-package-json && yarn prettify",
+    "postinstall": "husky install",
     "lint": "eslint --color \"./{src,__tests__,samples}/**/*.{js,jsx,ts,tsx}\"",
     "lint-fix": "yarn lint --fix",
+    "prepublishOnly": "pinst --disable",
     "prettify": "prettier --color --write \"**/{.*/,}*.{css,htm,html,js,json,json5,jsx,md,scss,ts,tsx,vue,yaml,yml}\" \"!**/test-fixtures/**\"",
+    "postpublish": "pinst --enable",
     "start": "yarn && babel-node -x .js,.jsx,.es6,.es,.ts -- src/start.ts",
     "start-prod": "yarn && yarn build && yarn gen-i18n-ts",
     "test": "yarn jest",
-    "typecheck": "tsc --noEmit --Pretty",
-    "postinstall": "husky install",
-    "prepublishOnly": "pinst --disable",
-    "postpublish": "pinst --enable"
+    "typecheck": "tsc --noEmit --Pretty"
   },
   "prettier": "@willbooster/prettier-config",
   "dependencies": {
@@ -87,5 +87,5 @@
   "engines": {
     "node": ">=12"
   },
-  "packageManager": "yarn@3.0.1"
+  "packageManager": "yarn@3.0.2"
 }
