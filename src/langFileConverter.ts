@@ -3,7 +3,7 @@ import path from 'path';
 
 import { ErrorMessages, VARIABLE_REGEX } from './constants';
 import { BaseType, FunctionType, ObjectType } from './types';
-import * as utils from './utils';
+import { isString, isObject, getMemberVarName } from './utils';
 
 import yaml from 'js-yaml';
 
@@ -42,20 +42,20 @@ export class LangFileConverter {
   }
 
   private static validateLangObj(lang: string, langObj: unknown): void {
-    if (!utils.isObject(langObj)) throw new Error(ErrorMessages.langFileNotObject(lang));
+    if (!isObject(langObj)) throw new Error(ErrorMessages.langFileNotObject(lang));
     LangFileConverter.validateLangObjRecursively(lang, langObj, '');
   }
 
   private static validateLangObjRecursively(lang: string, langObj: unknown, varName: string): void {
-    if (utils.isString(langObj)) {
+    if (isString(langObj)) {
       return;
-    } else if (utils.isObject(langObj)) {
+    } else if (isObject(langObj)) {
       for (const [key, value] of Object.entries(langObj)) {
         const variableNameRegex = /^[A-Za-z$_][A-Za-z0-9$_]*$/;
         if (!variableNameRegex.test(key)) {
           throw new Error(ErrorMessages.keyShouldBeLikeVariableName(lang, key, variableNameRegex));
         }
-        const memberVarName = utils.memberVarName(varName, key);
+        const memberVarName = memberVarName(varName, key);
         LangFileConverter.validateLangObjRecursively(lang, value, memberVarName);
       }
     } else {
@@ -64,12 +64,12 @@ export class LangFileConverter {
   }
 
   private static langObjToTypeObj(lang: string, langObj: unknown): BaseType {
-    if (!utils.isObject(langObj)) throw new Error(ErrorMessages.langFileNotObject(lang));
+    if (!isObject(langObj)) throw new Error(ErrorMessages.langFileNotObject(lang));
     return LangFileConverter.langObjToTypeObjRecursively(lang, langObj, '');
   }
 
   private static langObjToTypeObjRecursively(lang: string, langObj: unknown, varName: string): BaseType {
-    if (utils.isString(langObj)) {
+    if (isString(langObj)) {
       const params: string[] = [];
       let match: RegExpExecArray | null = null;
       while ((match = VARIABLE_REGEX.exec(langObj))) {
@@ -77,10 +77,10 @@ export class LangFileConverter {
         if (!params.includes(param)) params.push(param);
       }
       return new FunctionType(params);
-    } else if (utils.isObject(langObj)) {
+    } else if (isObject(langObj)) {
       const map: Record<string, BaseType> = {};
       for (const [key, value] of Object.entries(langObj)) {
-        const memberVarName = utils.memberVarName(varName, key);
+        const memberVarName = getMemberVarName(varName, key);
         map[key] = LangFileConverter.langObjToTypeObjRecursively(lang, value, memberVarName);
       }
       return new ObjectType(map);

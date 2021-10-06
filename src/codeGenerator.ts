@@ -1,6 +1,6 @@
 import { ErrorMessages } from './constants';
 import { BaseType, FunctionType, ObjectType } from './types';
-import * as utils from './utils';
+import { isString, isObject, getMemberVarName } from './utils';
 
 export class CodeGenerator {
   static gen(typeObj: BaseType, langToLangObj: Map<string, unknown>, defaultLang: string): string {
@@ -31,22 +31,22 @@ export class CodeGenerator {
   }
 
   private static langObjToCode(lang: string, langObj: unknown): string {
-    if (!utils.isObject(langObj)) throw new Error(ErrorMessages.langFileNotObject(lang));
+    if (!isObject(langObj)) throw new Error(ErrorMessages.langFileNotObject(lang));
 
     return this.langObjToCodeRecursively(lang, langObj, '');
   }
 
   private static langObjToCodeRecursively(lang: string, langObj: unknown, varName: string): string {
-    if (utils.isString(langObj)) {
+    if (isString(langObj)) {
       return JSON.stringify(langObj);
-    } else if (utils.isObject(langObj)) {
+    } else if (isObject(langObj)) {
       let members = '';
       for (const [key, value] of Object.entries(langObj)) {
-        const memberVarName = utils.memberVarName(varName, key);
+        const memberVarName = getMemberVarName(varName, key);
         const valueCode = this.langObjToCodeRecursively(lang, value, memberVarName);
-        members += `${key}: ${valueCode}, `;
+        members += `${JSON.stringify(key)}: ${valueCode}, `;
       }
-      return `{ __code__: "${lang}", ${members} }`;
+      return `{ "__code__": "${lang}", ${members} }`;
     }
 
     throw new Error(ErrorMessages.varShouldStringOrObject(lang, varName));
@@ -72,9 +72,9 @@ export class CodeGenerator {
     } else if (typeObj instanceof ObjectType) {
       let members = '';
       for (const [key, value] of Object.entries(typeObj.map)) {
-        const memberVarName = utils.memberVarName(varName, key);
+        const memberVarName = getMemberVarName(varName, key);
         const valueCode = this.typeObjToCode(value, memberVarName);
-        members += `${key}: ${valueCode}, `;
+        members += `${JSON.stringify(key)}: ${valueCode}, `;
       }
       return `{ ${members} }`;
     } else {

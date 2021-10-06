@@ -1,6 +1,6 @@
 import { ErrorMessages, InfoMessages, VARIABLE_REGEX } from './constants';
 import { BaseType, FunctionType, ObjectType } from './types';
-import * as utils from './utils';
+import { isString, isObject, getMemberVarName } from './utils';
 
 import { cloneDeep, difference, intersection } from 'lodash';
 
@@ -19,8 +19,8 @@ export class ObjectAnalyzer {
     defaultLangObj: unknown
   ): void {
     if (typeObj instanceof FunctionType) {
-      if (!utils.isString(defaultLangObj)) throw new Error(ErrorMessages.unreachable());
-      if (!utils.isString(langObj)) throw new Error(ErrorMessages.varShouldString(lang, varName));
+      if (!isString(defaultLangObj)) throw new Error(ErrorMessages.unreachable());
+      if (!isString(langObj)) throw new Error(ErrorMessages.varShouldString(lang, varName));
 
       let match: RegExpExecArray | null = null;
       while ((match = VARIABLE_REGEX.exec(langObj))) {
@@ -31,8 +31,8 @@ export class ObjectAnalyzer {
         }
       }
     } else if (typeObj instanceof ObjectType) {
-      if (!utils.isObject(defaultLangObj)) throw new Error(ErrorMessages.unreachable());
-      if (!utils.isObject(langObj)) throw new Error(ErrorMessages.varShouldObject(lang, varName));
+      if (!isObject(defaultLangObj)) throw new Error(ErrorMessages.unreachable());
+      if (!isObject(langObj)) throw new Error(ErrorMessages.varShouldObject(lang, varName));
 
       const [keys, defaultKeys] = [Object.keys(langObj), Object.keys(defaultLangObj)];
       const excessKeys = difference(keys, defaultKeys);
@@ -40,16 +40,16 @@ export class ObjectAnalyzer {
       const sharedKeys = intersection(keys, defaultKeys);
       for (const key of excessKeys) {
         delete langObj[key];
-        const memberVarName = utils.memberVarName(varName, key);
+        const memberVarName = getMemberVarName(varName, key);
         console.info(InfoMessages.varIgnored(lang, memberVarName));
       }
       for (const key of lackedKeys) {
         langObj[key] = cloneDeep(defaultLangObj[key]);
-        const memberVarName = utils.memberVarName(varName, key);
+        const memberVarName = getMemberVarName(varName, key);
         console.info(InfoMessages.varFilled(lang, memberVarName));
       }
       for (const key of sharedKeys) {
-        const memberVarName = utils.memberVarName(varName, key);
+        const memberVarName = getMemberVarName(varName, key);
         const memberTypeObj = typeObj.map[key];
         if (!memberTypeObj) throw new Error(ErrorMessages.unreachable());
         this.analyzeRecursively(memberTypeObj, lang, langObj[key], memberVarName, defaultLangObj[key]);
