@@ -55,7 +55,7 @@ export class LangFileConverter {
         if (!variableNameRegex.test(key)) {
           throw new Error(ErrorMessages.keyShouldBeLikeVariableName(lang, key, variableNameRegex));
         }
-        const memberVarName = memberVarName(varName, key);
+        const memberVarName = getMemberVarName(varName, key);
         LangFileConverter.validateLangObjRecursively(lang, value, memberVarName);
       }
     } else {
