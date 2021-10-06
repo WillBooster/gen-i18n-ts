@@ -51,10 +51,6 @@ export class LangFileConverter {
       return;
     } else if (isObject(langObj)) {
       for (const [key, value] of Object.entries(langObj)) {
-        const variableNameRegex = /^[A-Za-z$_][A-Za-z0-9$_]*$/;
-        if (!variableNameRegex.test(key)) {
-          throw new Error(ErrorMessages.keyShouldBeLikeVariableName(lang, key, variableNameRegex));
-        }
         const memberVarName = getMemberVarName(varName, key);
         LangFileConverter.validateLangObjRecursively(lang, value, memberVarName);
       }
