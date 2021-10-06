@@ -5,6 +5,8 @@ import * as utils from './utils';
 export class CodeGenerator {
   static gen(typeObj: BaseType, langToLangObj: Map<string, unknown>, defaultLang: string): string {
     const langs = [...langToLangObj.keys()];
+
+    const varLanguages = 'languages';
     const varCurrentLang = 'currentLang';
     const varI18n = 'i18n';
 
@@ -13,17 +15,20 @@ export class CodeGenerator {
 **********************************************************************************************/
 
 `;
+
+    let members = '';
     for (const [lang, langObj] of langToLangObj.entries()) {
       const langCode = this.langObjToCode(lang, langObj);
-      code += `const ${lang} = ${langCode};\n`;
+      members += `${JSON.stringify(lang)}: ${langCode}, `;
     }
+    code += `const ${varLanguages} = { ${members} };\n`;
 
-    code += `let ${varCurrentLang} = ${defaultLang};\n`;
+    code += `let ${varCurrentLang} = ${varLanguages}[${JSON.stringify(defaultLang)}];\n`;
 
     const i18nCode = this.typeObjToCode(typeObj, varCurrentLang);
     code += `export const ${varI18n} = ${i18nCode};\n`;
 
-    code += `${this.generateChangeLanguageCode(langs, varCurrentLang)}\n`;
+    code += `${this.generateChangeLanguageCode(langs, varLanguages, varCurrentLang)}\n`;
 
     code += `${this.generateGetLanguageCode()}\n`;
 
@@ -82,12 +87,14 @@ export class CodeGenerator {
     }
   }
 
-  private static generateChangeLanguageCode(langs: string[], varCurrentLang: string): string {
+  private static generateChangeLanguageCode(langs: string[], varLanguages: string, varCurrentLang: string): string {
     const funcChangeCurrentLang = 'changeLanguageByCode';
     const varLang = 'lang';
     const declaration = `export function ${funcChangeCurrentLang}(${varLang}: string): boolean`;
 
-    const cases = langs.map((lang) => `case "${lang}": ${varCurrentLang} = ${lang}; return true;`).join(' ');
+    const cases = langs
+      .map((lang) => `case "${lang}": ${varCurrentLang} = ${varLanguages}[${JSON.stringify(lang)}]; return true;`)
+      .join(' ');
     const statement = `switch (${varLang}) { ${cases} } return false;`;
 
     return `${declaration} { ${statement} }`;
