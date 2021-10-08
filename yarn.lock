@@ -3130,10 +3130,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-plugin-unassert@npm:3.1.0":
-  version: 3.1.0
-  resolution: "babel-plugin-unassert@npm:3.1.0"
-  checksum: b5fbbf7babc7136c369494f7095a8cecce7ee8f53921ee5897e7f62791ac72fd50b6639fdabbd061a7ff1bba127d5c9019406b31d181dedfe5c0162e5474b6e8
+"babel-plugin-unassert@npm:3.2.0":
+  version: 3.2.0
+  resolution: "babel-plugin-unassert@npm:3.2.0"
+  checksum: e329359549c7ad5588d592b9587cc67b7d2414a3f1488829e9db41ffd5982ee80d2b8557fc534c2c8b8b11c7457eafc01d259d6b7227db4d7e8a9ac2d77d4c4b
   languageName: node
   linkType: hard
 
@@ -5010,7 +5010,7 @@ __metadata:
     "@willbooster/renovate-config": 6.4.0
     babel-jest: 27.2.5
     babel-plugin-transform-remove-console: 6.9.4
-    babel-plugin-unassert: 3.1.0
+    babel-plugin-unassert: 3.2.0
     babel-preset-power-assert: 3.0.0
     builtin-modules: 3.2.0
     core-js: 3.18.2

@@ -63,7 +63,7 @@
     "@willbooster/renovate-config": "6.4.0",
     "babel-jest": "27.2.5",
     "babel-plugin-transform-remove-console": "6.9.4",
-    "babel-plugin-unassert": "3.1.0",
+    "babel-plugin-unassert": "3.2.0",
     "babel-preset-power-assert": "3.0.0",
     "builtin-modules": "3.2.0",
     "core-js": "3.18.2",
