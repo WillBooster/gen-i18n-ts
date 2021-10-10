@@ -1,7 +1,6 @@
 import path from 'path';
 
 import { genI18ts } from '../src';
-import { i18n } from '../test-fixtures/i18n-3';
 
 test('i18n-3: using a variable multiple times', async () => {
   const inputDir = path.resolve(__dirname, '..', 'test-fixtures', 'i18n-3');

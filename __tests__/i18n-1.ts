@@ -1,7 +1,6 @@
 import path from 'path';
 
 import { genI18ts } from '../src';
-import { changeLanguageByCode, i18n } from '../test-fixtures/i18n-1';
 
 test('i18n-1: simple website', async () => {
   const inputDir = path.resolve(__dirname, '..', 'test-fixtures', 'i18n-1');
