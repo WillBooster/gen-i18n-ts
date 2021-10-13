@@ -1,8 +1,6 @@
 import { ErrorMessages, InfoMessages, VARIABLE_REGEX } from './constants';
 import { BaseType, FunctionType, ObjectType } from './types';
-import { isString, isObject, getMemberVarName } from './utils';
-
-import { cloneDeep, difference, intersection } from 'lodash';
+import { isString, isObject, getMemberVarName, arrayDifference, arrayIintersection } from './utils';
 
 export class ObjectAnalyzer {
   static analyze(typeObj: BaseType, lang: string, langObj: unknown, defaultLangObj: unknown): void {
@@ -35,16 +33,16 @@ export class ObjectAnalyzer {
       if (!isObject(langObj)) throw new Error(ErrorMessages.varShouldObject(lang, varName));
 
       const [keys, defaultKeys] = [Object.keys(langObj), Object.keys(defaultLangObj)];
-      const excessKeys = difference(keys, defaultKeys);
-      const lackedKeys = difference(defaultKeys, keys);
-      const sharedKeys = intersection(keys, defaultKeys);
+      const excessKeys = arrayDifference(keys, defaultKeys);
+      const lackedKeys = arrayDifference(defaultKeys, keys);
+      const sharedKeys = arrayIintersection(keys, defaultKeys);
       for (const key of excessKeys) {
         delete langObj[key];
         const memberVarName = getMemberVarName(varName, key);
         console.info(InfoMessages.varIgnored(lang, memberVarName));
       }
       for (const key of lackedKeys) {
-        langObj[key] = cloneDeep(defaultLangObj[key]);
+        langObj[key] = defaultLangObj[key];
         const memberVarName = getMemberVarName(varName, key);
         console.info(InfoMessages.varFilled(lang, memberVarName));
       }
