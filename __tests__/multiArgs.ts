@@ -2,13 +2,13 @@ import path from 'path';
 
 import { genI18ts } from '../src';
 
-test('i18n-2: multiple arguments', async () => {
-  const inputDir = path.resolve(__dirname, '..', 'test-fixtures', 'i18n-2');
-  const outFile = path.resolve(__dirname, '..', 'test-fixtures', 'i18n-2.ts');
+test('multiple arguments', async () => {
+  const inputDir = path.resolve(__dirname, '..', 'test-fixtures', 'multiArgs');
+  const outFile = path.resolve(__dirname, '..', 'test-fixtures', 'multiArgsI18n.ts');
   genI18ts(inputDir, outFile, 'en');
 
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { i18n, changeLanguageByCode } = require('../test-fixtures/i18n-2');
+  const { i18n, changeLanguageByCode } = require('../test-fixtures/multiArgsI18n');
 
   expect(i18n.gotAMail('Hanako', 'Happy Birthday!')).toBe('You got a mail! From:Hanako Subject:Happy Birthday!');
   expect(i18n.gotAMail('WB Store', 'Special Discount')).toBe('You got a mail! From:WB Store Subject:Special Discount');
