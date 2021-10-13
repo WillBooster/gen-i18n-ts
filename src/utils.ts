@@ -11,23 +11,19 @@ export function getMemberVarName(objectVarName: string, key: string): string {
 }
 
 export function intersection<T>(setA: Set<T>, setB: Set<T>): Set<T> {
-  // From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set#implementing_basic_set_operations
-
-  const _intersection = new Set<T>();
+  const result = new Set<T>();
   for (const elem of setB) {
     if (setA.has(elem)) {
-      _intersection.add(elem);
+      result.add(elem);
     }
   }
-  return _intersection;
+  return result;
 }
 
 export function difference<T>(setA: Set<T>, setB: Set<T>): Set<T> {
-  // From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set#implementing_basic_set_operations
-
-  const _difference = new Set(setA);
+  const result = new Set(setA);
   for (const elem of setB) {
-    _difference.delete(elem);
+    result.delete(elem);
   }
-  return _difference;
+  return result;
 }
