@@ -1,6 +1,6 @@
 import { ErrorMessages, InfoMessages, VARIABLE_REGEX } from './constants';
 import { BaseType, FunctionType, ObjectType } from './types';
-import { isString, isObject, getMemberVarName, arrayDifference, arrayIintersection } from './utils';
+import { isString, isObject, getMemberVarName, difference, intersection } from './utils';
 
 export class ObjectAnalyzer {
   static analyze(typeObj: BaseType, lang: string, langObj: unknown, defaultLangObj: unknown): void {
@@ -32,10 +32,10 @@ export class ObjectAnalyzer {
       if (!isObject(defaultLangObj)) throw new Error(ErrorMessages.unreachable());
       if (!isObject(langObj)) throw new Error(ErrorMessages.varShouldObject(lang, varName));
 
-      const [keys, defaultKeys] = [Object.keys(langObj), Object.keys(defaultLangObj)];
-      const excessKeys = arrayDifference(keys, defaultKeys);
-      const lackedKeys = arrayDifference(defaultKeys, keys);
-      const sharedKeys = arrayIintersection(keys, defaultKeys);
+      const [keys, defaultKeys] = [new Set(Object.keys(langObj)), new Set(Object.keys(defaultLangObj))];
+      const excessKeys = difference(keys, defaultKeys);
+      const lackedKeys = difference(defaultKeys, keys);
+      const sharedKeys = intersection(keys, defaultKeys);
       for (const key of excessKeys) {
         delete langObj[key];
         const memberVarName = getMemberVarName(varName, key);
