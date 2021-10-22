@@ -107,7 +107,15 @@ export class CodeGenerator {
   return currentLang.__code__;
 }
 export function getFullAndShortLanguageCodeList(): string[] {
-  return [...new Set([...getFullLanguageCodeList(), ...getShortLanguageCodeList()])];
+  const langSet = new Set<string>();
+  const fullLangs = getFullLanguageCodeList();
+  const shortLangs = getShortLanguageCodeList();
+  const length = Math.max(fullLangs.length, shortLangs.length);
+  for (let i = 0; i < length; i++) {
+    if (fullLangs[i]) langSet.add(fullLangs[i]);
+    if (shortLangs[i]) langSet.add(shortLangs[i]);
+  }
+  return [...langSet];
 }
 export function getFullLanguageCodeList(): string[] {
   const langSet = new Set<string>();
