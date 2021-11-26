@@ -75,7 +75,7 @@
     "micromatch": "4.0.4",
     "pinst": "2.1.6",
     "power-assert": "1.6.1",
-    "prettier": "2.4.1",
+    "prettier": "2.5.0",
     "rollup": "2.60.1",
     "rollup-plugin-node-externals": "2.2.0",
     "semantic-release": "18.0.1",
@@ -85,5 +85,5 @@
   "engines": {
     "node": ">=12"
   },
-  "packageManager": "yarn@3.2.0-rc.5"
+  "packageManager": "yarn@3.2.0-rc.6"
 }
