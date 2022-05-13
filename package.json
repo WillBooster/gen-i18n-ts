@@ -33,29 +33,29 @@
   "prettier": "@willbooster/prettier-config",
   "dependencies": {
     "js-yaml": "4.1.0",
-    "yargs": "17.4.0"
+    "yargs": "17.5.0"
   },
   "devDependencies": {
-    "@babel/core": "7.17.9",
+    "@babel/core": "7.17.10",
     "@babel/helper-plugin-utils": "7.16.7",
-    "@babel/node": "7.16.8",
+    "@babel/node": "7.17.10",
     "@babel/plugin-proposal-class-properties": "7.16.7",
     "@babel/plugin-proposal-numeric-separator": "7.16.7",
-    "@babel/preset-env": "7.16.11",
+    "@babel/preset-env": "7.17.10",
     "@babel/preset-typescript": "7.16.7",
     "@rollup/plugin-babel": "5.3.1",
-    "@rollup/plugin-commonjs": "21.0.3",
-    "@rollup/plugin-node-resolve": "13.1.3",
+    "@rollup/plugin-commonjs": "21.1.0",
+    "@rollup/plugin-node-resolve": "13.3.0",
     "@types/builtin-modules": "3.1.1",
     "@types/eslint": "7.29.0",
-    "@types/jest": "27.4.1",
+    "@types/jest": "27.5.1",
     "@types/js-yaml": "4.0.5",
     "@types/micromatch": "4.0.2",
-    "@types/node": "16.11.26",
+    "@types/node": "16.11.35",
     "@types/semantic-release": "17.2.3",
     "@types/yargs": "17.0.10",
-    "@typescript-eslint/eslint-plugin": "5.18.0",
-    "@typescript-eslint/parser": "5.18.0",
+    "@typescript-eslint/eslint-plugin": "5.23.0",
+    "@typescript-eslint/parser": "5.23.0",
     "@willbooster/eslint-config-ts": "6.5.0",
     "@willbooster/prettier-config": "6.5.0",
     "@willbooster/renovate-config": "6.5.0",
@@ -63,8 +63,8 @@
     "babel-plugin-transform-remove-console": "6.9.4",
     "babel-plugin-unassert": "3.2.0",
     "babel-preset-power-assert": "3.0.0",
-    "builtin-modules": "3.2.0",
-    "core-js": "3.21.1",
+    "builtin-modules": "3.3.0",
+    "core-js": "3.22.5",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-import-resolver-node": "0.3.6",
@@ -76,14 +76,14 @@
     "pinst": "2.1.6",
     "power-assert": "1.6.1",
     "prettier": "2.6.2",
-    "rollup": "2.70.1",
+    "rollup": "2.73.0",
     "rollup-plugin-node-externals": "4.0.0",
     "semantic-release": "18.0.1",
-    "sort-package-json": "1.55.0",
-    "typescript": "4.6.3"
+    "sort-package-json": "1.57.0",
+    "typescript": "4.6.4"
   },
   "engines": {
     "node": ">=12"
   },
-  "packageManager": "yarn@3.2.0"
+  "packageManager": "yarn@3.2.1"
 }
