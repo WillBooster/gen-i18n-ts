@@ -1,0 +1,10 @@
+name: Willboosterify
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: 23 13 * * *
+jobs:
+  wbfy:
+    uses: WillBooster/reusable-workflows/.github/workflows/wbfy.yml@main
+    secrets:
+      GH_TOKEN: ${{ secrets.GH_BOT_PAT }}

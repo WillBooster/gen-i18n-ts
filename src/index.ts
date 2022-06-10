@@ -1,16 +1,16 @@
 import fs from 'fs';
 import path from 'path';
 
+import { hideBin } from 'yargs/helpers';
+import yargs from 'yargs/yargs';
+
 import { CodeGenerator } from './codeGenerator';
 import { ErrorMessages, InfoMessages } from './constants';
 import { LangFileConverter } from './langFileConverter';
 import { ObjectAnalyzer } from './objectAnalyzer';
 
-import { hideBin } from 'yargs/helpers';
-import yargs from 'yargs/yargs';
-
 export async function cli(argv: string[]): Promise<void> {
-  const { inputDir, outfile, defaultLang, watch } = await yargs(hideBin(argv)).options({
+  const { defaultLang, inputDir, outfile, watch } = await yargs(hideBin(argv)).options({
     inputDir: {
       type: 'string',
       alias: 'i',

@@ -8,7 +8,7 @@ test('yaml format', async () => {
   genI18ts(inputDir, outFile, 'en');
 
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { i18n, changeLanguageByCode } = require('../test-fixtures/yamlFormatI18n');
+  const { changeLanguageByCode, i18n } = require('../test-fixtures/yamlFormatI18n');
 
   expect(i18n.okButtonName()).toBe('Done');
   expect(i18n.welcome('Taro')).toBe('Hi, Taro');

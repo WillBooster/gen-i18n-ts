@@ -8,7 +8,7 @@ test('filename with hyphen', async () => {
   genI18ts(inputDir, outFile, 'en-us');
 
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { i18n, changeLanguageByCode } = require('../test-fixtures/fileWithHyphenI18n');
+  const { changeLanguageByCode, i18n } = require('../test-fixtures/fileWithHyphenI18n');
 
   expect(i18n.color()).toBe('color');
 

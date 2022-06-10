@@ -1,11 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 
+import yaml from 'js-yaml';
+
 import { ErrorMessages, VARIABLE_REGEX } from './constants';
 import { BaseType, FunctionType, ObjectType } from './types';
 import { isString, isObject, getMemberVarName } from './utils';
-
-import yaml from 'js-yaml';
 
 export class LangFileConverter {
   static toLangObj(lang: string, langFilePath: string): unknown {

@@ -8,7 +8,7 @@ test('tricky arguments', async () => {
   genI18ts(inputDir, outFile, 'en');
 
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { i18n, changeLanguageByCode } = require('../test-fixtures/trickyArgsI18n');
+  const { changeLanguageByCode, i18n } = require('../test-fixtures/trickyArgsI18n');
 
   expect(i18n.test('b', 'a')).toBe('b and a');
   expect(i18n.test('${b}', 'a')).toBe('${b} and a');

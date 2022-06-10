@@ -8,7 +8,7 @@ test('using variable multiple times', async () => {
   genI18ts(inputDir, outFile, 'en');
 
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { i18n, changeLanguageByCode } = require('../test-fixtures/dupArgsI18n');
+  const { changeLanguageByCode, i18n } = require('../test-fixtures/dupArgsI18n');
 
   expect(i18n.twice('hey!')).toBe('hey!, again hey!');
 

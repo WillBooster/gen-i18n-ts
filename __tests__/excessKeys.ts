@@ -8,7 +8,7 @@ test('excess keys', async () => {
   genI18ts(inputDir, outFile, 'en');
 
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { i18n, changeLanguageByCode } = require('../test-fixtures/excessKeysI18n');
+  const { changeLanguageByCode, i18n } = require('../test-fixtures/excessKeysI18n');
 
   expect(i18n.lang()).toBe('English');
   expect(i18n.excess).toBeUndefined();

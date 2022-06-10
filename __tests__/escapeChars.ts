@@ -8,7 +8,7 @@ test('escape characters', async () => {
   genI18ts(inputDir, outFile, 'en');
 
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { i18n, changeLanguageByCode } = require('../test-fixtures/escapeCharsI18n');
+  const { changeLanguageByCode, i18n } = require('../test-fixtures/escapeCharsI18n');
 
   expect(i18n.escape()).toBe('This is the first line.\nThis is the second line. And Here is \t, a tab character!');
   changeLanguageByCode('ja');

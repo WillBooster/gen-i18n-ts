@@ -1,12 +1,11 @@
 name: Release
-
 on:
   push:
     branches:
-      - 'main'
-
+      - main
 jobs:
   release:
+    uses: WillBooster/reusable-workflows/.github/workflows/release.yml@main
     if: ${{ github.event.head_commit.author.username != 'renovate-bot' }}
     runs-on: ubuntu-latest
     steps:
@@ -32,3 +31,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    secrets:
+      GH_TOKEN: ${{ secrets.GH_BOT_PAT }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

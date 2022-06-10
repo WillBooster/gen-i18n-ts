@@ -7,6 +7,9 @@ test-fixtures/*.ts
 .devcontainer/
 dist/
 temp/
+Icon[]
+*.sqlite3
+*.sqlite3-journal
 
 # Created by https://www.toptal.com/developers/gitignore/api/windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows
@@ -49,8 +52,7 @@ $RECYCLE.BIN/
 .LSOverride
 
 # Icon must end with two \r
-Icon
-
+Icon
 
 # Thumbnails
 ._*
@@ -70,6 +72,10 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+### macOS Patch ###
+# iCloud generated files
+*.icloud
 
 # End of https://www.toptal.com/developers/gitignore/api/macos
 
@@ -160,6 +166,9 @@ atlassian-ide-plugin.xml
 # Cursive Clojure plugin
 .idea/replstate.xml
 
+# SonarLint plugin
+.idea/sonarlint/
+
 # Crashlytics plugin (for Android Studio and IntelliJ)
 com_crashlytics_export_strings.xml
 crashlytics.properties
@@ -202,6 +211,10 @@ fabric.properties
 # https://plugins.jetbrains.com/plugin/12206-codestream
 .idea/codestream.xml
 
+# Azure Toolkit for IntelliJ plugin
+# https://plugins.jetbrains.com/plugin/8053-azure-toolkit-for-intellij
+.idea/**/azureSettings.xml
+
 # End of https://www.toptal.com/developers/gitignore/api/jetbrains
 
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode
@@ -213,15 +226,24 @@ fabric.properties
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-*.code-workspace
+!.vscode/*.code-snippets
 
 # Local History for Visual Studio Code
 .history/
+
+# Built Visual Studio Code Extensions
+*.vsix
 
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
 .ionide
+
+# Support for Project snippet scope
+.vscode/*.code-snippets
+
+# Ignore code-workspaces
+*.code-workspace
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode
 
@@ -311,10 +333,11 @@ tags
 # Edit at https://www.toptal.com/developers/gitignore?templates=yarn
 
 ### yarn ###
-# https://yarnpkg.com/advanced/qa#which-files-should-be-gitignored
+# https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
 
 .yarn/*
 !.yarn/releases
+!.yarn/patches
 !.yarn/plugins
 !.yarn/sdks
 !.yarn/versions
@@ -388,6 +411,9 @@ web_modules/
 # Optional eslint cache
 .eslintcache
 
+# Optional stylelint cache
+.stylelintcache
+
 # Microbundle cache
 .rpt2_cache/
 .rts2_cache_cjs/
@@ -403,10 +429,12 @@ web_modules/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
+# dotenv environment variable files
 .env
-.env.test
-.env.production
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -429,6 +457,12 @@ dist
 # vuepress build output
 .vuepress/dist
 
+# vuepress v2.x temp and cache directory
+.temp
+
+# Docusaurus cache and generated files
+.docusaurus
+
 # Serverless directories
 .serverless/
 
@@ -450,5 +484,14 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+### Node Patch ###
+# Serverless Webpack directories
+.webpack/
+
+# Optional stylelint cache
+
+# SvelteKit build / generate output
+.svelte-kit
 
 # End of https://www.toptal.com/developers/gitignore/api/node

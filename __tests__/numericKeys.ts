@@ -8,7 +8,7 @@ test('numeric keys', async () => {
   genI18ts(inputDir, outFile, 'en');
 
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { i18n, changeLanguageByCode } = require('../test-fixtures/numericKeysI18n');
+  const { changeLanguageByCode, i18n } = require('../test-fixtures/numericKeysI18n');
 
   expect(i18n['123456']()).toBe('numeric key');
 
