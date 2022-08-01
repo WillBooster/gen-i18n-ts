@@ -2693,13 +2693,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint@npm:7.29.0":
-  version: 7.29.0
-  resolution: "@types/eslint@npm:7.29.0"
+"@types/eslint@npm:8.4.5":
+  version: 8.4.5
+  resolution: "@types/eslint@npm:8.4.5"
   dependencies:
     "@types/estree": "npm:*"
     "@types/json-schema": "npm:*"
-  checksum: 0bc6a3a99cc02f13a5c21b618d750a793288fa98bf00604f56222de1ef32cbe5129f57e5e9ebd6e041c8a341d7cfbddb584393a457dc6e8a4809c3c7eedbce8d
+  checksum: a744b8c832a915fa6894c5658622762774bf3bde132de46d1bceea266e4876c6017a13a7e790749742a5dd681ea3ebdb82a736735ede79b818294707a5f51f36
   languageName: node
   linkType: hard
 
@@ -5436,7 +5436,7 @@ __metadata:
     "@rollup/plugin-commonjs": "npm:21.1.0"
     "@rollup/plugin-node-resolve": "npm:13.3.0"
     "@types/builtin-modules": "npm:3.1.1"
-    "@types/eslint": "npm:7.29.0"
+    "@types/eslint": "npm:8.4.5"
     "@types/jest": "npm:27.5.2"
     "@types/js-yaml": "npm:4.0.5"
     "@types/micromatch": "npm:4.0.2"
