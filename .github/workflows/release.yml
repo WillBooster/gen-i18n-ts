@@ -32,5 +32,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     secrets:
-      GH_TOKEN: ${{ secrets.GH_BOT_PAT }}
+      GH_TOKEN: ${{ secrets.PUBLIC_GH_BOT_PAT }}
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    with:
+      github_hosted_runner: true
