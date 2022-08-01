@@ -8,5 +8,3 @@ on:
 jobs:
   semantic-pr:
     uses: WillBooster/reusable-workflows/.github/workflows/semantic-pr.yml@main
-    with:
-      github_hosted_runner: true

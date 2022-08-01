@@ -6,33 +6,6 @@ on:
 jobs:
   release:
     uses: WillBooster/reusable-workflows/.github/workflows/release.yml@main
-    if: ${{ github.event.head_commit.author.username != 'renovate-bot' }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 14
-      - name: Show environment information
-        run: |
-          echo "node: $(node -v)"
-          echo "yarn: $(yarn -v)"
-      - uses: actions/cache@v2
-        id: yarn-cache
-        with:
-          path: .yarn
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-      - run: yarn install
-      - run: yarn build
-      - name: Release
-        run: rm -Rf __tests__ && yarn semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     secrets:
       GH_TOKEN: ${{ secrets.PUBLIC_GH_BOT_PAT }}
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-    with:
-      github_hosted_runner: true
