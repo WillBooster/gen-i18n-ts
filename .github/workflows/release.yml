@@ -9,3 +9,5 @@ jobs:
     secrets:
       GH_TOKEN: ${{ secrets.PUBLIC_GH_BOT_PAT }}
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    with:
+      github_hosted_runner: true
