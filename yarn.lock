@@ -2101,9 +2101,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-commonjs@npm:22.0.1":
-  version: 22.0.1
-  resolution: "@rollup/plugin-commonjs@npm:22.0.1"
+"@rollup/plugin-commonjs@npm:22.0.2":
+  version: 22.0.2
+  resolution: "@rollup/plugin-commonjs@npm:22.0.2"
   dependencies:
     "@rollup/pluginutils": "npm:^3.1.0"
     commondir: "npm:^1.0.1"
@@ -2114,7 +2114,7 @@ __metadata:
     resolve: "npm:^1.17.0"
   peerDependencies:
     rollup: ^2.68.0
-  checksum: ed7ed41ec05a73a788f68a21b3078949cecba7606f1ad7859b80f87e74f2601baee7d14c7c1b2eee276cd370845215380f8905ed97fe1e7ef391bab504491604
+  checksum: 532072063075f64081f97910efb69dd551eb83b1b577ec9fe2911e71b4638ba1ca1e612fe65c8ef4d6246134d975f5950c6eca8eda72d196c0baa7713330ea6f
   languageName: node
   linkType: hard
 
@@ -2532,7 +2532,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/yargs@npm:17.0.10, @types/yargs@npm:^17.0.8":
+"@types/yargs@npm:17.0.11":
+  version: 17.0.11
+  resolution: "@types/yargs@npm:17.0.11"
+  dependencies:
+    "@types/yargs-parser": "npm:*"
+  checksum: af155547a98c72a942efeda0381347f97f95b52421d872afe2b76655d14bb2c43031f8fce58c9cce17b9a8a7f83215c92061a6bbaf02fa18bbc66221846ca278
+  languageName: node
+  linkType: hard
+
+"@types/yargs@npm:^17.0.8":
   version: 17.0.10
   resolution: "@types/yargs@npm:17.0.10"
   dependencies:
@@ -4889,7 +4898,7 @@ __metadata:
     "@babel/preset-env": "npm:7.18.10"
     "@babel/preset-typescript": "npm:7.18.6"
     "@rollup/plugin-babel": "npm:5.3.1"
-    "@rollup/plugin-commonjs": "npm:22.0.1"
+    "@rollup/plugin-commonjs": "npm:22.0.2"
     "@rollup/plugin-node-resolve": "npm:13.3.0"
     "@types/builtin-modules": "npm:3.1.1"
     "@types/eslint": "npm:8.4.5"
@@ -4898,7 +4907,7 @@ __metadata:
     "@types/micromatch": "npm:4.0.2"
     "@types/node": "npm:16.11.47"
     "@types/semantic-release": "npm:17.2.4"
-    "@types/yargs": "npm:17.0.10"
+    "@types/yargs": "npm:17.0.11"
     "@typescript-eslint/eslint-plugin": "npm:5.32.0"
     "@typescript-eslint/parser": "npm:5.32.0"
     "@willbooster/eslint-config-ts": "npm:9.0.0"
