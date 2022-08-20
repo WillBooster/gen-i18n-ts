@@ -8,5 +8,3 @@ jobs:
     uses: WillBooster/reusable-workflows/.github/workflows/notify-ready.yml@main
     secrets:
       DISCORD_WEBHOOK_URL: ${{ secrets.READY_DISCORD_WEBHOOK_URL }}
-    with:
-      github_hosted_runner: true
