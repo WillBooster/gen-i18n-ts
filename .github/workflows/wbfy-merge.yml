@@ -6,7 +6,7 @@ on:
 jobs:
   wbfy-merge:
     uses: WillBooster/reusable-workflows/.github/workflows/wbfy-merge.yml@main
-    secrets:
-      GH_TOKEN: ${{ secrets.PUBLIC_GH_BOT_PAT }}
     with:
       github_hosted_runner: true
+    secrets:
+      GH_TOKEN: ${{ secrets.PUBLIC_GH_BOT_PAT }}
