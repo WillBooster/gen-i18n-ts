@@ -1,0 +1,8 @@
+name: editComment
+on:
+  pull_request:
+    types:
+      - opened
+jobs:
+  close-comment:
+    uses: WillBooster/reusable-workflows/.github/ workflows/close-comment.yml@main
