@@ -31,16 +31,13 @@ export const InfoMessages = {
   analyzingLangFile(langFilePath: string): string {
     return `${langFilePath}: Analyzing...`;
   },
-  varIgnored(lang: string, varName: string): string {
-    const langFilename = lang;
+  varIgnored(langFilename: string, varName: string): string {
     return `${langFilename}: '${varName}' is ignored because it doesn't exist in the default language file.`;
   },
-  varFilled(lang: string, varName: string): string {
-    const langFilename = lang;
+  varFilled(langFilename: string, varName: string): string {
     return `${langFilename}: '${varName}' is filled with a default value because it doesn't exist in ${langFilename}.`;
   },
-  functionParamAdded(lang: string, functionName: string, addedParam: string): string {
-    const langFilename = lang;
+  functionParamAdded(langFilename: string, functionName: string, addedParam: string): string {
     return (
       `${langFilename}: parameter '${addedParam}' is added to function '${functionName}'.` +
       ` Default '${functionName}' doesn't need '${addedParam}' but that in ${langFilename} needs it.`
