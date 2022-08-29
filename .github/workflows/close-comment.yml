@@ -5,4 +5,4 @@ on:
       - opened
 jobs:
   close-comment:
-    uses: WillBooster/reusable-workflows/.github/ workflows/close-comment.yml@main
+    uses: WillBooster/reusable-workflows/.github/workflows/close-comment.yml@main
