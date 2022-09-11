@@ -4951,7 +4951,7 @@ __metadata:
     power-assert: "npm:1.6.1"
     prettier: "npm:2.7.1"
     rollup: "npm:2.79.0"
-    rollup-plugin-node-externals: "npm:4.1.1"
+    rollup-plugin-node-externals: "npm:5.0.0"
     semantic-release: "npm:19.0.5"
     sort-package-json: "npm:1.57.0"
     typescript: "npm:4.8.3"
@@ -8694,14 +8694,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup-plugin-node-externals@npm:4.1.1":
-  version: 4.1.1
-  resolution: "rollup-plugin-node-externals@npm:4.1.1"
-  dependencies:
-    find-up: "npm:^5.0.0"
+"rollup-plugin-node-externals@npm:5.0.0":
+  version: 5.0.0
+  resolution: "rollup-plugin-node-externals@npm:5.0.0"
   peerDependencies:
     rollup: ^2.60.0
-  checksum: a8a433384cf3ec607d1938d8fa5f0ac76697657964cfa60044f2e6804f9453587272e36db214c740f47c8347b0ca8951477ed4fffecd2d51e821b57e5e185a39
+  checksum: 15443f6630d235956e2635b81ffcfa83f0ff95782269ebda90575ef99b24c52165cd11b9b924c44fbef34e563a2f013d38bfa6c607ed9e2b0286cc64c3bf9003
   languageName: node
   linkType: hard
 
