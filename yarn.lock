@@ -4925,7 +4925,7 @@ __metadata:
     typescript: "npm:4.8.3"
     yargs: "npm:17.5.1"
   bin:
-    gen-i18n-ts: ./bin/index.js
+    gen-i18n-ts: ./bin/index.cjs
   languageName: unknown
   linkType: soft
 

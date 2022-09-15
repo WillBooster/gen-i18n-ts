@@ -10,7 +10,7 @@
   "repository": "github:WillBooster/gen-i18n-ts",
   "license": "Apache-2.0",
   "author": "WillBooster Inc.",
-  "bin": "./bin/index.js",
+  "bin": "./bin/index.cjs",
   "files": [
     "bin/",
     "dist/"
