@@ -78,6 +78,6 @@ export function genI18ts(inputDir: string, outfile: string, defaultLang: string)
 
   const code = CodeGenerator.gen(typeObj, langToLangObj, defaultLang);
   fs.mkdirSync(path.dirname(outfile), { recursive: true });
-  fs.writeFileSync(outfile, code, { encoding: 'utf-8' });
+  fs.writeFileSync(outfile, code, { encoding: 'utf8' });
   console.info('Generated TypeScript code.');
 }

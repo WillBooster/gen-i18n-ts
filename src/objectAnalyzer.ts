@@ -20,7 +20,7 @@ export class ObjectAnalyzer {
       if (!isString(defaultLangObj)) throw new Error(ErrorMessages.unreachable());
       if (!isString(langObj)) throw new Error(ErrorMessages.varShouldString(lang, varName));
 
-      let match: RegExpExecArray | null = null;
+      let match: RegExpExecArray | null | undefined;
       while ((match = VARIABLE_REGEX.exec(langObj))) {
         const param = match[1];
         if (!typeObj.params.includes(param)) {

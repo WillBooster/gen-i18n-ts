@@ -2,12 +2,13 @@ import path from 'node:path';
 
 import { genI18ts } from '../src';
 
+/* eslint-disable @typescript-eslint/no-var-requires, unicorn/prefer-module */
+
 test('escape characters', async () => {
   const inputDir = path.resolve(__dirname, '..', 'test-fixtures', 'escapeChars');
   const outFile = path.resolve(__dirname, '..', 'test-fixtures', 'escapeCharsI18n.ts');
   genI18ts(inputDir, outFile, 'en');
 
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const { changeLanguageByCode, i18n } = require('../test-fixtures/escapeCharsI18n');
 
   expect(i18n.escape()).toBe('This is the first line.\nThis is the second line. And Here is \t, a tab character!');

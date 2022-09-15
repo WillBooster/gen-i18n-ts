@@ -2,12 +2,13 @@ import path from 'node:path';
 
 import { genI18ts } from '../src';
 
+/* eslint-disable @typescript-eslint/no-var-requires, unicorn/prefer-module */
+
 test('yaml format', async () => {
   const inputDir = path.resolve(__dirname, '..', 'test-fixtures', 'yamlFormat');
   const outFile = path.resolve(__dirname, '..', 'test-fixtures', 'yamlFormatI18n.ts');
   genI18ts(inputDir, outFile, 'en');
 
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const { changeLanguageByCode, i18n } = require('../test-fixtures/yamlFormatI18n');
 
   expect(i18n.okButtonName()).toBe('Done');
