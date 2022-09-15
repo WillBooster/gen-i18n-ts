@@ -53,7 +53,7 @@ export class ObjectAnalyzer {
         this.analyzeRecursively(memberTypeObj, lang, langObj[key], memberVarName, defaultLangObj[key]);
       }
     } else {
-      throw new Error(ErrorMessages.unreachable());
+      throw new TypeError(ErrorMessages.unreachable());
     }
   }
 }

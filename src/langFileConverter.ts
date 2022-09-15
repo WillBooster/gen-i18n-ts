@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 
 import yaml from 'js-yaml';
 
@@ -10,7 +10,7 @@ import { isString, isObject, getMemberVarName } from './utils';
 export class LangFileConverter {
   static toLangObj(lang: string, langFilePath: string): unknown {
     const fileContent = fs.readFileSync(langFilePath, { encoding: 'utf-8' });
-    let langObj = undefined;
+    let langObj;
     switch (path.extname(langFilePath)) {
       case '.yaml':
       case '.yml':
@@ -27,7 +27,7 @@ export class LangFileConverter {
 
   static toTypeObj(lang: string, langFilePath: string): BaseType {
     const fileContent = fs.readFileSync(langFilePath, { encoding: 'utf-8' });
-    let langObj = undefined;
+    let langObj;
     switch (path.extname(langFilePath)) {
       case '.yaml':
       case '.yml':
