@@ -87,7 +87,7 @@ export class CodeGenerator {
       }
       return `{ ${members} }`;
     } else {
-      throw new Error(ErrorMessages.unreachable());
+      throw new TypeError(ErrorMessages.unreachable());
     }
   }
 

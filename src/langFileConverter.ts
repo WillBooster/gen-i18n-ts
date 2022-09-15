@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 
 import yaml from 'js-yaml';
 
@@ -9,15 +9,14 @@ import { isString, isObject, getMemberVarName } from './utils';
 
 export class LangFileConverter {
   static toLangObj(lang: string, langFilePath: string): unknown {
-    const fileContent = fs.readFileSync(langFilePath, { encoding: 'utf-8' });
-    let langObj = undefined;
+    const fileContent = fs.readFileSync(langFilePath, { encoding: 'utf8' });
+    let langObj;
     switch (path.extname(langFilePath)) {
       case '.yaml':
       case '.yml':
         langObj = yaml.load(fileContent);
         break;
-      case '.json':
-      default:
+      default: // .json
         langObj = JSON.parse(fileContent);
         break;
     }
@@ -26,15 +25,14 @@ export class LangFileConverter {
   }
 
   static toTypeObj(lang: string, langFilePath: string): BaseType {
-    const fileContent = fs.readFileSync(langFilePath, { encoding: 'utf-8' });
-    let langObj = undefined;
+    const fileContent = fs.readFileSync(langFilePath, { encoding: 'utf8' });
+    let langObj;
     switch (path.extname(langFilePath)) {
       case '.yaml':
       case '.yml':
         langObj = yaml.load(fileContent);
         break;
-      case '.json':
-      default:
+      default: // .json
         langObj = JSON.parse(fileContent);
         break;
     }
@@ -67,7 +65,7 @@ export class LangFileConverter {
   private static langObjToTypeObjRecursively(lang: string, langObj: unknown, varName: string): BaseType {
     if (isString(langObj)) {
       const params: string[] = [];
-      let match: RegExpExecArray | null = null;
+      let match: RegExpExecArray | null | undefined;
       while ((match = VARIABLE_REGEX.exec(langObj))) {
         const param = match[1];
         if (!params.includes(param)) params.push(param);

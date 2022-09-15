@@ -1,4 +1,4 @@
-export const VARIABLE_REGEX = /\${([a-zA-Z_][a-zA-Z0-9_]*)}/g;
+export const VARIABLE_REGEX = /\${([A-Z_a-z]\w*)}/g;
 
 export const ErrorMessages = {
   usage(): string {
