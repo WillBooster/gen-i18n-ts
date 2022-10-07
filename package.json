@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "js-yaml": "4.1.0",
-    "yargs": "17.5.1"
+    "yargs": "17.6.0"
   },
   "devDependencies": {
     "@babel/core": "7.19.3",
@@ -51,14 +51,14 @@
     "@rollup/plugin-node-resolve": "14.1.0",
     "@types/builtin-modules": "3.1.1",
     "@types/eslint": "8.4.6",
-    "@types/jest": "29.1.1",
+    "@types/jest": "29.1.2",
     "@types/js-yaml": "4.0.5",
     "@types/micromatch": "4.0.2",
     "@types/node": "18.7.18",
     "@types/semantic-release": "17.2.4",
     "@types/yargs": "17.0.13",
-    "@typescript-eslint/eslint-plugin": "5.38.1",
-    "@typescript-eslint/parser": "5.38.1",
+    "@typescript-eslint/eslint-plugin": "5.39.0",
+    "@typescript-eslint/parser": "5.39.0",
     "@willbooster/babel-configs": "1.0.2",
     "@willbooster/eslint-config-ts": "10.0.7",
     "@willbooster/prettier-config": "9.1.1",
@@ -67,7 +67,7 @@
     "babel-plugin-transform-remove-console": "6.9.4",
     "builtin-modules": "3.3.0",
     "conventional-changelog-conventionalcommits": "5.0.0",
-    "core-js": "3.25.3",
+    "core-js": "3.25.5",
     "eslint": "8.24.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-import-resolver-typescript": "3.5.1",
