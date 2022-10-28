@@ -2697,9 +2697,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@willbooster/eslint-config-ts@npm:10.0.7":
-  version: 10.0.7
-  resolution: "@willbooster/eslint-config-ts@npm:10.0.7"
+"@willbooster/eslint-config-ts@npm:10.0.8":
+  version: 10.0.8
+  resolution: "@willbooster/eslint-config-ts@npm:10.0.8"
   peerDependencies:
     "@typescript-eslint/eslint-plugin": ">=5"
     "@typescript-eslint/parser": ">=5"
@@ -2711,7 +2711,7 @@ __metadata:
     eslint-plugin-sort-class-members: ">=1.14"
     eslint-plugin-sort-destructure-keys: ">=1.4"
     typescript: ">=4"
-  checksum: 1f7218717ea39f1b56a6089469b1b295d54dc626612433e7d24328c79b3ee72f0bad0b3a6aa0223a27219e6b0f0162527baaee0e67996398cb7feec00fd44760
+  checksum: 9b5311fa094cf1f7dd4b3dcf499126bbe25edd114b860a4f9ed833e527bc1c28f034b245d2acca2552b670bc7e5d92a1ed45854470bc9d96cac19d39664233b1
   languageName: node
   linkType: hard
 
@@ -2724,10 +2724,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@willbooster/renovate-config@npm:9.4.1":
-  version: 9.4.1
-  resolution: "@willbooster/renovate-config@npm:9.4.1"
-  checksum: 34187806896dbafbd80374caac529b05aedd5e4cd1de87ae40067fff0f3e2d91da384ef2444bdc965ec01cdfd960500febac4d115c5f7fa7362f286c8ca23627
+"@willbooster/renovate-config@npm:9.4.2":
+  version: 9.4.2
+  resolution: "@willbooster/renovate-config@npm:9.4.2"
+  checksum: f1391769aadddd78ddca9fca24d6c182872f39e58bce04e3f9bff0aabae02c565f45bbc358ec7ad4d0c87b5ea27cbead29e26a0b9e691a9f14e7f88a59ccb5a3
   languageName: node
   linkType: hard
 
@@ -4832,9 +4832,9 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:5.40.1"
     "@typescript-eslint/parser": "npm:5.40.1"
     "@willbooster/babel-configs": "npm:1.3.0"
-    "@willbooster/eslint-config-ts": "npm:10.0.7"
+    "@willbooster/eslint-config-ts": "npm:10.0.8"
     "@willbooster/prettier-config": "npm:9.1.1"
-    "@willbooster/renovate-config": "npm:9.4.1"
+    "@willbooster/renovate-config": "npm:9.4.2"
     babel-jest: "npm:29.2.1"
     babel-plugin-transform-remove-console: "npm:6.9.4"
     builtin-modules: "npm:3.3.0"
