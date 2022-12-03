@@ -13,12 +13,15 @@ export class LangFileConverter {
     let langObj;
     switch (path.extname(langFilePath)) {
       case '.yaml':
-      case '.yml':
+      case '.yml': {
         langObj = yaml.load(fileContent);
         break;
-      default: // .json
+      }
+      default: {
+        // .json
         langObj = JSON.parse(fileContent);
         break;
+      }
     }
     LangFileConverter.validateLangObj(lang, langObj);
     return langObj;
@@ -29,12 +32,15 @@ export class LangFileConverter {
     let langObj;
     switch (path.extname(langFilePath)) {
       case '.yaml':
-      case '.yml':
+      case '.yml': {
         langObj = yaml.load(fileContent);
         break;
-      default: // .json
+      }
+      default: {
+        // .json
         langObj = JSON.parse(fileContent);
         break;
+      }
     }
     return LangFileConverter.langObjToTypeObj(lang, langObj);
   }

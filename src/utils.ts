@@ -7,7 +7,7 @@ export function isObject(obj: unknown): obj is Record<string, unknown> {
 }
 
 export function getMemberVarName(objectVarName: string, key: string): string {
-  return objectVarName !== '' ? `${objectVarName}[${JSON.stringify(key)}]` : key;
+  return objectVarName === '' ? key : `${objectVarName}[${JSON.stringify(key)}]`;
 }
 
 export function intersection<T>(setA: Set<T>, setB: Set<T>): Set<T> {
