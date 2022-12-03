@@ -4923,7 +4923,7 @@ __metadata:
     micromatch: "npm:4.0.5"
     pinst: "npm:3.0.0"
     prettier: "npm:2.8.0"
-    rollup: "npm:2.79.1"
+    rollup: "npm:3.5.1"
     rollup-plugin-node-externals: "npm:5.0.2"
     semantic-release: "npm:19.0.5"
     sort-package-json: "npm:2.1.0"
@@ -8518,9 +8518,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:2.79.1":
-  version: 2.79.1
-  resolution: "rollup@npm:2.79.1"
+"rollup@npm:3.5.1":
+  version: 3.5.1
+  resolution: "rollup@npm:3.5.1"
   dependencies:
     fsevents: "npm:~2.3.2"
   dependenciesMeta:
@@ -8528,7 +8528,7 @@ __metadata:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: b91c27c3b5234af864f282ffa2c13891d9caf25cad8ba7ad11f5201bdb6516f10c90a8c3402a5f72eafc74a555b1c685b6b04d107a6d6866195812a82f4aa308
+  checksum: c2b114dddc60b5e01a6f1f08acae55d9d4c858bcdf64931724e354c51ddaeb782d36257ff5b83b66f12f7494a2f69cae1276febb1fb8ed02dce773cc65117b03
   languageName: node
   linkType: hard
 
