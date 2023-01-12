@@ -1,4 +1,4 @@
-# Project-specific settings
+# Project-specific settings (head)
 
 test-fixtures/*.ts
 
@@ -8,8 +8,7 @@ test-fixtures/*.ts
 dist/
 temp/
 Icon[]
-*.sqlite3
-*.sqlite3-journal
+!.keep
 # Created by https://www.toptal.com/developers/gitignore/api/windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows
 
