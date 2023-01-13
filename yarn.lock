@@ -2516,12 +2516,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/semantic-release@npm:17.2.4":
-  version: 17.2.4
-  resolution: "@types/semantic-release@npm:17.2.4"
+"@types/semantic-release@npm:17.2.5":
+  version: 17.2.5
+  resolution: "@types/semantic-release@npm:17.2.5"
   dependencies:
     "@types/node": "npm:*"
-  checksum: 41c52d82c8b5dbce70d434a8ca7b1bc7e1eef38a5f597303fc99f0e9d3c1121e184b05f345c1ef967f0f027691076512309d9ffcc9bea577443726be5de9910a
+  checksum: 267ac16f61d47bd0e34129d05f3badf843a5c5e1588dd0ebe00da617b3dd46d846b5eef1e9c238b8ed3d93e5bbd18da9d621b0f229311461866913ac5014b44a
   languageName: node
   linkType: hard
 
@@ -4866,7 +4866,7 @@ __metadata:
     "@types/js-yaml": "npm:4.0.5"
     "@types/micromatch": "npm:4.0.2"
     "@types/node": "npm:18.11.18"
-    "@types/semantic-release": "npm:17.2.4"
+    "@types/semantic-release": "npm:17.2.5"
     "@types/yargs": "npm:17.0.19"
     "@typescript-eslint/eslint-plugin": "npm:5.48.1"
     "@typescript-eslint/parser": "npm:5.48.1"
@@ -4893,8 +4893,8 @@ __metadata:
     micromatch: "npm:4.0.5"
     pinst: "npm:3.0.0"
     prettier: "npm:2.8.2"
-    rollup: "npm:3.9.1"
-    rollup-plugin-node-externals: "npm:5.0.3"
+    rollup: "npm:3.10.0"
+    rollup-plugin-node-externals: "npm:5.1.0"
     semantic-release: "npm:19.0.5"
     sort-package-json: "npm:2.1.0"
     typescript: "npm:4.9.4"
@@ -8548,18 +8548,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup-plugin-node-externals@npm:5.0.3":
-  version: 5.0.3
-  resolution: "rollup-plugin-node-externals@npm:5.0.3"
+"rollup-plugin-node-externals@npm:5.1.0":
+  version: 5.1.0
+  resolution: "rollup-plugin-node-externals@npm:5.1.0"
   peerDependencies:
     rollup: ^2.60.0 || ^3.0.0
-  checksum: c9f09868e859f9bdfd3631903c919fc895548b54dbb98abc34dc0bf2f580981d3e2307fbad8777ded178e34f4c8edd1b44a8f1eccf9af2634c6e7b88f197bec9
+  checksum: 47cef5872127e06c9e768efde565dc03b1c42ee297c4cccdaa7e1797a32eeab7608a8c56b9550bae28257a65d8d378ad84de425949ae1809ffd53b1844414de8
   languageName: node
   linkType: hard
 
-"rollup@npm:3.9.1":
-  version: 3.9.1
-  resolution: "rollup@npm:3.9.1"
+"rollup@npm:3.10.0":
+  version: 3.10.0
+  resolution: "rollup@npm:3.10.0"
   dependencies:
     fsevents: "npm:~2.3.2"
   dependenciesMeta:
@@ -8567,7 +8567,7 @@ __metadata:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: 5772b4d375307fd452395ca31c009c9b1354ac78866c80836ad895f383fbacebb721fb33c8b55e0a7906c8259823c8d1aa1945f14de65381025a615a5646f8bd
+  checksum: bfd500d01cf8f11db5815b5642f4249268ba2fe8aa0be0e51ae91331f7487ddb99137a0d5133fe3718208de8d1da7d2689499358ac11d01eecbf01caeb9054fd
   languageName: node
   linkType: hard
 
