@@ -5191,7 +5191,7 @@ __metadata:
     rollup-plugin-node-externals: "npm:5.1.2"
     semantic-release: "npm:21.0.2"
     sort-package-json: "npm:2.4.1"
-    typescript: "npm:4.9.5"
+    typescript: "npm:5.0.4"
     yargs: "npm:17.7.2"
   bin:
     gen-i18n-ts: ./bin/index.cjs
@@ -10040,23 +10040,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:4.9.5":
-  version: 4.9.5
-  resolution: "typescript@npm:4.9.5"
+"typescript@npm:5.0.4":
+  version: 5.0.4
+  resolution: "typescript@npm:5.0.4"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 550217a465c00b1d7ef0e0ddc3a6a0b2ae1fd7c1b9f53cde5a1cfe56aa457c7a43fa83792c1b98b2185d2156d0467c9ad6f6600515ad4f4fc2acee54c4bd320e
+  checksum: 56649de784c427e8f3f63d4ebfcada4fcf03bb2a301f3327342111798db7f26f8a86285f979f376cf6cec4774bd96b4650f2693a07fc409f4544ad4c4d9fe4c9
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A4.9.5#optional!builtin<compat/typescript>":
-  version: 4.9.5
-  resolution: "typescript@patch:typescript@npm%3A4.9.5#optional!builtin<compat/typescript>::version=4.9.5&hash=289587"
+"typescript@patch:typescript@npm%3A5.0.4#optional!builtin<compat/typescript>":
+  version: 5.0.4
+  resolution: "typescript@patch:typescript@npm%3A5.0.4#optional!builtin<compat/typescript>::version=5.0.4&hash=b5f058"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 0b1a831cfef3e967a806ff1d4b28cfe4d3b71d06195ae0c8ece14c6353ec20165ae9b79c18be93ecd33529690648189aef56234c88b26aadb500b81ddb902cfc
+  checksum: e4296a207d18264eb9b17a912b0929c4e8be5a4e48aefa016e952eaa445e5a4ed363a72d9023f151dc7f100d48d4bfa35480aec199f123a664ef8a622355ae4f
   languageName: node
   linkType: hard
 
