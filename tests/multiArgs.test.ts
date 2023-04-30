@@ -7,7 +7,7 @@ import { genI18ts } from '../src';
 test('multiple arguments', async () => {
   const inputDir = path.resolve(__dirname, '..', 'test-fixtures', 'multiArgs');
   const outFile = path.resolve(__dirname, '..', 'test-fixtures', 'multiArgsI18n.ts');
-  genI18ts(inputDir, outFile, 'en');
+  await genI18ts(inputDir, outFile, 'en');
 
   const { changeLanguageByCode, i18n } = require('../test-fixtures/multiArgsI18n');
 

@@ -9,49 +9,51 @@ import { ErrorMessages, InfoMessages } from './constants';
 import { LangFileConverter } from './langFileConverter';
 import { ObjectAnalyzer } from './objectAnalyzer';
 
-export async function cli(argv: string[]): Promise<void> {
-  const { defaultLang, inputDir, outfile, watch } = await yargs(hideBin(argv)).options({
-    inputDir: {
-      type: 'string',
-      alias: 'i',
-      describe: 'A path to input directory',
-      demandOption: true,
-    },
-    outfile: {
-      type: 'string',
-      alias: 'o',
-      describe: 'A path to output file',
-      demandOption: true,
-    },
-    defaultLang: {
-      type: 'string',
-      alias: 'd',
-      describe: 'A name of a default language',
-      demandOption: true,
-    },
-    watch: {
-      type: 'boolean',
-      alias: 'w',
-      describe: 'Enable watch mode',
-    },
-  }).argv;
+export async function cli(): Promise<void> {
+  const { defaultLang, inputDir, outfile, watch } = await yargs(hideBin(process.argv))
+    .scriptName('gen-i18n-ts')
+    .options({
+      inputDir: {
+        type: 'string',
+        alias: 'i',
+        describe: 'A path to input directory',
+        demandOption: true,
+      },
+      outfile: {
+        type: 'string',
+        alias: 'o',
+        describe: 'A path to output file',
+        demandOption: true,
+      },
+      defaultLang: {
+        type: 'string',
+        alias: 'd',
+        describe: 'A name of a default language',
+        demandOption: true,
+      },
+      watch: {
+        type: 'boolean',
+        alias: 'w',
+        describe: 'Enable watch mode',
+      },
+    }).argv;
 
   genI18ts(inputDir, outfile, defaultLang);
   if (watch) {
     console.info();
     console.info('Start monitoring i18n file changes.');
-    fs.watch(inputDir, (event, fileName) => {
+    fs.watch(inputDir, async (event, fileName) => {
       if (!fileName.endsWith('.json')) return;
       console.info(`### Detect changes in ${inputDir} (${event} on ${fileName}) ###`);
-      genI18ts(inputDir, outfile, defaultLang);
+      await genI18ts(inputDir, outfile, defaultLang);
     });
   }
 }
 
-export function genI18ts(inputDir: string, outfile: string, defaultLang: string): void {
-  const langFileNames = fs
-    .readdirSync(inputDir)
-    .filter((fileName) => ['.json', '.yaml', '.yml'].includes(path.extname(fileName)));
+export async function genI18ts(inputDir: string, outfile: string, defaultLang: string): Promise<void> {
+  const fileNames = await fs.promises.readdir(inputDir);
+  const langFileNames = fileNames.filter((fileName) => ['.json', '.yaml', '.yml'].includes(path.extname(fileName)));
+
   const langToPath = new Map<string, string>();
   for (const fileName of langFileNames) {
     const lang = path.parse(fileName).name;
@@ -77,7 +79,7 @@ export function genI18ts(inputDir: string, outfile: string, defaultLang: string)
   if (!langToLangObj.has(defaultLang)) throw new Error(ErrorMessages.noDefaultLangFile());
 
   const code = CodeGenerator.gen(typeObj, langToLangObj, defaultLang);
-  fs.mkdirSync(path.dirname(outfile), { recursive: true });
-  fs.writeFileSync(outfile, code, { encoding: 'utf8' });
+  await fs.promises.mkdir(path.dirname(outfile), { recursive: true });
+  await fs.promises.writeFile(outfile, code, { encoding: 'utf8' });
   console.info('Generated TypeScript code.');
 }

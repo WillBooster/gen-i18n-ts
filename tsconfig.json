@@ -5,15 +5,15 @@
     "declaration": true,
     "esModuleInterop": true,
     "importHelpers": false,
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
     "outDir": "dist",
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "target": "esnext",
+    "target": "ESNext",
     "typeRoots": ["./node_modules/@types", "./@types"]
   },
-  "include": ["__tests__/**/*", "scripts/**/*", "src/**/*"]
+  "include": ["scripts/**/*", "src/**/*", "tests/**/*"]
 }

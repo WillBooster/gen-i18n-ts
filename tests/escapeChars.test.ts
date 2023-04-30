@@ -7,7 +7,7 @@ import { genI18ts } from '../src';
 test('escape characters', async () => {
   const inputDir = path.resolve(__dirname, '..', 'test-fixtures', 'escapeChars');
   const outFile = path.resolve(__dirname, '..', 'test-fixtures', 'escapeCharsI18n.ts');
-  genI18ts(inputDir, outFile, 'en');
+  await genI18ts(inputDir, outFile, 'en');
 
   const { changeLanguageByCode, i18n } = require('../test-fixtures/escapeCharsI18n');
 
