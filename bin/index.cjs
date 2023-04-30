@@ -1,3 +1,3 @@
 #!/usr/bin/env node
 
-require('../dist/index.cjs').cli(process.argv);
+require('../dist/index.js').cli();

@@ -7,7 +7,7 @@ import { genI18ts } from '../src';
 test('tricky arguments', async () => {
   const inputDir = path.resolve(__dirname, '..', 'test-fixtures', 'trickyArgs');
   const outFile = path.resolve(__dirname, '..', 'test-fixtures', 'trickyArgsI18n.ts');
-  genI18ts(inputDir, outFile, 'en');
+  await genI18ts(inputDir, outFile, 'en');
 
   const { changeLanguageByCode, i18n } = require('../test-fixtures/trickyArgsI18n');
 

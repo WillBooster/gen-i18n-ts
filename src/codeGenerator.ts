@@ -1,6 +1,6 @@
 import { ErrorMessages } from './constants';
 import { BaseType, FunctionType, ObjectType } from './types';
-import { isString, isObject, getMemberVarName } from './utils';
+import { getMemberVarName, isObject, isString } from './utils';
 
 export class CodeGenerator {
   static gen(typeObj: BaseType, langToLangObj: Map<string, unknown>, defaultLang: string): string {

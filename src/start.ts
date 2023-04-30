@@ -1,3 +1,4 @@
 import { cli } from './index';
 
-cli(process.argv).then();
+// eslint-disable-next-line unicorn/prefer-top-level-await
+void cli();

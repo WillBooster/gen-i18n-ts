@@ -16,7 +16,7 @@
     "dist/"
   ],
   "scripts": {
-    "build": "NODE_ENV=production rollup -c",
+    "build": "build-ts app",
     "cleanup": "yarn format && yarn lint-fix",
     "format": "sort-package-json && yarn prettify",
     "postinstall": "husky install",
@@ -25,7 +25,7 @@
     "prepack": "pinst --disable",
     "postpack": "pinst --enable",
     "prettify": "prettier --cache --color --write \"**/{.*/,}*.{cjs,css,cts,htm,html,js,json,json5,jsx,md,mjs,mts,scss,ts,tsx,vue,yaml,yml}\" \"!**/test-fixtures/**\"",
-    "start": "babel-node -x .js,.jsx,.es6,.es,.ts -- src/start.ts",
+    "start": "build-ts run src/start.ts --",
     "start-prod": "yarn build && yarn gen-i18n-ts",
     "test": "yarn jest",
     "typecheck": "tsc --noEmit --Pretty"
@@ -46,10 +46,6 @@
     "@babel/plugin-proposal-numeric-separator": "7.18.6",
     "@babel/preset-env": "7.21.5",
     "@babel/preset-typescript": "7.21.5",
-    "@rollup/plugin-babel": "6.0.3",
-    "@rollup/plugin-commonjs": "23.0.7",
-    "@rollup/plugin-node-resolve": "15.0.2",
-    "@types/builtin-modules": "3.1.1",
     "@types/eslint": "8.37.0",
     "@types/jest": "29.5.1",
     "@types/js-yaml": "4.0.5",
@@ -65,9 +61,8 @@
     "@willbooster/renovate-config": "9.5.0",
     "babel-jest": "29.5.0",
     "babel-plugin-transform-remove-console": "6.9.4",
-    "builtin-modules": "3.3.0",
+    "build-ts": "5.7.12",
     "conventional-changelog-conventionalcommits": "5.0.0",
-    "core-js": "3.30.1",
     "eslint": "8.39.0",
     "eslint-config-prettier": "8.8.0",
     "eslint-import-resolver-typescript": "3.5.5",
@@ -81,8 +76,6 @@
     "micromatch": "4.0.5",
     "pinst": "3.0.0",
     "prettier": "2.8.8",
-    "rollup": "3.21.0",
-    "rollup-plugin-node-externals": "5.1.2",
     "semantic-release": "21.0.2",
     "sort-package-json": "2.4.1",
     "typescript": "5.0.4"

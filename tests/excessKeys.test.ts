@@ -7,7 +7,7 @@ import { genI18ts } from '../src';
 test('excess keys', async () => {
   const inputDir = path.resolve(__dirname, '..', 'test-fixtures', 'excessKeys');
   const outFile = path.resolve(__dirname, '..', 'test-fixtures', 'excessKeysI18n.ts');
-  genI18ts(inputDir, outFile, 'en');
+  await genI18ts(inputDir, outFile, 'en');
 
   const { changeLanguageByCode, i18n } = require('../test-fixtures/excessKeysI18n');
 

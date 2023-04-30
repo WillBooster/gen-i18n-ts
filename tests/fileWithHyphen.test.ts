@@ -7,7 +7,7 @@ import { genI18ts } from '../src';
 test('filename with hyphen', async () => {
   const inputDir = path.resolve(__dirname, '..', 'test-fixtures', 'fileWithHyphen');
   const outFile = path.resolve(__dirname, '..', 'test-fixtures', 'fileWithHyphenI18n.ts');
-  genI18ts(inputDir, outFile, 'en-us');
+  await genI18ts(inputDir, outFile, 'en-us');
 
   const { changeLanguageByCode, i18n } = require('../test-fixtures/fileWithHyphenI18n');
 
