@@ -4,7 +4,8 @@ import path from 'node:path';
 import yaml from 'js-yaml';
 
 import { ErrorMessages, VARIABLE_REGEX } from './constants';
-import { BaseType, FunctionType, ObjectType } from './types';
+import type { BaseType} from './types';
+import { FunctionType, ObjectType } from './types';
 import { getMemberVarName, isObject, isString } from './utils';
 
 export class LangFileConverter {
