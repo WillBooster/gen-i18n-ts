@@ -1,5 +1,5 @@
 import { ErrorMessages, InfoMessages, VARIABLE_REGEX } from './constants';
-import type { BaseType} from './types';
+import type { BaseType } from './types';
 import { FunctionType, ObjectType } from './types';
 import { difference, getMemberVarName, intersection, isObject, isString } from './utils';
 

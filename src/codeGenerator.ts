@@ -1,5 +1,5 @@
 import { ErrorMessages } from './constants';
-import type { BaseType} from './types';
+import type { BaseType } from './types';
 import { FunctionType, ObjectType } from './types';
 import { getMemberVarName, isObject, isString } from './utils';
 

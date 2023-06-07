@@ -61,7 +61,7 @@
     "babel-jest": "29.5.0",
     "babel-plugin-transform-remove-console": "6.9.4",
     "build-ts": "5.8.0",
-    "conventional-changelog-conventionalcommits": "5.0.0",
+    "conventional-changelog-conventionalcommits": "6.0.0",
     "eslint": "8.42.0",
     "eslint-config-prettier": "8.8.0",
     "eslint-import-resolver-typescript": "3.5.5",
