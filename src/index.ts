@@ -38,12 +38,13 @@ export async function cli(): Promise<void> {
       },
     }).argv;
 
-  genI18ts(inputDir, outfile, defaultLang);
+  await genI18ts(inputDir, outfile, defaultLang);
   if (watch) {
     console.info();
     console.info('Start monitoring i18n file changes.');
     fs.watch(inputDir, async (event, fileName) => {
-      if (!fileName.endsWith('.json')) return;
+      if (!fileName?.endsWith('.json')) return;
+
       console.info(`### Detect changes in ${inputDir} (${event} on ${fileName}) ###`);
       await genI18ts(inputDir, outfile, defaultLang);
     });
