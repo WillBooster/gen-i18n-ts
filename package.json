@@ -57,7 +57,7 @@
     "@willbooster/renovate-config": "9.5.0",
     "babel-jest": "29.5.0",
     "babel-plugin-transform-remove-console": "6.9.4",
-    "build-ts": "5.10.3",
+    "build-ts": "5.10.4",
     "conventional-changelog-conventionalcommits": "6.1.0",
     "eslint": "8.43.0",
     "eslint-config-prettier": "8.8.0",
