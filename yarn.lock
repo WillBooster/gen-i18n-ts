@@ -2751,7 +2751,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint@npm:^8":
+"@types/eslint@npm:8.44.0":
   version: 8.44.0
   resolution: "@types/eslint@npm:8.44.0"
   dependencies:
@@ -3744,9 +3744,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"build-ts@npm:5.10.5":
-  version: 5.10.5
-  resolution: "build-ts@npm:5.10.5"
+"build-ts@npm:6.0.0":
+  version: 6.0.0
+  resolution: "build-ts@npm:6.0.0"
   dependencies:
     "@babel/core": "npm:7.22.8"
     "@babel/plugin-proposal-class-properties": "npm:7.18.6"
@@ -3783,7 +3783,7 @@ __metadata:
     yargs: "npm:17.7.2"
   bin:
     build-ts: bin/index.js
-  checksum: 77510550e0abb2d66ae53d6702fb779bef64a9a3925161b4f7b21b681d7b83158206aaabfcc2c6df8ba2f81b673b8a3f397bc2998cce7e7666bba626463e5ee0
+  checksum: 3b5e5f875690e5ef2da75d20f32fc723d305f9dcb4cae2db60e07d38ecf7dfa586f6c630c73f7dbd1f99e01887eaadcecea0545e566a250af90bcafb79c19c12
   languageName: node
   linkType: hard
 
@@ -5521,7 +5521,7 @@ __metadata:
     "@babel/plugin-proposal-numeric-separator": "npm:7.18.6"
     "@babel/preset-env": "npm:7.22.7"
     "@babel/preset-typescript": "npm:7.22.5"
-    "@types/eslint": "npm:^8"
+    "@types/eslint": "npm:8.44.0"
     "@types/jest": "npm:29.5.3"
     "@types/js-yaml": "npm:4.0.5"
     "@types/micromatch": "npm:4.0.2"
@@ -5535,7 +5535,7 @@ __metadata:
     "@willbooster/renovate-config": "npm:9.5.0"
     babel-jest: "npm:29.6.1"
     babel-plugin-transform-remove-console: "npm:6.9.4"
-    build-ts: "npm:5.10.5"
+    build-ts: "npm:6.0.0"
     conventional-changelog-conventionalcommits: "npm:6.1.0"
     eslint: "npm:8.44.0"
     eslint-config-prettier: "npm:8.8.0"
