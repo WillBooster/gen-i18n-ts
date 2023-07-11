@@ -78,7 +78,7 @@
   },
   "packageManager": "yarn@4.0.0-rc.48",
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "publishConfig": {
     "access": "public"
