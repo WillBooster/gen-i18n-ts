@@ -56,7 +56,7 @@
     "@willbooster/prettier-config": "9.1.1",
     "babel-jest": "29.6.1",
     "babel-plugin-transform-remove-console": "6.9.4",
-    "build-ts": "6.0.0",
+    "build-ts": "7.0.2",
     "conventional-changelog-conventionalcommits": "6.1.0",
     "eslint": "8.45.0",
     "eslint-config-prettier": "8.8.0",
