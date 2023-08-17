@@ -17,7 +17,12 @@
   "eslint.nodePath": ".yarn/sdks",
   "eslint.packageManager": "yarn",
   "files.watcherExclude": {
-    "**/node_modules/**": true
+    "**/node_modules/**": true,
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/tmp/**": true,
+    "**/temp/**": true,
+    "**/dist/**": true
   },
   "githubPullRequests.defaultMergeMethod": "squash",
   "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
