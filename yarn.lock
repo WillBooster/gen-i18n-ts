@@ -4314,12 +4314,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"conventional-changelog-conventionalcommits@npm:7.0.0":
-  version: 7.0.0
-  resolution: "conventional-changelog-conventionalcommits@npm:7.0.0"
+"conventional-changelog-conventionalcommits@npm:7.0.1":
+  version: 7.0.1
+  resolution: "conventional-changelog-conventionalcommits@npm:7.0.1"
   dependencies:
     compare-func: "npm:^2.0.0"
-  checksum: 28d65ad326375034dc01307433c8edf7335e13086166822f07860764b75ebbca6be111f4967898e0704e62d795a59326bfe75b94943e5feb286314473a5b11d7
+  checksum: 5cb9b5eb505d5fb8de595cb011d1db4e209086afd0424c431d22ee39d8168e2abcd08f9572a9f82a5e54a8bd4ce46ddfdf1b26ee9823b26ce8ef745e6d1f2c8f
   languageName: node
   linkType: hard
 
@@ -5596,7 +5596,7 @@ __metadata:
     babel-jest: "npm:29.6.4"
     babel-plugin-transform-remove-console: "npm:6.9.4"
     build-ts: "npm:7.0.2"
-    conventional-changelog-conventionalcommits: "npm:7.0.0"
+    conventional-changelog-conventionalcommits: "npm:7.0.1"
     eslint: "npm:8.48.0"
     eslint-config-prettier: "npm:9.0.0"
     eslint-import-resolver-typescript: "npm:3.6.0"
