@@ -51,7 +51,7 @@
     "@types/yargs": "17.0.29",
     "@typescript-eslint/eslint-plugin": "6.9.0",
     "@typescript-eslint/parser": "6.9.0",
-    "@willbooster/babel-configs": "1.3.0",
+    "@willbooster/babel-configs": "1.3.1",
     "@willbooster/eslint-config-ts": "10.5.1",
     "@willbooster/prettier-config": "9.1.2",
     "babel-jest": "29.7.0",
