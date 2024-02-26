@@ -1,14 +1,14 @@
 {
   "[javascript]": {
-    "editor.rulers": [120],
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.rulers": [120]
   },
   "[svelte]": {
     "editor.defaultFormatter": "svelte.svelte-vscode"
   },
   "[typescript]": {
-    "editor.rulers": [120],
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.rulers": [120]
   },
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
@@ -17,18 +17,18 @@
   "eslint.nodePath": ".yarn/sdks",
   "eslint.packageManager": "yarn",
   "files.watcherExclude": {
-    "**/node_modules/**": true,
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
-    "**/tmp/**": true,
+    "**/dist/**": true,
+    "**/node_modules/**": true,
     "**/temp/**": true,
-    "**/dist/**": true
+    "**/tmp/**": true
   },
   "githubPullRequests.defaultMergeMethod": "squash",
   "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
   "search.exclude": {
-    "**/.yarn": true,
-    "**/.pnp.*": true
+    "**/.pnp.*": true,
+    "**/.yarn": true
   },
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.tsdk": ".yarn/sdks/typescript/lib"
