@@ -75,7 +75,7 @@ export class CodeGenerator {
       const varPattern = 'pattern';
       const patterns = typeObj.params.map((param) => `\\$\\{${param}\\}`).join('|');
       const regex = `/${patterns}/g`;
-      const replaceFunc = `(${varPattern}) => ${varParamMap}[${varPattern}]`;
+      const replaceFunc = `(${varPattern}) => ${varParamMap}[${varPattern}] ?? ''`;
       const returnStatement = `return ${varName}.replace(${regex}, ${replaceFunc});`;
 
       return `${declaration} { ${declarationStatement} ${returnStatement} }`;
@@ -115,8 +115,10 @@ export function getFullAndShortLanguageCodeList(): string[] {
   const shortLangs = getShortLanguageCodeList();
   const length = Math.max(fullLangs.length, shortLangs.length);
   for (let i = 0; i < length; i++) {
-    if (fullLangs[i]) langSet.add(fullLangs[i]);
-    if (shortLangs[i]) langSet.add(shortLangs[i]);
+    const fullLang = fullLangs[i];
+    if (fullLang) langSet.add(fullLang);
+    const shortLang = shortLangs[i];
+    if (shortLang) langSet.add(shortLang);
   }
   return [...langSet];
 }
@@ -135,7 +137,7 @@ export function getFullLanguageCodeList(): string[] {
   return [...langSet];
 }
 export function getShortLanguageCodeList(): string[] {
-  return [...new Set(getFullLanguageCodeList().map(lang => lang.split('-')[0]).filter(lang => !!lang))];
+  return [...new Set(getFullLanguageCodeList().map(lang => lang.split('-')[0] ?? '').filter(lang => !!lang))];
 }`;
   }
 }

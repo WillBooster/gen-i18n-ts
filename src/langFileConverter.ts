@@ -75,7 +75,7 @@ export class LangFileConverter {
       let match: RegExpExecArray | null | undefined;
       while ((match = VARIABLE_REGEX.exec(langObj))) {
         const param = match[1];
-        if (!params.includes(param)) params.push(param);
+        if (param && !params.includes(param)) params.push(param);
       }
       return new FunctionType(params);
     } else if (isObject(langObj)) {

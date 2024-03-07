@@ -24,7 +24,7 @@ export class ObjectAnalyzer {
       let match: RegExpExecArray | null | undefined;
       while ((match = VARIABLE_REGEX.exec(langObj))) {
         const param = match[1];
-        if (!typeObj.params.includes(param)) {
+        if (param && !typeObj.params.includes(param)) {
           typeObj.params.push(param);
           console.info(InfoMessages.functionParamAdded(lang, varName, param));
         }
