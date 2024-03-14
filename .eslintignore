@@ -17,6 +17,7 @@ test-fixtures/
 .pnp.js
 test-fixtures/*.ts
 
+.idea/copilot/chatSessions/
 .devcontainer/
 dist/
 temp/
