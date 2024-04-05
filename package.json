@@ -36,18 +36,18 @@
     "yargs": "17.7.2"
   },
   "devDependencies": {
-    "@babel/core": "7.24.3",
+    "@babel/core": "7.24.4",
     "@babel/helper-plugin-utils": "7.24.0",
     "@babel/node": "7.23.9",
     "@babel/plugin-proposal-class-properties": "7.18.6",
     "@babel/plugin-proposal-numeric-separator": "7.18.6",
-    "@babel/preset-env": "7.24.3",
+    "@babel/preset-env": "7.24.4",
     "@babel/preset-typescript": "7.24.1",
-    "@types/eslint": "8.56.6",
+    "@types/eslint": "8.56.7",
     "@types/jest": "29.5.12",
     "@types/js-yaml": "4.0.9",
     "@types/micromatch": "4.0.6",
-    "@types/node": "20.11.30",
+    "@types/node": "20.12.4",
     "@types/yargs": "17.0.32",
     "@typescript-eslint/eslint-plugin": "7.5.0",
     "@typescript-eslint/parser": "7.5.0",
@@ -71,9 +71,9 @@
     "micromatch": "4.0.5",
     "pinst": "3.0.0",
     "prettier": "3.2.5",
-    "semantic-release": "23.0.6",
+    "semantic-release": "23.0.7",
     "sort-package-json": "2.10.0",
-    "typescript": "5.4.3"
+    "typescript": "5.4.4"
   },
   "packageManager": "yarn@4.1.1",
   "engines": {
