@@ -25,7 +25,7 @@
     "prepack": "pinst --disable",
     "postpack": "pinst --enable",
     "prepare": "husky || true",
-    "prettify": "prettier --cache --color --write \"**/{.*/,}*.{cjs,css,cts,htm,html,js,json,json5,jsx,md,mjs,mts,scss,ts,tsx,vue,yaml,yml}\" \"!**/test-fixtures/**\"",
+    "prettify": "prettier --cache --color --write \"**/{.*/,}*.{cjs,css,cts,htm,html,js,json,json5,jsonc,jsx,md,mjs,mts,scss,ts,tsx,vue,yaml,yml}\" \"!**/test-fixtures/**\"",
     "start": "build-ts run src/start.ts --",
     "start-prod": "yarn build && yarn gen-i18n-ts",
     "test": "yarn jest",
