@@ -14,13 +14,13 @@ test-fixtures/
 .pnp.js
 test-fixtures/*.ts
 
+!.keep
+.env.production
+*/mount/*.hash
 .idea/copilot/chatSessions/
 .devcontainer/
 dist/
 temp/
-Icon[]
-!.keep
-*/mount/*.hash
 
 # Created by https://www.toptal.com/developers/gitignore/api/windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows
