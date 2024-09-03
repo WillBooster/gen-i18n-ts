@@ -4,8 +4,8 @@ import { FunctionType, ObjectType } from './types';
 import { getMemberVarName, isObject, isString } from './utils';
 
 export class CodeGenerator {
-  static gen(typeObj: BaseType, langToLangObj: Map<string, unknown>, defaultLang: string): string {
-    const langs = [...langToLangObj.keys()];
+  static generate(typeObj: BaseType, langToLangObj: Map<string, unknown>, defaultLang: string): string {
+    const languages = [...langToLangObj.keys()].sort();
 
     const varLanguages = 'languages';
     const varCurrentLang = 'currentLang';
@@ -21,9 +21,9 @@ export class CodeGenerator {
 `;
 
     let members = '';
-    for (const [lang, langObj] of langToLangObj.entries()) {
-      const langCode = this.langObjToCode(lang, langObj);
-      members += `${JSON.stringify(lang)}: ${langCode}, `;
+    for (const language of languages) {
+      const langCode = this.langObjToCode(language, langToLangObj.get(language));
+      members += `${JSON.stringify(language)}: ${langCode}, `;
     }
     code += `const ${varLanguages} = { ${members} };\n`;
 
@@ -33,7 +33,7 @@ export class CodeGenerator {
     code += `export const ${varI18n} = ${i18nCode};\n`;
     code += `export type ${varI18nType} = typeof ${varI18n};\n`;
 
-    code += `${this.generateChangeLanguageCode(langs, varLanguages, varCurrentLang)}\n`;
+    code += `${this.generateChangeLanguageCode(languages, varLanguages, varCurrentLang)}\n`;
 
     code += `${this.generateGetLanguageCode()}\n`;
 

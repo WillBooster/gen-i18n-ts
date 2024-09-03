@@ -83,7 +83,7 @@ export async function genI18ts(inputDir: string, outfile: string, defaultLang: s
   }
   if (!langToLangObj.has(defaultLang)) throw new Error(ErrorMessages.noDefaultLangFile());
 
-  const code = CodeGenerator.gen(typeObj, langToLangObj, defaultLang);
+  const code = CodeGenerator.generate(typeObj, langToLangObj, defaultLang);
   await fs.promises.mkdir(path.dirname(outfile), { recursive: true });
   await fs.promises.writeFile(outfile, code, { encoding: 'utf8' });
   console.info('Generated TypeScript code.');
