@@ -2,7 +2,7 @@ import path from 'node:path';
 
 import { genI18ts } from '../src';
 
-/* eslint-disable @typescript-eslint/no-var-requires, unicorn/prefer-module */
+/* eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires, unicorn/prefer-module */
 
 test('numeric keys', async () => {
   const inputDir = path.resolve(__dirname, '..', 'test-fixtures', 'numericKeys');
