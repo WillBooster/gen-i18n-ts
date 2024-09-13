@@ -3227,13 +3227,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:29.5.12":
-  version: 29.5.12
-  resolution: "@types/jest@npm:29.5.12"
+"@types/jest@npm:29.5.13":
+  version: 29.5.13
+  resolution: "@types/jest@npm:29.5.13"
   dependencies:
     expect: "npm:^29.0.0"
     pretty-format: "npm:^29.0.0"
-  checksum: 10c0/25fc8e4c611fa6c4421e631432e9f0a6865a8cb07c9815ec9ac90d630271cad773b2ee5fe08066f7b95bebd18bb967f8ce05d018ee9ab0430f9dfd1d84665b6f
+  checksum: 10c0/9c31af0b155387b9860908830de63c6b79011d7c87c8b61b39da124e26e55423dd51b006749aafe4f0ef3a065016619a1f93ef4b055157d43727f448e67824b7
   languageName: node
   linkType: hard
 
@@ -5887,7 +5887,7 @@ __metadata:
     "@babel/preset-env": "npm:7.25.4"
     "@babel/preset-typescript": "npm:7.24.7"
     "@types/eslint": "npm:8.56.11"
-    "@types/jest": "npm:29.5.12"
+    "@types/jest": "npm:29.5.13"
     "@types/js-yaml": "npm:4.0.9"
     "@types/micromatch": "npm:4.0.9"
     "@types/node": "npm:20.16.5"
@@ -5915,7 +5915,7 @@ __metadata:
     micromatch: "npm:4.0.8"
     pinst: "npm:3.0.0"
     prettier: "npm:3.3.3"
-    semantic-release: "npm:24.1.0"
+    semantic-release: "npm:24.1.1"
     sort-package-json: "npm:2.10.1"
     typescript: "npm:5.6.2"
     yargs: "npm:17.7.2"
@@ -6318,6 +6318,15 @@ __metadata:
   dependencies:
     lru-cache: "npm:^10.0.1"
   checksum: 10c0/b19dbd92d3c0b4b0f1513cf79b0fc189f54d6af2129eeb201de2e9baaa711f1936929c848b866d9c8667a0f956f34bf4f07418c12be1ee9ca74fd9246335ca1f
+  languageName: node
+  linkType: hard
+
+"hosted-git-info@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "hosted-git-info@npm:8.0.0"
+  dependencies:
+    lru-cache: "npm:^10.0.1"
+  checksum: 10c0/3eb932a99e8a3c7f3a4513a5a61b81d0789741abf41ebb2d9679644e4b4c730c68e1925fbaeae2c6b35eb0bab57a59027b89c21ab588981c8b0989c454adde46
   languageName: node
   linkType: hard
 
@@ -9851,9 +9860,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semantic-release@npm:24.1.0":
-  version: 24.1.0
-  resolution: "semantic-release@npm:24.1.0"
+"semantic-release@npm:24.1.1":
+  version: 24.1.1
+  resolution: "semantic-release@npm:24.1.1"
   dependencies:
     "@semantic-release/commit-analyzer": "npm:^13.0.0-beta.1"
     "@semantic-release/error": "npm:^4.0.0"
@@ -9870,7 +9879,7 @@ __metadata:
     get-stream: "npm:^6.0.0"
     git-log-parser: "npm:^1.2.0"
     hook-std: "npm:^3.0.0"
-    hosted-git-info: "npm:^7.0.0"
+    hosted-git-info: "npm:^8.0.0"
     import-from-esm: "npm:^1.3.1"
     lodash-es: "npm:^4.17.21"
     marked: "npm:^12.0.0"
@@ -9886,7 +9895,7 @@ __metadata:
     yargs: "npm:^17.5.1"
   bin:
     semantic-release: bin/semantic-release.js
-  checksum: 10c0/cfaa72e8f9cfc989c926e398627b6755504d4d955756faf560c1a63f8f811a2914ad2ca97c11d938ec6b6e1a7957bc4dbf5cb5705ab03428f365f4a4234bba6b
+  checksum: 10c0/ed45e740cec19e65f7938f17d0cdf171a9c2865f7f7fd0e1edfece9d3693ae6ab70e9d0bf9ebb6af6df520705e3abef5e36a2e1569751e924cba37e36c620e81
   languageName: node
   linkType: hard
 
