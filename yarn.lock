@@ -2938,9 +2938,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@semantic-release/github@npm:^10.0.0":
-  version: 10.3.5
-  resolution: "@semantic-release/github@npm:10.3.5"
+"@semantic-release/github@npm:^11.0.0":
+  version: 11.0.0
+  resolution: "@semantic-release/github@npm:11.0.0"
   dependencies:
     "@octokit/core": "npm:^6.0.0"
     "@octokit/plugin-paginate-rest": "npm:^11.0.0"
@@ -2959,8 +2959,8 @@ __metadata:
     p-filter: "npm:^4.0.0"
     url-join: "npm:^5.0.0"
   peerDependencies:
-    semantic-release: ">=20.1.0"
-  checksum: 10c0/fbc3b805d6a5d66604afbd712a3661c7a1742838553058fbf037d83ff5cbf14e96c69d5788631abc3d6ed26d9ecf985963b449518d27fbab9f588be37f5c1eb0
+    semantic-release: ">=24.1.0"
+  checksum: 10c0/e64a6f0e8061ecdb7c382a0595c2a6597a511c16b2c291649a11a5cb8a47e1a4aad714bb41bf429aa3bcc6a4490a59b8393f591ee6ad0f2f282927fd358d0fc1
   languageName: node
   linkType: hard
 
@@ -3283,12 +3283,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:20.16.5":
-  version: 20.16.5
-  resolution: "@types/node@npm:20.16.5"
+"@types/node@npm:20.16.10":
+  version: 20.16.10
+  resolution: "@types/node@npm:20.16.10"
   dependencies:
     undici-types: "npm:~6.19.2"
-  checksum: 10c0/6af7994129815010bcbc4cf8221865559c8116ff43e74a6549525c2108267596fc2d18aff5d5ecfe089fb60a119f975631343e2c65c52bfa0955ed9dc56733d6
+  checksum: 10c0/c0c0c7ecb083ec638c2118e54b5242bb4c39a75608cbac9475cf15aaceb64b8bc997a87a0798e700a81d61651c8a7750ae0455be0f0996ada6e8b2bb818d90c5
   languageName: node
   linkType: hard
 
@@ -5897,7 +5897,7 @@ __metadata:
     "@types/jest": "npm:29.5.13"
     "@types/js-yaml": "npm:4.0.9"
     "@types/micromatch": "npm:4.0.9"
-    "@types/node": "npm:20.16.5"
+    "@types/node": "npm:20.16.10"
     "@types/yargs": "npm:17.0.33"
     "@typescript-eslint/eslint-plugin": "npm:8.7.0"
     "@typescript-eslint/parser": "npm:8.7.0"
@@ -5922,7 +5922,7 @@ __metadata:
     micromatch: "npm:4.0.8"
     pinst: "npm:3.0.0"
     prettier: "npm:3.3.3"
-    semantic-release: "npm:24.1.1"
+    semantic-release: "npm:24.1.2"
     sort-package-json: "npm:2.10.1"
     typescript: "npm:5.6.2"
     yargs: "npm:17.7.2"
@@ -9877,13 +9877,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semantic-release@npm:24.1.1":
-  version: 24.1.1
-  resolution: "semantic-release@npm:24.1.1"
+"semantic-release@npm:24.1.2":
+  version: 24.1.2
+  resolution: "semantic-release@npm:24.1.2"
   dependencies:
     "@semantic-release/commit-analyzer": "npm:^13.0.0-beta.1"
     "@semantic-release/error": "npm:^4.0.0"
-    "@semantic-release/github": "npm:^10.0.0"
+    "@semantic-release/github": "npm:^11.0.0"
     "@semantic-release/npm": "npm:^12.0.0"
     "@semantic-release/release-notes-generator": "npm:^14.0.0-beta.1"
     aggregate-error: "npm:^5.0.0"
@@ -9912,7 +9912,7 @@ __metadata:
     yargs: "npm:^17.5.1"
   bin:
     semantic-release: bin/semantic-release.js
-  checksum: 10c0/ed45e740cec19e65f7938f17d0cdf171a9c2865f7f7fd0e1edfece9d3693ae6ab70e9d0bf9ebb6af6df520705e3abef5e36a2e1569751e924cba37e36c620e81
+  checksum: 10c0/ff277e3fab5368f699e43132c25a198d54e5101e8c850705d856fb2353dc43d41bc56b2b78f5add8811ab59025880a424382e1859262fc017d9f88fdd9ca9a75
   languageName: node
   linkType: hard
 
