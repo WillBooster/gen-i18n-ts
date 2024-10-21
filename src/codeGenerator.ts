@@ -138,6 +138,10 @@ export function getFullLanguageCodeList(): string[] {
 }
 export function getShortLanguageCodeList(): string[] {
   return [...new Set(getFullLanguageCodeList().map(lang => lang.split('-')[0] ?? '').filter(lang => !!lang))];
+}
+export function i18nByCode(langCode: string): typeof i18n {
+  changeLanguageByCode(langCode);
+  return i18n;
 }`;
   }
 }
