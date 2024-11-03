@@ -3358,12 +3358,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:20.17.5":
-  version: 20.17.5
-  resolution: "@types/node@npm:20.17.5"
+"@types/node@npm:22.8.7":
+  version: 22.8.7
+  resolution: "@types/node@npm:22.8.7"
   dependencies:
-    undici-types: "npm:~6.19.2"
-  checksum: 10c0/6e6bf7f84365a2ee95a369c48cdb47a93aae2b5029d19660183ba944d7bdbc193e54167076d64a3a11ff28e307b84c90eda350edf8e2029195d1fc27ae6055f4
+    undici-types: "npm:~6.19.8"
+  checksum: 10c0/14372885db80059ed6e92c320b2bcd8f7dc271698adce11f51aa0f424a3f82aa1749a4f66321b87043791b894346b2458d514cbb65ce70167c2fd8a78a124947
   languageName: node
   linkType: hard
 
@@ -6008,7 +6008,7 @@ __metadata:
     "@types/jest": "npm:29.5.14"
     "@types/js-yaml": "npm:4.0.9"
     "@types/micromatch": "npm:4.0.9"
-    "@types/node": "npm:20.17.5"
+    "@types/node": "npm:22.8.7"
     "@types/yargs": "npm:17.0.33"
     "@typescript-eslint/eslint-plugin": "npm:8.12.2"
     "@typescript-eslint/parser": "npm:8.12.2"
@@ -11252,7 +11252,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici-types@npm:~6.19.2, undici-types@npm:~6.19.8":
+"undici-types@npm:~6.19.8":
   version: 6.19.8
   resolution: "undici-types@npm:6.19.8"
   checksum: 10c0/078afa5990fba110f6824823ace86073b4638f1d5112ee26e790155f481f2a868cc3e0615505b6f4282bdf74a3d8caad715fd809e870c2bb0704e3ea6082f344
