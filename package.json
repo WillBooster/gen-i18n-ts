@@ -37,7 +37,7 @@
     "yargs": "17.7.2"
   },
   "devDependencies": {
-    "@babel/core": "7.27.3",
+    "@babel/core": "7.27.4",
     "@babel/helper-plugin-utils": "7.27.1",
     "@babel/node": "7.27.1",
     "@babel/plugin-proposal-class-properties": "7.18.6",
@@ -48,7 +48,7 @@
     "@types/jest": "29.5.14",
     "@types/js-yaml": "4.0.9",
     "@types/micromatch": "4.0.9",
-    "@types/node": "22.15.26",
+    "@types/node": "22.15.29",
     "@types/yargs": "17.0.33",
     "@typescript-eslint/eslint-plugin": "8.33.0",
     "@typescript-eslint/parser": "8.33.0",
