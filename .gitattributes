@@ -19,6 +19,7 @@
 *.pu text eol=lf
 *.puml text eol=lf
 *.rb text eol=lf
+*.sh text eol=lf
 *.ts text eol=lf
 *.tsx text eol=lf
 *.vue text eol=lf
