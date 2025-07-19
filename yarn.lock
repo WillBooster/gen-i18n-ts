@@ -3739,37 +3739,61 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@willbooster/babel-configs@npm:1.3.2":
-  version: 1.3.2
-  resolution: "@willbooster/babel-configs@npm:1.3.2"
-  checksum: 10c0/9e92c512c39703c5aaa8ecc8a699a18698e7d900016df867c85b315c35f00b82b5137a2d411bc004dafb13afd913fab2fa3f09dcf2eab70648c13fa70be32abb
+"@willbooster/babel-configs@npm:2.3.0":
+  version: 2.3.0
+  resolution: "@willbooster/babel-configs@npm:2.3.0"
+  checksum: 10c0/85f7cd905bcf3f04325deb7e9683aad83e65ed29885759c95660943e916eec471fdade0f183987475f29f6775ed22e14ccd3137673c68eb4d31966917f70da3e
   languageName: node
   linkType: hard
 
-"@willbooster/eslint-config-ts@npm:10.6.1":
-  version: 10.6.1
-  resolution: "@willbooster/eslint-config-ts@npm:10.6.1"
+"@willbooster/eslint-config-js@npm:11.4.1":
+  version: 11.4.1
+  resolution: "@willbooster/eslint-config-js@npm:11.4.1"
   peerDependencies:
-    "@typescript-eslint/eslint-plugin": ">=5"
-    "@typescript-eslint/parser": ">=5"
-    "@willbooster/prettier-config": 9.1.3
-    eslint: ">=8"
-    eslint-config-prettier: ">=8"
-    eslint-import-resolver-typescript: ">=2"
-    eslint-plugin-import: ">=2"
-    eslint-plugin-sort-class-members: ">=1.14"
-    eslint-plugin-sort-destructure-keys: ">=1.4"
-    typescript: ">=4"
-  checksum: 10c0/a90c08d9d3ef1246f8d7e10744a409a1bf39e333eee52d1ef0b02bccdfa5c5832f2bf2f5330a05adfe98d64ce95d1dd36014c632866d0f8779e9c40043e5b4a6
+    "@eslint/js": ">=9"
+    eslint: ">=9"
+    eslint-config-flat-gitignore: ">=2.1"
+    eslint-config-prettier: ">=10"
+    eslint-plugin-import-x: ">=4"
+    eslint-plugin-sort-class-members: ">=1.21"
+    eslint-plugin-sort-destructure-keys: ">=2"
+    eslint-plugin-unicorn: ">=57"
+    eslint-plugin-unused-imports: ">=4"
+    globals: ">=16"
+  checksum: 10c0/21a1410ec33eae0e1dacdf215b04d44ac95f4e89a5481ffb304fbb72ff042f350f95e807e7f9a3399b4bb6fbac61be470edce4c7e169e99e84a22dcadb606a21
   languageName: node
   linkType: hard
 
-"@willbooster/prettier-config@npm:9.1.3":
-  version: 9.1.3
-  resolution: "@willbooster/prettier-config@npm:9.1.3"
+"@willbooster/eslint-config-ts@npm:11.4.1":
+  version: 11.4.1
+  resolution: "@willbooster/eslint-config-ts@npm:11.4.1"
+  dependencies:
+    "@willbooster/eslint-config-js": "npm:11.4.1"
   peerDependencies:
-    prettier: ">=2"
-  checksum: 10c0/b3be5c34e2052bfb2030d21bebe72594b55e448ca5a22d7a0f49d9d166cced36618f5862df3ac9c3d3b495a46119678711b62bb916aba52769019650ec4f5f66
+    "@eslint/js": ">=9"
+    eslint: ">=9"
+    eslint-config-flat-gitignore: ">=2.1"
+    eslint-config-prettier: ">=10"
+    eslint-import-resolver-typescript: ">=3"
+    eslint-plugin-import-x: ">=4"
+    eslint-plugin-sort-class-members: ">=1.21"
+    eslint-plugin-sort-destructure-keys: ">=2"
+    eslint-plugin-unicorn: ">=57"
+    eslint-plugin-unused-imports: ">=4"
+    globals: ">=16"
+    typescript: ">=5"
+    typescript-eslint: ">=8"
+  checksum: 10c0/53679af96c42dea872edc9c619218af7610fb860b54caa67941ea0dda20f64e5b965ce4482e31a46b3db61abbea2158bdcacf0f8b51513714b73f7605050b08f
+  languageName: node
+  linkType: hard
+
+"@willbooster/prettier-config@npm:10.2.0":
+  version: 10.2.0
+  resolution: "@willbooster/prettier-config@npm:10.2.0"
+  peerDependencies:
+    prettier: ">=3"
+    prettier-plugin-java: ">=2.6"
+  checksum: 10c0/c9a4fd669df01373870471e7e2e1d9f67faeddd8edc68db02d7ae5e138baaf05497b736d4733dd8a2a6164c634416f60fecbf0685874311e026e75b97de3e4d3
   languageName: node
   linkType: hard
 
@@ -6257,9 +6281,9 @@ __metadata:
     "@types/yargs": "npm:17.0.33"
     "@typescript-eslint/eslint-plugin": "npm:8.37.0"
     "@typescript-eslint/parser": "npm:8.37.0"
-    "@willbooster/babel-configs": "npm:1.3.2"
-    "@willbooster/eslint-config-ts": "npm:10.6.1"
-    "@willbooster/prettier-config": "npm:9.1.3"
+    "@willbooster/babel-configs": "npm:2.3.0"
+    "@willbooster/eslint-config-ts": "npm:11.4.1"
+    "@willbooster/prettier-config": "npm:10.2.0"
     babel-jest: "npm:29.7.0"
     babel-plugin-transform-remove-console: "npm:6.9.4"
     build-ts: "npm:13.2.3"
