@@ -8,6 +8,7 @@ android/
 ios/
 no-format/
 test-fixtures/
+test/fixtures/
 *.d.ts
 *.min.js
 .yarn/
@@ -15,12 +16,17 @@ test-fixtures/
 test-fixtures/*.ts
 
 !.keep
+.aider*
 .env.production
-*/mount/*.hash
+.idea/AugmentWebviewStateStore.xml
 .idea/copilot/chatSessions/
 .devcontainer/
+*/mount/*.hash
+__generated__/
 dist/
 temp/
+tmp/
+.tmp/
 
 # Created by https://www.toptal.com/developers/gitignore/api/windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows

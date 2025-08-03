@@ -11,7 +11,7 @@ import { getMemberVarName, isObject, isString } from './utils.js';
 export class LangFileConverter {
   static toLangObj(lang: string, langFilePath: string): unknown {
     const fileContent = fs.readFileSync(langFilePath, { encoding: 'utf8' });
-    let langObj;
+    let langObj: unknown;
     switch (path.extname(langFilePath)) {
       case '.yaml':
       case '.yml': {
@@ -30,7 +30,7 @@ export class LangFileConverter {
 
   static toTypeObj(lang: string, langFilePath: string): BaseType {
     const fileContent = fs.readFileSync(langFilePath, { encoding: 'utf8' });
-    let langObj;
+    let langObj: unknown;
     switch (path.extname(langFilePath)) {
       case '.yaml':
       case '.yml': {

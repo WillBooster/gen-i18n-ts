@@ -3,6 +3,7 @@
     "allowSyntheticDefaultImports": true,
     "alwaysStrict": true,
     "declaration": true,
+    "erasableSyntaxOnly": true,
     "esModuleInterop": true,
     "importHelpers": false,
     "module": "NodeNext",
@@ -16,5 +17,6 @@
     "target": "ESNext",
     "typeRoots": ["./node_modules/@types", "./@types"]
   },
+  "exclude": ["test/fixtures"],
   "include": ["scripts/**/*", "src/**/*", "test/**/*"]
 }

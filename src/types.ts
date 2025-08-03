@@ -1,13 +1,19 @@
 export abstract class BaseType {}
 
 export class FunctionType extends BaseType {
-  constructor(public params: string[]) {
+  params: string[];
+
+  constructor(params: string[]) {
     super();
+    this.params = params;
   }
 }
 
 export class ObjectType extends BaseType {
-  constructor(public map: Record<string, BaseType>) {
+  map: Record<string, BaseType>;
+
+  constructor(map: Record<string, BaseType>) {
     super();
+    this.map = map;
   }
 }
