@@ -4,7 +4,12 @@ import { FunctionType, ObjectType } from './types.js';
 import { getMemberVarName, isObject, isString } from './utils.js';
 
 export class CodeGenerator {
-  static generate(typeObj: BaseType, langToLangObj: Map<string, unknown>, defaultLang: string): string {
+  static generate(
+    typeObj: BaseType,
+    langToLangObj: Map<string, unknown>,
+    defaultLang: string,
+    global: boolean
+  ): string {
     const languages = [...langToLangObj.keys()].sort();
 
     const varLanguages = 'languages';
@@ -21,22 +26,32 @@ export class CodeGenerator {
 
 `;
 
+    // Generate language union type
+    const languageUnion = languages.map((lang) => JSON.stringify(lang)).join(' | ');
+    code += `type SupportedLanguage = ${languageUnion};\n\n`;
+
     let members = '';
     for (const language of languages) {
       const langCode = this.langObjToCode(language, langToLangObj.get(language));
       members += `${JSON.stringify(language)}: ${langCode}, `;
     }
-    code += `const ${varLanguages} = { ${members} };\n`;
+    code += `const ${varLanguages} = { ${members} } as const;\n`;
 
-    code += `let ${varCurrentLang} = ${varLanguages}[${JSON.stringify(defaultLang)}];\n`;
+    if (global) {
+      code += `let ${varCurrentLang}: typeof ${varLanguages}[SupportedLanguage] = ${varLanguages}[${JSON.stringify(defaultLang)}];\n`;
 
-    const i18nCode = this.typeObjToCode(typeObj, varCurrentLang);
-    code += `export const ${varI18n} = ${i18nCode};\n`;
-    code += `export type ${varI18nType} = typeof ${varI18n};\n`;
+      const i18nCode = this.typeObjToCode(typeObj, varCurrentLang);
+      code += `export const ${varI18n} = ${i18nCode};\n`;
+      code += `export type ${varI18nType} = typeof ${varI18n};\n`;
 
-    code += `${this.generateChangeLanguageCode(languages, varLanguages, varCurrentLang)}\n`;
+      code += `${this.generateChangeLanguageCode(languages, varLanguages, varCurrentLang)}\n`;
 
-    code += `${this.generateGetLanguageCode()}\n`;
+      code += `${this.generateGetLanguageCode()}\n`;
+    } else {
+      const i18nCode = this.typeObjToCodeWithLanguageParam(typeObj, varLanguages);
+      code += `export const ${varI18n} = ${i18nCode};\n`;
+      code += `export type ${varI18nType} = typeof ${varI18n};\n`;
+    }
 
     return code;
   }
@@ -61,6 +76,21 @@ export class CodeGenerator {
     }
 
     throw new Error(ErrorMessages.varShouldStringOrObject(lang, varName));
+  }
+
+  private static typeObjToCodeWithLanguageParam(typeObj: BaseType, varLanguages: string): string {
+    const varLanguage = 'language';
+    const varCurrentLang = 'currentLang';
+
+    let code = `function (${varLanguage}: string) {\n`;
+    code += `  if (!(${varLanguage} in ${varLanguages})) throw new Error(\`Language "\${${varLanguage}}" not found\`);\n`;
+    code += `  const ${varCurrentLang} = ${varLanguages}[${varLanguage} as SupportedLanguage];\n`;
+
+    const i18nCode = this.typeObjToCode(typeObj, varCurrentLang);
+    code += `  return ${i18nCode};\n`;
+    code += `}`;
+
+    return code;
   }
 
   private static typeObjToCode(typeObj: BaseType, varName: string): string {
@@ -101,7 +131,7 @@ export class CodeGenerator {
   private static generateChangeLanguageCode(langs: string[], varLanguages: string, varCurrentLang: string): string {
     const funcChangeCurrentLang = 'changeLanguageByCode';
     const varLang = 'lang';
-    const declaration = `export function ${funcChangeCurrentLang}(${varLang}: string): boolean`;
+    const declaration = `export function ${funcChangeCurrentLang}(${varLang}: SupportedLanguage): true;\nexport function ${funcChangeCurrentLang}(${varLang}: string): boolean;\nexport function ${funcChangeCurrentLang}(${varLang}: string): boolean`;
 
     const cases = langs
       .map((lang) => `case "${lang}": ${varCurrentLang} = ${varLanguages}[${JSON.stringify(lang)}]; return true;`)

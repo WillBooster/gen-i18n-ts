@@ -6,7 +6,7 @@ import path from 'node:path';
 test('multiple arguments', async () => {
   const inputDir = path.resolve('test-fixtures', 'multiArgs');
   const outFile = path.resolve('temp', 'multiArgsI18n.ts');
-  child_process.spawnSync('yarn', ['start', '-i', inputDir, '-o', outFile, '-d', 'en']);
+  child_process.spawnSync('yarn', ['start', '-i', inputDir, '-o', outFile, '-d', 'en', '--global']);
 
   const { changeLanguageByCode, i18n } = require('../temp/multiArgsI18n');
 

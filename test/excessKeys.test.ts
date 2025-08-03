@@ -6,7 +6,7 @@ import path from 'node:path';
 test('excess keys', async () => {
   const inputDir = path.resolve('test-fixtures', 'excessKeys');
   const outFile = path.resolve('temp', 'excessKeysI18n.ts');
-  child_process.spawnSync('yarn', ['start', '-i', inputDir, '-o', outFile, '-d', 'en']);
+  child_process.spawnSync('yarn', ['start', '-i', inputDir, '-o', outFile, '-d', 'en', '--global']);
 
   const { changeLanguageByCode, i18n } = require('../temp/excessKeysI18n');
 

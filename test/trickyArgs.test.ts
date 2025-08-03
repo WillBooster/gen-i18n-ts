@@ -6,7 +6,7 @@ import path from 'node:path';
 test('tricky arguments', async () => {
   const inputDir = path.resolve('test-fixtures', 'trickyArgs');
   const outFile = path.resolve('temp', 'trickyArgsI18n.ts');
-  child_process.spawnSync('yarn', ['start', '-i', inputDir, '-o', outFile, '-d', 'en']);
+  child_process.spawnSync('yarn', ['start', '-i', inputDir, '-o', outFile, '-d', 'en', '--global']);
 
   const { changeLanguageByCode, i18n } = require('../temp/trickyArgsI18n');
 

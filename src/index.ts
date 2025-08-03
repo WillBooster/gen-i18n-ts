@@ -10,7 +10,7 @@ import { LangFileConverter } from './langFileConverter.js';
 import { ObjectAnalyzer } from './objectAnalyzer.js';
 
 export async function cli(): Promise<void> {
-  const { defaultLang, inputDir, outfile, watch } = await yargs(hideBin(process.argv))
+  const { defaultLang, global, inputDir, outfile, watch } = await yargs(hideBin(process.argv))
     .scriptName('gen-i18n-ts')
     .options({
       inputDir: {
@@ -36,12 +36,18 @@ export async function cli(): Promise<void> {
         alias: 'w',
         describe: 'Enable watch mode',
       },
+      global: {
+        type: 'boolean',
+        alias: 'g',
+        describe: 'Generate with global state (currentLang variable)',
+        default: false,
+      },
     })
     .strict()
     .version(getVersion())
     .help().argv;
 
-  await genI18ts(inputDir, outfile, defaultLang);
+  await genI18ts(inputDir, outfile, defaultLang, global);
   if (watch) {
     console.info();
     console.info('Start monitoring i18n file changes.');
@@ -50,7 +56,7 @@ export async function cli(): Promise<void> {
 
       console.info(`### Detect changes in ${inputDir} (${event} on ${fileName}) ###`);
       try {
-        await genI18ts(inputDir, outfile, defaultLang);
+        await genI18ts(inputDir, outfile, defaultLang, global);
       } catch (error) {
         console.error(error);
       }
@@ -69,7 +75,7 @@ function getVersion(): string {
   return packageJson.version;
 }
 
-async function genI18ts(inputDir: string, outfile: string, defaultLang: string): Promise<void> {
+async function genI18ts(inputDir: string, outfile: string, defaultLang: string, global: boolean): Promise<void> {
   const fileNames = await fs.promises.readdir(inputDir);
   const langFileNames = fileNames.filter((fileName) => ['.json', '.yaml', '.yml'].includes(path.extname(fileName)));
 
@@ -97,7 +103,7 @@ async function genI18ts(inputDir: string, outfile: string, defaultLang: string):
   }
   if (!langToLangObj.has(defaultLang)) throw new Error(ErrorMessages.noDefaultLangFile());
 
-  const code = CodeGenerator.generate(typeObj, langToLangObj, defaultLang);
+  const code = CodeGenerator.generate(typeObj, langToLangObj, defaultLang, global);
   await fs.promises.mkdir(path.dirname(outfile), { recursive: true });
   await fs.promises.writeFile(outfile, code, { encoding: 'utf8' });
   console.info('Generated TypeScript code.');

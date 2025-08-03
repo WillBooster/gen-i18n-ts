@@ -6,7 +6,7 @@ import path from 'node:path';
 test('basic use case', async () => {
   const inputDir = path.resolve('test-fixtures', 'basicUse');
   const outFile = path.resolve('temp', 'basicUseI18n.ts');
-  child_process.spawnSync('yarn', ['start', '-i', inputDir, '-o', outFile, '-d', 'en']);
+  child_process.spawnSync('yarn', ['start', '-i', inputDir, '-o', outFile, '-d', 'en', '--global']);
 
   const { changeLanguageByCode, i18n } = require('../temp/basicUseI18n');
 

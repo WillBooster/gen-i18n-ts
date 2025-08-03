@@ -34,6 +34,29 @@ See [Usage of gen-i18n-ts command](Usage-of-gen-i18n-ts-command) section for mor
 
 2. import the generated file to your TypeScript modules.
 
+**Default behavior (non-global mode):**
+
+```ts
+import { i18n } from 'path/to/generated/i18n';
+
+// Get i18n object for specific language
+const enI18n = i18n('en');
+const jaI18n = i18n('ja');
+
+// Functions without parameters
+enI18n.okButtonName();
+// => "Done"
+
+// Functions with parameters use named arguments
+enI18n.welcome({ userName: 'John' });
+// => "Hi, John"
+
+jaI18n.welcome({ userName: '太郎' });
+// => "こんにちは、太郎さん"
+```
+
+**Global mode (with `--global` flag):**
+
 ```ts
 import { i18n, changeLanguageByCode } from 'path/to/generated/i18n';
 
@@ -58,14 +81,31 @@ i18n.welcome({ userName: '太郎' });
 
 ## Usage of gen-i18n-ts command
 
-gen-i18n-ts takes three required argments: `inputDir`, `outputFile` and `defaultLang`.
+gen-i18n-ts takes three required arguments: `inputDir`, `outputFile` and `defaultLang`.
 
-The following description takes [readme-sample](./samples/readme-sample) for example.
-Here is a command for the sample (`inputDir=i18n-json`, `outputFile=i18n.ts`, `defaultLang=en`):
+### Command Line Options
 
-```
+- `-i, --inputDir`: A path to input directory (required)
+- `-o, --outfile`: A path to output file (required)
+- `-d, --defaultLang`: A name of a default language (required)
+- `-w, --watch`: Enable watch mode (optional)
+- `-g, --global`: Generate with global state (currentLang variable) (optional, default: false)
+
+### Basic Usage
+
+**Default (non-global mode):**
+
+```bash
 gen-i18n-ts -i i18n-json -o i18n.ts -d en
 ```
+
+**Global mode:**
+
+```bash
+gen-i18n-ts -i i18n-json -o i18n.ts -d en --global
+```
+
+The following description takes [readme-sample](./samples/readme-sample) for example.
 
 ### Input (`inputDir`)
 
@@ -138,12 +178,41 @@ The order of the keys are not cared.
 
 ### Output (`outputFile`)
 
-`outputFile` is the path to the TypeScript file for internationalization. The file exports`i18n` and `changeLanguageByCode`.
+`outputFile` is the path to the TypeScript file for internationalization. The generated exports depend on the mode:
 
-#### `i18n`
+#### Default (Non-Global) Mode
 
-The object to access messages in the current language.
-It is like
+Exports an `i18n` function that takes a language parameter:
+
+```ts
+export const i18n = function (language: string) {
+  const currentLang = languages[language];
+  if (!currentLang) throw new Error(`Language "${language}" not found`);
+  return {
+    okButtonName: function(): string {
+      return ...
+    },
+    welcome: function({ userName }: { userName: unknown }): string {
+      return ...
+    },
+    pages: {
+      user: function({ userName }: { userName: unknown }): string {
+        return ...
+      },
+      help: function(): string {
+        return ...
+      },
+      contact:  function(): string {
+        return ...
+      },
+    },
+  };
+};
+```
+
+#### Global Mode (with `--global` flag)
+
+Exports an `i18n` object and `changeLanguageByCode` function:
 
 ```ts
 export const i18n = {
@@ -165,19 +234,6 @@ export const i18n = {
     },
   },
 }
-```
-
-Note that:
-- Even if a string in the input has no `${variableName}`, the output will be a zero-argument FUNCTION, NOT a STRING
-- Functions with parameters use named arguments (e.g., `{ userName: 'value' }`) instead of positional arguments
-
-### `changeLanguageByCode`
-
-The function to change the current language. It returns `true` if `lang` is valid and `false` otherwise.
-It is like
-
-```ts
-let currentLang = en; // default language object
 
 export function changeLanguageByCode(lang: string): boolean {
   switch (lang) {
@@ -192,6 +248,12 @@ export function changeLanguageByCode(lang: string): boolean {
   return false
 }
 ```
+
+#### Notes
+
+- Even if a string in the input has no `${variableName}`, the output will be a zero-argument FUNCTION, NOT a STRING
+- Functions with parameters use named arguments (e.g., `{ userName: 'value' }`) instead of positional arguments
+- In global mode, `changeLanguageByCode` returns `true` if `lang` is valid and `false` otherwise
 
 ### Default language (`defaultLang`)
 
