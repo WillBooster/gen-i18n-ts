@@ -10,8 +10,8 @@ test('using variable multiple times', async () => {
 
   const { changeLanguageByCode, i18n } = require('../temp/dupArgsI18n');
 
-  expect(i18n.twice('hey!')).toBe('hey!, again hey!');
+  expect(i18n.twice({ x: 'hey!' })).toBe('hey!, again hey!');
 
   changeLanguageByCode('ja');
-  expect(i18n.twice('おーい！')).toBe('おーい！、もう一回 おーい！');
+  expect(i18n.twice({ x: 'おーい！' })).toBe('おーい！、もう一回 おーい！');
 });

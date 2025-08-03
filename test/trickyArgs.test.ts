@@ -10,14 +10,14 @@ test('tricky arguments', async () => {
 
   const { changeLanguageByCode, i18n } = require('../temp/trickyArgsI18n');
 
-  expect(i18n.test('b', 'a')).toBe('b and a');
-  expect(i18n.test('${b}', 'a')).toBe('${b} and a');
-  expect(i18n.test('b', '${a}')).toBe('b and ${a}');
-  expect(i18n.test('${b}', '${a}')).toBe('${b} and ${a}');
+  expect(i18n.test({ a: 'b', b: 'a' })).toBe('b and a');
+  expect(i18n.test({ a: '${b}', b: 'a' })).toBe('${b} and a');
+  expect(i18n.test({ a: 'b', b: '${a}' })).toBe('b and ${a}');
+  expect(i18n.test({ a: '${b}', b: '${a}' })).toBe('${b} and ${a}');
 
   changeLanguageByCode('ja');
-  expect(i18n.test('b', 'a')).toBe('b と a');
-  expect(i18n.test('${b}', 'a')).toBe('${b} と a');
-  expect(i18n.test('b', '${a}')).toBe('b と ${a}');
-  expect(i18n.test('${b}', '${a}')).toBe('${b} と ${a}');
+  expect(i18n.test({ a: 'b', b: 'a' })).toBe('b と a');
+  expect(i18n.test({ a: '${b}', b: 'a' })).toBe('${b} と a');
+  expect(i18n.test({ a: 'b', b: '${a}' })).toBe('b と ${a}');
+  expect(i18n.test({ a: '${b}', b: '${a}' })).toBe('${b} と ${a}');
 });

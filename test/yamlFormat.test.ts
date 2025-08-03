@@ -11,13 +11,13 @@ test('yaml format', async () => {
   const { changeLanguageByCode, i18n } = require('../temp/yamlFormatI18n');
 
   expect(i18n.okButtonName()).toBe('Done');
-  expect(i18n.welcome('Taro')).toBe('Hi, Taro');
-  expect(i18n.pages.user('Taro')).toBe("Taro's page");
+  expect(i18n.welcome({ userName: 'Taro' })).toBe('Hi, Taro');
+  expect(i18n.pages.user({ userName: 'Taro' })).toBe("Taro's page");
   expect(i18n.pages.help()).toBe('Help');
 
   changeLanguageByCode('ja');
   expect(i18n.okButtonName()).toBe('完了');
-  expect(i18n.welcome('太郎')).toBe('こんにちは、太郎さん');
-  expect(i18n.pages.user('太郎')).toBe('太郎さんのページ');
+  expect(i18n.welcome({ userName: '太郎' })).toBe('こんにちは、太郎さん');
+  expect(i18n.pages.user({ userName: '太郎' })).toBe('太郎さんのページ');
   expect(i18n.pages.contact()).toBe('お問い合わせ');
 });
