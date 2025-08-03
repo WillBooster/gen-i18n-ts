@@ -3,7 +3,7 @@ const path = require('path');
 const micromatch = require('micromatch');
 
 module.exports = {
-  './{scripts,src,tests}/**/*.{cjs,cts,js,jsx,mjs,mts,ts,tsx}': [
+  './{scripts,src,test}/**/*.{cjs,cts,js,jsx,mjs,mts,ts,tsx}': [
     'node node_modules/.bin/eslint --fix',
     'node node_modules/.bin/prettier --cache --write',
   ],
@@ -11,7 +11,7 @@ module.exports = {
     let filteredFiles = files.filter((file) => !file.includes('/test-fixtures/') && !file.includes('/packages/'));
 
     filteredFiles = filteredFiles.map((file) => path.relative('', file));
-    filteredFiles = micromatch.not(filteredFiles, './{scripts,src,tests}/**/*.{cjs,cts,js,jsx,mjs,mts,ts,tsx}');
+    filteredFiles = micromatch.not(filteredFiles, './{scripts,src,test}/**/*.{cjs,cts,js,jsx,mjs,mts,ts,tsx}');
     filteredFiles = filteredFiles.map((file) => path.resolve(file));
     if (filteredFiles.length === 0) return [];
     const commands = [`node node_modules/.bin/prettier --cache --write ${filteredFiles.join(' ')}`];

@@ -1,13 +1,13 @@
+import child_process from 'node:child_process';
 import path from 'node:path';
 
-import { genI18ts } from '../src';
 
 /* eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires, unicorn/prefer-module */
 
 test('escape characters', async () => {
   const inputDir = path.resolve(__dirname, '..', 'test-fixtures', 'escapeChars');
   const outFile = path.resolve(__dirname, '..', 'test-fixtures', 'escapeCharsI18n.ts');
-  await genI18ts(inputDir, outFile, 'en');
+  child_process.spawnSync('yarn', ['-i', inputDir, '-o', outFile, '-d', 'en']);
 
   const { changeLanguageByCode, i18n } = require('../test-fixtures/escapeCharsI18n');
 

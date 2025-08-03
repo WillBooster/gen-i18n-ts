@@ -3,10 +3,10 @@ import path from 'node:path';
 
 import yaml from 'js-yaml';
 
-import { ErrorMessages, VARIABLE_REGEX } from './constants';
-import type { BaseType } from './types';
-import { FunctionType, ObjectType } from './types';
-import { getMemberVarName, isObject, isString } from './utils';
+import { ErrorMessages, VARIABLE_REGEX } from './constants.js';
+import type { BaseType } from './types.js';
+import { FunctionType, ObjectType } from './types.js';
+import { getMemberVarName, isObject, isString } from './utils.js';
 
 export class LangFileConverter {
   static toLangObj(lang: string, langFilePath: string): unknown {

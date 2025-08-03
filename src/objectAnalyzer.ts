@@ -1,7 +1,7 @@
-import { ErrorMessages, InfoMessages, VARIABLE_REGEX } from './constants';
-import type { BaseType } from './types';
-import { FunctionType, ObjectType } from './types';
-import { difference, getMemberVarName, intersection, isObject, isString } from './utils';
+import { ErrorMessages, InfoMessages, VARIABLE_REGEX } from './constants.js';
+import type { BaseType } from './types.js';
+import { FunctionType, ObjectType } from './types.js';
+import { difference, getMemberVarName, intersection, isObject, isString } from './utils.js';
 
 export class ObjectAnalyzer {
   static analyze(typeObj: BaseType, lang: string, langObj: unknown, defaultLangObj: unknown): void {

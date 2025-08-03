@@ -6283,7 +6283,7 @@ __metadata:
     typescript: "npm:5.9.2"
     yargs: "npm:17.7.2"
   bin:
-    gen-i18n-ts: ./bin/index.cjs
+    gen-i18n-ts: ./bin/index.js
   languageName: unknown
   linkType: soft
 
