@@ -4776,10 +4776,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:^13.1.0":
-  version: 13.1.0
-  resolution: "commander@npm:13.1.0"
-  checksum: 10c0/7b8c5544bba704fbe84b7cab2e043df8586d5c114a4c5b607f83ae5060708940ed0b5bd5838cf8ce27539cde265c1cbd59ce3c8c6b017ed3eec8943e3a415164
+"commander@npm:^14.0.0":
+  version: 14.0.0
+  resolution: "commander@npm:14.0.0"
+  checksum: 10c0/73c4babfa558077868d84522b11ef56834165d472b9e86a634cd4c3ae7fc72d59af6377d8878e06bd570fe8f3161eced3cbe383c38f7093272bb65bd242b595b
   languageName: node
   linkType: hard
 
@@ -5856,7 +5856,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"execa@npm:^8.0.0, execa@npm:^8.0.1":
+"execa@npm:^8.0.0":
   version: 8.0.1
   resolution: "execa@npm:8.0.1"
   dependencies:
@@ -6274,7 +6274,7 @@ __metadata:
     husky: "npm:9.1.7"
     jest: "npm:30.0.5"
     js-yaml: "npm:4.1.0"
-    lint-staged: "npm:15.5.2"
+    lint-staged: "npm:16.1.2"
     micromatch: "npm:4.0.8"
     pinst: "npm:3.0.0"
     prettier: "npm:3.6.2"
@@ -8273,27 +8273,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lint-staged@npm:15.5.2":
-  version: 15.5.2
-  resolution: "lint-staged@npm:15.5.2"
+"lint-staged@npm:16.1.2":
+  version: 16.1.2
+  resolution: "lint-staged@npm:16.1.2"
   dependencies:
     chalk: "npm:^5.4.1"
-    commander: "npm:^13.1.0"
-    debug: "npm:^4.4.0"
-    execa: "npm:^8.0.1"
+    commander: "npm:^14.0.0"
+    debug: "npm:^4.4.1"
     lilconfig: "npm:^3.1.3"
-    listr2: "npm:^8.2.5"
+    listr2: "npm:^8.3.3"
     micromatch: "npm:^4.0.8"
+    nano-spawn: "npm:^1.0.2"
     pidtree: "npm:^0.6.0"
     string-argv: "npm:^0.3.2"
-    yaml: "npm:^2.7.0"
+    yaml: "npm:^2.8.0"
   bin:
     lint-staged: bin/lint-staged.js
-  checksum: 10c0/618386254600ada3af3672486a9d082250108245e7c0863d9dfe0a21e7764e3b2eb6416b0f8970e548f4e9d368637331598b27df5a1306925feabbaf16a667e1
+  checksum: 10c0/2a299fc0d56e0a64ed0af8caf937e00eac47cb270df2917e2d4b939074eaa63ecd7f16d3b70b7e5e57bff75ffbbbf8aae5768dedf3dfd45e3ca1b9caaf7740cc
   languageName: node
   linkType: hard
 
-"listr2@npm:^8.2.5":
+"listr2@npm:^8.3.3":
   version: 8.3.3
   resolution: "listr2@npm:8.3.3"
   dependencies:
@@ -8757,6 +8757,13 @@ __metadata:
     object-assign: "npm:^4.0.1"
     thenify-all: "npm:^1.0.0"
   checksum: 10c0/103114e93f87362f0b56ab5b2e7245051ad0276b646e3902c98397d18bb8f4a77f2ea4a2c9d3ad516034ea3a56553b60d3f5f78220001ca4c404bd711bd0af39
+  languageName: node
+  linkType: hard
+
+"nano-spawn@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "nano-spawn@npm:1.0.2"
+  checksum: 10c0/d8cec78f127a44aa5e38be01746b3d963a8dcf8b00b4a05bf259b5369af2225b8c7dc9d12517050b90234e5c3eeea4ece5d18a5f9c6c3462b56f9f595f07e632
   languageName: node
   linkType: hard
 
@@ -12050,7 +12057,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yaml@npm:^2.7.0":
+"yaml@npm:^2.8.0":
   version: 2.8.0
   resolution: "yaml@npm:2.8.0"
   bin:
