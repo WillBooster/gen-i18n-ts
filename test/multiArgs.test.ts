@@ -1,15 +1,14 @@
 import child_process from 'node:child_process';
 import path from 'node:path';
 
-
 /* eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires, unicorn/prefer-module */
 
 test('multiple arguments', async () => {
-  const inputDir = path.resolve(__dirname, '..', 'test-fixtures', 'multiArgs');
-  const outFile = path.resolve(__dirname, '..', 'test-fixtures', 'multiArgsI18n.ts');
-  child_process.spawnSync('yarn', ['-i', inputDir, '-o', outFile, '-d', 'en']);
+  const inputDir = path.resolve('test-fixtures', 'multiArgs');
+  const outFile = path.resolve('temp', 'multiArgsI18n.ts');
+  child_process.spawnSync('yarn', ['start', '-i', inputDir, '-o', outFile, '-d', 'en']);
 
-  const { changeLanguageByCode, i18n } = require('../test-fixtures/multiArgsI18n');
+  const { changeLanguageByCode, i18n } = require('../temp/multiArgsI18n');
 
   expect(i18n.gotAMail('Hanako', 'Happy Birthday!')).toBe('You got a mail! From:Hanako Subject:Happy Birthday!');
   expect(i18n.gotAMail('WB Store', 'Special Discount')).toBe('You got a mail! From:WB Store Subject:Special Discount');
