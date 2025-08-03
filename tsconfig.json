@@ -5,8 +5,8 @@
     "declaration": true,
     "esModuleInterop": true,
     "importHelpers": false,
-    "module": "CommonJS",
-    "moduleResolution": "Node",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "noUncheckedIndexedAccess": true,
     "outDir": "dist",
     "resolveJsonModule": true,
@@ -16,5 +16,5 @@
     "target": "ESNext",
     "typeRoots": ["./node_modules/@types", "./@types"]
   },
-  "include": ["scripts/**/*", "src/**/*", "tests/**/*"]
+  "include": ["scripts/**/*", "src/**/*", "test/**/*"]
 }

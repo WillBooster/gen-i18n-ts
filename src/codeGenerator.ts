@@ -1,7 +1,7 @@
-import { ErrorMessages } from './constants';
-import type { BaseType } from './types';
-import { FunctionType, ObjectType } from './types';
-import { getMemberVarName, isObject, isString } from './utils';
+import { ErrorMessages } from './constants.js';
+import type { BaseType } from './types.js';
+import { FunctionType, ObjectType } from './types.js';
+import { getMemberVarName, isObject, isString } from './utils.js';
 
 export class CodeGenerator {
   static generate(typeObj: BaseType, langToLangObj: Map<string, unknown>, defaultLang: string): string {

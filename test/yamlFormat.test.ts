@@ -1,15 +1,14 @@
+import child_process from 'node:child_process';
 import path from 'node:path';
-
-import { genI18ts } from '../src';
 
 /* eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires, unicorn/prefer-module */
 
-test('basic use case', async () => {
-  const inputDir = path.resolve(__dirname, '..', 'test-fixtures', 'basicUse');
-  const outFile = path.resolve(__dirname, '..', 'test-fixtures', 'basicUseI18n.ts');
-  await genI18ts(inputDir, outFile, 'en');
+test('yaml format', async () => {
+  const inputDir = path.resolve('test-fixtures', 'yamlFormat');
+  const outFile = path.resolve('temp', 'yamlFormatI18n.ts');
+  child_process.spawnSync('yarn', ['start', '-i', inputDir, '-o', outFile, '-d', 'en']);
 
-  const { changeLanguageByCode, i18n } = require('../test-fixtures/basicUseI18n');
+  const { changeLanguageByCode, i18n } = require('../temp/yamlFormatI18n');
 
   expect(i18n.okButtonName()).toBe('Done');
   expect(i18n.welcome('Taro')).toBe('Hi, Taro');

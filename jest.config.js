@@ -1,4 +1,5 @@
 // We cannot employ vitest because tests must call require() dynamically.
-module.exports = {
+const config = {
   testEnvironment: 'node',
 };
+export default config;

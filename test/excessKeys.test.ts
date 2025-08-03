@@ -1,15 +1,14 @@
+import child_process from 'node:child_process';
 import path from 'node:path';
-
-import { genI18ts } from '../src';
 
 /* eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires, unicorn/prefer-module */
 
 test('excess keys', async () => {
-  const inputDir = path.resolve(__dirname, '..', 'test-fixtures', 'excessKeys');
-  const outFile = path.resolve(__dirname, '..', 'test-fixtures', 'excessKeysI18n.ts');
-  await genI18ts(inputDir, outFile, 'en');
+  const inputDir = path.resolve('test-fixtures', 'excessKeys');
+  const outFile = path.resolve('temp', 'excessKeysI18n.ts');
+  child_process.spawnSync('yarn', ['start', '-i', inputDir, '-o', outFile, '-d', 'en']);
 
-  const { changeLanguageByCode, i18n } = require('../test-fixtures/excessKeysI18n');
+  const { changeLanguageByCode, i18n } = require('../temp/excessKeysI18n');
 
   expect(i18n.lang()).toBe('English');
   expect(i18n.excess).toBeUndefined();

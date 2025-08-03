@@ -1,9 +1,6 @@
 export const VARIABLE_REGEX = /\${([A-Z_a-z]\w*)}/g;
 
 export const ErrorMessages = {
-  usage(): string {
-    return 'Usage: yarn start -i [dirpath] -o [filepath] -d [lang]';
-  },
   duplicatedLangFile(fileName: string, anotherFileName: string): string {
     return ['The following files represent the same language:', fileName, anotherFileName].join('\n');
   },

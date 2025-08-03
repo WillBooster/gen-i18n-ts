@@ -4,10 +4,10 @@ import path from 'node:path';
 import { hideBin } from 'yargs/helpers';
 import yargs from 'yargs/yargs';
 
-import { CodeGenerator } from './codeGenerator';
-import { ErrorMessages, InfoMessages } from './constants';
-import { LangFileConverter } from './langFileConverter';
-import { ObjectAnalyzer } from './objectAnalyzer';
+import { CodeGenerator } from './codeGenerator.js';
+import { ErrorMessages, InfoMessages } from './constants.js';
+import { LangFileConverter } from './langFileConverter.js';
+import { ObjectAnalyzer } from './objectAnalyzer.js';
 
 export async function cli(): Promise<void> {
   const { defaultLang, inputDir, outfile, watch } = await yargs(hideBin(process.argv))
@@ -36,7 +36,10 @@ export async function cli(): Promise<void> {
         alias: 'w',
         describe: 'Enable watch mode',
       },
-    }).argv;
+    })
+    .strict()
+    .version(getVersion())
+    .help().argv;
 
   await genI18ts(inputDir, outfile, defaultLang);
   if (watch) {
@@ -55,7 +58,18 @@ export async function cli(): Promise<void> {
   }
 }
 
-export async function genI18ts(inputDir: string, outfile: string, defaultLang: string): Promise<void> {
+function getVersion(): string {
+  let packageJsonDir = path.dirname(new URL(import.meta.url).pathname);
+  while (!fs.existsSync(path.join(packageJsonDir, 'package.json'))) {
+    packageJsonDir = path.dirname(packageJsonDir);
+  }
+  const packageJson = JSON.parse(fs.readFileSync(path.join(packageJsonDir, 'package.json'), 'utf8')) as {
+    version: string;
+  };
+  return packageJson.version;
+}
+
+async function genI18ts(inputDir: string, outfile: string, defaultLang: string): Promise<void> {
   const fileNames = await fs.promises.readdir(inputDir);
   const langFileNames = fileNames.filter((fileName) => ['.json', '.yaml', '.yml'].includes(path.extname(fileName)));
 
@@ -88,3 +102,5 @@ export async function genI18ts(inputDir: string, outfile: string, defaultLang: s
   await fs.promises.writeFile(outfile, code, { encoding: 'utf8' });
   console.info('Generated TypeScript code.');
 }
+
+await cli();
