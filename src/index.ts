@@ -1,12 +1,75 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+import { hideBin } from 'yargs/helpers';
+import yargs from 'yargs/yargs';
+
 import { CodeGenerator } from './codeGenerator.js';
 import { ErrorMessages, InfoMessages } from './constants.js';
 import { LangFileConverter } from './langFileConverter.js';
 import { ObjectAnalyzer } from './objectAnalyzer.js';
 
-export async function genI18ts(inputDir: string, outfile: string, defaultLang: string): Promise<void> {
+export async function cli(): Promise<void> {
+  const { defaultLang, inputDir, outfile, watch } = await yargs(hideBin(process.argv))
+    .scriptName('gen-i18n-ts')
+    .options({
+      inputDir: {
+        type: 'string',
+        alias: 'i',
+        describe: 'A path to input directory',
+        demandOption: true,
+      },
+      outfile: {
+        type: 'string',
+        alias: 'o',
+        describe: 'A path to output file',
+        demandOption: true,
+      },
+      defaultLang: {
+        type: 'string',
+        alias: 'd',
+        describe: 'A name of a default language',
+        demandOption: true,
+      },
+      watch: {
+        type: 'boolean',
+        alias: 'w',
+        describe: 'Enable watch mode',
+      },
+    })
+    .strict()
+    .version(getVersion())
+    .help().argv;
+
+  await genI18ts(inputDir, outfile, defaultLang);
+  if (watch) {
+    console.info();
+    console.info('Start monitoring i18n file changes.');
+    fs.watch(inputDir, async (event, fileName) => {
+      if (!fileName?.endsWith('.json')) return;
+
+      console.info(`### Detect changes in ${inputDir} (${event} on ${fileName}) ###`);
+      try {
+        await genI18ts(inputDir, outfile, defaultLang);
+      } catch (error) {
+        console.error(error);
+      }
+    });
+  }
+}
+
+function getVersion(): string {
+  let packageJsonDir = path.dirname(new URL(import.meta.url).pathname);
+  while (!fs.existsSync(path.join(packageJsonDir, 'package.json'))) {
+    packageJsonDir = path.dirname(packageJsonDir);
+  }
+  const packageJson = JSON.parse(fs.readFileSync(path.join(packageJsonDir, 'package.json'), 'utf8')) as {
+    version: string;
+  };
+  return packageJson.version;
+}
+
+async function genI18ts(inputDir: string, outfile: string, defaultLang: string): Promise<void> {
   const fileNames = await fs.promises.readdir(inputDir);
   const langFileNames = fileNames.filter((fileName) => ['.json', '.yaml', '.yml'].includes(path.extname(fileName)));
 
@@ -39,3 +102,5 @@ export async function genI18ts(inputDir: string, outfile: string, defaultLang: s
   await fs.promises.writeFile(outfile, code, { encoding: 'utf8' });
   console.info('Generated TypeScript code.');
 }
+
+await cli();

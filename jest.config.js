@@ -1,4 +1,4 @@
-// We cannot employ vitest because test must call require() dynamically.
+// We cannot employ vitest because tests must call require() dynamically.
 const config = {
   testEnvironment: 'node',
 };
