@@ -37,15 +37,23 @@ See [Usage of gen-i18n-ts command](Usage-of-gen-i18n-ts-command) section for mor
 ```ts
 import { i18n, changeLanguageByCode } from 'path/to/generated/i18n';
 
-i18n.foo();
-// use i18n object as you like
-// before you call changeLanguageByCode(), the language is set to the default one
+// Functions without parameters
+i18n.okButtonName();
+// => "Done"
 
+// Functions with parameters use named arguments
+i18n.welcome({ userName: 'John' });
+// => "Hi, John"
+
+i18n.pages.user({ userName: 'John' });
+// => "John's page"
+
+// Change language
 changeLanguageByCode('ja');
-// call changeLanguageByCode() when you wanna change the language
 
-i18n.foo();
-// here foo() is japanized
+// Now messages are in Japanese
+i18n.welcome({ userName: '太郎' });
+// => "こんにちは、太郎さん"
 ```
 
 ## Usage of gen-i18n-ts command
@@ -142,11 +150,11 @@ export const i18n = {
   okButtonName: function(): string {
     return ...
   },
-  welcome: function(userName: string): string {
+  welcome: function({ userName }: { userName: unknown }): string {
     return ...
   },
   pages: {
-    user: function(userName: string): string {
+    user: function({ userName }: { userName: unknown }): string {
       return ...
     },
     help: function(): string {
@@ -159,7 +167,9 @@ export const i18n = {
 }
 ```
 
-Note that even if a string in the input has no `${variableName}`, the output will be a zero-argument FUNCTION, NOT a STRING
+Note that:
+- Even if a string in the input has no `${variableName}`, the output will be a zero-argument FUNCTION, NOT a STRING
+- Functions with parameters use named arguments (e.g., `{ userName: 'value' }`) instead of positional arguments
 
 ### `changeLanguageByCode`
 
