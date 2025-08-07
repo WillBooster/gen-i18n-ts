@@ -5056,9 +5056,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.5.173":
-  version: 1.5.197
-  resolution: "electron-to-chromium@npm:1.5.197"
-  checksum: 10c0/2e48557a78bb17f1becdbcb4352ac570025cf7e304e5ad4657548a020c16646d1d5b00ffa149db3ebffb42a72981431305c566e7d7f971adaf5d15b9cb4c744a
+  version: 1.5.198
+  resolution: "electron-to-chromium@npm:1.5.198"
+  checksum: 10c0/745ded4c4bf73c96d6a491c4ab6e573903242f3e414ebbaa27efbee7001a7a07e8f0f95bfea1b572e93e70a355caa65e5090f95a146e90bc397e8276d2da30de
   languageName: node
   linkType: hard
 
@@ -10511,9 +10511,9 @@ __metadata:
   linkType: hard
 
 "spdx-license-ids@npm:^3.0.0":
-  version: 3.0.21
-  resolution: "spdx-license-ids@npm:3.0.21"
-  checksum: 10c0/ecb24c698d8496aa9efe23e0b1f751f8a7a89faedcdfcbfabae772b546c2db46ccde8f3bc447a238eb86bbcd4f73fea88720ef3b8394f7896381bec3d7736411
+  version: 3.0.22
+  resolution: "spdx-license-ids@npm:3.0.22"
+  checksum: 10c0/4a85e44c2ccfc06eebe63239193f526508ebec1abc7cf7bca8ee43923755636234395447c2c87f40fb672cf580a9c8e684513a676bfb2da3d38a4983684bbb38
   languageName: node
   linkType: hard
 
