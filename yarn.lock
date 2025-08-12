@@ -3666,9 +3666,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@willbooster/eslint-config-js@npm:11.4.1":
-  version: 11.4.1
-  resolution: "@willbooster/eslint-config-js@npm:11.4.1"
+"@willbooster/eslint-config-js@npm:11.4.2":
+  version: 11.4.2
+  resolution: "@willbooster/eslint-config-js@npm:11.4.2"
   peerDependencies:
     "@eslint/js": ">=9"
     eslint: ">=9"
@@ -3680,15 +3680,15 @@ __metadata:
     eslint-plugin-unicorn: ">=57"
     eslint-plugin-unused-imports: ">=4"
     globals: ">=16"
-  checksum: 10c0/21a1410ec33eae0e1dacdf215b04d44ac95f4e89a5481ffb304fbb72ff042f350f95e807e7f9a3399b4bb6fbac61be470edce4c7e169e99e84a22dcadb606a21
+  checksum: 10c0/c8aa2578adf6cb51a20ac6b17ee371157fdb975f6cfdc110f66d361b5f11ee37f87bd1772cf635d2f1b60c797bd060e0783f596779a023d8b0ade239690ee0ef
   languageName: node
   linkType: hard
 
-"@willbooster/eslint-config-ts@npm:11.4.1":
-  version: 11.4.1
-  resolution: "@willbooster/eslint-config-ts@npm:11.4.1"
+"@willbooster/eslint-config-ts@npm:11.4.5":
+  version: 11.4.5
+  resolution: "@willbooster/eslint-config-ts@npm:11.4.5"
   dependencies:
-    "@willbooster/eslint-config-js": "npm:11.4.1"
+    "@willbooster/eslint-config-js": "npm:11.4.2"
   peerDependencies:
     "@eslint/js": ">=9"
     eslint: ">=9"
@@ -3703,7 +3703,7 @@ __metadata:
     globals: ">=16"
     typescript: ">=5"
     typescript-eslint: ">=8"
-  checksum: 10c0/53679af96c42dea872edc9c619218af7610fb860b54caa67941ea0dda20f64e5b965ce4482e31a46b3db61abbea2158bdcacf0f8b51513714b73f7605050b08f
+  checksum: 10c0/822b3bdd4bf736ca2e37de2a7735e100bfbdea94416fc5b0445029488cd5ddb30ef522be2482a109bfca203b6a4f78d6843ba00927c36d95a3c7c94def60f1fc
   languageName: node
   linkType: hard
 
@@ -6097,7 +6097,7 @@ __metadata:
     "@types/node": "npm:24.1.0"
     "@types/yargs": "npm:17.0.33"
     "@willbooster/babel-configs": "npm:2.3.0"
-    "@willbooster/eslint-config-ts": "npm:11.4.1"
+    "@willbooster/eslint-config-ts": "npm:11.4.5"
     "@willbooster/prettier-config": "npm:10.2.0"
     babel-jest: "npm:30.0.5"
     babel-plugin-transform-remove-console: "npm:6.9.4"
