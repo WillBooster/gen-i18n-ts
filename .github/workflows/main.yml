@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: 1 Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
 
       - name: 2 Setup Build Environment
         shell: bash
