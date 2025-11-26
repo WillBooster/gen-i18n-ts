@@ -109,7 +109,7 @@ export class CodeGenerator {
       const declarationStatement = `const ${varParamMap}: Record<string, string> = { ${members} };`;
 
       const varPattern = 'pattern';
-      const patterns = typeObj.params.map((param) => `\\$\\{${param}\\}`).join('|');
+      const patterns = typeObj.params.map((param) => String.raw`\$\{${param}\}`).join('|');
       const regex = `/${patterns}/g`;
       const replaceFunc = `(${varPattern}) => ${varParamMap}[${varPattern}] ?? ''`;
       const returnStatement = `return ${varName}.replace(${regex}, ${replaceFunc});`;

@@ -28,7 +28,8 @@ module.exports = {
       const content = fs.readFileSync(file, 'utf8');
       if (content.includes('Warnings:')) {
         return [
-          `!!! Migration SQL file (${path.relative('', file)}) contains warnings !!! Solve the warnings and commit again.`,
+          `echo '!!! Migration SQL file (${path.relative('', file)}) contains warnings !!! Solve the warnings and commit again.'`,
+          'false',
         ];
       }
     }

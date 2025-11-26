@@ -1,7 +1,7 @@
 import * as child_process from 'node:child_process';
 import path from 'node:path';
 
-/* eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires, unicorn/prefer-module */
+/* eslint-disable @typescript-eslint/no-require-imports, unicorn/prefer-module */
 
 test('non-global mode (function with language parameter)', async () => {
   const inputDir = path.resolve('test-fixtures', 'basicUse');

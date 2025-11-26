@@ -18,15 +18,18 @@ test-fixtures/*.ts
 !.keep
 .aider*
 .env.production
-.idea/AugmentWebviewStateStore.xml
-.idea/copilot/chatSessions/
-.devcontainer/
 */mount/*.hash
+.devcontainer/
+.idea/AugmentWebviewStateStore.xml
+.idea/copilot.*
+.idea/copilot/chatSessions/
+.serena/
+.tmp/
 __generated__/
+@willbooster/
 dist/
 temp/
 tmp/
-.tmp/
 
 # Created by https://www.toptal.com/developers/gitignore/api/windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows
@@ -69,7 +72,7 @@ $RECYCLE.BIN/
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
 
 # Thumbnails
 ._*
