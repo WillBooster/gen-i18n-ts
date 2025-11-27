@@ -4,10 +4,10 @@ import path from 'node:path';
 import { hideBin } from 'yargs/helpers';
 import yargs from 'yargs/yargs';
 
-import { CodeGenerator } from './codeGenerator.js';
+import { generate } from './codeGenerator.js';
 import { ErrorMessages, InfoMessages } from './constants.js';
-import { LangFileConverter } from './langFileConverter.js';
-import { ObjectAnalyzer } from './objectAnalyzer.js';
+import { toLangObj, toTypeObj } from './langFileConverter.js';
+import { analyze } from './objectAnalyzer.js';
 
 export async function cli(): Promise<void> {
   const { defaultLang, global, inputDir, outfile, watch } = await yargs(hideBin(process.argv))
@@ -90,20 +90,20 @@ async function genI18ts(inputDir: string, outfile: string, defaultLang: string, 
   const defaultLangPath = langToPath.get(defaultLang);
   if (!defaultLangPath) throw new Error(ErrorMessages.noDefaultLangFile());
 
-  const typeObj = LangFileConverter.toTypeObj(defaultLang, defaultLangPath);
-  const defaultLangObj = LangFileConverter.toLangObj(defaultLang, defaultLangPath);
+  const typeObj = toTypeObj(defaultLang, defaultLangPath);
+  const defaultLangObj = toLangObj(defaultLang, defaultLangPath);
 
   const langToLangObj = new Map<string, unknown>([[defaultLang, defaultLangObj]]);
   for (const [lang, langFilePath] of langToPath.entries()) {
     if (lang === defaultLang) continue;
     console.info(InfoMessages.analyzingLangFile(langFilePath));
-    const langObj = LangFileConverter.toLangObj(defaultLang, langFilePath);
-    ObjectAnalyzer.analyze(typeObj, lang, langObj, defaultLangObj);
+    const langObj = toLangObj(defaultLang, langFilePath);
+    analyze(typeObj, lang, langObj, defaultLangObj);
     langToLangObj.set(lang, langObj);
   }
   if (!langToLangObj.has(defaultLang)) throw new Error(ErrorMessages.noDefaultLangFile());
 
-  const code = CodeGenerator.generate(typeObj, langToLangObj, defaultLang, global);
+  const code = generate(typeObj, langToLangObj, defaultLang, global);
   await fs.promises.mkdir(path.dirname(outfile), { recursive: true });
   await fs.promises.writeFile(outfile, code, { encoding: 'utf8' });
   console.info('Generated TypeScript code.');

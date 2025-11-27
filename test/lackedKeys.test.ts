@@ -1,9 +1,9 @@
 import child_process from 'node:child_process';
 import path from 'node:path';
 
-/* eslint-disable @typescript-eslint/no-require-imports, unicorn/prefer-module */
+/* eslint-disable @typescript-eslint/no-require-imports, unicorn/prefer-module, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment */
 
-test('lacked keys', async () => {
+test('lacked keys', () => {
   const inputDir = path.resolve('test-fixtures', 'lackedKeys');
   const outFile = path.resolve('temp', 'lackedKeysI18n.ts');
   child_process.spawnSync('yarn', ['start', '-i', inputDir, '-o', outFile, '-d', 'en', '--global']);

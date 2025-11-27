@@ -1,6 +1,9 @@
-export abstract class BaseType {}
+export abstract class BaseType {
+  abstract readonly kind: string;
+}
 
 export class FunctionType extends BaseType {
+  readonly kind = 'function';
   params: string[];
 
   constructor(params: string[]) {
@@ -10,6 +13,7 @@ export class FunctionType extends BaseType {
 }
 
 export class ObjectType extends BaseType {
+  readonly kind = 'object';
   map: Record<string, BaseType>;
 
   constructor(map: Record<string, BaseType>) {

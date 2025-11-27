@@ -1,9 +1,9 @@
 import * as child_process from 'node:child_process';
 import path from 'node:path';
 
-/* eslint-disable @typescript-eslint/no-require-imports, unicorn/prefer-module */
+/* eslint-disable @typescript-eslint/no-require-imports, unicorn/prefer-module, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-return */
 
-test('non-global mode (function with language parameter)', async () => {
+test('non-global mode (function with language parameter)', () => {
   const inputDir = path.resolve('test-fixtures', 'basicUse');
   const outFile = path.resolve('temp', 'nonGlobalModeI18n.ts');
   child_process.spawnSync('yarn', ['start', '-i', inputDir, '-o', outFile, '-d', 'en', '--no-global']);

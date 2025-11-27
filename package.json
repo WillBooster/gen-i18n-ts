@@ -54,8 +54,8 @@
     "@types/node": "24.1.0",
     "@types/yargs": "17.0.33",
     "@willbooster/babel-configs": "2.3.0",
-    "@willbooster/eslint-config-ts": "11.4.10",
-    "@willbooster/prettier-config": "10.2.1",
+    "@willbooster/eslint-config-ts": "11.4.11",
+    "@willbooster/prettier-config": "10.2.2",
     "babel-jest": "30.0.5",
     "babel-plugin-transform-remove-console": "6.9.4",
     "build-ts": "15.0.17",
@@ -82,7 +82,7 @@
     "typescript": "5.9.3",
     "typescript-eslint": "8.47.0"
   },
-  "packageManager": "yarn@4.11.0",
+  "packageManager": "yarn@4.12.0",
   "engines": {
     "node": ">=20"
   },
