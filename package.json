@@ -36,7 +36,7 @@
   },
   "prettier": "@willbooster/prettier-config",
   "dependencies": {
-    "js-yaml": "4.1.0",
+    "js-yaml": "4.1.1",
     "yargs": "18.0.0"
   },
   "devDependencies": {
