@@ -3670,10 +3670,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@willbooster/babel-configs@npm:2.3.3":
-  version: 2.3.3
-  resolution: "@willbooster/babel-configs@npm:2.3.3"
-  checksum: 10c0/55a2db47856fe4a537934a8b644a0d863dd7de342e0d7948043d83be1174f6d826c453e03ac122b2b62ffc468713b2f57a07854c310a2a3968bf0b6168bfb3b0
+"@willbooster/babel-configs@npm:2.3.4":
+  version: 2.3.4
+  resolution: "@willbooster/babel-configs@npm:2.3.4"
+  checksum: 10c0/1b8fc9d74be37ec25d6e3e2947b803b939c7c61fa3817b678a46fa7e7c8c5b26a9a5bee6c534c87731686852c0d3c1c9baa70212a4b0303ee89a4452e01279f8
   languageName: node
   linkType: hard
 
@@ -6068,7 +6068,7 @@ __metadata:
     "@types/micromatch": "npm:4.0.10"
     "@types/node": "npm:24.10.1"
     "@types/yargs": "npm:17.0.35"
-    "@willbooster/babel-configs": "npm:2.3.3"
+    "@willbooster/babel-configs": "npm:2.3.4"
     "@willbooster/eslint-config-ts": "npm:11.4.12"
     "@willbooster/prettier-config": "npm:10.2.4"
     babel-jest: "npm:30.2.0"
