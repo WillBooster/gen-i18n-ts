@@ -19,7 +19,7 @@
   "scripts": {
     "build": "build-ts app",
     "check-all-for-ai": "yarn check-for-ai && yarn test",
-    "check-for-ai": "yarn install > /dev/null && yarn format > /dev/null 2> /dev/null || true && yarn lint-fix --quiet && yarn typecheck",
+    "check-for-ai": "yarn install > /dev/null && yarn format > /dev/null 2> /dev/null || true && yarn typecheck && yarn lint-fix --quiet",
     "cleanup": "yarn format && yarn lint-fix",
     "format": "sort-package-json && yarn prettify",
     "postinstall": "husky || true",
@@ -60,7 +60,7 @@
     "babel-plugin-transform-remove-console": "6.9.4",
     "build-ts": "17.0.12",
     "conventional-changelog-conventionalcommits": "9.1.0",
-    "eslint": "9.39.1",
+    "eslint": "9.39.2",
     "eslint-config-flat-gitignore": "2.1.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-import-resolver-typescript": "4.4.4",
