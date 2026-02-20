@@ -51,7 +51,7 @@
     "@types/jest": "30.0.0",
     "@types/js-yaml": "4.0.9",
     "@types/micromatch": "4.0.10",
-    "@types/node": "24.10.12",
+    "@types/node": "24.10.13",
     "@types/yargs": "17.0.35",
     "@willbooster/babel-configs": "2.3.4",
     "@willbooster/eslint-config-ts": "11.4.12",
@@ -80,7 +80,7 @@
     "semantic-release": "25.0.3",
     "sort-package-json": "3.6.1",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.54.0"
+    "typescript-eslint": "8.55.0"
   },
   "packageManager": "yarn@4.12.0",
   "engines": {
