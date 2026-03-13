@@ -3759,14 +3759,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@willbooster/shared-lib-node@npm:8.1.6":
-  version: 8.1.6
-  resolution: "@willbooster/shared-lib-node@npm:8.1.6"
+"@willbooster/shared-lib-node@npm:8.2.0":
+  version: 8.2.0
+  resolution: "@willbooster/shared-lib-node@npm:8.2.0"
   dependencies:
     dotenv: "npm:17.3.1"
     dotenv-expand: "npm:12.0.3"
-    tree-kill: "npm:1.2.2"
-  checksum: 10c0/c36cf953dcf0237c874b02a77b018b2779e0bc5e0cfdcc203873d5332092679374d4ced313314008a53c528fed10909406c8eb5944e8e15f06e16128c8235a0d
+  checksum: 10c0/bbce1f20aca4f0475021d79f0549aa6b79d1dfa15698bc0de4bb384854fc2d49f803afb9ad0facc3141de0d44fe1da3b2fb4ed85605bc60e686af506a736bf96
   languageName: node
   linkType: hard
 
@@ -4294,9 +4293,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"build-ts@npm:17.0.20":
-  version: 17.0.20
-  resolution: "build-ts@npm:17.0.20"
+"build-ts@npm:17.0.21":
+  version: 17.0.21
+  resolution: "build-ts@npm:17.0.21"
   dependencies:
     "@babel/core": "npm:7.29.0"
     "@babel/plugin-proposal-decorators": "npm:7.29.0"
@@ -4313,7 +4312,7 @@ __metadata:
     "@rollup/plugin-replace": "npm:6.0.3"
     "@rollup/plugin-terser": "npm:0.4.4"
     "@rollup/pluginutils": "npm:5.3.0"
-    "@willbooster/shared-lib-node": "npm:8.1.6"
+    "@willbooster/shared-lib-node": "npm:8.2.0"
     babel-plugin-polyfill-corejs3: "npm:0.14.0"
     babel-plugin-transform-remove-console: "npm:6.9.4"
     chalk: "npm:5.6.2"
@@ -4334,7 +4333,7 @@ __metadata:
     yargs: "npm:18.0.0"
   bin:
     build-ts: bin/index.js
-  checksum: 10c0/b39e781560238fa9032e2639c1ef59a01a828ad5a13bf45364f7fb9765a9c1ca08c800cd53666be87fffdf192112edd1543931c07b59f1418bef3ef7d6ce555d
+  checksum: 10c0/1bc74a5421c03fdb83e688960c97a7e963dd46fc17ecd4791ab85ce23e60db01804363ec8bb7c5906419efa76e6447ab24c6c168bdf18ed5cba26383d9d5974a
   languageName: node
   linkType: hard
 
@@ -6135,7 +6134,7 @@ __metadata:
     "@willbooster/prettier-config": "npm:10.2.4"
     babel-jest: "npm:30.2.0"
     babel-plugin-transform-remove-console: "npm:6.9.4"
-    build-ts: "npm:17.0.20"
+    build-ts: "npm:17.0.21"
     conventional-changelog-conventionalcommits: "npm:9.2.0"
     eslint: "npm:9.39.1"
     eslint-config-flat-gitignore: "npm:2.2.1"
@@ -6150,7 +6149,7 @@ __metadata:
     husky: "npm:9.1.7"
     jest: "npm:30.2.0"
     js-yaml: "npm:4.1.1"
-    lint-staged: "npm:16.3.1"
+    lint-staged: "npm:16.3.2"
     micromatch: "npm:4.0.8"
     pinst: "npm:3.0.0"
     prettier: "npm:3.8.1"
@@ -8000,9 +7999,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lint-staged@npm:16.3.1":
-  version: 16.3.1
-  resolution: "lint-staged@npm:16.3.1"
+"lint-staged@npm:16.3.2":
+  version: 16.3.2
+  resolution: "lint-staged@npm:16.3.2"
   dependencies:
     commander: "npm:^14.0.3"
     listr2: "npm:^9.0.5"
@@ -8012,7 +8011,7 @@ __metadata:
     yaml: "npm:^2.8.2"
   bin:
     lint-staged: bin/lint-staged.js
-  checksum: 10c0/9aed98ab759c7acdcfb969c3c09b24597bd6717771ab1f1eec571038713bd0d0ad80304d0a737e5b7b7c64141e4ff9489022448492353f5d1b476223c43f40bc
+  checksum: 10c0/4cbaa85904a912215660ac3c69400b71beabe3fe7e82969cd32c726dbfb04b0f651d0660906215f955c1446ac6b520319e1c7a03c707353a5f038c3d0441a8c3
   languageName: node
   linkType: hard
 
@@ -10922,15 +10921,6 @@ __metadata:
   version: 0.6.8
   resolution: "traverse@npm:0.6.8"
   checksum: 10c0/d97a71be2ca895ff6b813840db37f9b5d88e30f7c4c4bd5b22c5c68ebc22d4a10c4599e02c51414523cc7ada3432e118ea62ebd53cf6f3a4f3aa951bd45072a9
-  languageName: node
-  linkType: hard
-
-"tree-kill@npm:1.2.2":
-  version: 1.2.2
-  resolution: "tree-kill@npm:1.2.2"
-  bin:
-    tree-kill: cli.js
-  checksum: 10c0/7b1b7c7f17608a8f8d20a162e7957ac1ef6cd1636db1aba92f4e072dc31818c2ff0efac1e3d91064ede67ed5dc57c565420531a8134090a12ac10cf792ab14d2
   languageName: node
   linkType: hard
 
