@@ -1,0 +1,135 @@
+{
+  "version": 1,
+  "skills": {
+    "check-pr-ci": {
+      "source": "WillBooster/agent-skills",
+      "sourceType": "github",
+      "computedHash": "db99e44487c728f8096381166902099315205ab8fa3ddd7e10eab3c90c47c649"
+    },
+    "complete-pr": {
+      "source": "WillBooster/agent-skills",
+      "sourceType": "github",
+      "computedHash": "6a949300286b16697cf95ca768f41c4ced6602b61ac4cd579ced55201f110931"
+    },
+    "fetch-issue": {
+      "source": "WillBooster/agent-skills",
+      "sourceType": "github",
+      "computedHash": "22524c9627687ebaf0abab981e11a0469380d170ed82627b6c4d30bf6e220778"
+    },
+    "fetch-pr": {
+      "source": "WillBooster/agent-skills",
+      "sourceType": "github",
+      "computedHash": "bce769cb7cfd0a5c0c30cd2521bb8dfae6d3c0cadf49561e9eab6e2d18d72e3e"
+    },
+    "fix-bug": {
+      "source": "WillBooster/agent-skills",
+      "sourceType": "github",
+      "computedHash": "2ea944e8ee089d53aa606b13fd51b27ac0ffd1286ded3fa90ade5e6c0a04d071"
+    },
+    "manage-pr-review-threads": {
+      "source": "WillBooster/agent-skills",
+      "sourceType": "github",
+      "computedHash": "9634ab4d4c4d3629151eda45c644c027c5063cc3fa1a4810504908bbb77ca8a7"
+    },
+    "open-pr": {
+      "source": "WillBooster/agent-skills",
+      "sourceType": "github",
+      "computedHash": "7d40325fd1d0a2a40d0d81d15faa61317ba82e381857fc4ddf50d6cfc5ed705c"
+    },
+    "plan-issue-claude": {
+      "source": "WillBooster/agent-skills",
+      "sourceType": "github",
+      "computedHash": "1879df73ee615064c65e1dc4929a9de4d22ca2c2ff0878cd4f2b7a2d947e4497"
+    },
+    "plan-issue-codex": {
+      "source": "WillBooster/agent-skills",
+      "sourceType": "github",
+      "computedHash": "9a8d8a6cb6de7f74dfd0e5f8f251d62626da11829eaa6d53a41c0bd70fcec839"
+    },
+    "plan-issue-gemini": {
+      "source": "WillBooster/agent-skills",
+      "sourceType": "github",
+      "computedHash": "c12895d1dc3140fed61a2f6ca0e28be601a4dfc1fbf24b172ef2e77a9185eb26"
+    },
+    "review-all": {
+      "source": "WillBooster/agent-skills",
+      "sourceType": "github",
+      "computedHash": "fc3454edc3470a0981bb54b5ebe91a51461a302fd4f08883329786ca6b5ab04c"
+    },
+    "review-claude": {
+      "source": "WillBooster/agent-skills",
+      "sourceType": "github",
+      "computedHash": "528d7b307c766c9f08cf49a9c3808ff7b74423e015b1fcf0c2bbf84f3ddbcca8"
+    },
+    "review-codex": {
+      "source": "WillBooster/agent-skills",
+      "sourceType": "github",
+      "computedHash": "415ed8f9d185786d349e7cdf20f9c12bb2c18c79eb25c789a44231bb08f040fd"
+    },
+    "review-fix-all": {
+      "source": "WillBooster/agent-skills",
+      "sourceType": "github",
+      "computedHash": "8d655173933f6cc09a237fac53c753fc52a2e078ce267849d0d79390229cb42f"
+    },
+    "review-fix-claude": {
+      "source": "WillBooster/agent-skills",
+      "sourceType": "github",
+      "computedHash": "098eeed3d9d121ef26ec15544301ce9d728d5c39d4eea632728c38ad4f10622f"
+    },
+    "review-fix-codex": {
+      "source": "WillBooster/agent-skills",
+      "sourceType": "github",
+      "computedHash": "531531f6d6e3c529ddf67e43fc807e1a636c9d53f6be0b2516638d28078320e6"
+    },
+    "review-fix-gemini": {
+      "source": "WillBooster/agent-skills",
+      "sourceType": "github",
+      "computedHash": "7fbb480ad73e2a75fc97cf5b4a8c27f9d2f34a5a5023229f6555922e6fe41fdf"
+    },
+    "review-gemini": {
+      "source": "WillBooster/agent-skills",
+      "sourceType": "github",
+      "computedHash": "8952f39e838568da26819057dfd8f785666efebd8f93320a60151da57e7e2a61"
+    },
+    "screenshot-claude": {
+      "source": "WillBooster/agent-skills",
+      "sourceType": "github",
+      "computedHash": "d8a8d268f7dd7779831a3a6cf35cd8cc10dcc76a544dafb0e08f4f4d8cc8204c"
+    },
+    "screenshot-codex": {
+      "source": "WillBooster/agent-skills",
+      "sourceType": "github",
+      "computedHash": "97b6c22709bdf88d3e1969dbded1d87932adc23993e8eac55fd1a8ad309019fc"
+    },
+    "screenshot-gemini": {
+      "source": "WillBooster/agent-skills",
+      "sourceType": "github",
+      "computedHash": "940eece7ff5ffa5e2005db59df51a2211276b36338558063285d83be7329a248"
+    },
+    "simplify-pr-claude": {
+      "source": "WillBooster/agent-skills",
+      "sourceType": "github",
+      "computedHash": "22119ca88a3e40bf8e9b23735a48cd2fa2eee17c6bdd0c14d03a62e0884881ea"
+    },
+    "simplify-pr-codex": {
+      "source": "WillBooster/agent-skills",
+      "sourceType": "github",
+      "computedHash": "1f11aa33791ecf93db4750f5d18bf1e05bd6787d1ee1fd406ce82a50bb0d726f"
+    },
+    "simplify-pr-gemini": {
+      "source": "WillBooster/agent-skills",
+      "sourceType": "github",
+      "computedHash": "d8338e06e81084af132eac4e6e2fb9b0641790e70dad4eeba39997b007917205"
+    },
+    "update-pr": {
+      "source": "WillBooster/agent-skills",
+      "sourceType": "github",
+      "computedHash": "0191d9bdc68010c75e3d6f39a969485414c621d7eee1fbbe5bf7cf36777fa05d"
+    },
+    "wbfy": {
+      "source": "WillBooster/agent-skills",
+      "sourceType": "github",
+      "computedHash": "e67449705ec89b00d06bb2fb392bfe4f53f1db7ee35b30a16312379e4b1d8a69"
+    }
+  }
+}
