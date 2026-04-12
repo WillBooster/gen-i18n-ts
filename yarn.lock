@@ -3721,9 +3721,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@willbooster/babel-configs@npm:2.4.0":
-  version: 2.4.0
-  resolution: "@willbooster/babel-configs@npm:2.4.0"
+"@willbooster/babel-configs@npm:2.5.1":
+  version: 2.5.1
+  resolution: "@willbooster/babel-configs@npm:2.5.1"
   peerDependencies:
     "@babel/core": ">=7"
     "@babel/plugin-proposal-class-properties": ">=7"
@@ -3738,13 +3738,13 @@ __metadata:
       optional: true
     core-js:
       optional: true
-  checksum: 10c0/17557ed0a91b534c4c3e223f5d74bebfecbe5ae481dac92fa5c16ab885e8a084a5e4a9006c5d3ce04d869f44f388068fe669f3ab6f1d35d94600dfe62bcdf8b3
+  checksum: 10c0/bee556a04e8826f10d20595ca4012872a217e5d572186e9398b20489fce95a5fc4df0e359f45c79ab114a6718329ec53f8284f0964f320d4afc72686a5453b53
   languageName: node
   linkType: hard
 
-"@willbooster/eslint-config-js@npm:11.5.0":
-  version: 11.5.0
-  resolution: "@willbooster/eslint-config-js@npm:11.5.0"
+"@willbooster/eslint-config-js@npm:11.5.1":
+  version: 11.5.1
+  resolution: "@willbooster/eslint-config-js@npm:11.5.1"
   peerDependencies:
     "@eslint/js": ">=9"
     eslint: ">=9"
@@ -3756,15 +3756,15 @@ __metadata:
     eslint-plugin-unicorn: ">=57"
     eslint-plugin-unused-imports: ">=4"
     globals: ">=16"
-  checksum: 10c0/bd3b67cff6f90bce3a9ee17c4fbc1a9ebd4855a7eca8e030835bf3e22bb5def192c4f2e017520b6151d9e933e7e30c29fcacc43a75241c6dede40d4787d36d39
+  checksum: 10c0/43a455eb2bd6dc2e696018922f2effb700827ee3f091522854f6e4459c7663327f18ae41dff56a8e28af2d9c9cddfbdb6aa14204aa6f085940e3db7d71cd4ea3
   languageName: node
   linkType: hard
 
-"@willbooster/eslint-config-ts@npm:11.5.0":
-  version: 11.5.0
-  resolution: "@willbooster/eslint-config-ts@npm:11.5.0"
+"@willbooster/eslint-config-ts@npm:11.5.1":
+  version: 11.5.1
+  resolution: "@willbooster/eslint-config-ts@npm:11.5.1"
   dependencies:
-    "@willbooster/eslint-config-js": "npm:11.5.0"
+    "@willbooster/eslint-config-js": "npm:11.5.1"
   peerDependencies:
     "@eslint/js": ">=9"
     eslint: ">=9"
@@ -3779,17 +3779,17 @@ __metadata:
     globals: ">=16"
     typescript: ">=5"
     typescript-eslint: ">=8"
-  checksum: 10c0/3bd70b1a899492e7a0444a26f9dd44a4fe4e624014de6b83641fdec1d016de653d294e757ec2726502926aa050557ea7e201f39d61386b8687ca3a04a834a770
+  checksum: 10c0/8c9e51a37ca0b1b5ed77f965c50380de7b7186349e487575565ee8929983ddec45c708c56581d2a36b64ae3f8d9feacfc06b5110799148ae173fe9d4fda80b31
   languageName: node
   linkType: hard
 
-"@willbooster/prettier-config@npm:10.3.0":
-  version: 10.3.0
-  resolution: "@willbooster/prettier-config@npm:10.3.0"
+"@willbooster/prettier-config@npm:10.4.0":
+  version: 10.4.0
+  resolution: "@willbooster/prettier-config@npm:10.4.0"
   peerDependencies:
     prettier: ">=3"
     prettier-plugin-java: ">=2.6"
-  checksum: 10c0/f2bc8aa3a8b64a734b354c8eb54107d5c3fe957fc519bba9b00abdd6e93e4b70c88363a0e53dcec745be62ba6688f78d3d52fc0c13ddb9c763d314f019e4bae7
+  checksum: 10c0/37c25f8664d13ab5caf25f57545cbbec4f8005c812ee45d291f2e7ab7ab040c3bcd7ecf1c05c0872da884e044f6139413336fb158777649e249913efe176945f
   languageName: node
   linkType: hard
 
@@ -6156,9 +6156,9 @@ __metadata:
     "@types/micromatch": "npm:4.0.10"
     "@types/node": "npm:24.12.0"
     "@types/yargs": "npm:17.0.35"
-    "@willbooster/babel-configs": "npm:2.4.0"
-    "@willbooster/eslint-config-ts": "npm:11.5.0"
-    "@willbooster/prettier-config": "npm:10.3.0"
+    "@willbooster/babel-configs": "npm:2.5.1"
+    "@willbooster/eslint-config-ts": "npm:11.5.1"
+    "@willbooster/prettier-config": "npm:10.4.0"
     babel-jest: "npm:30.3.0"
     babel-plugin-transform-remove-console: "npm:6.9.4"
     build-ts: "npm:17.0.24"
