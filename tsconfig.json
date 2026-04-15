@@ -17,10 +17,9 @@
     "sourceMap": true,
     "strict": true,
     "target": "ESNext",
-    "typeRoots": ["./node_modules/@types", "./@types"],
-    "types": ["node"]
+    "types": ["node", "vitest/globals"]
   },
   "exclude": ["test/fixtures"],
   "extends": ["@tsconfig/node-lts/tsconfig.json", "@tsconfig/node-ts/tsconfig.json"],
-  "include": ["scripts/**/*", "src/**/*", "test/**/*", "vitest.config.ts"]
+  "include": ["*.config.ts", "scripts/**/*", "src/**/*", "test/**/*", "vitest.config.ts"]
 }

@@ -3330,13 +3330,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@willbooster/oxlint-config@npm:1.4.1":
-  version: 1.4.1
-  resolution: "@willbooster/oxlint-config@npm:1.4.1"
+"@willbooster/oxlint-config@npm:1.4.2":
+  version: 1.4.2
+  resolution: "@willbooster/oxlint-config@npm:1.4.2"
   peerDependencies:
     oxlint: ">=1.60.0"
     oxlint-tsgolint: ">=0.18.1"
-  checksum: 10c0/8f41637a0bbd3cd0326070351fd317dec893073eed97bbd8f71c5d6b391f8dacc4b354d3d179bfc1dac60c3e3554c54d615b4f6592ecadf6b8185c4bd08046da
+  checksum: 10c0/8f92735e41a43f55e282ddfc2f0171d68b9de0ec126fcae94c3a99648d0c33ca98d62887da6b18c360c208a30980f6f2da86331668e6b1179fdb5ce9cb601977
   languageName: node
   linkType: hard
 
@@ -5004,7 +5004,7 @@ __metadata:
     "@typescript/native-preview": "npm:7.0.0-dev.20260415.1"
     "@willbooster/babel-configs": "npm:2.5.1"
     "@willbooster/oxfmt-config": "npm:1.2.0"
-    "@willbooster/oxlint-config": "npm:1.4.1"
+    "@willbooster/oxlint-config": "npm:1.4.2"
     "@willbooster/prettier-config": "npm:10.4.0"
     babel-plugin-transform-remove-console: "npm:6.9.4"
     build-ts: "npm:17.0.26"
