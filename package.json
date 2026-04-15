@@ -57,7 +57,7 @@
     "@types/node": "25.5.2",
     "@types/yargs": "17.0.35",
     "@typescript/native-preview": "7.0.0-dev.20260415.1",
-    "@willbooster/babel-configs": "2.4.0",
+    "@willbooster/babel-configs": "2.5.1",
     "@willbooster/oxfmt-config": "1.2.0",
     "@willbooster/oxlint-config": "1.4.1",
     "@willbooster/prettier-config": "10.4.0",

@@ -3782,9 +3782,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@willbooster/babel-configs@npm:2.4.0":
-  version: 2.4.0
-  resolution: "@willbooster/babel-configs@npm:2.4.0"
+"@willbooster/babel-configs@npm:2.5.1":
+  version: 2.5.1
+  resolution: "@willbooster/babel-configs@npm:2.5.1"
   peerDependencies:
     "@babel/core": ">=7"
     "@babel/plugin-proposal-class-properties": ">=7"
@@ -3799,7 +3799,7 @@ __metadata:
       optional: true
     core-js:
       optional: true
-  checksum: 10c0/17557ed0a91b534c4c3e223f5d74bebfecbe5ae481dac92fa5c16ab885e8a084a5e4a9006c5d3ce04d869f44f388068fe669f3ab6f1d35d94600dfe62bcdf8b3
+  checksum: 10c0/bee556a04e8826f10d20595ca4012872a217e5d572186e9398b20489fce95a5fc4df0e359f45c79ab114a6718329ec53f8284f0964f320d4afc72686a5453b53
   languageName: node
   linkType: hard
 
@@ -5778,7 +5778,7 @@ __metadata:
     "@types/node": "npm:25.5.2"
     "@types/yargs": "npm:17.0.35"
     "@typescript/native-preview": "npm:7.0.0-dev.20260415.1"
-    "@willbooster/babel-configs": "npm:2.4.0"
+    "@willbooster/babel-configs": "npm:2.5.1"
     "@willbooster/oxfmt-config": "npm:1.2.0"
     "@willbooster/oxlint-config": "npm:1.4.1"
     "@willbooster/prettier-config": "npm:10.4.0"
