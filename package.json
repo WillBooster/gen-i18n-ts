@@ -58,7 +58,7 @@
     "@typescript/native-preview": "7.0.0-dev.20260415.1",
     "@willbooster/babel-configs": "2.5.1",
     "@willbooster/oxfmt-config": "1.2.0",
-    "@willbooster/oxlint-config": "1.4.1",
+    "@willbooster/oxlint-config": "1.4.2",
     "@willbooster/prettier-config": "10.4.0",
     "babel-plugin-transform-remove-console": "6.9.4",
     "build-ts": "17.0.26",

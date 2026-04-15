@@ -17,7 +17,7 @@
   - Fix the actual root cause instead of applying workarounds.
 - After making code changes, run `yarn check-all-for-ai` to execute all tests (takes up to 1 hour), or `yarn check-for-ai` for only type checking and linting (takes up to 10 minutes).
   - If you are confident that your changes will not break any tests, you may use `check-for-ai`.
-  - Use `oxlint` ignore comments with reasons (e.g., `// oxlint-disable-next-line no-console --- <reason>`) if lint errors or warnings cannot be fixed.
+  - Use `oxlint` ignore comments with reasons (e.g., `// oxlint-disable-next-line <rule> -- <reason>`) if lint errors or warnings cannot be fixed.
 - Once you have verified your changes, commit and push them to the current (non-main) branch, then create a PR via `gh`.
   - Follow the conventional commits; your commit message should start with `feat:`, `fix:`, etc.
   - If not specified, make sure to add a new line at the end of your commit message with: `Co-authored-by: WillBooster (Gemini CLI) <agent@willbooster.com>`.
