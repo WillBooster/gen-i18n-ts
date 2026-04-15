@@ -18,9 +18,9 @@
     "strict": true,
     "target": "ESNext",
     "typeRoots": ["./node_modules/@types", "./@types"],
-    "types": ["node", "jest"]
+    "types": ["node"]
   },
   "exclude": ["test/fixtures"],
   "extends": ["@tsconfig/node-lts/tsconfig.json", "@tsconfig/node-ts/tsconfig.json"],
-  "include": ["scripts/**/*", "src/**/*", "test/**/*"]
+  "include": ["scripts/**/*", "src/**/*", "test/**/*", "vitest.config.ts"]
 }

@@ -8,7 +8,7 @@ test('numeric keys', () => {
   const outFile = path.resolve('temp', 'numericKeysI18n.ts');
   child_process.spawnSync('yarn', ['start', '-i', inputDir, '-o', outFile, '-d', 'en', '--global']);
 
-  const { changeLanguageByCode, i18n } = require('../temp/numericKeysI18n');
+  const { changeLanguageByCode, i18n } = require('../temp/numericKeysI18n.ts');
 
   expect(i18n['123456']()).toBe('numeric key');
 

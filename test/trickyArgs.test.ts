@@ -8,7 +8,7 @@ test('tricky arguments', () => {
   const outFile = path.resolve('temp', 'trickyArgsI18n.ts');
   child_process.spawnSync('yarn', ['start', '-i', inputDir, '-o', outFile, '-d', 'en', '--global']);
 
-  const { changeLanguageByCode, i18n } = require('../temp/trickyArgsI18n');
+  const { changeLanguageByCode, i18n } = require('../temp/trickyArgsI18n.ts');
 
   expect(i18n.test({ a: 'b', b: 'a' })).toBe('b and a');
   expect(i18n.test({ a: '${b}', b: 'a' })).toBe('${b} and a');

@@ -8,7 +8,7 @@ test('non-global mode (function with language parameter)', () => {
   const outFile = path.resolve('temp', 'nonGlobalModeI18n.ts');
   child_process.spawnSync('yarn', ['start', '-i', inputDir, '-o', outFile, '-d', 'en', '--no-global']);
 
-  const exported = require('../temp/nonGlobalModeI18n');
+  const exported = require('../temp/nonGlobalModeI18n.ts');
 
   expect(typeof exported.i18n).toBe('function');
   expect(exported.changeLanguageByCode).toBeUndefined();

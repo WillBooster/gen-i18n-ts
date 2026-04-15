@@ -35,7 +35,7 @@
     "prettify": "prettier --cache --color --no-error-on-unmatched-pattern --write \"**/{.*/,}*.{java}\" \"!**/test{-,/}fixtures/**\" || true",
     "start": "build-ts run src/index.ts --",
     "start-prod": "yarn build && yarn gen-i18n-ts",
-    "test": "yarn jest",
+    "test": "yarn vitest run",
     "typecheck": "tsgo --noEmit"
   },
   "dependencies": {
@@ -52,7 +52,6 @@
     "@babel/preset-typescript": "7.28.5",
     "@tsconfig/node-lts": "24.0.0",
     "@tsconfig/node-ts": "23.6.4",
-    "@types/jest": "30.0.0",
     "@types/js-yaml": "4.0.9",
     "@types/node": "25.6.0",
     "@types/yargs": "17.0.35",
@@ -61,11 +60,9 @@
     "@willbooster/oxfmt-config": "1.2.0",
     "@willbooster/oxlint-config": "1.4.1",
     "@willbooster/prettier-config": "10.4.0",
-    "babel-jest": "30.3.0",
     "babel-plugin-transform-remove-console": "6.9.4",
     "build-ts": "17.0.26",
     "conventional-changelog-conventionalcommits": "9.3.1",
-    "jest": "30.3.0",
     "lefthook": "2.1.5",
     "oxfmt": "0.45.0",
     "oxlint": "1.60.0",
@@ -73,7 +70,8 @@
     "prettier": "3.8.2",
     "prettier-plugin-java": "2.8.1",
     "semantic-release": "25.0.3",
-    "sort-package-json": "3.6.1"
+    "sort-package-json": "3.6.1",
+    "vitest": "4.1.4"
   },
   "prettier": "@willbooster/prettier-config",
   "engines": {
