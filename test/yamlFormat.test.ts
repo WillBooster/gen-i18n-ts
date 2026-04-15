@@ -8,7 +8,7 @@ test('yaml format', () => {
   const outFile = path.resolve('temp', 'yamlFormatI18n.ts');
   child_process.spawnSync('yarn', ['start', '-i', inputDir, '-o', outFile, '-d', 'en', '--global']);
 
-  const { changeLanguageByCode, i18n } = require('../temp/yamlFormatI18n');
+  const { changeLanguageByCode, i18n } = require('../temp/yamlFormatI18n.ts');
 
   expect(i18n.okButtonName()).toBe('Done');
   expect(i18n.welcome({ userName: 'Taro' })).toBe('Hi, Taro');

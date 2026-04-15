@@ -8,7 +8,7 @@ test('multiple arguments', () => {
   const outFile = path.resolve('temp', 'multiArgsI18n.ts');
   child_process.spawnSync('yarn', ['start', '-i', inputDir, '-o', outFile, '-d', 'en', '--global']);
 
-  const { changeLanguageByCode, i18n } = require('../temp/multiArgsI18n');
+  const { changeLanguageByCode, i18n } = require('../temp/multiArgsI18n.ts');
 
   expect(i18n.gotAMail({ sender: 'Hanako', subject: 'Happy Birthday!' })).toBe(
     'You got a mail! From:Hanako Subject:Happy Birthday!'

@@ -8,7 +8,7 @@ test('escape characters', () => {
   const outFile = path.resolve('temp', 'escapeCharsI18n.ts');
   child_process.spawnSync('yarn', ['start', '-i', inputDir, '-o', outFile, '-d', 'en', '--global']);
 
-  const { changeLanguageByCode, i18n } = require('../temp/escapeCharsI18n');
+  const { changeLanguageByCode, i18n } = require('../temp/escapeCharsI18n.ts');
 
   expect(i18n.escape()).toBe('This is the first line.\nThis is the second line. And Here is \t, a tab character!');
   changeLanguageByCode('ja');

@@ -8,7 +8,7 @@ test('excess keys', () => {
   const outFile = path.resolve('temp', 'excessKeysI18n.ts');
   child_process.spawnSync('yarn', ['start', '-i', inputDir, '-o', outFile, '-d', 'en', '--global']);
 
-  const { changeLanguageByCode, i18n } = require('../temp/excessKeysI18n');
+  const { changeLanguageByCode, i18n } = require('../temp/excessKeysI18n.ts');
 
   expect(i18n.lang()).toBe('English');
   expect(i18n.excess).toBeUndefined();

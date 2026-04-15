@@ -8,7 +8,7 @@ test('using variable multiple times', () => {
   const outFile = path.resolve('temp', 'dupArgsI18n.ts');
   child_process.spawnSync('yarn', ['start', '-i', inputDir, '-o', outFile, '-d', 'en', '--global']);
 
-  const { changeLanguageByCode, i18n } = require('../temp/dupArgsI18n');
+  const { changeLanguageByCode, i18n } = require('../temp/dupArgsI18n.ts');
 
   expect(i18n.twice({ x: 'hey!' })).toBe('hey!, again hey!');
 

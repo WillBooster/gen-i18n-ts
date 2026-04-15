@@ -8,7 +8,7 @@ test('basic use case', () => {
   const outFile = path.resolve('temp', 'basicUseI18n.ts');
   child_process.spawnSync('yarn', ['start', '-i', inputDir, '-o', outFile, '-d', 'en', '--global']);
 
-  const { changeLanguageByCode, i18n } = require('../temp/basicUseI18n');
+  const { changeLanguageByCode, i18n } = require('../temp/basicUseI18n.ts');
 
   expect(i18n.okButtonName()).toBe('Done');
   expect(i18n.welcome({ userName: 'Taro' })).toBe('Hi, Taro');

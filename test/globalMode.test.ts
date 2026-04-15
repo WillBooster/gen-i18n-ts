@@ -8,7 +8,7 @@ test('global mode (explicit flag)', () => {
   const outFile = path.resolve('temp', 'globalModeI18n.ts');
   child_process.spawnSync('yarn', ['start', '-i', inputDir, '-o', outFile, '-d', 'en', '--global']);
 
-  const { changeLanguageByCode, getCurrentLanguageCode, i18n } = require('../temp/globalModeI18n');
+  const { changeLanguageByCode, getCurrentLanguageCode, i18n } = require('../temp/globalModeI18n.ts');
 
   expect(typeof changeLanguageByCode).toBe('function');
   expect(typeof getCurrentLanguageCode).toBe('function');
