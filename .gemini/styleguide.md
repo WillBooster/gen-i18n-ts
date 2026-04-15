@@ -1,7 +1,8 @@
-以下のコーディング規約を踏まえて、日本語でレビューしてください。
+Review in English based on the following coding standards.
 
 ## Coding Style
 
+- Use camelCase for JavaScript and TypeScript files (or PascalCase for React components).
 - Simplify code as much as possible to eliminate redundancy.
 - Design each module with high cohesion, grouping related functionality together.
   - Refactor existing large modules into smaller, focused modules when necessary.

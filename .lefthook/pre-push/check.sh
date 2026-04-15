@@ -1,1 +1,1 @@
-yarn run typecheck
+yarn run lint
