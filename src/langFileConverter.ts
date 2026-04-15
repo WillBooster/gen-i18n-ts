@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import yaml from 'js-yaml';
+import { load } from 'js-yaml';
 
 import { ErrorMessages, VARIABLE_REGEX } from './constants.js';
 import type { BaseType } from './types.js';
@@ -14,7 +14,7 @@ export function toLangObj(lang: string, langFilePath: string): unknown {
   switch (path.extname(langFilePath)) {
     case '.yaml':
     case '.yml': {
-      langObj = yaml.load(fileContent);
+      langObj = load(fileContent);
       break;
     }
     default: {
@@ -33,7 +33,7 @@ export function toTypeObj(lang: string, langFilePath: string): BaseType {
   switch (path.extname(langFilePath)) {
     case '.yaml':
     case '.yml': {
-      langObj = yaml.load(fileContent);
+      langObj = load(fileContent);
       break;
     }
     default: {

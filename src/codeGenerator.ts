@@ -111,7 +111,7 @@ function typeObjToCode(typeObj: BaseType, varName: string): string {
     const patterns = typeObj.params.map((param) => String.raw`\$\{${param}\}`).join('|');
     const regex = `/${patterns}/g`;
     const replaceFunc = `(${varPattern}) => ${varParamMap}[${varPattern}] ?? ''`;
-    const returnStatement = `return ${varName}.replace(${regex}, ${replaceFunc});`;
+    const returnStatement = `return ${varName}.replaceAll(${regex}, ${replaceFunc});`;
 
     return `${declaration} { ${declarationStatement} ${returnStatement} }`;
   } else if (typeObj instanceof ObjectType) {
