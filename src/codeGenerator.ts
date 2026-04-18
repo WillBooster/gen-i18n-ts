@@ -123,6 +123,8 @@ export const LocaleProvider: React.FC<LocaleProviderProps> = ({ children }) => {
   return <LocaleContext.Provider value={{ locale, setLocale }}>{children}</LocaleContext.Provider>;
 };
 
+${useI18nCode}
+
 export function useLocaleValue(): SupportedLanguage {
   return useLocaleContext().locale;
 }
@@ -130,8 +132,6 @@ export function useLocaleValue(): SupportedLanguage {
 export function useSetLocale(): (locale: string) => boolean {
   return useLocaleContext().setLocale;
 }
-
-${useI18nCode}
 
 function useLocaleContext(): LocaleContextValue {
   const context = useContext(LocaleContext);
