@@ -90,6 +90,7 @@ gen-i18n-ts takes three required arguments: `inputDir`, `outputFile` and `defaul
 - `-d, --defaultLang`: A name of a default language (required)
 - `-w, --watch`: Enable watch mode (optional)
 - `-g, --global`: Generate with global state (currentLang variable) (optional, default: false)
+- `--next`: Generate Next.js client helpers (optional, defaults to auto-detecting Next.js from `package.json`)
 
 ### Basic Usage
 
@@ -104,6 +105,27 @@ gen-i18n-ts -i i18n-json -o i18n.ts -d en
 ```bash
 gen-i18n-ts -i i18n-json -o i18n.ts -d en --global
 ```
+
+**Next.js helpers:**
+
+When the target package has `next` in `package.json`, gen-i18n-ts also generates a client helper file next to the main output.
+For example, `-o src/__generated__/i18n.ts` generates `src/__generated__/i18n.next.tsx`.
+You can force this behavior with `--next` or disable it with `--no-next`.
+
+```tsx
+import { LocaleProvider, useI18n } from '@/__generated__/i18n.next';
+
+export function Providers({ children }: { children: React.ReactNode }) {
+  return <LocaleProvider>{children}</LocaleProvider>;
+}
+
+export function SaveButton() {
+  const t = useI18n();
+  return <button type="button">{t.okButtonName()}</button>;
+}
+```
+
+The helper reads the `[locale]` route parameter through `next/navigation`, falls back to the default language, and exposes `useLocaleValue`, `useSetLocale`, and `useI18n`.
 
 The following description takes [readme-sample](./samples/readme-sample) for example.
 
