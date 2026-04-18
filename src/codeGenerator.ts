@@ -123,7 +123,8 @@ export const LocaleProvider: React.FC<LocaleProviderProps> = ({ children }) => {
     setLocalePreference(newLocale);
     const nextPathname = replaceLocaleSegment(pathname, locale, newLocale);
     const query = getCurrentSearchParams();
-    router.push(query ? \`\${nextPathname}?\${query}\` : nextPathname);
+    const hash = getCurrentHash();
+    router.push(\`\${nextPathname}\${query ? \`?\${query}\` : ''}\${hash}\`);
     return true;
   };
 
@@ -189,6 +190,11 @@ function setLocalePreference(locale: SupportedLanguage): void {
 function getCurrentSearchParams(): string {
   if (!('window' in globalThis)) return '';
   return globalThis.location.search.replace(/^\\?/, '');
+}
+
+function getCurrentHash(): string {
+  if (!('window' in globalThis)) return '';
+  return globalThis.location.hash;
 }
 
 function replaceLocaleSegment(pathname: string, currentLocale: SupportedLanguage, nextLocale: SupportedLanguage): string {
