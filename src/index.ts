@@ -4,7 +4,7 @@ import path from 'node:path';
 import { hideBin } from 'yargs/helpers';
 import yargs from 'yargs/yargs';
 
-import { generate, generateNextHelper } from './codeGenerator.js';
+import { generate, generateNextHelper, generateNextServerHelper } from './codeGenerator.js';
 import { ErrorMessages, InfoMessages } from './constants.js';
 import { toLangObj, toTypeObj } from './langFileConverter.js';
 import { analyze } from './objectAnalyzer.js';
@@ -117,9 +117,18 @@ async function genI18ts(
   await fs.promises.mkdir(path.dirname(outfile), { recursive: true });
   await fs.promises.writeFile(outfile, code, { encoding: 'utf8' });
   if (next ?? (await targetUsesNextJs(outfile))) {
+    if (global) {
+      throw new Error(
+        'Next.js helpers require non-global mode. Remove --global to avoid sharing one i18n instance across users.'
+      );
+    }
     const nextHelperOutfile = getNextHelperOutfile(outfile);
     const i18nImportPath = getRelativeImportPath(path.dirname(nextHelperOutfile), outfile);
     await fs.promises.writeFile(nextHelperOutfile, generateNextHelper(i18nImportPath, global), { encoding: 'utf8' });
+    const nextServerHelperOutfile = getNextServerHelperOutfile(outfile);
+    await fs.promises.writeFile(nextServerHelperOutfile, generateNextServerHelper(i18nImportPath), {
+      encoding: 'utf8',
+    });
   }
   console.info('Generated TypeScript code.');
 }
@@ -127,6 +136,11 @@ async function genI18ts(
 function getNextHelperOutfile(outfile: string): string {
   const parsedPath = path.parse(outfile);
   return path.join(parsedPath.dir, `${parsedPath.name}.next.tsx`);
+}
+
+function getNextServerHelperOutfile(outfile: string): string {
+  const parsedPath = path.parse(outfile);
+  return path.join(parsedPath.dir, `${parsedPath.name}.next.server.ts`);
 }
 
 function getRelativeImportPath(fromDir: string, toFile: string): string {

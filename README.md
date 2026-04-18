@@ -108,9 +108,10 @@ gen-i18n-ts -i i18n-json -o i18n.ts -d en --global
 
 **Next.js helpers:**
 
-When the target package has `next` in `package.json`, gen-i18n-ts also generates a client helper file next to the main output.
-For example, `-o src/__generated__/i18n.ts` generates `src/__generated__/i18n.next.tsx`.
+When the target package has `next` in `package.json`, gen-i18n-ts also generates Next.js helper files next to the main output.
+For example, `-o src/__generated__/i18n.ts` generates `src/__generated__/i18n.next.tsx` and `src/__generated__/i18n.next.server.ts`.
 You can force this behavior with `--next` or disable it with `--no-next`.
+Next.js helpers require non-global mode because global mode shares one mutable i18n instance across all server-side users.
 
 ```tsx
 import { LocaleProvider, useI18n } from '@/__generated__/i18n.next';
@@ -126,6 +127,17 @@ export function SaveButton() {
 ```
 
 The helper reads the `[locale]` route parameter through `next/navigation`, falls back to the default language, and exposes `useLocaleValue`, `useSetLocale`, and `useI18n`.
+The server helper reads the `preferred-locale` cookie first, then falls back to the `Accept-Language` header.
+Use `await getI18n()` in server components or actions when locale route params are not already available.
+
+```ts
+import { getI18n } from '@/__generated__/i18n.next.server';
+
+export async function Page() {
+  const t = await getI18n();
+  return <h1>{t.pages.home.title()}</h1>;
+}
+```
 
 The following description takes [readme-sample](./samples/readme-sample) for example.
 
