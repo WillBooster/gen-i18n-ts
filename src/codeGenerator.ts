@@ -64,11 +64,11 @@ export function generateNextHelper(i18nImportPath: string, global: boolean): str
   const useI18nCode = global
     ? `export function useI18n(): ReturnType<typeof i18nByCode> {
   const locale = useLocaleValue();
-  return useMemo(() => i18nByCode(locale), [locale]);
+  return i18nByCode(locale);
 }`
     : `export function useI18n(): ReturnType<typeof i18n> {
   const locale = useLocaleValue();
-  return useMemo(() => i18n(locale), [locale]);
+  return i18n(locale);
 }`;
 
   return `/* eslint-disable */
@@ -80,9 +80,9 @@ export function generateNextHelper(i18nImportPath: string, global: boolean): str
 
 'use client';
 
-import { useParams, usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 import type React from 'react';
-import { createContext, useCallback, useContext, useMemo } from 'react';
+import { createContext, useContext } from 'react';
 
 import { ${i18nImport} } from ${JSON.stringify(i18nImportPath)};
 import type { SupportedLanguage } from ${JSON.stringify(i18nImportPath)};
@@ -104,29 +104,21 @@ export const LocaleProvider: React.FC<LocaleProviderProps> = ({ children }) => {
   const params = useParams<{ locale?: string | string[] }>();
   const pathname = usePathname();
   const router = useRouter();
-  const searchParams = useSearchParams();
 
-  const locale = useMemo(() => {
-    const routeLocale = Array.isArray(params.locale) ? params.locale[0] : params.locale;
-    if (isSupportedLanguage(routeLocale)) return routeLocale;
-    return detectLocaleFromBrowser();
-  }, [params.locale]);
+  const routeLocale = Array.isArray(params.locale) ? params.locale[0] : params.locale;
+  const locale = isSupportedLanguage(routeLocale) ? routeLocale : detectLocaleFromBrowser();
+  const setLocale = (newLocale: string): boolean => {
+    if (!isSupportedLanguage(newLocale)) {
+      console.warn(\`Locale "\${newLocale}" is not supported. Supported locales:\`, SUPPORTED_LANGUAGES);
+      return false;
+    }
 
-  const setLocale = useCallback(
-    (newLocale: string): boolean => {
-      if (!isSupportedLanguage(newLocale)) {
-        console.warn(\`Locale "\${newLocale}" is not supported. Supported locales:\`, SUPPORTED_LANGUAGES);
-        return false;
-      }
-
-      setLocalePreference(newLocale);
-      const nextPathname = replaceLocaleSegment(pathname, locale, newLocale);
-      const query = searchParams.toString();
-      router.push(query ? \`\${nextPathname}?\${query}\` : nextPathname);
-      return true;
-    },
-    [locale, pathname, router, searchParams]
-  );
+    setLocalePreference(newLocale);
+    const nextPathname = replaceLocaleSegment(pathname, locale, newLocale);
+    const query = getCurrentSearchParams();
+    router.push(query ? \`\${nextPathname}?\${query}\` : nextPathname);
+    return true;
+  };
 
   return <LocaleContext.Provider value={{ locale, setLocale }}>{children}</LocaleContext.Provider>;
 };
@@ -187,6 +179,11 @@ function setLocalePreference(locale: SupportedLanguage): void {
   } catch {
     return;
   }
+}
+
+function getCurrentSearchParams(): string {
+  if (!('window' in globalThis)) return '';
+  return globalThis.location.search.replace(/^\\?/, '');
 }
 
 function replaceLocaleSegment(pathname: string, currentLocale: SupportedLanguage, nextLocale: SupportedLanguage): string {
