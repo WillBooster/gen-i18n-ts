@@ -147,10 +147,6 @@ function useLocaleContext(): LocaleContextValue {
   return context;
 }
 
-function isSupportedLanguage(locale: string | undefined): locale is SupportedLanguage {
-  return SUPPORTED_LANGUAGES.includes(locale as SupportedLanguage);
-}
-
 function detectLocaleFromBrowser(): SupportedLanguage {
   if (!('window' in globalThis)) return DEFAULT_LANGUAGE;
 
@@ -204,6 +200,10 @@ function replaceLocaleSegment(pathname: string, currentLocale: SupportedLanguage
     return segments.join('/') || '/';
   }
   return \`/\${nextLocale}\${pathname}\`;
+}
+
+function isSupportedLanguage(locale: string | undefined): locale is SupportedLanguage {
+  return SUPPORTED_LANGUAGES.includes(locale as SupportedLanguage);
 }
 `;
 }
