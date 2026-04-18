@@ -82,7 +82,7 @@ export function generateNextHelper(i18nImportPath: string, global: boolean): str
 
 import { useParams, usePathname, useRouter } from 'next/navigation';
 import type React from 'react';
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 import { ${i18nImport} } from ${JSON.stringify(i18nImportPath)};
 import type { SupportedLanguage } from ${JSON.stringify(i18nImportPath)};
@@ -107,7 +107,13 @@ export const LocaleProvider: React.FC<LocaleProviderProps> = ({ children }) => {
   const router = useRouter();
 
   const routeLocale = Array.isArray(params.locale) ? params.locale[0] : params.locale;
-  const locale = isSupportedLanguage(routeLocale) ? routeLocale : detectLocaleFromBrowser();
+  const [detectedLocale, setDetectedLocale] = useState<SupportedLanguage | undefined>();
+  const locale = isSupportedLanguage(routeLocale) ? routeLocale : detectedLocale ?? DEFAULT_LANGUAGE;
+  useEffect(() => {
+    if (isSupportedLanguage(routeLocale)) return;
+    setDetectedLocale(detectLocaleFromBrowser());
+  }, [routeLocale]);
+
   const setLocale = (newLocale: string): boolean => {
     if (!isSupportedLanguage(newLocale)) {
       console.warn(\`Locale "\${newLocale}" is not supported. Supported locales:\`, SUPPORTED_LANGUAGES);
