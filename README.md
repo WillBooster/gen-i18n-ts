@@ -90,6 +90,7 @@ gen-i18n-ts takes three required arguments: `inputDir`, `outputFile` and `defaul
 - `-d, --defaultLang`: A name of a default language (required)
 - `-w, --watch`: Enable watch mode (optional)
 - `-g, --global`: Generate with global state (currentLang variable) (optional, default: false)
+- `--next`: Generate Next.js client helpers (optional, defaults to auto-detecting Next.js from `package.json`)
 
 ### Basic Usage
 
@@ -103,6 +104,39 @@ gen-i18n-ts -i i18n-json -o i18n.ts -d en
 
 ```bash
 gen-i18n-ts -i i18n-json -o i18n.ts -d en --global
+```
+
+**Next.js helpers:**
+
+When the target package has `next` in `package.json`, gen-i18n-ts also generates Next.js helper files next to the main output.
+For example, `-o src/__generated__/i18n.ts` generates `src/__generated__/i18n.next.tsx` and `src/__generated__/i18n.next.server.ts`.
+You can force this behavior with `--next` or disable it with `--no-next`.
+Next.js helpers require non-global mode because global mode shares one mutable i18n instance across all server-side users.
+
+```tsx
+import { LocaleProvider, useI18n } from '@/__generated__/i18n.next';
+
+export function Providers({ children }: { children: React.ReactNode }) {
+  return <LocaleProvider>{children}</LocaleProvider>;
+}
+
+export function SaveButton() {
+  const t = useI18n();
+  return <button type="button">{t.okButtonName()}</button>;
+}
+```
+
+The helper reads the `[locale]` route parameter through `next/navigation`, falls back to the default language, and exposes `useLocaleValue`, `useSetLocale`, and `useI18n`.
+The server helper reads the `preferred-locale` cookie first, then falls back to the `Accept-Language` header.
+Use `await getI18n()` in server components or actions when locale route params are not already available.
+
+```ts
+import { getI18n } from '@/__generated__/i18n.next.server';
+
+export async function Page() {
+  const t = await getI18n();
+  return <h1>{t.pages.home.title()}</h1>;
+}
 ```
 
 The following description takes [readme-sample](./samples/readme-sample) for example.
