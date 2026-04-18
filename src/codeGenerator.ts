@@ -99,6 +99,7 @@ interface LocaleProviderProps {
 const LocaleContext = createContext<LocaleContextValue | undefined>(undefined);
 
 export const LOCALE_COOKIE_NAME = 'preferred-locale';
+const LOCALE_COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 365;
 
 export const LocaleProvider: React.FC<LocaleProviderProps> = ({ children }) => {
   const params = useParams<{ locale?: string | string[] }>();
@@ -173,9 +174,7 @@ function setLocalePreference(locale: SupportedLanguage): void {
 
   try {
     localStorage.setItem(LOCALE_COOKIE_NAME, locale);
-    const expires = new Date();
-    expires.setFullYear(expires.getFullYear() + 1);
-    document.cookie = \`\${LOCALE_COOKIE_NAME}=\${locale}; expires=\${expires.toUTCString()}; path=/; SameSite=Lax\`;
+    document.cookie = \`\${LOCALE_COOKIE_NAME}=\${locale}; max-age=\${LOCALE_COOKIE_MAX_AGE_SECONDS}; path=/; SameSite=Lax\`;
   } catch {
     return;
   }
@@ -192,7 +191,7 @@ function replaceLocaleSegment(pathname: string, currentLocale: SupportedLanguage
     segments[1] = nextLocale;
     return segments.join('/') || '/';
   }
-  return \`/\${nextLocale}\${pathname.startsWith('/') ? pathname : \`/\${pathname}\`}\`;
+  return \`/\${nextLocale}\${pathname}\`;
 }
 `;
 }
