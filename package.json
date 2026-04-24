@@ -61,7 +61,7 @@
     "babel-plugin-transform-remove-console": "6.9.4",
     "build-ts": "17.1.6",
     "conventional-changelog-conventionalcommits": "9.3.1",
-    "lefthook": "2.1.5",
+    "lefthook": "2.1.6",
     "oxfmt": "0.45.0",
     "oxlint": "1.60.0",
     "oxlint-tsgolint": "0.21.0",
