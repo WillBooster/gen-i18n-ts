@@ -32,7 +32,9 @@
     "start": "build-ts run src/index.ts --",
     "start-prod": "yarn build && yarn gen-i18n-ts",
     "test": "yarn vitest run",
-    "typecheck": "tsgo --noEmit"
+    "typecheck": "tsgo --noEmit",
+    "verify": "wb verify",
+    "verify-full": "wb verify --full"
   },
   "dependencies": {
     "js-yaml": "4.1.1",
@@ -55,6 +57,7 @@
     "@willbooster/babel-configs": "2.5.1",
     "@willbooster/oxfmt-config": "1.2.2",
     "@willbooster/oxlint-config": "1.4.6",
+    "@willbooster/wb": "13.12.9",
     "babel-plugin-transform-remove-console": "6.9.4",
     "build-ts": "17.1.8",
     "conventional-changelog-conventionalcommits": "9.3.1",
