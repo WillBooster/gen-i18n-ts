@@ -828,7 +828,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-transform-modules-systemjs@npm:^7.29.0":
+"@babel/plugin-transform-modules-systemjs@npm:^7.29.0, @babel/plugin-transform-modules-systemjs@npm:^7.29.4":
   version: 7.29.4
   resolution: "@babel/plugin-transform-modules-systemjs@npm:7.29.4"
   dependencies:
@@ -1291,6 +1291,87 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.0.0-0
   checksum: 10c0/40591ca097502b547eaf844fceaafbc71aa726a86bec95b66ca4e762b2642a8dfc224eb9204a9d0d952ad62b6b326008f6be4dfc9e274e4438503e4975848372
+  languageName: node
+  linkType: hard
+
+"@babel/preset-env@npm:7.29.5":
+  version: 7.29.5
+  resolution: "@babel/preset-env@npm:7.29.5"
+  dependencies:
+    "@babel/compat-data": "npm:^7.29.3"
+    "@babel/helper-compilation-targets": "npm:^7.28.6"
+    "@babel/helper-plugin-utils": "npm:^7.28.6"
+    "@babel/helper-validator-option": "npm:^7.27.1"
+    "@babel/plugin-bugfix-firefox-class-in-computed-class-key": "npm:^7.28.5"
+    "@babel/plugin-bugfix-safari-class-field-initializer-scope": "npm:^7.27.1"
+    "@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression": "npm:^7.27.1"
+    "@babel/plugin-bugfix-safari-rest-destructuring-rhs-array": "npm:^7.29.3"
+    "@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining": "npm:^7.27.1"
+    "@babel/plugin-bugfix-v8-static-class-fields-redefine-readonly": "npm:^7.28.6"
+    "@babel/plugin-proposal-private-property-in-object": "npm:7.21.0-placeholder-for-preset-env.2"
+    "@babel/plugin-syntax-import-assertions": "npm:^7.28.6"
+    "@babel/plugin-syntax-import-attributes": "npm:^7.28.6"
+    "@babel/plugin-syntax-unicode-sets-regex": "npm:^7.18.6"
+    "@babel/plugin-transform-arrow-functions": "npm:^7.27.1"
+    "@babel/plugin-transform-async-generator-functions": "npm:^7.29.0"
+    "@babel/plugin-transform-async-to-generator": "npm:^7.28.6"
+    "@babel/plugin-transform-block-scoped-functions": "npm:^7.27.1"
+    "@babel/plugin-transform-block-scoping": "npm:^7.28.6"
+    "@babel/plugin-transform-class-properties": "npm:^7.28.6"
+    "@babel/plugin-transform-class-static-block": "npm:^7.28.6"
+    "@babel/plugin-transform-classes": "npm:^7.28.6"
+    "@babel/plugin-transform-computed-properties": "npm:^7.28.6"
+    "@babel/plugin-transform-destructuring": "npm:^7.28.5"
+    "@babel/plugin-transform-dotall-regex": "npm:^7.28.6"
+    "@babel/plugin-transform-duplicate-keys": "npm:^7.27.1"
+    "@babel/plugin-transform-duplicate-named-capturing-groups-regex": "npm:^7.29.0"
+    "@babel/plugin-transform-dynamic-import": "npm:^7.27.1"
+    "@babel/plugin-transform-explicit-resource-management": "npm:^7.28.6"
+    "@babel/plugin-transform-exponentiation-operator": "npm:^7.28.6"
+    "@babel/plugin-transform-export-namespace-from": "npm:^7.27.1"
+    "@babel/plugin-transform-for-of": "npm:^7.27.1"
+    "@babel/plugin-transform-function-name": "npm:^7.27.1"
+    "@babel/plugin-transform-json-strings": "npm:^7.28.6"
+    "@babel/plugin-transform-literals": "npm:^7.27.1"
+    "@babel/plugin-transform-logical-assignment-operators": "npm:^7.28.6"
+    "@babel/plugin-transform-member-expression-literals": "npm:^7.27.1"
+    "@babel/plugin-transform-modules-amd": "npm:^7.27.1"
+    "@babel/plugin-transform-modules-commonjs": "npm:^7.28.6"
+    "@babel/plugin-transform-modules-systemjs": "npm:^7.29.4"
+    "@babel/plugin-transform-modules-umd": "npm:^7.27.1"
+    "@babel/plugin-transform-named-capturing-groups-regex": "npm:^7.29.0"
+    "@babel/plugin-transform-new-target": "npm:^7.27.1"
+    "@babel/plugin-transform-nullish-coalescing-operator": "npm:^7.28.6"
+    "@babel/plugin-transform-numeric-separator": "npm:^7.28.6"
+    "@babel/plugin-transform-object-rest-spread": "npm:^7.28.6"
+    "@babel/plugin-transform-object-super": "npm:^7.27.1"
+    "@babel/plugin-transform-optional-catch-binding": "npm:^7.28.6"
+    "@babel/plugin-transform-optional-chaining": "npm:^7.28.6"
+    "@babel/plugin-transform-parameters": "npm:^7.27.7"
+    "@babel/plugin-transform-private-methods": "npm:^7.28.6"
+    "@babel/plugin-transform-private-property-in-object": "npm:^7.28.6"
+    "@babel/plugin-transform-property-literals": "npm:^7.27.1"
+    "@babel/plugin-transform-regenerator": "npm:^7.29.0"
+    "@babel/plugin-transform-regexp-modifiers": "npm:^7.28.6"
+    "@babel/plugin-transform-reserved-words": "npm:^7.27.1"
+    "@babel/plugin-transform-shorthand-properties": "npm:^7.27.1"
+    "@babel/plugin-transform-spread": "npm:^7.28.6"
+    "@babel/plugin-transform-sticky-regex": "npm:^7.27.1"
+    "@babel/plugin-transform-template-literals": "npm:^7.27.1"
+    "@babel/plugin-transform-typeof-symbol": "npm:^7.27.1"
+    "@babel/plugin-transform-unicode-escapes": "npm:^7.27.1"
+    "@babel/plugin-transform-unicode-property-regex": "npm:^7.28.6"
+    "@babel/plugin-transform-unicode-regex": "npm:^7.27.1"
+    "@babel/plugin-transform-unicode-sets-regex": "npm:^7.28.6"
+    "@babel/preset-modules": "npm:0.1.6-no-external-plugins"
+    babel-plugin-polyfill-corejs2: "npm:^0.4.15"
+    babel-plugin-polyfill-corejs3: "npm:^0.14.0"
+    babel-plugin-polyfill-regenerator: "npm:^0.6.6"
+    core-js-compat: "npm:^3.48.0"
+    semver: "npm:^6.3.1"
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: 10c0/9d70ed5235f5f210bc793cd3e47ae7b108356c6d86b4ef3b4f9718e6ed5ec011dcd3d994e3d211e05e755e9442558eeb4723570bd2df3db7ba5863eaa98303e3
   languageName: node
   linkType: hard
 
@@ -3100,13 +3181,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript/native-preview-darwin-arm64@npm:7.0.0-dev.20260421.2":
-  version: 7.0.0-dev.20260421.2
-  resolution: "@typescript/native-preview-darwin-arm64@npm:7.0.0-dev.20260421.2"
-  conditions: os=darwin & cpu=arm64
-  languageName: node
-  linkType: hard
-
 "@typescript/native-preview-darwin-arm64@npm:7.0.0-dev.20260504.1":
   version: 7.0.0-dev.20260504.1
   resolution: "@typescript/native-preview-darwin-arm64@npm:7.0.0-dev.20260504.1"
@@ -3114,10 +3188,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript/native-preview-darwin-x64@npm:7.0.0-dev.20260421.2":
-  version: 7.0.0-dev.20260421.2
-  resolution: "@typescript/native-preview-darwin-x64@npm:7.0.0-dev.20260421.2"
-  conditions: os=darwin & cpu=x64
+"@typescript/native-preview-darwin-arm64@npm:7.0.0-dev.20260510.1":
+  version: 7.0.0-dev.20260510.1
+  resolution: "@typescript/native-preview-darwin-arm64@npm:7.0.0-dev.20260510.1"
+  conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
@@ -3128,10 +3202,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript/native-preview-linux-arm64@npm:7.0.0-dev.20260421.2":
-  version: 7.0.0-dev.20260421.2
-  resolution: "@typescript/native-preview-linux-arm64@npm:7.0.0-dev.20260421.2"
-  conditions: os=linux & cpu=arm64
+"@typescript/native-preview-darwin-x64@npm:7.0.0-dev.20260510.1":
+  version: 7.0.0-dev.20260510.1
+  resolution: "@typescript/native-preview-darwin-x64@npm:7.0.0-dev.20260510.1"
+  conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
@@ -3142,10 +3216,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript/native-preview-linux-arm@npm:7.0.0-dev.20260421.2":
-  version: 7.0.0-dev.20260421.2
-  resolution: "@typescript/native-preview-linux-arm@npm:7.0.0-dev.20260421.2"
-  conditions: os=linux & cpu=arm
+"@typescript/native-preview-linux-arm64@npm:7.0.0-dev.20260510.1":
+  version: 7.0.0-dev.20260510.1
+  resolution: "@typescript/native-preview-linux-arm64@npm:7.0.0-dev.20260510.1"
+  conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
@@ -3156,10 +3230,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript/native-preview-linux-x64@npm:7.0.0-dev.20260421.2":
-  version: 7.0.0-dev.20260421.2
-  resolution: "@typescript/native-preview-linux-x64@npm:7.0.0-dev.20260421.2"
-  conditions: os=linux & cpu=x64
+"@typescript/native-preview-linux-arm@npm:7.0.0-dev.20260510.1":
+  version: 7.0.0-dev.20260510.1
+  resolution: "@typescript/native-preview-linux-arm@npm:7.0.0-dev.20260510.1"
+  conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
@@ -3170,10 +3244,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript/native-preview-win32-arm64@npm:7.0.0-dev.20260421.2":
-  version: 7.0.0-dev.20260421.2
-  resolution: "@typescript/native-preview-win32-arm64@npm:7.0.0-dev.20260421.2"
-  conditions: os=win32 & cpu=arm64
+"@typescript/native-preview-linux-x64@npm:7.0.0-dev.20260510.1":
+  version: 7.0.0-dev.20260510.1
+  resolution: "@typescript/native-preview-linux-x64@npm:7.0.0-dev.20260510.1"
+  conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
@@ -3184,10 +3258,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript/native-preview-win32-x64@npm:7.0.0-dev.20260421.2":
-  version: 7.0.0-dev.20260421.2
-  resolution: "@typescript/native-preview-win32-x64@npm:7.0.0-dev.20260421.2"
-  conditions: os=win32 & cpu=x64
+"@typescript/native-preview-win32-arm64@npm:7.0.0-dev.20260510.1":
+  version: 7.0.0-dev.20260510.1
+  resolution: "@typescript/native-preview-win32-arm64@npm:7.0.0-dev.20260510.1"
+  conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
@@ -3198,35 +3272,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript/native-preview@npm:7.0.0-dev.20260421.2":
-  version: 7.0.0-dev.20260421.2
-  resolution: "@typescript/native-preview@npm:7.0.0-dev.20260421.2"
-  dependencies:
-    "@typescript/native-preview-darwin-arm64": "npm:7.0.0-dev.20260421.2"
-    "@typescript/native-preview-darwin-x64": "npm:7.0.0-dev.20260421.2"
-    "@typescript/native-preview-linux-arm": "npm:7.0.0-dev.20260421.2"
-    "@typescript/native-preview-linux-arm64": "npm:7.0.0-dev.20260421.2"
-    "@typescript/native-preview-linux-x64": "npm:7.0.0-dev.20260421.2"
-    "@typescript/native-preview-win32-arm64": "npm:7.0.0-dev.20260421.2"
-    "@typescript/native-preview-win32-x64": "npm:7.0.0-dev.20260421.2"
-  dependenciesMeta:
-    "@typescript/native-preview-darwin-arm64":
-      optional: true
-    "@typescript/native-preview-darwin-x64":
-      optional: true
-    "@typescript/native-preview-linux-arm":
-      optional: true
-    "@typescript/native-preview-linux-arm64":
-      optional: true
-    "@typescript/native-preview-linux-x64":
-      optional: true
-    "@typescript/native-preview-win32-arm64":
-      optional: true
-    "@typescript/native-preview-win32-x64":
-      optional: true
-  bin:
-    tsgo: bin/tsgo.js
-  checksum: 10c0/79dbb7e5204c5906bcb3a2946209162efbaac9c8fa78ffeccb8b6718661a5b40f988d60b27350ad538cc1a4143524e5fc97b04fa4767bd42a036000f226438db
+"@typescript/native-preview-win32-x64@npm:7.0.0-dev.20260510.1":
+  version: 7.0.0-dev.20260510.1
+  resolution: "@typescript/native-preview-win32-x64@npm:7.0.0-dev.20260510.1"
+  conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
@@ -3259,6 +3308,38 @@ __metadata:
   bin:
     tsgo: bin/tsgo.js
   checksum: 10c0/f39137d17197e7c35fd9f2e4fbb0b829b2568ff8f34496cb5f06933fe4706c00ec525e86719546ddad4e996bfa2ccd1c00cbf689fd651629019372e03038f63a
+  languageName: node
+  linkType: hard
+
+"@typescript/native-preview@npm:7.0.0-dev.20260510.1":
+  version: 7.0.0-dev.20260510.1
+  resolution: "@typescript/native-preview@npm:7.0.0-dev.20260510.1"
+  dependencies:
+    "@typescript/native-preview-darwin-arm64": "npm:7.0.0-dev.20260510.1"
+    "@typescript/native-preview-darwin-x64": "npm:7.0.0-dev.20260510.1"
+    "@typescript/native-preview-linux-arm": "npm:7.0.0-dev.20260510.1"
+    "@typescript/native-preview-linux-arm64": "npm:7.0.0-dev.20260510.1"
+    "@typescript/native-preview-linux-x64": "npm:7.0.0-dev.20260510.1"
+    "@typescript/native-preview-win32-arm64": "npm:7.0.0-dev.20260510.1"
+    "@typescript/native-preview-win32-x64": "npm:7.0.0-dev.20260510.1"
+  dependenciesMeta:
+    "@typescript/native-preview-darwin-arm64":
+      optional: true
+    "@typescript/native-preview-darwin-x64":
+      optional: true
+    "@typescript/native-preview-linux-arm":
+      optional: true
+    "@typescript/native-preview-linux-arm64":
+      optional: true
+    "@typescript/native-preview-linux-x64":
+      optional: true
+    "@typescript/native-preview-win32-arm64":
+      optional: true
+    "@typescript/native-preview-win32-x64":
+      optional: true
+  bin:
+    tsgo: bin/tsgo.js
+  checksum: 10c0/5cf8a56fa75403ad6c400e1279499ba47ff99e74deb5ca79eeac2bbe94fcacd3141226d80eabe2313192ca9e1c2417c1d94f5ca5055598cffa503c3885cedf3c
   languageName: node
   linkType: hard
 
@@ -3394,9 +3475,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@willbooster/wb@npm:13.13.0":
-  version: 13.13.0
-  resolution: "@willbooster/wb@npm:13.13.0"
+"@willbooster/wb@npm:13.13.1":
+  version: 13.13.1
+  resolution: "@willbooster/wb@npm:13.13.1"
   dependencies:
     chalk: "npm:5.6.2"
     dotenv: "npm:17.4.2"
@@ -3408,7 +3489,7 @@ __metadata:
     yargs: "npm:18.0.0"
   bin:
     wb: bin/index.js
-  checksum: 10c0/09a794531bf3460d09e885bd82fb7a59e4b254f491f7d4db63e51f79edd7a1986d000ab78a5111b19bcfdc6310c8d7cd3fb77b1b2826ff45391a0da6d1d3e95a
+  checksum: 10c0/c98ed71a7d40d5f789b8678d46a8e45371fe918f2a602a981ec60f1f861e216588277b1700622e11c281283e0e7d471fcc6d2c5dbde5e79bb2d959c4cee828af
   languageName: node
   linkType: hard
 
@@ -5006,18 +5087,18 @@ __metadata:
     "@babel/node": "npm:7.29.0"
     "@babel/plugin-proposal-class-properties": "npm:7.18.6"
     "@babel/plugin-proposal-numeric-separator": "npm:7.18.6"
-    "@babel/preset-env": "npm:7.29.3"
+    "@babel/preset-env": "npm:7.29.5"
     "@babel/preset-typescript": "npm:7.28.5"
     "@tsconfig/node-lts": "npm:24.0.0"
     "@tsconfig/node-ts": "npm:23.6.4"
     "@types/js-yaml": "npm:4.0.9"
     "@types/node": "npm:25.6.0"
     "@types/yargs": "npm:17.0.35"
-    "@typescript/native-preview": "npm:7.0.0-dev.20260421.2"
+    "@typescript/native-preview": "npm:7.0.0-dev.20260510.1"
     "@willbooster/babel-configs": "npm:2.5.1"
     "@willbooster/oxfmt-config": "npm:1.2.2"
     "@willbooster/oxlint-config": "npm:1.4.6"
-    "@willbooster/wb": "npm:13.13.0"
+    "@willbooster/wb": "npm:13.13.1"
     babel-plugin-transform-remove-console: "npm:6.9.4"
     build-ts: "npm:17.1.13"
     conventional-changelog-conventionalcommits: "npm:9.3.1"
