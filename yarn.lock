@@ -3311,9 +3311,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@willbooster/wb@npm:13.19.1":
-  version: 13.19.1
-  resolution: "@willbooster/wb@npm:13.19.1"
+"@willbooster/wb@npm:13.19.2":
+  version: 13.19.2
+  resolution: "@willbooster/wb@npm:13.19.2"
   dependencies:
     chalk: "npm:5.6.2"
     dotenv: "npm:17.4.2"
@@ -3325,7 +3325,7 @@ __metadata:
     yargs: "npm:18.0.0"
   bin:
     wb: bin/index.js
-  checksum: 10c0/da8127b1bb558e4cacc794bac761d011d74148c4589258f14ab6ebd0bcfb55b8eea88bf7d8c94f1c0aea7bf573a8f2344719aa3c5e7dc0bb5ad2f24ab76c624b
+  checksum: 10c0/8c7524a0ab9aa072c1d9489bd6a3b2c3bb22509bdee32a7b8b1ff4fbee75faee0317cc7b8ff1a63f70ae4d1ea55bbd9fb1c48b480a57f06e7c4bffa40f9af312
   languageName: node
   linkType: hard
 
@@ -4915,7 +4915,7 @@ __metadata:
     "@willbooster/babel-configs": "npm:2.5.1"
     "@willbooster/oxfmt-config": "npm:1.2.2"
     "@willbooster/oxlint-config": "npm:1.4.6"
-    "@willbooster/wb": "npm:13.19.1"
+    "@willbooster/wb": "npm:13.19.2"
     babel-plugin-transform-remove-console: "npm:6.9.4"
     build-ts: "npm:17.1.15"
     conventional-changelog-conventionalcommits: "npm:9.3.1"
