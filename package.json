@@ -49,7 +49,7 @@
     "@tsconfig/node-lts": "24.0.0",
     "@tsconfig/node-ts": "23.6.4",
     "@types/js-yaml": "4.0.9",
-    "@types/node": "25.6.2",
+    "@types/node": "25.8.0",
     "@types/yargs": "17.0.35",
     "@typescript/native-preview": "7.0.0-dev.20260511.1",
     "@willbooster/babel-configs": "2.5.1",
