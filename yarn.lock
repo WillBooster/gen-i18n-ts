@@ -3059,12 +3059,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:25.8.0":
-  version: 25.8.0
-  resolution: "@types/node@npm:25.8.0"
+"@types/node@npm:25.9.0":
+  version: 25.9.0
+  resolution: "@types/node@npm:25.9.0"
   dependencies:
     undici-types: "npm:>=7.24.0 <7.24.7"
-  checksum: 10c0/ff53e5428309d2e6060190ec5e02afd0e4a7369456b16130a7f5898f12a6ad0efd62d752830f2f7355d714ae429bc0acbb2dc0cbf761cadb03e88c4996cdf1dc
+  checksum: 10c0/1845f0ce5471213a4f0c887845c50993968ea863c03bb355282b59bdcc877d009a2785f0f506cfc40b8ce7548a21e33ac826e998be62d42b000bfd9ccdc6c910
   languageName: node
   linkType: hard
 
@@ -4990,7 +4990,7 @@ __metadata:
     "@tsconfig/node-lts": "npm:24.0.0"
     "@tsconfig/node-ts": "npm:23.6.4"
     "@types/js-yaml": "npm:4.0.9"
-    "@types/node": "npm:25.8.0"
+    "@types/node": "npm:25.9.0"
     "@types/yargs": "npm:17.0.35"
     "@typescript/native-preview": "npm:7.0.0-dev.20260518.1"
     "@willbooster/babel-configs": "npm:2.5.1"
