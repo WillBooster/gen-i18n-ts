@@ -296,11 +296,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/node@npm:7.29.0":
-  version: 7.29.0
-  resolution: "@babel/node@npm:7.29.0"
+"@babel/node@npm:7.29.7":
+  version: 7.29.7
+  resolution: "@babel/node@npm:7.29.7"
   dependencies:
-    "@babel/register": "npm:^7.28.6"
+    "@babel/register": "npm:^7.29.7"
     commander: "npm:^6.2.0"
     core-js: "npm:^3.48.0"
     node-environment-flags: "npm:^1.0.5"
@@ -310,7 +310,7 @@ __metadata:
     "@babel/core": ^7.0.0-0
   bin:
     babel-node: ./bin/babel-node.js
-  checksum: 10c0/f322c7d4af1a2970a1bc03ab5bcc678359e9cc372b2d36340f4788fa2ba03fac86fe5bdda8783ae107c0df097ff6108bbac56c78350cfc4f93796d982e6ab1da
+  checksum: 10c0/5147e2a90b3eb7d8c2657abadf007829fec5ab9226d7f6203c9eb9b7acba153151cbb3b1c530da0e5e9e95e0aa2d6adc2f5f33e4bf03cb54d63bb262d77a09bf
   languageName: node
   linkType: hard
 
@@ -1338,9 +1338,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/register@npm:^7.28.6":
-  version: 7.29.3
-  resolution: "@babel/register@npm:7.29.3"
+"@babel/register@npm:^7.29.7":
+  version: 7.29.7
+  resolution: "@babel/register@npm:7.29.7"
   dependencies:
     clone-deep: "npm:^4.0.1"
     find-cache-dir: "npm:^2.0.0"
@@ -1349,7 +1349,7 @@ __metadata:
     source-map-support: "npm:^0.5.16"
   peerDependencies:
     "@babel/core": ^7.0.0-0
-  checksum: 10c0/c38f4b9e729a77a9735019fb77e5c0c4805f5492e2dde10b432ad786a515e635bfeda40effb36769cae9c17b521110e2c153ab85402b8a4f21dff490ed70a8b8
+  checksum: 10c0/154dc72cc354a3d2b7b69d10738f02278774bbf53d3b365f7897035c9f26ad6433b24e81ad277c0fbf33139e08230e0cab3913e91d9325308af532da854765f2
   languageName: node
   linkType: hard
 
@@ -4990,7 +4990,7 @@ __metadata:
   dependencies:
     "@babel/core": "npm:7.29.0"
     "@babel/helper-plugin-utils": "npm:7.28.6"
-    "@babel/node": "npm:7.29.0"
+    "@babel/node": "npm:7.29.7"
     "@babel/plugin-proposal-class-properties": "npm:7.18.6"
     "@babel/plugin-proposal-numeric-separator": "npm:7.18.6"
     "@babel/preset-env": "npm:7.29.5"
