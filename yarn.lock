@@ -5930,7 +5930,7 @@ __metadata:
     babel-plugin-transform-remove-console: "npm:6.9.4"
     build-ts: "npm:17.1.30"
     conventional-changelog-conventionalcommits: "npm:9.3.1"
-    js-yaml: "npm:4.2.0"
+    js-yaml: "npm:4.3.0"
     lefthook: "npm:2.1.9"
     oxfmt: "npm:0.57.0"
     oxlint: "npm:1.72.0"
@@ -6821,7 +6821,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"js-yaml@npm:4.2.0, js-yaml@npm:^4.1.0":
+"js-yaml@npm:4.3.0":
+  version: 4.3.0
+  resolution: "js-yaml@npm:4.3.0"
+  dependencies:
+    argparse: "npm:^2.0.1"
+  bin:
+    js-yaml: bin/js-yaml.js
+  checksum: 10c0/058b30473d6915ca5b4feb11e2f7d4d97242f98d00a798ed48dd90b46b7c640398afe9128c5db22c5300f8c6528fe2a174b9a93f351a70ebc28c6203938d8bff
+  languageName: node
+  linkType: hard
+
+"js-yaml@npm:^4.1.0":
   version: 4.2.0
   resolution: "js-yaml@npm:4.2.0"
   dependencies:
