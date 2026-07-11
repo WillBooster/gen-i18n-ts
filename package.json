@@ -65,7 +65,7 @@
     "semantic-release": "25.0.5",
     "sort-package-json": "4.0.0",
     "typescript": "7.0.2",
-    "vitest": "4.1.9"
+    "vitest": "4.1.10"
   },
   "packageManager": "yarn@4.17.1",
   "engines": {
