@@ -13,12 +13,15 @@ jobs:
   autofix:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6.0.3
-      - uses: actions/setup-node@v6.5.0
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
           check-latest: true
           node-version: lts/*
-      - run: yarn install
-      - run: yarn run cleanup
-      - run: yarn run build
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - run: bun install
+      - run: bun run cleanup
+      - run: bun run build
       - uses: autofix-ci/action@c5b2d67aa2274e7b5a18224e8171550871fc7e4a

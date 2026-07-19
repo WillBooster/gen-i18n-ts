@@ -15,7 +15,7 @@ pre-commit:
       glob: '**/*.{astro,cjs,css,cts,gql,graphql,hbs,htm,html,java,js,json,json5,jsonc,jsx,less,md,mdx,mjs,mts,scss,svelte,toml,ts,tsx,vue,yaml,yml}'
       run: |-
         # Lefthook expands {staged_files} as shell-escaped args, so paths with spaces stay intact.
-        yarn wb lint --fix --format -- {staged_files}
+        bun wb lint --fix --format -- {staged_files}
       stage_fixed: true
     - name: check-migrations
       glob: '**/migration.sql'
