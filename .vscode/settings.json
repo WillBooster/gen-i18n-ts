@@ -1,13 +1,13 @@
 {
   "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "oxc.oxc-vscode",
     "editor.rulers": [120]
   },
   "[svelte]": {
     "editor.defaultFormatter": "svelte.svelte-vscode"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "oxc.oxc-vscode",
     "editor.rulers": [120]
   },
   "eslint.nodePath": ".yarn/sdks",
