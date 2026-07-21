@@ -12,15 +12,13 @@ concurrency:
 jobs:
   autofix:
     runs-on: ubuntu-latest
+    env:
+      WB_ENV: development
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - uses: actions/checkout@v7
+      - uses: jdx/mise-action@v4.2.0
         with:
-          check-latest: true
-          node-version: lts/*
-      - uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
+          cache: true
       - run: bun install
       - run: bun run cleanup
       - run: bun run build

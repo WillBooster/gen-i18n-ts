@@ -2,7 +2,7 @@
 
 [![Test](https://github.com/WillBooster/gen-i18n-ts/actions/workflows/test.yml/badge.svg)](https://github.com/WillBooster/gen-i18n-ts/actions/workflows/test.yml)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
-[![wbfy](https://img.shields.io/badge/wbfy-4.2.2-1e90ff.svg)](https://github.com/WillBooster/shared/tree/main/packages/wbfy)
+[![wbfy](https://img.shields.io/badge/wbfy-4.3.1-1e90ff.svg)](https://github.com/WillBooster/shared/tree/main/packages/wbfy)
 
 A CLI tool to generate a strictly-typed i18n object literal written in TypeScript from JSON files.
 
