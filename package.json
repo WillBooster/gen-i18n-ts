@@ -58,7 +58,7 @@
     "@willbooster/wb": "15.3.0",
     "babel-plugin-transform-remove-console": "6.9.4",
     "build-ts": "19.0.0",
-    "conventional-changelog-conventionalcommits": "9.3.1",
+    "conventional-changelog-conventionalcommits": "10.2.1",
     "lefthook": "2.1.10",
     "oxfmt": "0.59.0",
     "oxlint": "1.74.0",
