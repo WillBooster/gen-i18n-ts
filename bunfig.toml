@@ -123,9 +123,6 @@ minimumReleaseAgeExcludes = [
   "@next/swc-win32-x64-msvc",
   "@next/third-parties",
   "react-is",
-  "@vinext/cloudflare",
-  "@vinext/types",
-  "vinext",
   # ---------- repository-specific entries ----------
   "agent-runtime-kit",
   "at-decorators",
