@@ -22,6 +22,8 @@
   - Always create new commits; avoid `--amend`.
 - Use heredoc for multi-line command input (e.g., `git commit -F -`, `gh pr create --body-file -`).
 - Put temporary files in `.tmp`; use `/tmp` only for files that must live outside the repo.
+- Tool versions (node, bun, and others) are pinned in `mise.toml`; run `mise install` after changing it, and never install those tools globally instead.
+- `bunfig.toml` uses Bun's isolated linker with a global store, so only declared dependencies resolve. If an import fails to resolve, declare that package in the `package.json` that imports it; never switch `linker` to `hoisted` or add to `publicHoistPattern` to work around it.
 
 ## Coding Style
 
