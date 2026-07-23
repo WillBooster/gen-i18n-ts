@@ -123,6 +123,7 @@ minimumReleaseAgeExcludes = [
   "@next/swc-win32-x64-msvc",
   "@next/third-parties",
   "react-is",
+  "react-server-dom-webpack",
   # ---------- repository-specific entries ----------
   "agent-runtime-kit",
   "at-decorators",
