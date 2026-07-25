@@ -1,14 +1,14 @@
-import * as child_process from 'node:child_process';
+import child_process from 'node:child_process';
 import path from 'node:path';
 
 /* eslint-disable @typescript-eslint/no-require-imports, unicorn/prefer-module, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment */
 
-test('basic use case', () => {
-  const inputDir = path.resolve('test-fixtures', 'basicUse');
-  const outFile = path.resolve('temp', 'basicUseI18n.ts');
+test('yaml format', () => {
+  const inputDir = path.resolve('test-fixtures', 'yamlFormat');
+  const outFile = path.resolve('temp', 'yamlFormatI18n.ts');
   child_process.spawnSync('yarn', ['start', '-i', inputDir, '-o', outFile, '-d', 'en', '--global']);
 
-  const { changeLanguageByCode, i18n } = require('../temp/basicUseI18n.ts');
+  const { changeLanguageByCode, i18n } = require('../../temp/yamlFormatI18n.ts');
 
   expect(i18n.okButtonName()).toBe('Done');
   expect(i18n.welcome({ userName: 'Taro' })).toBe('Hi, Taro');
