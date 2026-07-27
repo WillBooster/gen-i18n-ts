@@ -26,7 +26,7 @@
         "@willbooster/babel-configs": "2.5.1",
         "@willbooster/oxfmt-config": "1.2.2",
         "@willbooster/oxlint-config": "1.4.8",
-        "@willbooster/wb": "15.4.0",
+        "@willbooster/wb": "19.5.2",
         "babel-plugin-transform-remove-console": "6.9.4",
         "build-ts": "19.0.0",
         "conventional-changelog-conventionalcommits": "9.3.1",
@@ -646,7 +646,7 @@
 
     "@willbooster/shared-lib-node": ["@willbooster/shared-lib-node@10.1.0", "", { "dependencies": { "@types/yargs": "17.0.35", "dotenv": "17.4.2", "dotenv-expand": "13.0.0", "fast-glob": "3.3.3" } }, "sha512-sOxmqZs5xrn5UOo8+wZz4tONZZgSc3G4g0CC769o2eFR5ooxXN5pVkvhLPU6v+JYGrGW3ytV5Uaa7aso0NEAFQ=="],
 
-    "@willbooster/wb": ["@willbooster/wb@15.4.0", "", { "dependencies": { "chalk": "5.6.2", "dotenv": "17.4.2", "dotenv-expand": "13.0.0", "fast-glob": "3.3.3", "fastest-levenshtein": "1.0.16", "globby": "16.2.0", "jsonc-parser": "3.3.1", "kill-port": "2.0.1", "minimal-promise-pool": "6.0.2", "semver": "7.8.5", "yargs": "18.0.0" }, "bin": { "wb": "bin/index.js" } }, "sha512-DQqJIT1OhgZMjmqZE5ipr5rxJmvMsra97KNPJR3YDyimdvdy8Am/+pGLgiYaZmRrfLNgKSFrIG95xfQ+ZN8TFQ=="],
+    "@willbooster/wb": ["@willbooster/wb@19.5.2", "", { "dependencies": { "chalk": "5.6.2", "dotenv": "17.4.2", "dotenv-expand": "13.0.0", "fast-glob": "3.3.3", "fastest-levenshtein": "1.0.16", "globby": "16.2.2", "jsonc-parser": "3.3.1", "kill-port": "2.0.1", "minimal-promise-pool": "6.0.3", "semver": "7.8.5", "smol-toml": "1.7.0", "yargs": "18.0.0" }, "bin": { "wb": "bin/index.js" } }, "sha512-ynFRKrVKMPKo7Gxeyb4aHtkAEsuUUKrKaL92qC2cZU2taaZsl1YjHaN8zcUmxIj1EfbEF0JuByqcAeZh1OS3lA=="],
 
     "agent-base": ["agent-base@9.0.0", "", {}, "sha512-TQf59BsZnytt8GdJKLPfUZ54g/iaUL2OWDSFCCvMOhsHduDQxO8xC4PNeyIkVcA5KwL2phPSv0douC0fgWzmnA=="],
 
@@ -854,7 +854,7 @@
 
     "glob-parent": ["glob-parent@5.1.2", "", { "dependencies": { "is-glob": "^4.0.1" } }, "sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow=="],
 
-    "globby": ["globby@16.2.0", "", { "dependencies": { "@sindresorhus/merge-streams": "^4.0.0", "fast-glob": "^3.3.3", "ignore": "^7.0.5", "is-path-inside": "^4.0.0", "slash": "^5.1.0", "unicorn-magic": "^0.4.0" } }, "sha512-QrJia2qDf5BB/V6HYlDTs0I0lBahyjLzpGQg3KT7FnCdTonAyPy2RtY802m2k4ALx6Dp752f82WsOczEVr3l6Q=="],
+    "globby": ["globby@16.2.2", "", { "dependencies": { "@sindresorhus/merge-streams": "^4.0.0", "fast-glob": "^3.3.3", "ignore": "^7.0.5", "is-path-inside": "^4.0.0", "slash": "^5.1.0", "unicorn-magic": "^0.4.0" } }, "sha512-NLvV9ubZ6NDsJaOpKPy3cQeJpKi9DcWiyCiFUpJPA0YihRqiE6RWaLUmgNNPr8MgPpLZjnBjSmou7uZBRJv9wA=="],
 
     "graceful-fs": ["graceful-fs@4.2.11", "", {}, "sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ=="],
 
@@ -1038,7 +1038,7 @@
 
     "mimic-fn": ["mimic-fn@4.0.0", "", {}, "sha512-vqiC06CuhBTUdZH+RYl8sFrL096vA45Ok5ISO6sE/Mr1jRbGH4Csnhi8f3wKVl7x8mO4Au7Ir9D3Oyv1VYMFJw=="],
 
-    "minimal-promise-pool": ["minimal-promise-pool@6.0.2", "", {}, "sha512-N9lYsIE+56sFt26c/iMTQHGBKj9HSOnQualp5u9cFbmR9GCohbbeLwW2A9SXxyH2cNf+mQBMoOyouyrgAaYTOQ=="],
+    "minimal-promise-pool": ["minimal-promise-pool@6.0.3", "", {}, "sha512-eMHcThUd/0mM47x10H2qUNABxvIufJD33uOiNboDNLoA1FG91rBdwYf1l1Y7m29WNUb/Xa6yjDIT3El6uKWUjQ=="],
 
     "minimatch": ["minimatch@10.2.5", "", { "dependencies": { "brace-expansion": "^5.0.5" } }, "sha512-MULkVLfKGYDFYejP07QOurDLLQpcjk7Fw+7jXS2R2czRQzR56yHRveU5NDJEOviH+hETZKSkIk5c+T23GjFUMg=="],
 
@@ -1207,6 +1207,8 @@
     "skin-tone": ["skin-tone@2.0.0", "", { "dependencies": { "unicode-emoji-modifier-base": "^1.0.0" } }, "sha512-kUMbT1oBJCpgrnKoSr0o6wPtvRWT9W9UKvGLwfJYO2WuahZRHOpEyL1ckyMGgMWh0UdpmaoFqKKD29WTomNEGA=="],
 
     "slash": ["slash@5.1.0", "", {}, "sha512-ZA6oR3T/pEyuqwMgAKT0/hAv8oAXckzbkmR0UkUosQ+Mc4RxGoJkRmwHgHufaenlyAgE1Mxgpdcrf75y6XcnDg=="],
+
+    "smol-toml": ["smol-toml@1.7.0", "", {}, "sha512-aqVvWoyO21L23mb+drl4RmMXbf6N7FdHjAhTRA9ZBL7apWBgfWC16KjrASI+1p9GAroljyMHj6fK67i0UiTNvQ=="],
 
     "sort-object-keys": ["sort-object-keys@2.1.0", "", {}, "sha512-SOiEnthkJKPv2L6ec6HMwhUcN0/lppkeYuN1x63PbyPRrgSPIuBJCiYxYyvWRTtjMlOi14vQUCGUJqS6PLVm8g=="],
 
