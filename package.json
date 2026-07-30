@@ -29,6 +29,7 @@
     "start": "bun src/index.ts --",
     "start-prod": "bun run build && bun run gen-i18n-ts",
     "test": "bun wb test",
+    "test/ci": "bun wb test-on-ci",
     "typecheck": "bun wb typecheck",
     "verify": "bun wb verify",
     "verify-full": "bun wb verify --full"
@@ -55,13 +56,13 @@
     "@willbooster/babel-configs": "2.5.1",
     "@willbooster/oxfmt-config": "1.2.2",
     "@willbooster/oxlint-config": "1.4.8",
-    "@willbooster/wb": "19.5.2",
+    "@willbooster/wb": "19.5.3",
     "babel-plugin-transform-remove-console": "6.9.4",
-    "build-ts": "19.0.0",
+    "build-ts": "21.0.0",
     "conventional-changelog-conventionalcommits": "10.2.1",
     "lefthook": "2.1.10",
-    "oxfmt": "0.59.0",
-    "oxlint": "1.74.0",
+    "oxfmt": "0.61.0",
+    "oxlint": "1.76.0",
     "oxlint-tsgolint": "7.0.2001",
     "semantic-release": "25.0.8",
     "sort-package-json": "4.0.0",
@@ -72,6 +73,7 @@
     "node": ">=24"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }
