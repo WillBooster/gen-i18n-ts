@@ -7,6 +7,10 @@ globalStore = true
 linker = "isolated"
 publicHoistPattern = ["tsx", "undici-types"]
 minimumReleaseAge = 432000 # 5 days
+# minimumReleaseAgeExcludes is managed by wbfy — repository-specific entries are prohibited and
+# removed on every run (the minimumReleaseAge above may still be repository-specific). To exclude
+# a package, add it to bunMinimumReleaseAgeExcludes in WillBooster/shared
+# (packages/wbfy/src/generators/bunfig.ts) so every repository shares the same vetted list.
 minimumReleaseAgeExcludes = [
   "@exercode/problem-utils",
   "@willbooster-private/agentic-workflows",
@@ -24,7 +28,13 @@ minimumReleaseAgeExcludes = [
   "@willbooster/shared-lib-node",
   "@willbooster/shared-lib-react",
   "@willbooster/wb",
+  "agent-runtime-kit",
+  "at-decorators",
+  "build-ts",
+  "gen-i18n-ts",
+  "one-way-git-sync",
   "vinext-progress",
+  "typescript",
   "@typescript/typescript-aix-ppc64",
   "@typescript/typescript-darwin-arm64",
   "@typescript/typescript-darwin-x64",
@@ -47,6 +57,7 @@ minimumReleaseAgeExcludes = [
   "@typescript/typescript-win32-x64",
   "@types/bun",
   "bun-types",
+  "oxfmt",
   "@oxfmt/binding-android-arm-eabi",
   "@oxfmt/binding-android-arm64",
   "@oxfmt/binding-darwin-arm64",
@@ -66,6 +77,7 @@ minimumReleaseAgeExcludes = [
   "@oxfmt/binding-win32-arm64-msvc",
   "@oxfmt/binding-win32-ia32-msvc",
   "@oxfmt/binding-win32-x64-msvc",
+  "oxlint",
   "@oxlint/binding-android-arm-eabi",
   "@oxlint/binding-android-arm64",
   "@oxlint/binding-darwin-arm64",
@@ -85,6 +97,7 @@ minimumReleaseAgeExcludes = [
   "@oxlint/binding-win32-arm64-msvc",
   "@oxlint/binding-win32-ia32-msvc",
   "@oxlint/binding-win32-x64-msvc",
+  "oxlint-tsgolint",
   "@oxlint-tsgolint/darwin-arm64",
   "@oxlint-tsgolint/darwin-x64",
   "@oxlint-tsgolint/linux-arm64",
@@ -122,18 +135,9 @@ minimumReleaseAgeExcludes = [
   "@next/swc-win32-ia32-msvc",
   "@next/swc-win32-x64-msvc",
   "@next/third-parties",
-  "react-is",
-  # ---------- repository-specific entries ----------
-  "agent-runtime-kit",
-  "at-decorators",
-  "build-ts",
-  "gen-i18n-ts",
   "next",
-  "one-way-git-sync",
-  "oxfmt",
-  "oxlint",
-  "oxlint-tsgolint",
   "react",
   "react-dom",
-  "typescript",
+  "react-is",
+  "react-server-dom-webpack",
 ]
