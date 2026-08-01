@@ -26,7 +26,7 @@
         "@willbooster/babel-configs": "2.5.1",
         "@willbooster/oxfmt-config": "1.2.2",
         "@willbooster/oxlint-config": "1.4.8",
-        "@willbooster/wb": "19.5.4",
+        "@willbooster/wb": "19.5.5",
         "babel-plugin-transform-remove-console": "6.9.4",
         "build-ts": "21.0.0",
         "conventional-changelog-conventionalcommits": "10.2.1",
@@ -638,7 +638,7 @@
 
     "@willbooster/shared-lib-node": ["@willbooster/shared-lib-node@13.0.0", "", { "dependencies": { "@types/yargs": "17.0.35", "dotenv-expand": "13.0.0", "fast-glob": "3.3.3" } }, "sha512-gPxu1W9lqwb9ObSe2mDM77ktTDcd5RpcM91pV4bhorlt+Cx6xsyV5yb0qYftHJEP/g9Nx4urFEs5amzXarh6Rw=="],
 
-    "@willbooster/wb": ["@willbooster/wb@19.5.4", "", { "dependencies": { "chalk": "5.6.2", "dotenv": "17.4.2", "dotenv-expand": "13.0.0", "fast-glob": "3.3.3", "fastest-levenshtein": "1.0.16", "globby": "16.2.2", "jsonc-parser": "3.3.1", "kill-port": "2.0.1", "minimal-promise-pool": "6.0.3", "semver": "7.8.5", "smol-toml": "1.7.0", "yargs": "18.0.0" }, "bin": { "wb": "bin/index.js" } }, "sha512-Dgwq48N99p5ARZj7iWnIuOCFV5gP6sLTS1xtQAGmBD63HUBDpxOqXvF7PFsu7hEtw5FH7cq/fDPdfQjSsTE1iQ=="],
+    "@willbooster/wb": ["@willbooster/wb@19.5.5", "", { "dependencies": { "chalk": "5.6.2", "dotenv": "17.4.2", "dotenv-expand": "13.0.0", "fast-glob": "3.3.3", "fastest-levenshtein": "1.0.16", "globby": "16.2.2", "jsonc-parser": "3.3.1", "kill-port": "2.0.1", "minimal-promise-pool": "6.0.3", "semver": "7.8.5", "smol-toml": "1.7.1", "yargs": "18.0.0" }, "bin": { "wb": "bin/index.js" } }, "sha512-5EPqJdetHftQGTvTZZW4pzR+rf04wgwarkhfOhs5HTYENtJATK/4U7AhGTC6vFNGwHYG60B/PuJaWULH9lPZuQ=="],
 
     "agent-base": ["agent-base@9.0.0", "", {}, "sha512-TQf59BsZnytt8GdJKLPfUZ54g/iaUL2OWDSFCCvMOhsHduDQxO8xC4PNeyIkVcA5KwL2phPSv0douC0fgWzmnA=="],
 
@@ -1184,7 +1184,7 @@
 
     "slash": ["slash@5.1.0", "", {}, "sha512-ZA6oR3T/pEyuqwMgAKT0/hAv8oAXckzbkmR0UkUosQ+Mc4RxGoJkRmwHgHufaenlyAgE1Mxgpdcrf75y6XcnDg=="],
 
-    "smol-toml": ["smol-toml@1.7.0", "", {}, "sha512-aqVvWoyO21L23mb+drl4RmMXbf6N7FdHjAhTRA9ZBL7apWBgfWC16KjrASI+1p9GAroljyMHj6fK67i0UiTNvQ=="],
+    "smol-toml": ["smol-toml@1.7.1", "", {}, "sha512-PPlsspAZ4jbMBu5DMFhfUGDQLu/vrL4SyBROVS37x8ynnVmFIs1VPBz1Co8Xks3TvpIaZXmU85y4DrQ+UyVFoQ=="],
 
     "sort-object-keys": ["sort-object-keys@2.1.0", "", {}, "sha512-SOiEnthkJKPv2L6ec6HMwhUcN0/lppkeYuN1x63PbyPRrgSPIuBJCiYxYyvWRTtjMlOi14vQUCGUJqS6PLVm8g=="],
 
