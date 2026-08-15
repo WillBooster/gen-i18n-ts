@@ -25,7 +25,6 @@ export function generate(
 
 `;
 
-  // Generate language union type
   const languageUnion = languages.map((lang) => JSON.stringify(lang)).join(' | ');
   code += `export type SupportedLanguage = ${languageUnion};\n`;
   code += `export const SUPPORTED_LANGUAGES = ${JSON.stringify(languages)} as const;\n`;
