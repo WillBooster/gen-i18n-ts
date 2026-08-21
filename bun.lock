@@ -26,7 +26,7 @@
         "@willbooster/babel-configs": "2.5.1",
         "@willbooster/oxfmt-config": "1.2.2",
         "@willbooster/oxlint-config": "1.4.8",
-        "@willbooster/wb": "21.7.2",
+        "@willbooster/wb": "21.7.3",
         "babel-plugin-transform-remove-console": "6.9.4",
         "build-ts": "21.0.7",
         "conventional-changelog-conventionalcommits": "10.2.1",
@@ -636,7 +636,7 @@
 
     "@willbooster/shared-lib-node": ["@willbooster/shared-lib-node@13.2.1", "", { "dependencies": { "@types/yargs": "17.0.35", "dotenv-expand": "13.0.0", "fast-glob": "3.3.3" } }, "sha512-z2CYOVDQdajp2dofcD+lGfB94SbEsp6cTECjno5B4Gk+5KCOZx3IdT4qnFUwkSt+sLAh0qc0IIJVl/b0wplWcw=="],
 
-    "@willbooster/wb": ["@willbooster/wb@21.7.2", "", { "dependencies": { "chalk": "6.0.0", "dotenv": "17.4.2", "dotenv-expand": "13.0.0", "fast-glob": "3.3.3", "fastest-levenshtein": "1.0.16", "globby": "16.2.3", "jsonc-parser": "3.3.1", "minimal-promise-pool": "6.0.3", "semver": "7.8.5", "smol-toml": "1.7.1", "yargs": "18.1.0" }, "bin": { "wb": "bin/index.js" } }, "sha512-gKBSxk3YgRr4R0zeQv+4xDYC+bZ0+LSXXCaih8rMrojcVyelU5wVysy+Cuepx33lnb+ZZZ5X5BLcoDh+hEb3JQ=="],
+    "@willbooster/wb": ["@willbooster/wb@21.7.3", "", { "dependencies": { "chalk": "6.0.0", "dotenv": "17.4.2", "dotenv-expand": "13.0.0", "fast-glob": "3.3.3", "fastest-levenshtein": "1.0.16", "globby": "16.2.3", "jsonc-parser": "3.3.1", "minimal-promise-pool": "6.0.3", "semver": "7.8.5", "smol-toml": "1.7.1", "yargs": "18.1.0" }, "bin": { "wb": "bin/index.js" } }, "sha512-/fZtgkIUiz0yGa3xBckVEzUx0tQtX1lsCHSmyqq7gkOyjBy01wbiXYFaA5Jwbuvg20PhqG/PSV8qGewyLs7ZoA=="],
 
     "agent-base": ["agent-base@9.0.0", "", {}, "sha512-TQf59BsZnytt8GdJKLPfUZ54g/iaUL2OWDSFCCvMOhsHduDQxO8xC4PNeyIkVcA5KwL2phPSv0douC0fgWzmnA=="],
 
