@@ -26,7 +26,7 @@
         "@willbooster/babel-configs": "2.5.1",
         "@willbooster/oxfmt-config": "1.2.2",
         "@willbooster/oxlint-config": "1.4.8",
-        "@willbooster/wb": "22.3.2",
+        "@willbooster/wb": "22.3.3",
         "babel-plugin-transform-remove-console": "6.9.4",
         "build-ts": "21.0.12",
         "conventional-changelog-conventionalcommits": "10.4.0",
@@ -654,7 +654,7 @@
 
     "@willbooster/shared-lib-node": ["@willbooster/shared-lib-node@13.3.0", "", { "dependencies": { "@types/yargs": "17.0.35", "dotenv-expand": "13.0.0", "fast-glob": "3.3.3" } }, "sha512-6YvlgsXK3LXa4Q9zWA0oJwV+KhqghvdzmFSnUabkxWCFufQld4VMqzhjL7Qry2RxpbAiLEiGNQvvNeyLnRA0IA=="],
 
-    "@willbooster/wb": ["@willbooster/wb@22.3.2", "", { "dependencies": { "@textlint-rule/textlint-rule-no-invalid-control-character": "3.0.0", "@textlint/kernel": "15.8.0", "@textlint/module-interop": "15.8.0", "@textlint/textlint-plugin-markdown": "15.8.0", "chalk": "6.0.0", "dotenv": "17.4.2", "dotenv-expand": "13.0.0", "fast-glob": "3.3.3", "fastest-levenshtein": "1.0.16", "globby": "16.2.4", "jsonc-parser": "3.3.1", "minimal-promise-pool": "6.0.3", "semver": "7.8.5", "smol-toml": "1.8.0", "textlint-rule-no-zero-width-spaces": "1.0.1", "yargs": "18.1.0" }, "bin": { "wb": "bin/index.js" } }, "sha512-HbojdMKo0W9wWtsugXz6fJ9MI26L16dnn8NUcjL6N8voajZQr61PD60fKz/1yZMBOvpODQToEu0ftapuGSP3MA=="],
+    "@willbooster/wb": ["@willbooster/wb@22.3.3", "", { "dependencies": { "@textlint-rule/textlint-rule-no-invalid-control-character": "3.0.0", "@textlint/kernel": "15.8.0", "@textlint/module-interop": "15.8.0", "@textlint/textlint-plugin-markdown": "15.8.0", "chalk": "6.0.0", "dotenv": "17.4.2", "dotenv-expand": "13.0.0", "fast-glob": "3.3.3", "fastest-levenshtein": "1.0.16", "globby": "16.2.4", "jsonc-parser": "3.3.1", "minimal-promise-pool": "6.0.3", "semver": "7.8.5", "smol-toml": "1.8.0", "textlint-rule-no-zero-width-spaces": "1.0.1", "yargs": "18.1.0" }, "bin": { "wb": "bin/index.js" } }, "sha512-QgvvG5klujj8w+g+Ip14gGgXvHYabDSZF8vDYaPjUmlh1YthRUQzFFk9CXnzMfcnaSftXxeBQupoZ/lGW9lBcQ=="],
 
     "agent-base": ["agent-base@9.0.0", "", {}, "sha512-TQf59BsZnytt8GdJKLPfUZ54g/iaUL2OWDSFCCvMOhsHduDQxO8xC4PNeyIkVcA5KwL2phPSv0douC0fgWzmnA=="],
 
