@@ -58,7 +58,7 @@
     "@willbooster/oxlint-config": "1.4.8",
     "@willbooster/wb": "22.4.0",
     "babel-plugin-transform-remove-console": "6.9.4",
-    "build-ts": "21.0.13",
+    "build-ts": "21.0.14",
     "conventional-changelog-conventionalcommits": "10.4.0",
     "lefthook": "2.1.12",
     "oxfmt": "0.67.0",
