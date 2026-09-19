@@ -11,7 +11,7 @@
       "devDependencies": {
         "@babel/core": "8.0.5",
         "@babel/helper-plugin-utils": "8.0.1",
-        "@babel/node": "8.0.1",
+        "@babel/node": "8.0.5",
         "@babel/plugin-proposal-class-properties": "7.18.6",
         "@babel/plugin-proposal-numeric-separator": "7.18.6",
         "@babel/preset-env": "8.0.5",
@@ -21,7 +21,7 @@
         "@tsconfig/node-ts": "23.6.4",
         "@types/bun": "1.4.2",
         "@types/js-yaml": "4.0.9",
-        "@types/node": "26.4.1",
+        "@types/node": "26.5.1",
         "@types/yargs": "17.0.35",
         "@willbooster/babel-configs": "2.5.1",
         "@willbooster/oxfmt-config": "1.2.2",
@@ -96,7 +96,7 @@
 
     "@babel/helpers": ["@babel/helpers@8.0.5", "", { "dependencies": { "@babel/template": "^8.0.0", "@babel/types": "^8.0.5" } }, "sha512-fQtPOXjYOYv85PIdwotp2TJGVYOycX0PQq+l844fFAxOULtBy8BVF35GyeueX0r4KvDthqPH5xAI1clQPk/2uA=="],
 
-    "@babel/node": ["@babel/node@8.0.1", "", { "dependencies": { "@babel/register": "^8.0.1", "commander": "^14.0.2", "core-js": "^3.48.0", "v8flags": "^4.0.1" }, "peerDependencies": { "@babel/core": "^8.0.0" }, "bin": { "babel-node": "./bin/babel-node.js" } }, "sha512-vxneQIP0PGQwymuZkwewtbPVBAm8Zw+Jy/RtznWZ5FSAQlKp/g6ZKrKwNndrMfBpwFjY0jxjx4hF5ZigXdvPrQ=="],
+    "@babel/node": ["@babel/node@8.0.5", "", { "dependencies": { "@babel/register": "^8.0.5", "commander": "^14.0.2", "core-js": "^3.48.0", "v8flags": "^4.0.1" }, "peerDependencies": { "@babel/core": "^8.0.0" }, "bin": { "babel-node": "./bin/babel-node.js" } }, "sha512-ItQQ+C57WJl6Xtv0uJi+8G4VJFbWq6UBUKk2/og4rCpyMRfNFOvibI8GsGcPhpbXWcGpkY+Ez7iOZhkscItMyA=="],
 
     "@babel/parser": ["@babel/parser@8.0.5", "", { "dependencies": { "@babel/types": "^8.0.5" }, "bin": "./bin/babel-parser.js" }, "sha512-51RXvQNFakaS0bTpYiGkxNbUVwkPO4kONv6EVLorZABxsx+KZ6Z7uSYvi/wmKS/+X+rfj9RvOw0/ZNh+cmI0Rw=="],
 
@@ -246,7 +246,7 @@
 
     "@babel/preset-typescript": ["@babel/preset-typescript@8.0.1", "", { "dependencies": { "@babel/helper-plugin-utils": "^8.0.1", "@babel/helper-validator-option": "^8.0.0", "@babel/plugin-transform-modules-commonjs": "^8.0.1", "@babel/plugin-transform-typescript": "^8.0.1" }, "peerDependencies": { "@babel/core": "^8.0.0" } }, "sha512-qrPhQIN1NLrPmzgazF9XKQqXrOcp/WJly+K+6ReFonn24FZqRJO7clxOJo6Ni75L+2vAqI3cHVU2OJLBxoPp5A=="],
 
-    "@babel/register": ["@babel/register@8.0.1", "", { "dependencies": { "@cspotcode/source-map-support": "^0.8.1", "cacache": "20.0.3", "clone-deep": "^4.0.1", "empathic": "^2.0.1", "pirates": "^4.0.6" }, "peerDependencies": { "@babel/core": "^8.0.0" } }, "sha512-cnhRaD7/V44JpWK33A2oPzBj38JJ7oYsEQpuLV9PLZd/5FvfmDbft3UjyqQfUuQ7rMx065uB1sbscqxhUehuNQ=="],
+    "@babel/register": ["@babel/register@8.0.5", "", { "dependencies": { "@cspotcode/source-map-support": "^0.8.1", "cacache": "20.0.3", "clone-deep": "^4.0.1", "empathic": "^2.0.1", "pirates": "^4.0.6" }, "peerDependencies": { "@babel/core": "^8.0.0" } }, "sha512-+5z6kU1KnrkXX7SVwnkxl3lU7ZYaB1obWcDfEuTLjILQy4PNZ6NPljeavlo3JMHbcmWRcdFum96OXN+SMH855w=="],
 
     "@babel/template": ["@babel/template@8.0.0", "", { "dependencies": { "@babel/code-frame": "^8.0.0", "@babel/parser": "^8.0.0", "@babel/types": "^8.0.0" } }, "sha512-eAD0QW/AlbamBbw0FeGiwasbCVPq5ncW0HNVyLP3B9czqLyh4gvw+5JTSNt6le9+ziAU7mqDZsKTHf3jTb4chQ=="],
 
@@ -592,7 +592,7 @@
 
     "@types/mdast": ["@types/mdast@3.0.15", "", { "dependencies": { "@types/unist": "^2" } }, "sha512-LnwD+mUEfxWMa1QpDraczIn6k0Ee3SMicuYSSzS6ZYl2gKS09EClnJYGd8Du6rfc5r/GZEk5o1mRb8TaTj03sQ=="],
 
-    "@types/node": ["@types/node@26.4.1", "", { "dependencies": { "undici-types": "~8.3.0" } }, "sha512-k97ENvZWtvA6yqz5/FS6a7duDgOPEeOQOc2iKS/nY6mX6qJUKtLnWzQS+Xj6tXweyj6ZcTAK2Qecetnvi9nCLA=="],
+    "@types/node": ["@types/node@26.5.1", "", { "dependencies": { "undici-types": "~8.9.0" } }, "sha512-CzNm2FezW4VR/LjG6yUdiEgLE/rAQ9Slj5gCu/C2VrdcW7I0ahNZ8DRbHT7zOZ6r3ONgd/bsQIeSaoDGrd1C6g=="],
 
     "@types/normalize-package-data": ["@types/normalize-package-data@2.4.4", "", {}, "sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA=="],
 
@@ -1374,7 +1374,7 @@
 
     "undici": ["undici@7.29.0", "", {}, "sha512-IDxfleLmmbSskfWSUATiN1nfn2rDuvnMOqb5CWR92iIfojA0Ud+ulOAAEQ57LPr9rWmsreUyf5lwyao+7GNNVw=="],
 
-    "undici-types": ["undici-types@8.3.0", "", {}, "sha512-j375ScV60dom+YkPFIfTLcOiPxkN/buHz5GobjLhixFuANaNs3C9l4GmrWqejgXWJ7BbJcFYpTEUkS1Ge8bpZQ=="],
+    "undici-types": ["undici-types@8.9.0", "", {}, "sha512-KTDyRTYX8sWmKXAikPHHSyc63CRPETMctyjKFupcC6OBLXT3xsN0e9aF7m+mIXutFWpUXuedtowG7iLOzp0kQg=="],
 
     "unicode-canonical-property-names-ecmascript": ["unicode-canonical-property-names-ecmascript@2.0.1", "", {}, "sha512-dA8WbNeb2a6oQzAQ55YlT5vQAWGV9WXOsi3SskE3bcCdM0P4SDd+24zS/OCacdRq5BkdsRj9q3Pg6YyQoxIGqg=="],
 
