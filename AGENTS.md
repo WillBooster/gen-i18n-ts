@@ -8,6 +8,7 @@
 
 - If on `main`, create a new branch; otherwise work on the current branch.
 - Run `git` commands one at a time to avoid `index.lock` conflicts.
+- Unless instructed otherwise, write every artifact except your conversational replies and product-facing text in English.
 - Write a test only when explicitly requested, or when a behavior is likely to regress and no existing automatic check (type checking, linting, an existing test or CI check) would catch the breakage. Never add a test that merely restates a mapping from conditions to constant outputs (it fails only on intentional edits) or that only confirms an external fact (a library's behavior, whether a version fixes an issue); verify those once manually.
 - Test externally observable behavior (e.g., emitted files, CLI output, rendered results) at the system boundary, not implementation details: do not mirror production logic, assert that a branch is taken, or feed hand-assembled internal objects to internal functions.
 - Prefer actual API calls over mocks, unless actual calls are impractical, have unintended side effects, or mocks are explicitly requested.
@@ -36,6 +37,7 @@
 - `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.cursor/rules/general.mdc`, and `.gemini/styleguide.md` are generated from `AGENTS_EXTRA.md` and overwritten on every `wbfy` run; to change agent instructions, edit only `AGENTS_EXTRA.md`.
 - Tool versions (e.g., node) are pinned in `mise.toml`; run `mise install` after changing it and never install those tools globally instead.
 - `bunfig.toml` uses Bun's isolated linker, so only declared dependencies resolve. If an import fails to resolve, declare that package in the `package.json` that imports it; never switch `linker` to `hoisted` or add to `publicHoistPattern` to work around it.
+- Private repositories use self-hosted CI runners. Keep OS/size constraints in an explicit self-hosted label array; fix missing runner capabilities instead of switching to GitHub-hosted runners. The sole approved exception is the Windows desktop build in WillBooster/cheerlings.
 
 ## Coding Style
 
@@ -43,7 +45,7 @@
 - Simplify code as much as possible to eliminate redundancy.
 - Design modules and directories with high cohesion and low coupling; split large modules when needed.
 - Place calling functions above the functions they call (top-down order); place variable and type declarations above their usage.
-- Write comments and JSDoc only for hard-to-understand code: explain "why" in comments and "what" in JSDoc.
+- Comments and JSDoc: every reader has the source, so never restate what the code, its names, or its types already say (e.g., `@param name The name`). Write one only when a plausible edit would break something without that knowledge and no type check, lint rule, or test would catch it; first encode the knowledge in code (a name, a type, an `assert`, a test) and comment only what cannot be encoded: an odd-looking workaround, a dependency on a fact outside the repository, or a rejected alternative and why. Put a contract of the declared symbol in JSDoc and line-specific knowledge in an inline comment. Delete comments that fail this test in files you touch. Exception: the exported API of a package published to npm may carry JSDoc describing what it does and how to call it, because its users read it without the source.
 - Never explain how WillBooster's in-house tools (e.g., `wb`, `wbfy`) work in code comments or documents outside the tool's own package, except in instructions for AI agents (e.g., do not note that `PORT` is unset because `wb` picks a free port).
 - If lint errors or warnings cannot be fixed, use ignore comments with reasons (e.g., `// oxlint-disable-next-line <rule> -- <reason>`).
 - Prefer `undefined` over `null` unless required by APIs or libraries.
