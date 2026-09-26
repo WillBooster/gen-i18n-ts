@@ -41,7 +41,7 @@
   "devDependencies": {
     "@babel/core": "8.0.5",
     "@babel/helper-plugin-utils": "8.0.1",
-    "@babel/node": "8.0.5",
+    "@babel/node": "8.0.6",
     "@babel/plugin-proposal-class-properties": "7.18.6",
     "@babel/plugin-proposal-numeric-separator": "7.18.6",
     "@babel/preset-env": "8.0.5",
@@ -51,7 +51,7 @@
     "@tsconfig/node-ts": "23.6.4",
     "@types/bun": "1.4.2",
     "@types/js-yaml": "4.0.9",
-    "@types/node": "26.5.1",
+    "@types/node": "26.6.2",
     "@types/yargs": "17.0.35",
     "@willbooster/babel-configs": "2.5.1",
     "@willbooster/oxfmt-config": "1.2.2",
