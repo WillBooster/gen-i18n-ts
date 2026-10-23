@@ -6,7 +6,9 @@ import path from 'node:path';
 test('multiple arguments', () => {
   const inputDir = path.resolve('test-fixtures', 'multiArgs');
   const outFile = path.resolve('temp', 'multiArgsI18n.ts');
-  child_process.spawnSync('yarn', ['start', '-i', inputDir, '-o', outFile, '-d', 'en', '--global']);
+  expect(child_process.spawnSync('bun', ['start', '-i', inputDir, '-o', outFile, '-d', 'en', '--global']).status).toBe(
+    0
+  );
 
   const { changeLanguageByCode, i18n } = require('../../temp/multiArgsI18n.ts');
 
@@ -26,6 +28,18 @@ test('multiple arguments', () => {
     'メールを受信しました! 送信者:WB Store 件名:特別割引'
   );
   expect(i18n.fx({ f: '正弦(sin)', x: 'シータ' })).toBe('シータ の関数 正弦(sin)');
+
+  let reads = 0;
+  const counting = {
+    get f() {
+      return ++reads;
+    },
+    get x() {
+      return ++reads;
+    },
+  };
+  // Parameters are read in signature order even when the translation reorders them.
+  expect(i18n.fx(counting)).toBe('2 の関数 1');
 
   changeLanguageByCode('en');
   expect(i18n.fourAnd({ a: 'apple', b: 'orange', c: 'banana', d: 'peach' })).toBe('apple, orange, banana and peach');

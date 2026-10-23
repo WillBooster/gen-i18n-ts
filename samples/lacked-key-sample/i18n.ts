@@ -5,84 +5,47 @@
  * Modify your JSON files in i18n directory and run gen-i18n-ts script to regenerate this file. *
  *----------------------------------------------------------------------------------------------*/
 
-type SupportedLanguage = 'en' | 'ja';
+export type SupportedLanguage = 'en' | 'ja';
+export const SUPPORTED_LANGUAGES = ['en', 'ja'] as const;
+export const DEFAULT_LANGUAGE = 'en' as const;
 
-const languages = {
+type Messages = { welcome: (params: { userName: unknown }) => string; lackedKey: () => string };
+
+const languages: Record<SupportedLanguage, Messages> = {
   en: {
-    __code__: 'en',
-    welcome: 'Hi, ${userName}',
-    lackedKey: "This key-value pair is copied to ja (en.json is the default and ja.json does not have 'lackedKey')",
+    welcome: (params) => 'Hi, ' + String(params.userName),
+    lackedKey: () =>
+      "This key-value pair is copied to ja (en.json is the default and ja.json does not have 'lackedKey')",
   },
   ja: {
-    __code__: 'ja',
-    welcome: 'こんにちは、${userName}さん',
-    lackedKey: "This key-value pair is copied to ja (en.json is the default and ja.json does not have 'lackedKey')",
-  },
-} as const;
-let currentLang: (typeof languages)[SupportedLanguage] = languages['en'];
-export const i18n = {
-  welcome: function ({ userName }: { userName: unknown }): string {
-    const paramMap: Record<string, string> = { '${userName}': String(userName) };
-    return currentLang['welcome'].replaceAll(/\$\{userName\}/g, (pattern) => paramMap[pattern] ?? '');
-  },
-  lackedKey: function (): string {
-    return currentLang['lackedKey'];
+    welcome: (params) => 'こんにちは、' + String(params.userName) + 'さん',
+    lackedKey: () =>
+      "This key-value pair is copied to ja (en.json is the default and ja.json does not have 'lackedKey')",
   },
 };
+
+export const i18n = function (language: string): Messages {
+  if (!isSupportedLanguage(language)) throw new Error(`Language "${language}" not found`);
+  return languages[language];
+};
 export type I18n = typeof i18n;
-export function changeLanguageByCode(lang: SupportedLanguage): true;
-export function changeLanguageByCode(lang: string): boolean;
-export function changeLanguageByCode(lang: string): boolean {
-  switch (lang) {
-    case 'en':
-      currentLang = languages['en'];
-      return true;
-    case 'ja':
-      currentLang = languages['ja'];
-      return true;
-  }
-  return false;
+
+export function isSupportedLanguage(language: string | undefined): language is SupportedLanguage {
+  return SUPPORTED_LANGUAGES.includes(language as SupportedLanguage);
 }
-export function getCurrentLanguageCode(): string {
-  return currentLang.__code__;
-}
-export function getFullAndShortLanguageCodeList(): string[] {
-  const langSet = new Set<string>();
-  const fullLangs = getFullLanguageCodeList();
-  const shortLangs = getShortLanguageCodeList();
-  const length = Math.max(fullLangs.length, shortLangs.length);
-  for (let i = 0; i < length; i++) {
-    const fullLang = fullLangs[i];
-    if (fullLang) langSet.add(fullLang);
-    const shortLang = shortLangs[i];
-    if (shortLang) langSet.add(shortLang);
-  }
-  return [...langSet];
-}
-export function getFullLanguageCodeList(): string[] {
-  const langSet = new Set<string>();
-  const nav = window.navigator || {};
-  if (Array.isArray(nav.languages)) {
-    for (const lang of nav.languages) {
-      if (lang) langSet.add(lang);
-    }
-  }
-  for (const key of ['language', 'browserLanguage', 'systemLanguage', 'userLanguage']) {
-    const lang = (nav as any)[key];
-    if (lang) langSet.add(lang);
-  }
-  return [...langSet];
-}
-export function getShortLanguageCodeList(): string[] {
-  return [
-    ...new Set(
-      getFullLanguageCodeList()
-        .map((lang) => lang.split('-')[0] ?? '')
-        .filter((lang) => !!lang)
-    ),
-  ];
-}
-export function i18nByCode(langCode: string): typeof i18n {
-  changeLanguageByCode(langCode);
-  return i18n;
+
+/**
+ * Return the supported language equal to `language` or, failing that, the first one sharing its primary subtag.
+ * Comparison ignores case because language tags are case-insensitive and supported languages come from file names.
+ */
+export function matchSupportedLanguage(language: string): SupportedLanguage | undefined {
+  const lowerLanguage = language.toLowerCase();
+  const exactMatch = SUPPORTED_LANGUAGES.find((supportedLanguage) => supportedLanguage.toLowerCase() === lowerLanguage);
+  if (exactMatch) return exactMatch;
+
+  const primarySubtag = lowerLanguage.split('-')[0];
+  return SUPPORTED_LANGUAGES.find((supportedLanguage) => {
+    const lowerSupportedLanguage = supportedLanguage.toLowerCase();
+    return lowerSupportedLanguage === primarySubtag || lowerSupportedLanguage.startsWith(`${primarySubtag}-`);
+  });
 }

@@ -6,7 +6,9 @@ import path from 'node:path';
 test('escape characters', () => {
   const inputDir = path.resolve('test-fixtures', 'escapeChars');
   const outFile = path.resolve('temp', 'escapeCharsI18n.ts');
-  child_process.spawnSync('yarn', ['start', '-i', inputDir, '-o', outFile, '-d', 'en', '--global']);
+  expect(child_process.spawnSync('bun', ['start', '-i', inputDir, '-o', outFile, '-d', 'en', '--global']).status).toBe(
+    0
+  );
 
   const { changeLanguageByCode, i18n } = require('../../temp/escapeCharsI18n.ts');
 

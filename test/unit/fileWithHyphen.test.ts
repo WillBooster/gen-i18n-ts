@@ -6,7 +6,9 @@ import path from 'node:path';
 test('filename with hyphen', () => {
   const inputDir = path.resolve('test-fixtures', 'fileWithHyphen');
   const outFile = path.resolve('temp', 'fileWithHyphenI18n.ts');
-  child_process.spawnSync('yarn', ['start', '-i', inputDir, '-o', outFile, '-d', 'en-us', '--global']);
+  expect(
+    child_process.spawnSync('bun', ['start', '-i', inputDir, '-o', outFile, '-d', 'en-us', '--global']).status
+  ).toBe(0);
 
   const { changeLanguageByCode, i18n } = require('../../temp/fileWithHyphenI18n.ts');
 

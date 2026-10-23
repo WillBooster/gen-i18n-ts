@@ -6,7 +6,9 @@ import path from 'node:path';
 test('non-global mode (function with language parameter)', () => {
   const inputDir = path.resolve('test-fixtures', 'basicUse');
   const outFile = path.resolve('temp', 'nonGlobalModeI18n.ts');
-  child_process.spawnSync('yarn', ['start', '-i', inputDir, '-o', outFile, '-d', 'en', '--no-global']);
+  expect(
+    child_process.spawnSync('bun', ['start', '-i', inputDir, '-o', outFile, '-d', 'en', '--no-global']).status
+  ).toBe(0);
 
   const exported = require('../../temp/nonGlobalModeI18n.ts');
 
@@ -26,5 +28,7 @@ test('non-global mode (function with language parameter)', () => {
   expect(jaI18n.pages.user({ userName: '太郎' })).toBe('太郎さんのページ');
   expect(jaI18n.pages.contact()).toBe('お問い合わせ');
 
+  expect(exported.i18n('en')).toBe(enI18n);
   expect(() => exported.i18n('invalid')).toThrow('Language "invalid" not found');
+  expect(() => exported.i18n('toString')).toThrow('Language "toString" not found');
 });

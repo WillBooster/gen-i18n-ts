@@ -1,4 +1,4 @@
-import { ErrorMessages } from './constants.js';
+import { ErrorMessages, VARIABLE_REGEX } from './constants.js';
 import type { BaseType } from './types.js';
 import { FunctionType, ObjectType } from './types.js';
 import { getMemberVarName, isObject, isString } from './utils.js';
@@ -10,11 +10,6 @@ export function generate(
   global: boolean
 ): string {
   const languages = [...langToLangObj.keys()].toSorted();
-
-  const varLanguages = 'languages';
-  const varCurrentLang = 'currentLang';
-  const varI18n = 'i18n';
-  const varI18nType = 'I18n';
 
   let code = `/* eslint-disable */
 
@@ -29,47 +24,35 @@ export function generate(
   code += `export type SupportedLanguage = ${languageUnion};\n`;
   code += `export const SUPPORTED_LANGUAGES = ${JSON.stringify(languages)} as const;\n`;
   code += `export const DEFAULT_LANGUAGE = ${JSON.stringify(defaultLang)} as const;\n\n`;
+  code += `type Messages = ${typeObjToTypeCode(typeObj)};\n\n`;
 
   let members = '';
   for (const language of languages) {
-    const langCode = langObjToCode(language, langToLangObj.get(language));
-    members += `${JSON.stringify(language)}: ${langCode}, `;
+    const langObj = langToLangObj.get(language);
+    if (!isObject(langObj)) throw new Error(ErrorMessages.langFileNotObject(language));
+    members += `${JSON.stringify(language)}: ${typeObjToMessagesCode(typeObj, language, langObj, '')}, `;
   }
-  code += `const ${varLanguages} = { ${members} } as const;\n`;
+  code += `const languages: Record<SupportedLanguage, Messages> = { ${members} };\n\n`;
 
   if (global) {
-    code += `let ${varCurrentLang}: typeof ${varLanguages}[SupportedLanguage] = ${varLanguages}[${JSON.stringify(defaultLang)}];\n`;
-
-    const i18nCode = typeObjToCode(typeObj, varCurrentLang);
-    code += `export const ${varI18n} = ${i18nCode};\n`;
-    code += `export type ${varI18nType} = typeof ${varI18n};\n`;
-
-    code += `${generateChangeLanguageCode(languages, varLanguages, varCurrentLang)}\n`;
-
-    code += `${generateGetLanguageCode()}\n`;
+    code += `let currentLanguage: SupportedLanguage = ${JSON.stringify(defaultLang)};\n`;
+    code += `export const i18n: Messages = ${typeObjToDelegateCode(typeObj, '')};\n`;
+    code += `export type I18n = typeof i18n;\n\n`;
+    code += `${generateChangeLanguageCode()}\n\n`;
+    code += `${generateGetLanguageCode()}\n\n`;
   } else {
-    const i18nCode = typeObjToCodeWithLanguageParam(typeObj, varLanguages);
-    code += `export const ${varI18n} = ${i18nCode};\n`;
-    code += `export type ${varI18nType} = typeof ${varI18n};\n`;
+    code += `export const i18n = function (language: string): Messages {
+  if (!isSupportedLanguage(language)) throw new Error(\`Language "\${language}" not found\`);
+  return languages[language];
+};
+export type I18n = typeof i18n;\n\n`;
   }
 
+  code += `${generateLanguageMatcherCode()}\n`;
   return code;
 }
 
-export function generateNextHelper(i18nImportPath: string, global: boolean): string {
-  const i18nImport = global
-    ? 'DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES, i18nByCode'
-    : 'DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES, i18n';
-  const useI18nCode = global
-    ? `export function useI18n(): ReturnType<typeof i18nByCode> {
-  const locale = useLocaleValue();
-  return i18nByCode(locale);
-}`
-    : `export function useI18n(): ReturnType<typeof i18n> {
-  const locale = useLocaleValue();
-  return i18n(locale);
-}`;
-
+export function generateNextHelper(i18nImportPath: string): string {
   return `/* eslint-disable */
 
 /*----------------------------------------------------------------------------------------------*
@@ -81,9 +64,15 @@ export function generateNextHelper(i18nImportPath: string, global: boolean): str
 
 import { useParams, usePathname, useRouter } from 'next/navigation';
 import type React from 'react';
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useInsertionEffect, useMemo, useRef, useState } from 'react';
 
-import { ${i18nImport} } from ${JSON.stringify(i18nImportPath)};
+import {
+  DEFAULT_LANGUAGE,
+  SUPPORTED_LANGUAGES,
+  i18n,
+  isSupportedLanguage,
+  matchSupportedLanguage,
+} from ${JSON.stringify(i18nImportPath)};
 import type { SupportedLanguage } from ${JSON.stringify(i18nImportPath)};
 
 interface LocaleContextValue {
@@ -113,24 +102,39 @@ export const LocaleProvider: React.FC<LocaleProviderProps> = ({ children }) => {
     setDetectedLocale(detectLocaleFromBrowser());
   }, [routeLocale]);
 
-  const setLocale = (newLocale: string): boolean => {
-    if (!isSupportedLanguage(newLocale)) {
-      console.warn(\`Locale "\${newLocale}" is not supported. Supported locales:\`, SUPPORTED_LANGUAGES);
-      return false;
-    }
+  // setLocale reads the pathname through a ref so that it, and the context value, stay stable across navigations;
+  // otherwise every useI18n consumer would re-render whenever the path changes. The ref is updated in an insertion
+  // effect because it runs before every layout and passive effect of the commit, including those of descendants that
+  // may call setLocale, whereas a passive effect here would run after them and leave the previous pathname.
+  const pathnameRef = useRef(pathname);
+  useInsertionEffect(() => {
+    pathnameRef.current = pathname;
+  }, [pathname]);
 
-    setLocalePreference(newLocale);
-    const nextPathname = replaceLocaleSegment(pathname, locale, newLocale);
-    const query = getCurrentSearchParams();
-    const hash = getCurrentHash();
-    router.push(\`\${nextPathname}\${query ? \`?\${query}\` : ''}\${hash}\`);
-    return true;
-  };
+  const setLocale = useCallback(
+    (newLocale: string): boolean => {
+      if (!isSupportedLanguage(newLocale)) {
+        console.warn(\`Locale "\${newLocale}" is not supported. Supported locales:\`, SUPPORTED_LANGUAGES);
+        return false;
+      }
 
-  return <LocaleContext.Provider value={{ locale, setLocale }}>{children}</LocaleContext.Provider>;
+      setLocalePreference(newLocale);
+      const nextPathname = replaceLocaleSegment(pathnameRef.current, newLocale);
+      const query = getCurrentSearchParams();
+      const hash = getCurrentHash();
+      router.push(\`\${nextPathname}\${query ? \`?\${query}\` : ''}\${hash}\`);
+      return true;
+    },
+    [router]
+  );
+  const value = useMemo(() => ({ locale, setLocale }), [locale, setLocale]);
+
+  return <LocaleContext.Provider value={value}>{children}</LocaleContext.Provider>;
 };
 
-${useI18nCode}
+export function useI18n(): ReturnType<typeof i18n> {
+  return i18n(useLocaleValue());
+}
 
 export function useLocaleValue(): SupportedLanguage {
   return useLocaleContext().locale;
@@ -161,14 +165,12 @@ function detectLocaleFromBrowser(): SupportedLanguage {
     // Storage may be unavailable even when navigator.language is still usable.
   }
 
-  const browserLanguage = navigator.language;
-  if (isSupportedLanguage(browserLanguage)) return browserLanguage;
-
-  const languagePrefix = browserLanguage.split('-')[0];
-  const matchingLocale = SUPPORTED_LANGUAGES.find((supportedLanguage) => {
-    return !!languagePrefix && supportedLanguage.startsWith(languagePrefix);
-  });
-  return matchingLocale ?? DEFAULT_LANGUAGE;
+  const browserLanguages = navigator.languages.length > 0 ? navigator.languages : [navigator.language];
+  for (const browserLanguage of browserLanguages) {
+    const matchedLocale = matchSupportedLanguage(browserLanguage);
+    if (matchedLocale) return matchedLocale;
+  }
+  return DEFAULT_LANGUAGE;
 }
 
 function setLocalePreference(locale: SupportedLanguage): void {
@@ -192,17 +194,13 @@ function getCurrentHash(): string {
   return globalThis.location.hash;
 }
 
-function replaceLocaleSegment(pathname: string, currentLocale: SupportedLanguage, nextLocale: SupportedLanguage): string {
+function replaceLocaleSegment(pathname: string, nextLocale: SupportedLanguage): string {
   const segments = pathname.split('/');
-  if (segments[1] === currentLocale || isSupportedLanguage(segments[1])) {
+  if (isSupportedLanguage(segments[1])) {
     segments[1] = nextLocale;
-    return segments.join('/') || '/';
+    return segments.join('/');
   }
   return \`/\${nextLocale}\${pathname}\`;
-}
-
-function isSupportedLanguage(locale: string | undefined): locale is SupportedLanguage {
-  return SUPPORTED_LANGUAGES.includes(locale as SupportedLanguage);
 }
 `;
 }
@@ -220,7 +218,7 @@ import 'server-only';
 import { cookies, headers } from 'next/headers';
 import type { NextRequest } from 'next/server';
 
-import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES, i18n } from ${JSON.stringify(i18nImportPath)};
+import { DEFAULT_LANGUAGE, i18n, isSupportedLanguage, matchSupportedLanguage } from ${JSON.stringify(i18nImportPath)};
 import type { SupportedLanguage } from ${JSON.stringify(i18nImportPath)};
 
 export const LOCALE_COOKIE_NAME = 'preferred-locale';
@@ -251,31 +249,31 @@ export function getLocaleFromNextRequest(request: NextRequest): SupportedLanguag
 
 export function getLocaleFromAcceptLanguage(acceptLanguage: string | null | undefined): SupportedLanguage {
   for (const language of getLanguagesFromAcceptLanguage(acceptLanguage)) {
-    const exactMatch = getSupportedLanguage(language);
-    if (exactMatch) return exactMatch;
-
-    const languagePrefix = language.split('-')[0];
-    const prefixMatch = SUPPORTED_LANGUAGES.find((supportedLanguage) => {
-      return !!languagePrefix && supportedLanguage.startsWith(languagePrefix);
-    });
-    if (prefixMatch) return prefixMatch;
+    const matchedLocale = matchSupportedLanguage(language);
+    if (matchedLocale) return matchedLocale;
   }
 
   return DEFAULT_LANGUAGE;
 }
 
+/** Return the languages in \`acceptLanguage\` in descending order of quality, excluding \`*\` and \`q=0\`. */
 function getLanguagesFromAcceptLanguage(acceptLanguage: string | null | undefined): string[] {
   if (!acceptLanguage) return [];
 
-  return acceptLanguage
-    .split(',')
-    .map((language) => language.split(';')[0]?.trim())
-    .filter((language): language is string => !!language && language !== '*' && isValidLocaleCandidate(language));
+  const weightedLanguages: { language: string; quality: number }[] = [];
+  for (const entry of acceptLanguage.split(',')) {
+    const [range, ...parameters] = entry.split(';').map((part) => part.trim());
+    const qualityParameter = parameters.find((parameter) => parameter.toLowerCase().startsWith('q='));
+    const quality = qualityParameter ? Number(qualityParameter.slice(2)) : 1;
+    if (range && range !== '*' && isValidLocaleCandidate(range) && quality > 0) {
+      weightedLanguages.push({ language: range, quality });
+    }
+  }
+  return weightedLanguages.sort((a, b) => b.quality - a.quality).map(({ language }) => language);
 }
 
 function getSupportedLanguage(language: string | undefined): SupportedLanguage | undefined {
-  if (!language) return undefined;
-  return SUPPORTED_LANGUAGES.includes(language as SupportedLanguage) ? (language as SupportedLanguage) : undefined;
+  return isSupportedLanguage(language) ? language : undefined;
 }
 
 function isValidLocaleCandidate(language: string): boolean {
@@ -288,104 +286,123 @@ function isValidLocaleCandidate(language: string): boolean {
 `;
 }
 
-function langObjToCode(lang: string, langObj: unknown): string {
-  if (!isObject(langObj)) throw new Error(ErrorMessages.langFileNotObject(lang));
-
-  return langObjToCodeRecursively(lang, langObj, '');
-}
-
-function langObjToCodeRecursively(lang: string, langObj: unknown, varName: string): string {
-  if (isString(langObj)) {
-    return JSON.stringify(langObj);
-  } else if (isObject(langObj)) {
-    let members = '';
-    for (const [key, value] of Object.entries(langObj)) {
-      const memberVarName = getMemberVarName(varName, key);
-      const valueCode = langObjToCodeRecursively(lang, value, memberVarName);
-      members += `${JSON.stringify(key)}: ${valueCode}, `;
-    }
-    return `{ "__code__": "${lang}", ${members} }`;
-  }
-
-  throw new Error(ErrorMessages.varShouldStringOrObject(lang, varName));
-}
-
-function typeObjToCodeWithLanguageParam(typeObj: BaseType, varLanguages: string): string {
-  const varLanguage = 'language';
-  const varCurrentLang = 'currentLang';
-
-  let code = `function (${varLanguage}: string) {\n`;
-  code += `  if (!(${varLanguage} in ${varLanguages})) throw new Error(\`Language "\${${varLanguage}}" not found\`);\n`;
-  code += `  const ${varCurrentLang} = ${varLanguages}[${varLanguage} as SupportedLanguage];\n`;
-
-  const i18nCode = typeObjToCode(typeObj, varCurrentLang);
-  code += `  return ${i18nCode};\n`;
-  code += `}`;
-
-  return code;
-}
-
-function typeObjToCode(typeObj: BaseType, varName: string): string {
+function typeObjToTypeCode(typeObj: BaseType): string {
   if (typeObj instanceof FunctionType) {
-    if (typeObj.params.length === 0) {
-      const declaration = `function (): string`;
-      return `${declaration} { return ${varName} }`;
-    }
+    if (typeObj.params.length === 0) return '() => string';
 
-    const paramTypes = typeObj.params.map((param) => `${param}: unknown`).join(', ');
-    const paramDestructure = `{ ${typeObj.params.join(', ')} }`;
-    const declaration = `function (${paramDestructure}: { ${paramTypes} }): string`;
-
-    const varParamMap = 'paramMap';
-    const members = typeObj.params.map((param) => `"\${${param}}" : String(${param}),`).join(' ');
-    const declarationStatement = `const ${varParamMap}: Record<string, string> = { ${members} };`;
-
-    const varPattern = 'pattern';
-    const patterns = typeObj.params.map((param) => String.raw`\$\{${param}\}`).join('|');
-    const regex = `/${patterns}/g`;
-    const replaceFunc = `(${varPattern}) => ${varParamMap}[${varPattern}] ?? ''`;
-    const returnStatement = `return ${varName}.replaceAll(${regex}, ${replaceFunc});`;
-
-    return `${declaration} { ${declarationStatement} ${returnStatement} }`;
+    const paramTypes = typeObj.params.map((param) => `${param}: unknown`).join('; ');
+    return `(params: { ${paramTypes} }) => string`;
   } else if (typeObj instanceof ObjectType) {
+    const members = Object.entries(typeObj.map)
+      .map(([key, value]) => `${JSON.stringify(key)}: ${typeObjToTypeCode(value)};`)
+      .join(' ');
+    return `{ ${members} }`;
+  }
+  throw new TypeError(ErrorMessages.unreachable());
+}
+
+function typeObjToMessagesCode(typeObj: BaseType, lang: string, langObj: unknown, varName: string): string {
+  if (typeObj instanceof FunctionType) {
+    if (!isString(langObj)) throw new Error(ErrorMessages.varShouldString(lang, varName));
+    return messageToFunctionCode(langObj, typeObj.params);
+  } else if (typeObj instanceof ObjectType) {
+    if (!isObject(langObj)) throw new Error(ErrorMessages.varShouldObject(lang, varName));
+
     let members = '';
     for (const [key, value] of Object.entries(typeObj.map)) {
-      const memberVarName = getMemberVarName(varName, key);
-      const valueCode = typeObjToCode(value, memberVarName);
+      const valueCode = typeObjToMessagesCode(value, lang, langObj[key], getMemberVarName(varName, key));
       members += `${JSON.stringify(key)}: ${valueCode}, `;
     }
     return `{ ${members} }`;
-  } else {
-    throw new TypeError(ErrorMessages.unreachable());
   }
+  throw new TypeError(ErrorMessages.unreachable());
 }
 
-function generateChangeLanguageCode(langs: string[], varLanguages: string, varCurrentLang: string): string {
-  const funcChangeCurrentLang = 'changeLanguageByCode';
-  const varLang = 'lang';
-  const declaration = `export function ${funcChangeCurrentLang}(${varLang}: SupportedLanguage): true;\nexport function ${funcChangeCurrentLang}(${varLang}: string): boolean;\nexport function ${funcChangeCurrentLang}(${varLang}: string): boolean`;
+/**
+ * Compile a message into string concatenation so that calls do no parsing and
+ * argument values containing `${...}` are never substituted again.
+ * When a message uses several parameters or one repeatedly, each is read and stringified once into a local
+ * in signature order, so getters and `toString` run once per call and in a fixed order.
+ */
+function messageToFunctionCode(message: string, signatureParams: string[]): string {
+  const matches = [...message.matchAll(VARIABLE_REGEX)];
+  if (matches.length === 0) return `() => ${JSON.stringify(message)}`;
 
-  const cases = langs
-    .map((lang) => `case "${lang}": ${varCurrentLang} = ${varLanguages}[${JSON.stringify(lang)}]; return true;`)
-    .join(' ');
-  const statement = `switch (${varLang}) { ${cases} } return false;`;
+  const usedParams = signatureParams.filter((param) => matches.some((match) => match[1] === param));
+  const usesLocals = matches.length > 1;
 
-  return `${declaration} { ${statement} }`;
+  const parts: string[] = [];
+  let lastIndex = 0;
+  for (const match of matches) {
+    if (match.index > lastIndex) parts.push(JSON.stringify(message.slice(lastIndex, match.index)));
+    parts.push(usesLocals ? `$${match[1]}` : `String(params.${match[1]})`);
+    lastIndex = match.index + match[0].length;
+  }
+  if (lastIndex < message.length) parts.push(JSON.stringify(message.slice(lastIndex)));
+
+  const concatenation = parts.join(' + ');
+  if (!usesLocals) return `(params) => ${concatenation}`;
+
+  const locals = usedParams.map((param) => `const $${param} = String(params.${param});`).join(' ');
+  return `(params) => { ${locals} return ${concatenation}; }`;
+}
+
+function typeObjToDelegateCode(typeObj: BaseType, path: string): string {
+  if (typeObj instanceof FunctionType) {
+    const params = typeObj.params.length === 0 ? '' : 'params';
+    return `(${params}) => languages[currentLanguage]${path}(${params})`;
+  } else if (typeObj instanceof ObjectType) {
+    let members = '';
+    for (const [key, value] of Object.entries(typeObj.map)) {
+      const memberPath = `${path}[${JSON.stringify(key)}]`;
+      members += `${JSON.stringify(key)}: ${typeObjToDelegateCode(value, memberPath)}, `;
+    }
+    return `{ ${members} }`;
+  }
+  throw new TypeError(ErrorMessages.unreachable());
+}
+
+function generateLanguageMatcherCode(): string {
+  return `export function isSupportedLanguage(language: string | undefined): language is SupportedLanguage {
+  return SUPPORTED_LANGUAGES.includes(language as SupportedLanguage);
+}
+
+/**
+ * Return the supported language equal to \`language\` or, failing that, the first one sharing its primary subtag.
+ * Comparison ignores case because language tags are case-insensitive and supported languages come from file names.
+ */
+export function matchSupportedLanguage(language: string): SupportedLanguage | undefined {
+  const lowerLanguage = language.toLowerCase();
+  const exactMatch = SUPPORTED_LANGUAGES.find((supportedLanguage) => supportedLanguage.toLowerCase() === lowerLanguage);
+  if (exactMatch) return exactMatch;
+
+  const primarySubtag = lowerLanguage.split('-')[0];
+  return SUPPORTED_LANGUAGES.find((supportedLanguage) => {
+    const lowerSupportedLanguage = supportedLanguage.toLowerCase();
+    return lowerSupportedLanguage === primarySubtag || lowerSupportedLanguage.startsWith(\`\${primarySubtag}-\`);
+  });
+}`;
+}
+
+function generateChangeLanguageCode(): string {
+  return `export function changeLanguageByCode(lang: SupportedLanguage): true;
+export function changeLanguageByCode(lang: string): boolean;
+export function changeLanguageByCode(lang: string): boolean {
+  if (!isSupportedLanguage(lang)) return false;
+  currentLanguage = lang;
+  return true;
+}`;
 }
 
 function generateGetLanguageCode(): string {
   return `export function getCurrentLanguageCode(): string {
-  return currentLang.__code__;
+  return currentLanguage;
 }
 export function getFullAndShortLanguageCodeList(): string[] {
   const langSet = new Set<string>();
-  const fullLangs = getFullLanguageCodeList();
-  const shortLangs = getShortLanguageCodeList();
-  const length = Math.max(fullLangs.length, shortLangs.length);
-  for (let i = 0; i < length; i++) {
-    const fullLang = fullLangs[i];
-    if (fullLang) langSet.add(fullLang);
-    const shortLang = shortLangs[i];
+  for (const fullLang of getFullLanguageCodeList()) {
+    langSet.add(fullLang);
+    const shortLang = fullLang.split('-')[0];
     if (shortLang) langSet.add(shortLang);
   }
   return [...langSet];

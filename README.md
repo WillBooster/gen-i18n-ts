@@ -58,6 +58,9 @@ jaI18n.welcome({ userName: '太郎' });
 // => "こんにちは、太郎さん"
 ```
 
+`i18n(language)` returns the same object for the same language, so it is safe to use as a dependency of React hooks.
+The generated file also exports `isSupportedLanguage(language)` and `matchSupportedLanguage(language)`; the latter falls back to a supported language that shares the primary subtag (e.g., `en-GB` → `en-US`).
+
 **Global mode (with `--global` flag):**
 
 ```ts
@@ -92,7 +95,7 @@ gen-i18n-ts takes three required arguments: `inputDir`, `outputFile` and `defaul
 - `-o, --outfile`: A path to output file (required)
 - `-d, --defaultLang`: A name of a default language (required)
 - `-w, --watch`: Enable watch mode (optional)
-- `-g, --global`: Generate with global state (currentLang variable) (optional, default: false)
+- `-g, --global`: Generate with global state (currentLanguage variable) (optional, default: false)
 - `--next`: Generate Next.js client helpers (optional, defaults to auto-detecting Next.js from `package.json`)
 
 ### Basic Usage
@@ -130,7 +133,7 @@ export function SaveButton() {
 ```
 
 The helper reads the `[locale]` route parameter through `next/navigation`, falls back to the default language, and exposes `useLocaleValue`, `useSetLocale`, and `useI18n`.
-The server helper reads the `preferred-locale` cookie first, then falls back to the `Accept-Language` header.
+The server helper reads the `preferred-locale` cookie first, then falls back to the `Accept-Language` header in descending order of quality.
 Use `await getI18n()` in server components or actions when locale route params are not already available.
 
 ```ts
@@ -146,7 +149,7 @@ The following description takes [readme-sample](./samples/readme-sample) for exa
 
 ### Input (`inputDir`)
 
-`inputDir` is the path to the directory which contains JSON files for internationalization.
+`inputDir` is the path to the directory which contains JSON or YAML files for internationalization.
 The input directory should be like
 
 ```
@@ -156,8 +159,8 @@ i18n-json/
   ...
 ```
 
-- the input directory is expected to contain only JSON files. Sub-directories or non-JSON files are ignored.
-- a JSON file should be named as `langage.json`. `langage` does NOT HAVE TO be a ISO 639 code
+- the input directory is expected to contain only JSON or YAML (`.yaml`, `.yml`) files. Sub-directories and other files are ignored.
+- a file should be named as `langage.json` (or `langage.yaml` / `langage.yml`). `langage` does NOT HAVE TO be a ISO 639 code
 
 A JSON file in the directory (`en.json`, `ja.json` in this case) is expected to contain messages in each language.
 It should be like
@@ -217,72 +220,52 @@ The order of the keys are not cared.
 
 `outputFile` is the path to the TypeScript file for internationalization. The generated exports depend on the mode:
 
-#### Default (Non-Global) Mode
-
-Exports an `i18n` function that takes a language parameter:
+Both modes compile each language's messages into functions once, when the module is loaded:
 
 ```ts
-export const i18n = function (language: string) {
-  const currentLang = languages[language];
-  if (!currentLang) throw new Error(`Language "${language}" not found`);
-  return {
-    okButtonName: function(): string {
-      return ...
-    },
-    welcome: function({ userName }: { userName: unknown }): string {
-      return ...
-    },
-    pages: {
-      user: function({ userName }: { userName: unknown }): string {
-        return ...
-      },
-      help: function(): string {
-        return ...
-      },
-      contact:  function(): string {
-        return ...
-      },
-    },
-  };
+type Messages = {
+  okButtonName: () => string;
+  welcome: (params: { userName: unknown }) => string;
+  pages: { user: (params: { userName: unknown }) => string; help: () => string; contact: () => string };
+};
+
+const languages: Record<SupportedLanguage, Messages> = {
+  en: {
+    okButtonName: () => 'Done',
+    welcome: (params) => 'Hi, ' + String(params.userName),
+    pages: { user: (params) => String(params.userName) + "'s page", help: () => 'Help', contact: () => 'Contact' },
+  },
+  ja: { ... },
+};
+```
+
+#### Default (Non-Global) Mode
+
+Exports an `i18n` function that returns the messages of a language:
+
+```ts
+export const i18n = function (language: string): Messages {
+  if (!isSupportedLanguage(language)) throw new Error(`Language "${language}" not found`);
+  return languages[language];
 };
 ```
 
 #### Global Mode (with `--global` flag)
 
-Exports an `i18n` object and `changeLanguageByCode` function:
+Exports an `i18n` object that delegates to the current language, and `changeLanguageByCode` to switch it:
 
 ```ts
-export const i18n = {
-  okButtonName: function(): string {
-    return ...
-  },
-  welcome: function({ userName }: { userName: unknown }): string {
-    return ...
-  },
-  pages: {
-    user: function({ userName }: { userName: unknown }): string {
-      return ...
-    },
-    help: function(): string {
-      return ...
-    },
-    contact:  function(): string {
-      return ...
-    },
-  },
-}
+let currentLanguage: SupportedLanguage = 'en';
+export const i18n: Messages = {
+  okButtonName: () => languages[currentLanguage]['okButtonName'](),
+  welcome: (params) => languages[currentLanguage]['welcome'](params),
+  pages: { ... },
+};
 
 export function changeLanguageByCode(lang: string): boolean {
-  switch (lang) {
-    case 'en':
-      currentLang = en;
-      return true;
-    case 'ja':
-      currentLang = ja;
-      return true;
-    ...
-  }
-  return false
+  if (!isSupportedLanguage(lang)) return false;
+  currentLanguage = lang;
+  return true;
 }
 ```
 
@@ -296,6 +279,6 @@ export function changeLanguageByCode(lang: string): boolean {
 
 `defaultLang` is a string which represents the language used by default.
 
-- it must be one of the names of the JSON files (w/o extension `.json`) in the input directory (if not, gen-i18n-ts throws an error).
+- it must be one of the names of the input files without their extension (e.g., `en` for `en.json` or `en.yaml`) in the input directory (if not, gen-i18n-ts throws an error).
 - it is used to define the priority of the input files
-- it is used as a initial value of the variable `currentLang` in the output file.
+- it is used as a initial value of the variable `currentLanguage` in global mode.
