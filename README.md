@@ -58,6 +58,9 @@ jaI18n.welcome({ userName: '太郎' });
 // => "こんにちは、太郎さん"
 ```
 
+`i18n(language)` returns the same object for the same language, so it is safe to use as a dependency of React hooks.
+The generated file also exports `isSupportedLanguage(language)` and `matchSupportedLanguage(language)`; the latter falls back to a supported language that shares the primary subtag (e.g., `en-GB` → `en-US`).
+
 **Global mode (with `--global` flag):**
 
 ```ts
@@ -130,7 +133,7 @@ export function SaveButton() {
 ```
 
 The helper reads the `[locale]` route parameter through `next/navigation`, falls back to the default language, and exposes `useLocaleValue`, `useSetLocale`, and `useI18n`.
-The server helper reads the `preferred-locale` cookie first, then falls back to the `Accept-Language` header.
+The server helper reads the `preferred-locale` cookie first, then falls back to the `Accept-Language` header in descending order of quality.
 Use `await getI18n()` in server components or actions when locale route params are not already available.
 
 ```ts

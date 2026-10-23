@@ -6,7 +6,9 @@ import path from 'node:path';
 test('global mode (explicit flag)', () => {
   const inputDir = path.resolve('test-fixtures', 'basicUse');
   const outFile = path.resolve('temp', 'globalModeI18n.ts');
-  child_process.spawnSync('yarn', ['start', '-i', inputDir, '-o', outFile, '-d', 'en', '--global']);
+  expect(child_process.spawnSync('bun', ['start', '-i', inputDir, '-o', outFile, '-d', 'en', '--global']).status).toBe(
+    0
+  );
 
   const { changeLanguageByCode, getCurrentLanguageCode, i18n } = require('../../temp/globalModeI18n.ts');
 
@@ -21,7 +23,8 @@ test('global mode (explicit flag)', () => {
 
   expect(getCurrentLanguageCode()).toBe('en');
 
-  changeLanguageByCode('ja');
+  expect(changeLanguageByCode('toString')).toBe(false);
+  expect(changeLanguageByCode('ja')).toBe(true);
   expect(getCurrentLanguageCode()).toBe('ja');
   expect(i18n.okButtonName()).toBe('完了');
   expect(i18n.welcome({ userName: '太郎' })).toBe('こんにちは、太郎さん');

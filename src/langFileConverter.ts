@@ -8,41 +8,18 @@ import type { BaseType } from './types.js';
 import { FunctionType, ObjectType } from './types.js';
 import { getMemberVarName, isObject, isString } from './utils.js';
 
+export const LANG_FILE_EXTENSIONS = ['.json', '.yaml', '.yml'];
+
 export function toLangObj(lang: string, langFilePath: string): unknown {
   const fileContent = fs.readFileSync(langFilePath, { encoding: 'utf8' });
-  let langObj: unknown;
-  switch (path.extname(langFilePath)) {
-    case '.yaml':
-    case '.yml': {
-      langObj = load(fileContent);
-      break;
-    }
-    default: {
-      // .json
-      langObj = JSON.parse(fileContent);
-      break;
-    }
-  }
+  const langObj: unknown = path.extname(langFilePath) === '.json' ? JSON.parse(fileContent) : load(fileContent);
   validateLangObj(lang, langObj);
   return langObj;
 }
 
-export function toTypeObj(lang: string, langFilePath: string): BaseType {
-  const fileContent = fs.readFileSync(langFilePath, { encoding: 'utf8' });
-  let langObj: unknown;
-  switch (path.extname(langFilePath)) {
-    case '.yaml':
-    case '.yml': {
-      langObj = load(fileContent);
-      break;
-    }
-    default: {
-      // .json
-      langObj = JSON.parse(fileContent);
-      break;
-    }
-  }
-  return langObjToTypeObj(lang, langObj);
+export function toTypeObj(lang: string, langObj: unknown): BaseType {
+  if (!isObject(langObj)) throw new Error(ErrorMessages.langFileNotObject(lang));
+  return langObjToTypeObjRecursively(lang, langObj, '');
 }
 
 function validateLangObj(lang: string, langObj: unknown): void {
@@ -61,11 +38,6 @@ function validateLangObjRecursively(lang: string, langObj: unknown, varName: str
   } else {
     throw new Error(ErrorMessages.varShouldStringOrObject(lang, varName));
   }
-}
-
-function langObjToTypeObj(lang: string, langObj: unknown): BaseType {
-  if (!isObject(langObj)) throw new Error(ErrorMessages.langFileNotObject(lang));
-  return langObjToTypeObjRecursively(lang, langObj, '');
 }
 
 function langObjToTypeObjRecursively(lang: string, langObj: unknown, varName: string): BaseType {
