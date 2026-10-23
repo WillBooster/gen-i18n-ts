@@ -7,18 +7,22 @@
     "i18n",
     "internationalization"
   ],
+  "license": "Apache-2.0",
+  "author": "WillBooster Inc.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/WillBooster/gen-i18n-ts.git"
   },
-  "license": "Apache-2.0",
-  "author": "WillBooster Inc.",
-  "type": "module",
   "bin": "./bin/index.js",
   "files": [
     "bin/",
     "dist/"
   ],
+  "type": "module",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "build": "build-ts app",
     "cleanup": "bun wb lint --fix --format",
@@ -54,25 +58,18 @@
     "@types/node": "26.6.5",
     "@types/yargs": "17.0.35",
     "@willbooster/babel-configs": "2.5.1",
-    "@willbooster/oxfmt-config": "1.2.2",
     "@willbooster/oxlint-config": "1.4.9",
-    "@willbooster/wb": "22.27.0",
+    "@willbooster/wb": "22.29.1",
     "babel-plugin-transform-remove-console": "6.9.4",
     "build-ts": "21.0.27",
     "conventional-changelog-conventionalcommits": "10.4.1",
     "lefthook": "2.2.2",
-    "oxfmt": "0.73.0",
     "oxlint": "1.88.0",
     "oxlint-tsgolint": "7.0.2004",
     "semantic-release": "25.0.9",
-    "sort-package-json": "4.1.0",
     "vitest": "5.0.5"
   },
   "engines": {
     "node": ">=24"
-  },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
   }
 }

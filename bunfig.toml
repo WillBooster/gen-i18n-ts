@@ -5,7 +5,7 @@ telemetry = false
 exact = true
 globalStore = true
 linker = "isolated"
-publicHoistPattern = ["tsx", "undici-types"]
+publicHoistPattern = ["tsx"]
 minimumReleaseAge = 604800
 minimumReleaseAgeExcludes = [
   "@exercode/problem-utils",
@@ -84,3 +84,51 @@ minimumReleaseAgeExcludes = [
   "wbfy",
   "yarn-plugin-auto-install",
 ]
+
+[fmt]
+flavor = "oxfmt"
+printWidth = 120
+singleQuote = true
+sortImports = true
+sortPackageJson = true
+trailingComma = "es5"
+ignorePatterns = [
+  "**/.agents/**",
+  "**/.claude/**",
+  "**/.devcontainer/**",
+  "**/.idea/AugmentWebviewStateStore.xml",
+  "**/.idea/copilot*/**",
+  "**/.playwright-cli/**",
+  "**/.serena/**",
+  "**/.tmp/**",
+  "**/.venv/**",
+  "**/.yarn/**",
+  "**/3rd-party/**",
+  "**/@types/**",
+  "**/@willbooster/**",
+  "**/__generated__/**",
+  "**/android/**",
+  "**/bin/**",
+  "**/build/**",
+  "**/coverage/**",
+  "**/dist/**",
+  "**/ios/**",
+  "**/no-format/**",
+  "**/node_modules/**",
+  "**/temp/**",
+  "**/tmp/**",
+  "**/test-fixtures/**",
+  "**/test-results/**",
+  "**/test/fixtures/**",
+  "**/.aider*",
+  "**/.env.production",
+  "**/.pnp.js",
+  "**/*/mount/*.hash",
+  "**/*.d.ts",
+  "**/*.java",
+  "**/*.min.*js",
+]
+
+[[fmt.overrides]]
+files = ["**/oxlint.config.ts"]
+options = { sortImports = false }
