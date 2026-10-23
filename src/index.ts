@@ -39,7 +39,7 @@ export async function cli(): Promise<void> {
       global: {
         type: 'boolean',
         alias: 'g',
-        describe: 'Generate with global state (currentLang variable)',
+        describe: 'Generate with global state (currentLanguage variable)',
         default: false,
       },
       next: {
