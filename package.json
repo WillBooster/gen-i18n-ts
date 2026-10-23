@@ -39,7 +39,7 @@
     "verify-full": "bun wb verify --full"
   },
   "dependencies": {
-    "js-yaml": "5.4.3",
+    "js-yaml": "5.5.0",
     "yargs": "18.2.0"
   },
   "devDependencies": {
