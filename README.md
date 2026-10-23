@@ -149,7 +149,7 @@ The following description takes [readme-sample](./samples/readme-sample) for exa
 
 ### Input (`inputDir`)
 
-`inputDir` is the path to the directory which contains JSON files for internationalization.
+`inputDir` is the path to the directory which contains JSON or YAML files for internationalization.
 The input directory should be like
 
 ```
@@ -160,7 +160,7 @@ i18n-json/
 ```
 
 - the input directory is expected to contain only JSON or YAML (`.yaml`, `.yml`) files. Sub-directories and other files are ignored.
-- a JSON file should be named as `langage.json`. `langage` does NOT HAVE TO be a ISO 639 code
+- a file should be named as `langage.json` (or `langage.yaml` / `langage.yml`). `langage` does NOT HAVE TO be a ISO 639 code
 
 A JSON file in the directory (`en.json`, `ja.json` in this case) is expected to contain messages in each language.
 It should be like
@@ -279,6 +279,6 @@ export function changeLanguageByCode(lang: string): boolean {
 
 `defaultLang` is a string which represents the language used by default.
 
-- it must be one of the names of the JSON files (w/o extension `.json`) in the input directory (if not, gen-i18n-ts throws an error).
+- it must be one of the names of the input files without their extension (e.g., `en` for `en.json` or `en.yaml`) in the input directory (if not, gen-i18n-ts throws an error).
 - it is used to define the priority of the input files
 - it is used as a initial value of the variable `currentLanguage` in global mode.
