@@ -29,6 +29,18 @@ test('multiple arguments', () => {
   );
   expect(i18n.fx({ f: '正弦(sin)', x: 'シータ' })).toBe('シータ の関数 正弦(sin)');
 
+  let reads = 0;
+  const counting = {
+    get f() {
+      return ++reads;
+    },
+    get x() {
+      return ++reads;
+    },
+  };
+  // Parameters are read in signature order even when the translation reorders them.
+  expect(i18n.fx(counting)).toBe('2 の関数 1');
+
   changeLanguageByCode('en');
   expect(i18n.fourAnd({ a: 'apple', b: 'orange', c: 'banana', d: 'peach' })).toBe('apple, orange, banana and peach');
 

@@ -303,7 +303,7 @@ function typeObjToTypeCode(typeObj: BaseType): string {
 function typeObjToMessagesCode(typeObj: BaseType, lang: string, langObj: unknown, varName: string): string {
   if (typeObj instanceof FunctionType) {
     if (!isString(langObj)) throw new Error(ErrorMessages.varShouldString(lang, varName));
-    return messageToFunctionCode(langObj);
+    return messageToFunctionCode(langObj, typeObj.params);
   } else if (typeObj instanceof ObjectType) {
     if (!isObject(langObj)) throw new Error(ErrorMessages.varShouldObject(lang, varName));
 
@@ -320,28 +320,29 @@ function typeObjToMessagesCode(typeObj: BaseType, lang: string, langObj: unknown
 /**
  * Compile a message into string concatenation so that calls do no parsing and
  * argument values containing `${...}` are never substituted again.
- * A parameter used more than once is stringified once into a local, so getters and `toString` run once per call.
+ * When a message uses several parameters or one repeatedly, each is read and stringified once into a local
+ * in signature order, so getters and `toString` run once per call and in a fixed order.
  */
-function messageToFunctionCode(message: string): string {
+function messageToFunctionCode(message: string, signatureParams: string[]): string {
   const matches = [...message.matchAll(VARIABLE_REGEX)];
-  const params = matches.map((match) => match[1] ?? '');
-  const repeatedParams = new Set(params.filter((param, index) => params.indexOf(param) !== index));
+  if (matches.length === 0) return `() => ${JSON.stringify(message)}`;
+
+  const usedParams = signatureParams.filter((param) => matches.some((match) => match[1] === param));
+  const usesLocals = matches.length > 1;
 
   const parts: string[] = [];
   let lastIndex = 0;
-  for (const [index, match] of matches.entries()) {
+  for (const match of matches) {
     if (match.index > lastIndex) parts.push(JSON.stringify(message.slice(lastIndex, match.index)));
-    const param = params[index] ?? '';
-    parts.push(repeatedParams.has(param) ? `$${param}` : `String(params.${param})`);
+    parts.push(usesLocals ? `$${match[1]}` : `String(params.${match[1]})`);
     lastIndex = match.index + match[0].length;
   }
-  if (lastIndex < message.length || parts.length === 0) parts.push(JSON.stringify(message.slice(lastIndex)));
+  if (lastIndex < message.length) parts.push(JSON.stringify(message.slice(lastIndex)));
 
   const concatenation = parts.join(' + ');
-  if (matches.length === 0) return `() => ${concatenation}`;
-  if (repeatedParams.size === 0) return `(params) => ${concatenation}`;
+  if (!usesLocals) return `(params) => ${concatenation}`;
 
-  const locals = [...repeatedParams].map((param) => `const $${param} = String(params.${param});`).join(' ');
+  const locals = usedParams.map((param) => `const $${param} = String(params.${param});`).join(' ');
   return `(params) => { ${locals} return ${concatenation}; }`;
 }
 
