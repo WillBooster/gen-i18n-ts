@@ -261,7 +261,7 @@ function getLanguagesFromAcceptLanguage(acceptLanguage: string | null | undefine
   const weightedLanguages: { language: string; quality: number }[] = [];
   for (const entry of acceptLanguage.split(',')) {
     const [range, ...parameters] = entry.split(';').map((part) => part.trim());
-    const qualityParameter = parameters.find((parameter) => parameter.startsWith('q='));
+    const qualityParameter = parameters.find((parameter) => parameter.toLowerCase().startsWith('q='));
     const quality = qualityParameter ? Number(qualityParameter.slice(2)) : 1;
     const language = range && range !== '*' ? canonicalizeLocale(range) : undefined;
     if (language && quality > 0) weightedLanguages.push({ language, quality });
@@ -352,13 +352,19 @@ function generateLanguageMatcherCode(): string {
   return SUPPORTED_LANGUAGES.includes(language as SupportedLanguage);
 }
 
-/** Return the supported language equal to \`language\` or, failing that, the first one sharing its primary subtag. */
+/**
+ * Return the supported language equal to \`language\` or, failing that, the first one sharing its primary subtag.
+ * Comparison ignores case because language tags are case-insensitive and supported languages come from file names.
+ */
 export function matchSupportedLanguage(language: string): SupportedLanguage | undefined {
-  if (isSupportedLanguage(language)) return language;
+  const lowerLanguage = language.toLowerCase();
+  const exactMatch = SUPPORTED_LANGUAGES.find((supportedLanguage) => supportedLanguage.toLowerCase() === lowerLanguage);
+  if (exactMatch) return exactMatch;
 
-  const primarySubtag = language.split('-')[0];
+  const primarySubtag = lowerLanguage.split('-')[0];
   return SUPPORTED_LANGUAGES.find((supportedLanguage) => {
-    return supportedLanguage === primarySubtag || supportedLanguage.startsWith(\`\${primarySubtag}-\`);
+    const lowerSupportedLanguage = supportedLanguage.toLowerCase();
+    return lowerSupportedLanguage === primarySubtag || lowerSupportedLanguage.startsWith(\`\${primarySubtag}-\`);
   });
 }`;
 }
