@@ -265,8 +265,9 @@ function getLanguagesFromAcceptLanguage(acceptLanguage: string | null | undefine
     const [range, ...parameters] = entry.split(';').map((part) => part.trim());
     const qualityParameter = parameters.find((parameter) => parameter.toLowerCase().startsWith('q='));
     const quality = qualityParameter ? Number(qualityParameter.slice(2)) : 1;
-    const language = range && range !== '*' ? canonicalizeLocale(range) : undefined;
-    if (language && quality > 0) weightedLanguages.push({ language, quality });
+    if (range && range !== '*' && isValidLocaleCandidate(range) && quality > 0) {
+      weightedLanguages.push({ language: range, quality });
+    }
   }
   return weightedLanguages.sort((a, b) => b.quality - a.quality).map(({ language }) => language);
 }
@@ -275,11 +276,11 @@ function getSupportedLanguage(language: string | undefined): SupportedLanguage |
   return isSupportedLanguage(language) ? language : undefined;
 }
 
-function canonicalizeLocale(language: string): string | undefined {
+function isValidLocaleCandidate(language: string): boolean {
   try {
-    return Intl.getCanonicalLocales(language)[0];
+    return Intl.getCanonicalLocales(language).length > 0;
   } catch {
-    return undefined;
+    return false;
   }
 }
 `;
