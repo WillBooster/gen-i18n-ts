@@ -14,6 +14,15 @@ test('using variable multiple times', () => {
 
   expect(i18n.twice({ x: 'hey!' })).toBe('hey!, again hey!');
 
+  let reads = 0;
+  expect(
+    i18n.twice({
+      get x() {
+        return ++reads;
+      },
+    })
+  ).toBe('1, again 1');
+
   changeLanguageByCode('ja');
   expect(i18n.twice({ x: 'おーい！' })).toBe('おーい！、もう一回 おーい！');
 });

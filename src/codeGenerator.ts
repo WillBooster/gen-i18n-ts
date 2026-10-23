@@ -320,18 +320,29 @@ function typeObjToMessagesCode(typeObj: BaseType, lang: string, langObj: unknown
 /**
  * Compile a message into string concatenation so that calls do no parsing and
  * argument values containing `${...}` are never substituted again.
+ * A parameter used more than once is stringified once into a local, so getters and `toString` run once per call.
  */
 function messageToFunctionCode(message: string): string {
+  const matches = [...message.matchAll(VARIABLE_REGEX)];
+  const params = matches.map((match) => match[1] ?? '');
+  const repeatedParams = new Set(params.filter((param, index) => params.indexOf(param) !== index));
+
   const parts: string[] = [];
   let lastIndex = 0;
-  for (const match of message.matchAll(VARIABLE_REGEX)) {
+  for (const [index, match] of matches.entries()) {
     if (match.index > lastIndex) parts.push(JSON.stringify(message.slice(lastIndex, match.index)));
-    parts.push(`String(params.${match[1]})`);
+    const param = params[index] ?? '';
+    parts.push(repeatedParams.has(param) ? `$${param}` : `String(params.${param})`);
     lastIndex = match.index + match[0].length;
   }
-  const usesParams = parts.length > 0;
   if (lastIndex < message.length || parts.length === 0) parts.push(JSON.stringify(message.slice(lastIndex)));
-  return `(${usesParams ? 'params' : ''}) => ${parts.join(' + ')}`;
+
+  const concatenation = parts.join(' + ');
+  if (matches.length === 0) return `() => ${concatenation}`;
+  if (repeatedParams.size === 0) return `(params) => ${concatenation}`;
+
+  const locals = [...repeatedParams].map((param) => `const $${param} = String(params.${param});`).join(' ');
+  return `(params) => { ${locals} return ${concatenation}; }`;
 }
 
 function typeObjToDelegateCode(typeObj: BaseType, path: string): string {
