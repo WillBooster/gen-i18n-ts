@@ -64,7 +64,7 @@ export function generateNextHelper(i18nImportPath: string): string {
 
 import { useParams, usePathname, useRouter } from 'next/navigation';
 import type React from 'react';
-import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useInsertionEffect, useMemo, useRef, useState } from 'react';
 
 import {
   DEFAULT_LANGUAGE,
@@ -103,9 +103,11 @@ export const LocaleProvider: React.FC<LocaleProviderProps> = ({ children }) => {
   }, [routeLocale]);
 
   // setLocale reads the pathname through a ref so that it, and the context value, stay stable across navigations;
-  // otherwise every useI18n consumer would re-render whenever the path changes.
+  // otherwise every useI18n consumer would re-render whenever the path changes. The ref is updated in an insertion
+  // effect because it runs before every layout and passive effect of the commit, including those of descendants that
+  // may call setLocale, whereas a passive effect here would run after them and leave the previous pathname.
   const pathnameRef = useRef(pathname);
-  useEffect(() => {
+  useInsertionEffect(() => {
     pathnameRef.current = pathname;
   }, [pathname]);
 
