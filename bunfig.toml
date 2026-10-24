@@ -127,6 +127,8 @@ ignorePatterns = [
   "**/*.d.ts",
   "**/*.java",
   "**/*.min.*js",
+  "**/src/grammar.json",
+  "**/src/node-types.json",
 ]
 
 [[fmt.overrides]]
