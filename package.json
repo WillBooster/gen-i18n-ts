@@ -59,7 +59,7 @@
     "@types/yargs": "17.0.35",
     "@willbooster/babel-configs": "2.5.1",
     "@willbooster/oxlint-config": "1.4.9",
-    "@willbooster/wb": "23.0.0",
+    "@willbooster/wb": "23.0.1",
     "babel-plugin-transform-remove-console": "6.9.4",
     "build-ts": "21.0.29",
     "conventional-changelog-conventionalcommits": "10.4.1",
