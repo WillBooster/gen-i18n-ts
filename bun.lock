@@ -11,7 +11,7 @@
       "devDependencies": {
         "@babel/core": "8.1.0",
         "@babel/helper-plugin-utils": "8.0.1",
-        "@babel/node": "8.0.6",
+        "@babel/node": "8.1.2",
         "@babel/plugin-proposal-class-properties": "7.18.6",
         "@babel/plugin-proposal-numeric-separator": "7.18.6",
         "@babel/preset-env": "8.0.7",
@@ -92,7 +92,7 @@
 
     "@babel/helpers": ["@babel/helpers@8.1.0", "", { "dependencies": { "@babel/template": "^8.0.0", "@babel/types": "^8.1.0" } }, "sha512-949bjw10dhaRdtQeCpfVShFA4jIcto97BkqmWnRjpzyQuHVZ7EDriaoCn/4D8h1NqSKlmI20xPU0vHf3jQbQRg=="],
 
-    "@babel/node": ["@babel/node@8.0.6", "", { "dependencies": { "@babel/register": "^8.0.6", "commander": "^14.0.2", "core-js": "^3.48.0", "v8flags": "^4.0.1" }, "peerDependencies": { "@babel/core": "^8.0.0" }, "bin": { "babel-node": "./bin/babel-node.js" } }, "sha512-YO56bbGl5D9h25+fzO+WlTo4ua9Cyg1aqmb4OhNEDDrWC02E8xtyYuoexVHLvfZOb2wZt3GE3UBDeIhgLiersg=="],
+    "@babel/node": ["@babel/node@8.1.2", "", { "dependencies": { "@babel/register": "^8.1.2", "commander": "^14.0.2", "core-js": "^3.48.0", "v8flags": "^4.0.1" }, "peerDependencies": { "@babel/core": "^8.0.0" }, "bin": { "babel-node": "./bin/babel-node.js" } }, "sha512-n6M6iW/90SfMNHm3MlqdDu2IfL7Mv/MVZvTmTn0v6878YgcuNKQtTNzCTwPCsl7YzrPU7wCvdkJoKAzX6dlGXA=="],
 
     "@babel/parser": ["@babel/parser@8.1.0", "", { "dependencies": { "@babel/types": "^8.1.0" }, "bin": "./bin/babel-parser.js" }, "sha512-fpqZYAC+Tthr19JbEKxXhCGutvfm/+roMe+ULrgUKI+GVyzkQiTMTSheORcWIAzW8T3Oo3W5UavWSvAWmsp7fA=="],
 
@@ -230,7 +230,7 @@
 
     "@babel/preset-typescript": ["@babel/preset-typescript@8.0.7", "", { "dependencies": { "@babel/helper-plugin-utils": "^8.0.1", "@babel/helper-validator-option": "^8.0.0", "@babel/plugin-transform-modules-commonjs": "^8.0.1", "@babel/plugin-transform-typescript": "^8.0.6" }, "peerDependencies": { "@babel/core": "^8.0.0" } }, "sha512-sUFLFphAG6YNjCnJpSKpyoNxkfyeM2KNuUjJJN0R6dZusMcK2V3Fg11MVHPFvb37AZeDNocc+xM748vdh9z82Q=="],
 
-    "@babel/register": ["@babel/register@8.0.6", "", { "dependencies": { "@cspotcode/source-map-support": "^0.8.1", "cacache": "20.0.3", "clone-deep": "^4.0.1", "empathic": "^2.0.1", "pirates": "^4.0.6" }, "peerDependencies": { "@babel/core": "^8.0.0" } }, "sha512-Ix77Wl3Xpv/YXCRUa7s/FC0pWqsA+fego+HjmC0ziJioGKrBdS2Jpz2GruJMkUKYiJ33m+W8NXfce+3PQRzmSQ=="],
+    "@babel/register": ["@babel/register@8.1.2", "", { "dependencies": { "@cspotcode/source-map-support": "^0.8.1", "cacache": "20.0.3", "clone-deep": "^4.0.1", "empathic": "^2.0.1", "pirates": "^4.0.6" }, "peerDependencies": { "@babel/core": "^8.0.0" } }, "sha512-ZzLJg0RjvqcKHsnaFRVa7FDENGRXINoHtC9vT0XG8FpuOW+Jb/L/sMLXKiIzjN8wD4gL6ui6hUWuDderLyJH6Q=="],
 
     "@babel/template": ["@babel/template@8.0.0", "", { "dependencies": { "@babel/code-frame": "^8.0.0", "@babel/parser": "^8.0.0", "@babel/types": "^8.0.0" } }, "sha512-eAD0QW/AlbamBbw0FeGiwasbCVPq5ncW0HNVyLP3B9czqLyh4gvw+5JTSNt6le9+ziAU7mqDZsKTHf3jTb4chQ=="],
 
